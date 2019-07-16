@@ -64,8 +64,8 @@ translational_ode <- function(t, y, p) {
     dY0 <- (M*X5*G)*(1-(Y0/M)) - X6*Y0 - X7*Y0*(1-(Y0/M))
     dY1 <- X7*Y0*(1-(Y1/M)) - X4*Y1*(1-(Y2/M))
     dY2 <- X4*Y1*(1-(Y2/M)) - X4*Y2*(1-(Yn/M))
-    #dYn <- X4*Y2*(1-(Yn/M)) - X4*Yn
-    #dProt <- X4*Yn
+    dYn <- X4*Y2*(1-(Yn/M)) - X4*Yn
+    dProt <- X4*Yn
     return(list(c(dG, dY0, dY1, dY2, dYn, dProt)))
   })
 }
