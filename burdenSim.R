@@ -107,9 +107,9 @@ print(parms)
 # Define UI for application
 ui <- fluidPage(
   sidebarPanel(
-    sliderInput("X2", label = "mRNA size (bp)", min = -10, max = 100, round = FALSE, value = X2),
-    sliderInput("X3", label = "RBS strength", min = -10, max = 100,  round = FALSE, value = X3),
-    sliderInput("X4", label = "translational resources consumed", min = -10, max = 100, round = FALSE, value = X4)
+    sliderInput("X2", label = "mRNA size (bp)", min = 0, max = 100, round = FALSE, value = X2),
+    sliderInput("X3", label = "RBS strength", min = 0, max = 100,  round = FALSE, value = X3),
+    sliderInput("X4", label = "translational resources consumed", min = 0, max = 100, round = FALSE, value = X4)
   ),
   mainPanel(
     plotOutput("plot")
