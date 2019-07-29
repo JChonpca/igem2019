@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[33]:
+# In[1]:
 
 
 import pandas as pd
@@ -13,6 +13,7 @@ import urllib
 import xml.etree.ElementTree as ET
 import os
 import os.path
+from Bio.Alphabet import generic_dna
 
 
 # In[2]:
@@ -44,74 +45,41 @@ for infile_loc in glob.glob(r"C:\Users\pakan\OneDrive\Documents\iGEM\*.csv"):
     
 
 
-# In[5]:
+# In[23]:
 
 
 allPartsSeqs={}
 for plate in plates:
     print(plate)
     for curPart in plates[plate]:
-        try:
-            sequence=fastaDict[curPart].seq.upper()
-            #record = fastaDict[curPart].seq.upper() + gbkFile
-        except KeyError:
-            print(".",end="")
-            igemURL = f'http://parts.igem.org/cgi/xml/part.cgi?part={curPart}'
-            tree = ET.parse(urllib.request.urlopen(igemURL))
-            root = tree.getroot()
-            for seq in root.iter('seq_data'):
-                #record = seq.text + gbkFile
-                sequence=seq.text
-                sequence=sequence.replace("\n", "")
-                sequence=Seq(sequence)
+        igemURL = f'http://parts.igem.org/cgi/xml/part.cgi?part={curPart}'
+        tree = ET.parse(urllib.request.urlopen(igemURL))
+        root = tree.getroot()
+        for seq in root.iter('seq_data'):
+            #record = seq.text + gbkFile
+            sequence=seq.text
+            sequence=sequence.replace("\n", "")
+            sequence=Seq(sequence)
         
         allPartsSeqs[curPart]=sequence
         
 
 
-# In[6]:
+# In[25]:
 
 
+from Bio.SeqFeature import SeqFeature, FeatureLocation
 sequenceRecords = list()
 for x in allPartsSeqs:
     record = allPartsSeqs[x].upper() + gbkFile
+    featLoc=FeatureLocation(0,len(allPartsSeqs[x]),1)
+    record.features.append(SeqFeature(featLoc, type='Region',qualifiers={"label": x}))
     record.id = x;
     sequenceRecords.append(record)
+    
 
 
-# In[7]:
-
-
-xmlCheck = {}
-for plate in plates:
-    print(plate)
-    for curPart in plates[plate]:
-        print(".",end="")
-        igemURL = f'http://parts.igem.org/cgi/xml/part.cgi?part={curPart}'
-        tree = ET.parse(urllib.request.urlopen(igemURL))
-        root = tree.getroot()
-        for seq in root.iter('seq_data'):
-            sequence=seq.text
-            sequence=sequence.replace("\n", "")
-            sequence=Seq(sequence)
-        xmlCheck[curPart] = sequence.upper()
-
-
-# In[8]:
-
-
-for part in xmlCheck:
-    xmlSeq = xmlCheck[part]
-    txtSeq = allPartsSeqs[part]
-    if xmlSeq != txtSeq:
-        #print(part)
-        record = xmlCheck[part] + gbkFile
-        record.id = part + " (2)"
-        sequenceRecords.append(record)
-        
-
-
-# In[9]:
+# In[26]:
 
 
 outputPath = r"C:\Users\pakan\Documents\iGEM\referenceFiles"
@@ -119,20 +87,17 @@ if not os.path.exists(outputPath):
     os.makedirs(outputPath)
 
 
-# In[36]:
+# In[27]:
 
 
+from Bio.Alphabet import generic_dna
 outputPath = 'C:/Users/pakan/Documents/iGEM/referenceFiles/'
 for reference in sequenceRecords:
-    fileName = reference.id+".fa"
+    reference.seq.alphabet=generic_dna
+    fileName = reference.id+".gbk"
     completeName = os.path.join(outputPath, fileName)
     file1 = open(completeName, "w")
-    SeqIO.write(reference, file1, "fasta")
+    SeqIO.write(reference, file1, "genbank")
+    file1.close()
         
-
-
-# In[1]:
-
-
-
 
