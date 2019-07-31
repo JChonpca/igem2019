@@ -28,8 +28,6 @@ library(optparse)
 library(xtable)
 library(ggrepel)
 
-input.file.string = "exp006.rates.summary.csv,exp007.rates.summary.csv,exp008.rates.summary.csv,exp009.rates.summary.csv,exp010.rates.summay.csv,exp011.rates.summary.csv"
-
 # display instructions at the command line to use this script 
 if (!exists("input.file.string")) {
   
