@@ -91,14 +91,17 @@ if("fit" %in% colnames(fit.data)) {
   fit.data = this.data %>% filter(fit==1)
 }
 
-#Find 90% confidence interval and subset data
+#Find 95% confidence interval and subset data
 calibrations <- subset(fit.data, strain == "JEB1204"| strain == "JEB1205"|
                         strain =="JEB1206"| strain == "JEB1207"| strain =="JEB1208")
+# other_strains <- subset (fit.data, strain != "JEB1204" & strain != "JEB1205"
+                       # strain !="JEB1206"& strain != "JEB1207"& strain !="JEB1208")
 fit_fixed_zero = lm(GFP.rate~growth.rate + 0, calibrations)
 slope_fixed_zero = coef(fit_fixed_zero)
 fitin = lm(GFP.rate~growth.rate, calibrations)
-confident<- confint(fitin, 'growth.rate', level = 0.90)
+confident<- confint(fitin, 'growth.rate', level = 0.95)
 oddballs <- subset(fit.data, GFP.rate > confident[2] | GFP.rate < confident[1])
+#outlie_other <- subset(other_strains, GFP.rate > confident[2] | GFP.rate < confident[1])
 
 ##Need to also account for (x,y) uncertainty, then create p-value correction for multiple testing##
 #  sse <- sum((all.data$GFP.rate - fit_fixed_zero$fitted.values)^2)
@@ -121,7 +124,7 @@ oddballs <- subset(fit.data, GFP.rate > confident[2] | GFP.rate < confident[1])
 ##Shiny app/plotly to hover over points lying outside corrected confint that gives %other+%transl. burden ???
 
 # plot showing all strains burden vs growth 
-burdenVsGrowthPlot = ggplot(all.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color=as.name("strain"), shape=as.name("isolate")))  +
+burdenVsGrowthPlot = ggplot(fit.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color=as.name("strain"), shape=as.name("isolate")))  +
   geom_errorbarh(aes(xmin=growth.rate-growth.rate.sd, xmax=growth.rate+growth.rate.sd), height=0) +
   geom_errorbar(aes(ymin=GFP.rate-GFP.rate.sd, ymax=GFP.rate+GFP.rate.sd), width=0) + 
   geom_point(size=2)  +
