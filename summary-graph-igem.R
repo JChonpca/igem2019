@@ -18,7 +18,8 @@
 #      input1.csv
 #      input2.csv
 #
-# 3) Import the strain list dataset for part type analysis
+# 3) Import the strain list dataset, save into your working
+#     directory, and rename as "strain.list"
 #
 ##############################################################
 
