@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[12]:
+# In[1]:
 
 
 import glob
@@ -50,20 +50,19 @@ masterPlate=pd.concat(masterPlate)
 masterPlate=masterPlate.drop_duplicates(subset="BBa")
 
 
-# In[13]:
-
-
-print(len(masterPlate["BBa"]))
-
-
-# In[14]:
+# In[5]:
 
 
 df=sL.merge(masterPlate[["BBa", "  Type ", "  Subparts "]],on="BBa")
-print(len(df["BBa"]))
 
 
-# In[5]:
+# In[22]:
+
+
+df.to_csv(r"C:\Users\pakan\Documents\iGEM\strainList.csv")
+
+
+# In[6]:
 
 
 #get all unique part types
@@ -78,14 +77,7 @@ for plate in allTypes:
             types.append(current)       
 
 
-# In[90]:
-
-
-import plotly.express as px
-#px.bar(dataframe, c)
-
-
-# In[6]:
+# In[7]:
 
 
 #get distribution of part types in 2018 kit
@@ -100,7 +92,7 @@ print(typeCountKit)
     
 
 
-# In[7]:
+# In[8]:
 
 
 #get distribution of part types from strain list
@@ -114,7 +106,7 @@ for partType in types:
 print(typeCountProg)
 
 
-# In[46]:
+# In[9]:
 
 
 #get percentages of types from strain list
@@ -129,7 +121,7 @@ print(typePercent)
     
 
 
-# In[49]:
+# In[10]:
 
 
 #get percentages of types form 2018 kit
@@ -142,7 +134,7 @@ for partType in types:
 print(kitTypePer)
 
 
-# In[62]:
+# In[11]:
 
 
 #round type percentages 
@@ -163,13 +155,13 @@ typeData = pd.DataFrame([kitTypePer, typePercent])
     
 
 
-# In[68]:
+# In[12]:
 
 
 print(typeData)
 
 
-# In[9]:
+# In[13]:
 
 
 #get all unique subpart numbers
@@ -184,7 +176,7 @@ for plate in allSubparts:
             subparts.append(current)
 
 
-# In[10]:
+# In[14]:
 
 
 #get distribution of subpart numbers in 2018 kit
@@ -212,7 +204,7 @@ for num in subparts:
 print(subpartProg)
 
 
-# In[55]:
+# In[16]:
 
 
 #get ratios of sub part distribution
@@ -227,7 +219,7 @@ for num in subparts:
 print(subpartPer)
 
 
-# In[57]:
+# In[17]:
 
 
 #get percentages from 2018 kit
@@ -240,7 +232,7 @@ for num in subparts:
 print(kitSubpartPer)
 
 
-# In[60]:
+# In[18]:
 
 
 #round sub part values and prepare for plotting
@@ -253,12 +245,6 @@ for per in kitSubpartPer:
 print(subpartPer)
 print(kitSubpartPer)
 subpartData = pd.DataFrame([kitSubpartPer, subpartPer])
-
-
-# In[61]:
-
-
-subpartData
 
 
 # In[67]:
