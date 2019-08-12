@@ -114,7 +114,7 @@ control.data <- mutate(calibrations, part.type = "Control")
 total.data <- bind_rows(strain.data, control.data)
                        
 # Plot showing all strains burden vs growth 
-burdenVsGrowthPlot = ggplot(total.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color = as.name("part.type")))  +
+burdenVsGrowthPlot = ggplot(strain.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color = as.name("part.type")))  +
   geom_errorbarh(aes(xmin=growth.rate-growth.rate.sd, xmax=growth.rate+growth.rate.sd), height=0) +
   geom_errorbar(aes(ymin=GFP.rate-GFP.rate.sd, ymax=GFP.rate+GFP.rate.sd), width=0) + 
   geom_point(size=2)  +
@@ -131,15 +131,15 @@ burdenVsGrowthPlotly <- ggplotly(burdenVsGrowthPlot)
 htmlwidgets::saveWidget(as_widget(burdenVsGrowthPlotly), paste0(output.prefix, ".burden_vs_growth_rates.html"))
 
 # We need to convert NA isolates to a factor number.
-total.data$isolate=factor(total.data$isolate, levels=c(1,levels(total.data$isolate)))
-total.data$isolate[is.na(total.data$isolate)] = 1
-total.data$isolate=as.factor(total.data$isolate)
+strain.data$isolate=factor(strain.data$isolate, levels=c(1,levels(strain.data$isolate)))
+strain.data$isolate[is.na(strain.data$isolate)] = 1
+strain.data$isolate=as.factor(strain.data$isolate)
 
 # Plot growth rate for every strain
-growthRatePlot = ggplot(total.data, aes_(x= reorder(total.data$strain, -total.data$growth.rate), y=as.name(paste0(readings[1], ".rate")), fill=as.name("part.type")))  +  
+growthRatePlot = ggplot(strain.data, aes_(x= reorder(strain.data$strain, -strain.data$growth.rate), y=as.name(paste0(readings[1], ".rate")), fill=as.name("part.type")))  +  
   geom_bar(size=3, stat="identity", position=position_dodge()) +
   geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
-  scale_y_continuous(limits = c(0, max(total.data$growth.rate+total.data$growth.rate.sd))) +
+  scale_y_continuous(limits = c(0, max(strain.data$growth.rate+strain.data$growth.rate.sd))) +
   NULL
 
 growthRatePlot
@@ -150,7 +150,7 @@ growthRatePlotly <- ggplotly(growthRatePlot)
 htmlwidgets::saveWidget(as_widget(growthRatePlotly), paste0(output.prefix, ".growth_rates.html"))
 
 #Plot distribution of growth rates
-growthRateHist = ggplot(total.data, aes(x=growth.rate, fill = part.type)) +
+growthRateHist = ggplot(strain.data, aes(x=growth.rate, fill = part.type)) +
   stat_bin(bins = 45)
 growthRateHist
 
@@ -160,7 +160,7 @@ growthRateHistPlotly <- ggplotly(growthRateHist)
 htmlwidgets::saveWidget(as_widget(growthRateHistPlotly), paste0(output.prefix, ".growth_rate_distribution.html"))
 
 #Plot growth rate density per part type
-growthRateDensity <- ggdensity(data = total.data, x = "growth.rate", fill = "part.type", rug = TRUE)
+growthRateDensity <- ggdensity(data = strain.data, x = "growth.rate", fill = "part.type", rug = TRUE)
 growthRateDensity
 
 ggsave(paste0(output.prefix, ".growth_rate_density.pdf"))
@@ -169,7 +169,7 @@ growthRateDensityPlotly <- ggplotly(growthRateDensity)
 htmlwidgets::saveWidget(as_widget(growthRateDensityPlotly), paste0(output.prefix, ".growth_rate_density.html"))
 
 #Assess normality
-growthRateTotalDensity <- ggdensity(data = total.data, x = "growth.rate", add = "mean", rug = TRUE)
+growthRateTotalDensity <- ggdensity(data = strain.data, x = "growth.rate", add = "mean", rug = TRUE)
 growthRateTotalDensity
 
 ggsave(paste0(output.prefix, ".growth_rate_total_density.pdf"))
@@ -177,6 +177,7 @@ ggsave(paste0(output.prefix, ".growth_rate_total_density.pdf"))
 growthRateTotalDensityPlotly <- ggplotly(growthRateTotalDensity)
 htmlwidgets::saveWidget(as_widget(growthRateTotalDensityPlotly), paste0(output.prefix, ".growth_rate_total_density.html"))
 
-shapiro.test(total.data$growth.rate)
+shapiro.test(strain.data$growth.rate)
 mean(strain.data$growth.rate)
-#multi_correct <- p.adjust(0.05, method = "bonferroni", n = length(p))
+
+                          
