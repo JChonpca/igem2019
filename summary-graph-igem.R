@@ -18,6 +18,8 @@
 #      input1.csv
 #      input2.csv
 #
+# 3) Import the strain list dataset for part type analysis
+#
 ##############################################################
 
 library(tidyverse)
@@ -26,7 +28,13 @@ library(gridExtra)
 library(cowplot)
 library(optparse)
 library(xtable)
-library(ggrepel)
+library(ggpubr)
+library(forcats)
+
+input.file.string = "exp005.rates.summary.csv,exp006.rates.summary.csv,exp007.rates.summary.csv,exp008.rates.summary.csv,
+#exp009.rates.summary.csv,exp010.rates.summary.csv,exp011.rates.summary.csv,exp012.rates.summary.csv,exp014.rates.summary.csv,
+#exp015.rates.summary.csv,exp017.rates.summary.csv,exp018.rates.summary.csv,exp020.rates.summary.csv,exp021.rates.summary.csv,
+exp022.rates.summary.csv,exp024.rates.summary.csv,exp027.rates.summary.csv,exp028.rates.summary.csv"
 
 # display instructions at the command line to use this script 
 if (!exists("input.file.string")) {
@@ -80,59 +88,42 @@ for (this.file.name in input.file.names[[1]]) {
   all.data = rbind(all.data, this.data)
 }
 
-
 #convert isolate to factor, so its not treated as numeric and mess with plotting
 all.data$isolate=as.factor(all.data$isolate)
 
-# fit line and show entire range
 
+# fit line and show entire range
 fit.data = all.data
 if("fit" %in% colnames(fit.data)) {
   fit.data = this.data %>% filter(fit==1)
 }
 
-#Find 95% confidence interval and subset data
+#subset data and create regression
 calibrations <- subset(fit.data, strain == "JEB1204"| strain == "JEB1205"|
                         strain =="JEB1206"| strain == "JEB1207"| strain =="JEB1208")
-# other_strains <- subset (fit.data, strain != "JEB1204" & strain != "JEB1205"
-                       # strain !="JEB1206"& strain != "JEB1207"& strain !="JEB1208")
-fit_fixed_zero = lm(GFP.rate~growth.rate + 0, calibrations)
+other_strains <- subset(fit.data, strain != "JEB1204"& strain != "JEB1205"&
+                        strain !="JEB1206"& strain != "JEB1207"& strain !="JEB1208")
+fit_fixed_zero= lm(GFP.rate~growth.rate + 0, calibrations)
 slope_fixed_zero = coef(fit_fixed_zero)
-fitin = lm(GFP.rate~growth.rate, calibrations)
-confident<- confint(fitin, 'growth.rate', level = 0.95)
-oddballs <- subset(fit.data, GFP.rate > confident[2] | GFP.rate < confident[1])
-#outlie_other <- subset(other_strains, GFP.rate > confident[2] | GFP.rate < confident[1])
+#subset confidence interval outliers?
 
-##Need to also account for (x,y) uncertainty, then create p-value correction for multiple testing##
-#  sse <- sum((all.data$GFP.rate - fit_fixed_zero$fitted.values)^2)
-#  mse <- sse / (n - 2)
-#  t.val <- qt(0.975, n - 2) 
-#  x_new <- 1:max(all.data$growth.rate)
-#  y.fit <- x_new + slope_fixed_zero
-#  se <- sqrt(sum((all.data$GFP.rate - y.fit)^2) / (n - 2)) * sqrt(1 / n + (all.data$growth.rate - mean(all.data$growth.rate))^2 / sum((all.data$growth.rate - mean(all.data$growth.rate))^2))
-#  x_new2 <- 1:max(all.data$growth.rate)
-#  y.fit2 <- x_new2 + slope_fixed_zero
-#  slope.upper <- suppressWarnings(y.fit2 + t.val * se)
-#  slope.lower <- suppressWarnings(y.fit2 - t.val * se)
-#  bands <- data.frame(cbind(slope.lower, slope.upper))
-#  outliers<- subset(all.data, GFP.rate < bands$slope.lower | GFP.rate > bands$slope.upper, select = growth.rate:strain)
-
-##Residuals to determine %translational v. %transl.+other burden
-# resid.data<-residuals(fit.data)
-# resid.plot = ggplot(resid.data, aes(x= as.name(paste0(readings[1], ".rate)), y=as.name(paste0(readings[2], ".rate)),...
-# resid.plot
-##Shiny app/plotly to hover over points lying outside corrected confint that gives %other+%transl. burden ???
-
-# plot showing all strains burden vs growth 
-burdenVsGrowthPlot = ggplot(fit.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color=as.name("strain"), shape=as.name("isolate")))  +
+#read strain list and combine data
+# TODO: allow for strain list to be called from the command line
+strain.data <- inner_join(all.data, strain.list, by = "strain")
+control.data <- mutate(calibrations, part.type = "Control")
+total.data <- bind_rows(strain.data, control.data)
+                       
+# Plot showing all strains burden vs growth 
+burdenVsGrowthPlot = ggplot(total.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color = as.name("part.type")))  +
   geom_errorbarh(aes(xmin=growth.rate-growth.rate.sd, xmax=growth.rate+growth.rate.sd), height=0) +
   geom_errorbar(aes(ymin=GFP.rate-GFP.rate.sd, ymax=GFP.rate+GFP.rate.sd), width=0) + 
   geom_point(size=2)  +
-  scale_x_continuous(limits = c(0, max(all.data$growth.rate+all.data$growth.rate.sd))) + 
-  scale_y_continuous(limits = c(0, max(all.data$GFP.rate+all.data$GFP.rate.sd))) + 
+  scale_x_continuous(limits = c(0, max(strain.data$growth.rate+strain.data$growth.rate.sd))) + 
+  scale_y_continuous(limits = c(0, max(strain.data$GFP.rate+strain.data$GFP.rate.sd))) + 
   geom_abline(intercept=0, slope = slope_fixed_zero) +
-  geom_label_repel(data = oddballs, aes(label = strain), label.size = 0.10, nudge_x = -2, direction = "y", hjust = 1, force = 10, segment.alpha = 0.5, segment.colour = "grey" ) + theme(legend.position = "none") +
   NULL
+
+burdenVsGrowthPlot
 
 ggsave(paste0(output.prefix, ".burden_vs_growth_rates.pdf"))
 
@@ -140,21 +131,52 @@ burdenVsGrowthPlotly <- ggplotly(burdenVsGrowthPlot)
 htmlwidgets::saveWidget(as_widget(burdenVsGrowthPlotly), paste0(output.prefix, ".burden_vs_growth_rates.html"))
 
 # We need to convert NA isolates to a factor number.
-all.data$isolate=factor(all.data$isolate, levels=c(1,levels(all.data$isolate)))
-all.data$isolate[is.na(all.data$isolate)] = 1
-
-all.data$isolate=as.factor(all.data$isolate)
+total.data$isolate=factor(total.data$isolate, levels=c(1,levels(total.data$isolate)))
+total.data$isolate[is.na(total.data$isolate)] = 1
+total.data$isolate=as.factor(total.data$isolate)
 
 # Plot growth rate for every strain
-growthRatePlot = ggplot(all.data, aes_(x=as.name("strain"), y=as.name(paste0(readings[1], ".rate")), fill=as.name("isolate")))  +  
-	geom_bar(size=3, stat="identity", position=position_dodge()) +
-	geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
-	scale_y_continuous(limits = c(0, max(all.data$growth.rate+all.data$growth.rate.sd))) +
-	NULL	
+growthRatePlot = ggplot(total.data, aes_(x= reorder(total.data$strain, -total.data$growth.rate), y=as.name(paste0(readings[1], ".rate")), fill=as.name("part.type")))  +  
+  geom_bar(size=3, stat="identity", position=position_dodge()) +
+  geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
+  scale_y_continuous(limits = c(0, max(total.data$growth.rate+total.data$growth.rate.sd))) +
+  NULL
+
+growthRatePlot
 
 ggsave(paste0(output.prefix, ".growth_rates.pdf"))
 
 growthRatePlotly <- ggplotly(growthRatePlot)
 htmlwidgets::saveWidget(as_widget(growthRatePlotly), paste0(output.prefix, ".growth_rates.html"))
 
-write_csv(oddballs, paste0(output.prefix, ".outliers.csv"))
+#Plot distribution of growth rates
+growthRateHist = ggplot(total.data, aes(x=growth.rate, fill = part.type)) +
+  stat_bin(bins = 45)
+growthRateHist
+
+ggsave(paste0(output.prefix, ".growth_rate_distribution.pdf"))
+
+growthRateHistPlotly <- ggplotly(growthRateHist)
+htmlwidgets::saveWidget(as_widget(growthRateHistPlotly), paste0(output.prefix, ".growth_rate_distribution.html"))
+
+#Plot growth rate density per part type
+growthRateDensity <- ggdensity(data = total.data, x = "growth.rate", fill = "part.type", rug = TRUE)
+growthRateDensity
+
+ggsave(paste0(output.prefix, ".growth_rate_density.pdf"))
+
+growthRateDensityPlotly <- ggplotly(growthRateDensity)
+htmlwidgets::saveWidget(as_widget(growthRateDensityPlotly), paste0(output.prefix, ".growth_rate_density.html"))
+
+#Assess normality
+growthRateTotalDensity <- ggdensity(data = total.data, x = "growth.rate", add = "mean", rug = TRUE)
+growthRateTotalDensity
+
+ggsave(paste0(output.prefix, ".growth_rate_total_density.pdf"))
+
+growthRateTotalDensityPlotly <- ggplotly(growthRateTotalDensity)
+htmlwidgets::saveWidget(as_widget(growthRateTotalDensityPlotly), paste0(output.prefix, ".growth_rate_total_density.html"))
+
+shapiro.test(total.data$growth.rate)
+mean(strain.data$growth.rate)
+#multi_correct <- p.adjust(0.05, method = "bonferroni", n = length(p))
