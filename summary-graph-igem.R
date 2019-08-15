@@ -17,9 +17,7 @@
 #   Expects these files to exist:
 #      input1.csv
 #      input2.csv
-#
-# 3) Import the strain list dataset, save into your working
-#     directory, and rename as "strain.list"
+#      strain.list.csv
 #
 ##############################################################
 
@@ -30,12 +28,16 @@ library(cowplot)
 library(optparse)
 library(xtable)
 library(ggpubr)
-library(forcats)
+library(ggridges)
+library(plyr)
 
-input.file.string = "exp005.rates.summary.csv,exp006.rates.summary.csv,exp007.rates.summary.csv,exp008.rates.summary.csv,
-#exp009.rates.summary.csv,exp010.rates.summary.csv,exp011.rates.summary.csv,exp012.rates.summary.csv,exp014.rates.summary.csv,
-#exp015.rates.summary.csv,exp017.rates.summary.csv,exp018.rates.summary.csv,exp020.rates.summary.csv,exp021.rates.summary.csv,
-exp022.rates.summary.csv,exp024.rates.summary.csv,exp027.rates.summary.csv,exp028.rates.summary.csv"
+input.file.string =
+"exp005.rates.summary.csv,exp006.rates.summary.csv,exp007.rates.summary.csv,
+exp008.rates.summary.csv,exp009.rates.summary.csv,exp010.rates.summary.csv,
+exp011.rates.summary.csv,exp012.rates.summary.csv,exp014.rates.summary.csv,
+exp015.rates.summary.csv,exp017.rates.summary.csv,exp018.rates.summary.csv,
+exp020.rates.summary.csv,exp021.rates.summary.csv,exp022.rates.summary.csv,
+exp024.rates.summary.csv,exp027.rates.summary.csv,exp028.rates.summary.csv"
 
 # display instructions at the command line to use this script 
 if (!exists("input.file.string")) {
@@ -99,29 +101,42 @@ if("fit" %in% colnames(fit.data)) {
   fit.data = this.data %>% filter(fit==1)
 }
 
-#subset data and create regression
+#create regression and subset data
+clean.total.data <- subset(fit.data, growth.rate.sd < 0.2)
 calibrations <- subset(fit.data, strain == "JEB1204"| strain == "JEB1205"|
                         strain =="JEB1206"| strain == "JEB1207"| strain =="JEB1208")
 other_strains <- subset(fit.data, strain != "JEB1204"& strain != "JEB1205"&
                         strain !="JEB1206"& strain != "JEB1207"& strain !="JEB1208")
 fit_fixed_zero= lm(GFP.rate~growth.rate + 0, calibrations)
 slope_fixed_zero = coef(fit_fixed_zero)
-#subset confidence interval outliers?
 
-#read strain list and combine data
-# TODO: allow for strain list to be called from the command line
-strain.data <- inner_join(all.data, strain.list, by = "strain")
+#read strain list and tidy data
+strain.list = read.csv("strain.list.csv")
+strain.data <- inner_join(other_strains, strain.list, by = "strain")
 control.data <- mutate(calibrations, part.type = "Control")
 total.data <- bind_rows(strain.data, control.data)
-                       
+total.data$part.type = as.factor(total.data$part.type)
+total.data$part.type<- recode_factor(total.data$part.type, DNA = "Part", Tag="Part", Regulatory="Part", Terminator="Part", RBS="Part",
+                                    Protein_Domain="Part", Coding="Part", RNA="Part", Translational_Unit="Part", Generator = "Device",
+                                    Signaling = "Device", Reporter = "Device", Measurement ="Device", 
+                                    Device = "Device", Signalling = "Device", Intermediate = "Intermediate", Composite = "Intermediate")
+levels(total.data$part.type)
+dirty.data <- subset(total.data, growth.rate.sd > 0.2)
+write_csv(dirty.data, paste0(output.prefix, ".outliers.csv"))
+strain.data <- semi_join(total.data, strain.data, by = "strain")
+clean.data <- subset(strain.data, growth.rate.sd < 0.2)
+
+#TODO: need to create test to assess duplicate difference for retention or removal of data
+
 # Plot showing all strains burden vs growth 
-burdenVsGrowthPlot = ggplot(strain.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color = as.name("part.type")))  +
+burdenVsGrowthPlot = ggplot(clean.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color = as.name("part.type")))  +
   geom_errorbarh(aes(xmin=growth.rate-growth.rate.sd, xmax=growth.rate+growth.rate.sd), height=0) +
   geom_errorbar(aes(ymin=GFP.rate-GFP.rate.sd, ymax=GFP.rate+GFP.rate.sd), width=0) + 
   geom_point(size=2)  +
-  scale_x_continuous(limits = c(0, max(strain.data$growth.rate+strain.data$growth.rate.sd))) + 
-  scale_y_continuous(limits = c(0, max(strain.data$GFP.rate+strain.data$GFP.rate.sd))) + 
+  scale_x_continuous(limits = c(0, max(clean.data$growth.rate+clean.data$growth.rate.sd))) + 
+  scale_y_continuous(limits = c(0, max(clean.data$GFP.rate+clean.data$GFP.rate.sd))) + 
   geom_abline(intercept=0, slope = slope_fixed_zero) +
+  geom_vline(xintercept = mean(clean.total.data$growth.rate), linetype = "dashed") +
   NULL
 
 burdenVsGrowthPlot
@@ -132,15 +147,16 @@ burdenVsGrowthPlotly <- ggplotly(burdenVsGrowthPlot)
 htmlwidgets::saveWidget(as_widget(burdenVsGrowthPlotly), paste0(output.prefix, ".burden_vs_growth_rates.html"))
 
 # We need to convert NA isolates to a factor number.
-strain.data$isolate=factor(strain.data$isolate, levels=c(1,levels(strain.data$isolate)))
-strain.data$isolate[is.na(strain.data$isolate)] = 1
-strain.data$isolate=as.factor(strain.data$isolate)
+clean.data$isolate=factor(clean.data$isolate, levels=c(1,levels(clean.data$isolate)))
+clean.data$isolate[is.na(clean.data$isolate)] = 1
+clean.data$isolate=as.factor(clean.data$isolate)
 
 # Plot growth rate for every strain
-growthRatePlot = ggplot(strain.data, aes_(x= reorder(strain.data$strain, -strain.data$growth.rate), y=as.name(paste0(readings[1], ".rate")), fill=as.name("part.type")))  +  
+growthRatePlot = ggplot(clean.data, aes_(x= reorder(clean.data$strain, -clean.data$growth.rate), y=as.name(paste0(readings[1], ".rate")), fill=as.name("part.type")))  +  
   geom_bar(size=3, stat="identity", position=position_dodge()) +
   geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
-  scale_y_continuous(limits = c(0, max(strain.data$growth.rate+strain.data$growth.rate.sd))) +
+  scale_y_continuous(limits = c(0, max(clean.data$growth.rate+clean.data$growth.rate.sd))) +
+  geom_hline(yintercept = mean(clean.total.data$growth.rate)) +
   NULL
 
 growthRatePlot
@@ -151,7 +167,7 @@ growthRatePlotly <- ggplotly(growthRatePlot)
 htmlwidgets::saveWidget(as_widget(growthRatePlotly), paste0(output.prefix, ".growth_rates.html"))
 
 #Plot distribution of growth rates
-growthRateHist = ggplot(strain.data, aes(x=growth.rate, fill = part.type)) +
+growthRateHist = ggplot(clean.data, aes(x=growth.rate, fill = part.type)) +
   stat_bin(bins = 45)
 growthRateHist
 
@@ -161,7 +177,10 @@ growthRateHistPlotly <- ggplotly(growthRateHist)
 htmlwidgets::saveWidget(as_widget(growthRateHistPlotly), paste0(output.prefix, ".growth_rate_distribution.html"))
 
 #Plot growth rate density per part type
-growthRateDensity <- ggdensity(data = strain.data, x = "growth.rate", fill = "part.type", rug = TRUE)
+growthRateDensity <- ggplot(data = clean.data, aes(x = growth.rate, y = part.type, group = part.type, fill = part.type)) +
+                              geom_density_ridges2(alpha=0.7, scale=1.5) +
+                              geom_vline(xintercept = mean(clean.total.data$growth.rate), linetype = "dashed")+
+                              geom_rug(sides = "b")
 growthRateDensity
 
 ggsave(paste0(output.prefix, ".growth_rate_density.pdf"))
@@ -170,7 +189,7 @@ growthRateDensityPlotly <- ggplotly(growthRateDensity)
 htmlwidgets::saveWidget(as_widget(growthRateDensityPlotly), paste0(output.prefix, ".growth_rate_density.html"))
 
 #Assess normality
-growthRateTotalDensity <- ggdensity(data = strain.data, x = "growth.rate", add = "mean", rug = TRUE)
+growthRateTotalDensity <- ggdensity(data = clean.data, x = "growth.rate", add = "mean", rug = TRUE)
 growthRateTotalDensity
 
 ggsave(paste0(output.prefix, ".growth_rate_total_density.pdf"))
@@ -179,6 +198,17 @@ growthRateTotalDensityPlotly <- ggplotly(growthRateTotalDensity)
 htmlwidgets::saveWidget(as_widget(growthRateTotalDensityPlotly), paste0(output.prefix, ".growth_rate_total_density.html"))
 
 shapiro.test(strain.data$growth.rate)
-mean(strain.data$growth.rate)
 
-                          
+####################################### CODE IN PROGRESS ##########################################
+
+#str<- mean(strain.data$growth.rate)
+#fuuu<-mean(total.data$growth.rate)
+#wilcox.test(strain.data$growth.rate,total.data$growth.rate)
+  
+#multi_correct <- p.adjust(0.05, method = "bonferroni", n = length(p)
+
+#bartype <- ggplot(strain.data, aes(x=part.type, fill = part.type)) +
+#  geom_bar()
+#bartype                          
+
+#clean.data <- subset(strain.data, growth.rate.sd < 0.05)
