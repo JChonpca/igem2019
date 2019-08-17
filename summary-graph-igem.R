@@ -33,7 +33,7 @@ library(ggridges)
 library(plyr)
 
 input.file.string =
-"exp005.rates.summary.csv,exp006.rates.summary.csv,exp007.rates.summary.csv,
+  "exp005.rates.summary.csv,exp006.rates.summary.csv,exp007.rates.summary.csv,
 exp008.rates.summary.csv,exp009.rates.summary.csv,exp010.rates.summary.csv,
 exp011.rates.summary.csv,exp012.rates.summary.csv,exp014.rates.summary.csv,
 exp015.rates.summary.csv,exp017.rates.summary.csv,exp018.rates.summary.csv,
@@ -41,8 +41,9 @@ exp020.rates.summary.csv,exp021.rates.summary.csv,exp022.rates.summary.csv,
 exp024.rates.summary.csv,exp027.rates.summary.csv,exp028.rates.summary.csv"
 
 strain.file.string = "strain.list.csv"
+
 #TODO: allow for this to be called from command line
-  
+
 # display instructions at the command line to use this script 
 if (!exists("input.file.string")) {
   
@@ -75,10 +76,10 @@ readings = c("growth", "GFP")
 
 all.data = data.frame()
 for (this.file.name in input.file.names[[1]]) {
-# this loop iterates over each input file name and reads them into
-# data frame this.data, then combines them into one data frame all.data
-
-# allow multiple input file types (comma or tab separated files)  
+  # this loop iterates over each input file name and reads them into
+  # data frame this.data, then combines them into one data frame all.data
+  
+  # allow multiple input file types (comma or tab separated files)  
   if (tools::file_ext(this.file.name) == "csv") {
     this.data <- read_csv(this.file.name)
     output.prefix= sub(".csv", "", input.file.names[[1]][1])
@@ -105,12 +106,13 @@ if("fit" %in% colnames(fit.data)) {
   fit.data = this.data %>% filter(fit==1)
 }
 
-#Clean and subset data
+#Subset data and fix variable headings
 calibrations <- subset(fit.data, strain == "JEB1204"| strain == "JEB1205"|
-                        strain =="JEB1206"| strain == "JEB1207"| strain =="JEB1208")
+                         strain =="JEB1206"| strain == "JEB1207"| strain =="JEB1208")
 other_strains <- subset(fit.data, strain != "JEB1204"& strain != "JEB1205"&
                           strain !="JEB1206"& strain != "JEB1207"& strain !="JEB1208")
 strain.list = read.csv(strain.file.string)
+colnames(strain.list)[colnames(strain.list)=="TYPE"] <- "part.type"
 strain.data <- inner_join(other_strains, strain.list, by = "strain")
 control.data <- mutate(calibrations, part.type = "Control")
 total.data <- bind_rows(strain.data, control.data)
@@ -121,15 +123,18 @@ total.data$part.type<- recode_factor(total.data$part.type, DNA = "Part", Tag="Pa
                                      Device = "Device", Signalling = "Device", Intermediate = "Intermediate", Composite = "Intermediate", .default = "Other")
 levels(total.data$part.type)
 strain.data <- semi_join(total.data, strain.data, by = "strain")
+
+#Clean data
 clean.control.data <- subset(calibrations, growth.rate.sd <0.2)
 clean.total.data <- subset(fit.data, growth.rate.sd < 0.2)
 clean.data <- subset(strain.data, growth.rate.sd < 0.2)
 dirty.data <- subset(total.data, growth.rate.sd > 0.2)
 write_csv(dirty.data, paste0(output.prefix, ".outliers.csv"))
 
-#Create regression
+#Create regression and mean lines
 fit_fixed_zero= lm(GFP.rate~growth.rate + 0, clean.control.data)
 slope_fixed_zero = coef(fit_fixed_zero)
+dist.mean <- mean(clean.data$growth.rate)
 
 #TODO: need to create test to assess duplicate difference for retention or removal of data
 
@@ -141,7 +146,7 @@ burdenVsGrowthPlot = ggplot(clean.data, aes_(x=as.name(paste0(readings[1], ".rat
   scale_x_continuous(limits = c(0, max(clean.data$growth.rate+clean.data$growth.rate.sd))) + 
   scale_y_continuous(limits = c(0, max(clean.data$GFP.rate+clean.data$GFP.rate.sd))) + 
   geom_abline(intercept=0, slope = slope_fixed_zero) +
-  geom_vline(xintercept = mean(clean.total.data$growth.rate), linetype = "dashed") +
+  geom_vline(xintercept = dist.mean, linetype = "dashed") +
   NULL
 
 burdenVsGrowthPlot
@@ -161,7 +166,7 @@ growthRatePlot = ggplot(clean.data, aes_(x= reorder(clean.data$strain, -clean.da
   geom_bar(size=3, stat="identity", position=position_dodge()) +
   geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
   scale_y_continuous(limits = c(0, max(clean.data$growth.rate+clean.data$growth.rate.sd))) +
-  geom_hline(yintercept = mean(clean.total.data$growth.rate)) +
+  geom_hline(yintercept = dist.mean) +
   theme(axis.text.x=element_blank(),axis.ticks.x=element_blank()) +
   NULL
 
@@ -173,8 +178,10 @@ growthRatePlotly <- ggplotly(growthRatePlot)
 htmlwidgets::saveWidget(as_widget(growthRatePlotly), paste0(output.prefix, ".growth_rates.html"))
 
 #Plot distribution of growth rates
-growthRateHist = ggplot(clean.data, aes(x=growth.rate, fill = part.type)) +
-  stat_bin(bins = 45)
+growthRateHist = ggplot(clean.data, aes(growth.rate, color = part.type)) +
+  #stat_bin(bins = 45) + 
+  geom_freqpoly(size = 1.2) + 
+  geom_vline(xintercept = dist.mean, size = 0.8, linetype = "dashed")
 growthRateHist
 
 ggsave(paste0(output.prefix, ".growth_rate_distribution.pdf"))
@@ -183,10 +190,10 @@ growthRateHistPlotly <- ggplotly(growthRateHist)
 htmlwidgets::saveWidget(as_widget(growthRateHistPlotly), paste0(output.prefix, ".growth_rate_distribution.html"))
 
 #Plot growth rate density per part type
-growthRateDensity <- ggplot(data = clean.data, aes(x = growth.rate, y = stat(count), group = part.type, fill = part.type)) +
-                              geom_density_ridges2(alpha=0.7, scale=1.5) +
-                              geom_vline(xintercept = mean(clean.total.data$growth.rate), linetype = "dashed")+
-                              geom_rug(sides = "b")
+growthRateDensity <- ggplot(data = clean.data, aes(x = growth.rate, y = part.type, group = part.type, fill = part.type)) +
+  geom_density_ridges2(alpha=0.7, scale=1.5) +
+  geom_vline(xintercept = dist.mean, linetype = "dashed")+
+  geom_rug(sides = "b")
 growthRateDensity
 
 ggsave(paste0(output.prefix, ".growth_rate_density.pdf"))
@@ -203,4 +210,4 @@ ggsave(paste0(output.prefix, ".growth_rate_total_density.pdf"))
 growthRateTotalDensityPlotly <- ggplotly(growthRateTotalDensity)
 htmlwidgets::saveWidget(as_widget(growthRateTotalDensityPlotly), paste0(output.prefix, ".growth_rate_total_density.html"))
 
-shapiro.test(strain.data$growth.rate)
+shapiro.test(clean.data$growth.rate)
