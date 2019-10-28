@@ -20,7 +20,7 @@ library(RColorBrewer)
 
 ##Create parameters
 u = 1 #specific growth rate of producers
-k = 1*10^-5
+k = 1*10^-6
 b = .1
 e = exp(1)
 t = seq(0,100)
@@ -54,8 +54,8 @@ producers= ggplot(data.frame(x=t), aes(x=x)) +
   geom_vline(xintercept = vol, "#3f3f3f", size = 0.8)+
   geom_vline(xintercept = vol2, color = "#696969", size = 0.8)+
   geom_vline(xintercept = vol200, color = "#a8a8a8", size = 0.8)+
-  geom_vline(xintercept = vol200k, color = "#d3d3d3", size = 0.8)+
-  labs(title = "Production Curves for Differing Burden Values (Escape Rate = 10^-5)")+
+  geom_vline(xintercept = vol200k, color = "#a6a6a6", size = 0.8)+
+  labs(title = "Production Curves for Differing Burden Values")+
   xlab("Generations") + ylab("Fraction of Producing Cells") +
   NULL
 producers
@@ -98,7 +98,7 @@ server <- function(input, output) {
     plot_this<- produce.this(b, as.numeric(k), t) 
     ggplot(data= plot_this, aes(x=Generation, y = Fraction))+geom_line(color = "#ff3232", size = 1.5)+
       geom_vline(xintercept = as.numeric(volumes), color = "#696969", size = 0.8)+
-      labs(title = "Production Curves for Differing Burden Values",x = "Generations", y = "Fraction of Producing Cells") +
+      labs(title = "Production Curve", x = "Generations", y = "Fraction of Producing Cells") +
       NULL
   }, 
   height = 600)
