@@ -63,14 +63,13 @@ producers
 ################################## SIMULATION ################################################
 
 #initialize fixed parameters and dataframe for function to leave values
-u = 1
-e = exp(1)
 t = seq(0, 100)
+volumes<-c(vol, vol2, vol200, vol200k)
 
-produce.this=function(b, k){
-  burden <- data.frame("Generation" = t)
+produce.this=function(b, k, t){
+  burden <- data.frame("Generation" = seq(0, t))
   burden %>% 
-    mutate(Fraction = (k+b*u)/(k*e^((k+u*b)*Generation)+b*u))
+    mutate(Fraction = (k+b*1)/(k*(exp(1))^((k+1*b)*Generation)+b*u))
 }
 
 # Define UI for application
@@ -78,7 +77,12 @@ ui <- fluidPage(
   titlePanel("Modeling Burden"),
   sidebarPanel(
     sliderInput("b", label = "Burden (%)", min = 0, max = 100, value = 10),
-    sliderInput("k", label = "Escape Rate", min = 10^-8, max = 10^-5, value = 10^-5)
+    radioButtons("k", label = "Escape Rate", 
+                 choiceNames = list("1E-5", "1E-6", "1E-7", "1E-8"), 
+                 choiceValues = list(1e-5, 1e-6, 1e-7, 1e-8)),
+    checkboxGroupInput("volumes", label = "Generations to Saturate Volumes:",
+                       choices = c("5mL"=vol, "2L"= vol2, "200L"=vol200,"200,000L"=vol200k)),
+    sliderInput("t", label = "Number of Generations Elapsed", min = 50, max = 150, value = 100)
 ),
   mainPanel(
     plotOutput(outputId = "produce")
@@ -89,12 +93,11 @@ server <- function(input, output) {
   output$produce <- renderPlot({
       b <- input$b/100
       k <- input$k
-    plot_this<- produce.this(b, k) 
+      t<- input$t
+      volumes<-input$volumes
+    plot_this<- produce.this(b, as.numeric(k), t) 
     ggplot(data= plot_this, aes(x=Generation, y = Fraction))+geom_line(color = "#ff3232", size = 1.5)+
-      geom_vline(xintercept = vol, "#3f3f3f", size = 0.8)+
-      geom_vline(xintercept = vol2, color = "#696969", size = 0.8)+
-      geom_vline(xintercept = vol200, color = "#a6a6a6", size = 0.8)+
-      geom_vline(xintercept = vol200k, color = "#a8a8a8", size = 0.8)+
+      geom_vline(xintercept = as.numeric(volumes), color = "#696969", size = 0.8)+
       labs(title = "Production Curves for Differing Burden Values",x = "Generations", y = "Fraction of Producing Cells") +
       NULL
   }, 
