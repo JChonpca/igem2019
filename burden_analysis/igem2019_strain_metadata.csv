@@ -1,0 +1,592 @@
+﻿strain,DATE,SPECIES SUBTYPE,antibiotic,vector,ACCESSION,"NOTES RE: CONTRUCTION, ORIGIN, PHENOTYPE",STRAIN ACQUIRED FROM PARENT STRAIN,DEPOSITOR,OTHER NOTES,GLYCEROL STOCK LOCATION,BURDEN ASSAY,MINIPREP DNA CONCENTRATION (ng/uL),"SEQUENCED? ""0"" IF NOT",SEQUENCE CONFIRMED?,GFP.inteference,TYPE,SUBPARTS,SHORT DESCRIPTION 
+BB1,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_J45199,"Plate 4, I5",spring 2018 iGEM distribution,Shireen Shah,Colony #1,Teal Box,exp014,,0,No,F,Generator,4," ""Banana odor enzyme (ATF1) generator"""
+BB2,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_J45199,"Plate 4, I5",spring 2018 iGEM distribution,Shireen Shah,Colony #2,Teal Box,exp015/exp031,,0,No,F,Generator,4," ""Banana odor enzyme (ATF1) generator"""
+BB3,3.06.2019,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325218,"Plate 1, 4J",spring 2018 iGEM distribution,Diya Bhat,Colony #1,Teal Box,exp015,NA,1,No,F,Generator,2," ""Orange Firefly Luciferase (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB4,3.06.2019,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325218,"Plate 1, 4J",spring 2018 iGEM distribution,Diya Bhat,Colony #2,Teal Box,,,0,No,F,Generator,2," ""Orange Firefly Luciferase (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB5,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K731721,"Plate 1, 24K",spring 2018 iGEM distribution,Angela Pak,Colony #1,Teal Box,exp015/exp031,NA,1,No,F,Terminator,1," ""T7 terminator"""
+BB6,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K731721,"Plate 1, 24K",spring 2018 iGEM distribution,Angela Pak,Colony #2,Teal Box,exp015/exp031,NA,1,No,F,Terminator,1," ""T7 terminator"""
+BB7,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K861173,"Plate 1, 13H",spring 2018 iGEM distribution,Emily Garcia,Colony #1,Teal Box,exp014,NA,1,No,F,Reporter,5," ""mRFP generator controlled by  PcstA (glucose-repressible promoter)"""
+BB8,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K861173,"Plate 1, 13H",spring 2018 iGEM distribution,Emily Garcia,Colony #2,Teal Box,exp015/exp031,NA,1,No,F,Reporter,5," ""mRFP generator controlled by  PcstA (glucose-repressible promoter)"""
+BB9,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K598020,"Plate 2, 1G",spring 2018 iGEM distribution,Ginny Mortensen,Colony #1,Teal Box,,,0,No,T,Reporter,5," ""B0015+pBAD+vioAB+B0015+pBAD+TPP Up-regulated Hammerhead Ribozyme 1.20+vioD+B0015+pBAD+vioE"""
+BB10,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K598020,"Plate 2, 1G",spring 2018 iGEM distribution,Ginny Mortensen,Colony #2,Teal Box,,,0,No,T,Device,1," ""B0015+pBAD+vioAB+B0015+pBAD+TPP Up-regulated Hammerhead Ribozyme 1.20+vioD+B0015+pBAD+vioE"""
+BB11,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K118004,"Plate 4 , well 1O",spring 2018 iGEM distribution,Jordan Clements,Colony 1,Teal Box,,,0,No,F,Device,1," ""rbs+dxs (1-deoxyxylulose-5-phosphate synthase)"""
+BB12,03.07.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,?????,"This plasmid was taken from the ""pSB1C3 empty vector"" tube. It is bright pink/red and likely has red chromoprotein. Needs to be sequenced",spring 2018 iGEM distribution,Matt McGuffie,--,Teal Box,,,0,No,F,Translational_Unit,2,
+BB14,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_,"Plate 7, 2A",spring 2018 iGEM distribution,Matt McGuffie,Colony 1,Teal Box,exp014,,0,No,F,Composite,1,
+BB15,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_,"Plate 7, 2A",spring 2018 iGEM distribution,Matt McGuffie,Colony 2,Teal Box,exp015/exp031,,0,No,F,Composite,1,
+BB16,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K617003,"Plate 1, M8",spring 2018 iGEM distribution,Matt McGuffie,Colony 1,Teal Box,exp015/exp054/exp051/exp050/exp031,,0,No,F,DNA,1, Confirmed(A)
+BB17,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K617003,"Plate 1, M8",spring 2018 iGEM distribution,Matt McGuffie,Colony 2,Teal Box,exp014,,0,No,F,DNA,1, Confirmed(A)
+BB18,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K1415006,"Plate 5, I13",spring 2018 iGEM distribution,Noor Radde,Colony 1 ,Teal Box,exp031,,0,No,F,Coding,1," ""PBAN (Helicoverpa armigera Hubner)"""
+BB19,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K137018,"Plate 4, 5A",spring 2018 iGEM distribution,Jordan Clements,Colony 1 ,Teal Box,exp003/exp005/exp031,NA,1,BBa_K660610.fa,T,Coding,1," ""AHL receiver + GFP"""
+BB20,03.13.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K1415006,"Plate 5, I13",spring 2018 iGEM distribution,Noor Radde,Colony 2,Teal Box,exp015/exp031,,0,No,F,Signalling,10," ""PBAN (Helicoverpa armigera Hubner)"""
+BB21,04.04.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314110,"Plate 1, A1",spring 2018 iGEM distribution,Emily Garcia,Colony 1 ,Teal Box,exp003/exp005,NA,1,No,F,Translational_Unit,1," ""f1 origin"""
+BB22,04.04.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K731722,"Plate 1, B1",spring 2018 iGEM distribution,Emily Garcia,Colony 1 ,Teal Box,exp003/exp005,NA,1,No,F,Terminator,1," ""T1 terminator from  E. coli rrnB"""
+BB23,04.04.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K398326,"Plate 1, C1",spring 2018 iGEM distribution,Noor Radde,Colony 1 ,Teal Box,exp003/exp005,NA,1,No,F,Regulatory,1," ""Promoter of the CaiF protein"""
+BB24,04.04.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K398331,"Plate 1, E1",spring 2018 iGEM distribution,Noor Radde,Colony 1 ,Teal Box,exp003/exp005,NA,1,No,F,Measurement,5," ""pCaiF-B0032 measurement device"""
+BB25,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808025,"Plate 1, F1",spring 2018 iGEM distribution,Noor Radde,Colony 1 ,Teal Box,exp003/exp005,NA,1,No,F,Coding,1," ""FsC: Cutinase PET cleaving enzyme"""
+BB26,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314100,"Plate 1, G1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Composite,3," ""High constitutive expression cassette"""
+BB27,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808001,"Plate 1, H1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Coding,1," ""tphC: terephtalate periplasmatic binding proteine of the tripartite transporter family"""
+BB28,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808003,"Plate 1, J1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Coding,1," ""tctB_162: small subunit B1 of the tripartite tricarboxylate transporter family"""
+BB29,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314201,"Plate 1, K1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Coding,1," ""Antitoxin Tsi2"""
+BB30,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808010,"Plate 1, L1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Coding,1," ""tphB: reaction from DCD to protocatechuate"""
+BB31,04.10.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314202,"Plate 1, M1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Coding,1," ""Toxin+ Antitoxin-Tse2 + Tsi2"""
+BB32,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314101,"Plate 1, I1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Composite,3," ""Low constitutive expression cassette"""
+BB33,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808011,"Plate 1, N1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Coding,1," ""tphA1: reduces the tphA2A3 complex"""
+BB34,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K346002,"Plate 1, O1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Regulatory,1," ""PmerT promoter (mercury-responsive)"""
+BB35,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K808013,"Plate 1, P1",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Coding,1," ""tphA3: Catalyzes together with tphA2 TPA to DCD"""
+BB36,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K548000,"Plate 1, A2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,,0,No,F,Signalling,1," ""Humanized Aequorin """
+BB37,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325210,"Plate 1, B2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Reporter,1," ""Red Firefly Luciferase and LRE<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB38,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K648028,"Plate 1, C2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Coding,1," ""Cro  Lamda Repressor which activates the lytic cycle"""
+BB39,04.22.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325219,"Plate 1, D2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Generator,2," ""Red Firefly Luciferase and LRE (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB40,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K648029,"Plate 1, E2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp016/exp034/exp031,NA,1,No,F,Coding,1," ""OR  operating region for Lambda switch"""
+BB41,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325108,"Plate 1, F2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Generator,2," ""EPIC Firefly Luciferase (under pBAD)<BR><i>P. Pyralis<BR>(E. coli optimised)</i>"""
+BB42,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K530015,"Plate 1, G2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Regulatory,1," ""FCY2 Yeast Promoter"""
+BB43,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325209,"Plate 1, H2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,NA,1,No,F,Generator,1," ""Green Firefly Luciferase and LRE (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB44,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K530019,"Plate 1, I2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013/exp031,,0,No,F,Terminator,1," ""HHO1 Yeast UTR"""
+BB45,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325259,"Plate 1, J2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013,NA,1,No,F,Generator,1," ""Yellow Firefly Luciferase (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>"""
+BB46,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K530025,"Plate 1, K2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013,NA,1,No,F,Coding,1," ""Vtc2"""
+BB47,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325903,"Plate 1, L2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp016/exp034,NA,1,No,F,Generator,1," ""luxEG <BR><i>V. Fischeri<BR>(E. coli optimised)</i>"""
+BB48,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_542003,"Plate 1, M2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,F,Composite,14,
+BB49,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K316027,"Plate 1, N2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,,0,No,F,Coding,1," ""B.subtilis transformation vector with LacI"""
+BB50,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K542010,"Plate 1, O2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp013,NA,1,No,F,Composite,18," ""Enhanced Lumazine Synthase (ELS)"""
+BB51,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K415023,"Plate 1, P2",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,NA,1,No,T,Composite,1," ""pLux-Lac:GFP:Term:Term:PluxR/cI-OR :mCherry:Term:PtetR:LuxR:Term:Plux/cI-OR:LuxI  """
+BB52,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K346004,"Plate 1, A3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp013,NA,1,No,F,Regulatory,1," ""RBS(B0034)_MBP(lead metal binding peptide egineered from PbrR)+Terminator(B0015)"""
+BB53,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K823042,"Plate 1, B3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp013,NA,1,No,F,Coding,3," ""PsspK promoter regulated by sigma G"""
+BB54,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K316003,"Plate 1, C3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Terminator,2," ""XylE - catechol 2 3-dioxygenase from P.putida with terminator"""
+BB55,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K823017,"Plate 1, D3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Reporter,1," ""double terminator (B0012-B0011)"""
+BB56,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K523000,"Plate 1, E3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Device,1," ""Plac + lacZ; with BglII site"""
+BB57,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K817018,"Plate 1, F3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Translational_Unit,2," ""gamma-delta resolvase cassette"""
+BB58,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K538104,"Plate 1, G3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Regulatory,1," ""RBS + CspC"""
+BB59,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K873002,"Plate 1, H3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Coding,1," ""HSP promoter"""
+BB60,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K538004,"Plate 1, I3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Intermediate,3," ""CspC (P. irgensii)"""
+BB61,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_S05060,"Plate 1, J3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Coding,1," ""K873000:B0015"""
+BB62,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K538000,"Plate 1, K3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Regulatory,1," ""Cpn10 (O. antarctica)"""
+BB63,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K774001,"Plate 1, L3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,Yes,F,Regulatory,1," ""Mammalian-Bacterial Promoter: E9-ns2 CArG promoter sequence + BHN + BBaK216005"""
+BB64,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K525998,"Plate 1, M3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Coding,1," ""Promoter T7 and RBS"""
+BB65,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K748002,"Plate 1, N3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Intermediate,2," ""Truncated lysostaphin coding sequence. Lysostaphin has has a specific lytic action against S.aureus."""
+BB66,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K608002,"Plate 1, O3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,exp016/exp034,NA,1,No,F,Intermediate,2," ""strong Promoter and strong RBS"""
+BB67,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_S05048,"Plate 1, P3",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,,,0,No,F,Composite,2," ""B0034:K748000"""
+BB68,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K331022,"Plate 1, A4",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,,,0,No,F,Composite,5," ""RBS with N-terminal Oligo Arginine - EYFP Fusion"""
+BB69,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K381001,"Plate 1, B4",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,,NA,1,No,T,Composite,2," ""Nitrate reporter: PyeaR - GFP composite"""
+BB70,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K331024,"Plate 1, C4",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,,NA,1,No,F,Composite,4," ""RBS with N-terminal Oligo Arginine - ECFP Fusion """
+BB71,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K314103,"Plate 1, D4",spring 2018 iGEM distribution,Emily Garcia,,Teal Box,,NA,1,No,F,Coding,1," ""Lac induced expression cassette"""
+BB72,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K145001,"Plate 4, 1C",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,NA,1,no,F,Coding,1," ""T7 RNA polymerase"""
+BB73,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K525306,"Plate 4, 2C",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,NA,1,no,F,Composite,1," ""Fusion Protein of S-Layer SgsE and mCerulean"""
+BB74,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K525404,"Plate 4, 2E",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,,0,no,F,Composite,1," ""Fusion Protein of S-Layer SbpA and mCherry RFP"""
+BB75,04.17.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K525406,"Plate 4, 2G",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,NA,1,no,F,RBS,1," "" Fusion Protein of S-Layer SbpA and mCerulean """
+BB76,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J61100,"Plate 4, 16C",spring 2018 iGEM distribution,Diya Bhat,,Teal Box,exp036,3.64,1.516666667,No,F,Coding,1," ""Ribosome Binding Site Family Member"""
+BB77,4.17.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_1715023,"Plate 4, 16I",spring 2018 iGEM distribution,Diya Bhat,,Teal Box,exp036,8.83,3.679166667,No,F,Regulatory,1,
+BB78,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_K125500,"Plate 4, 16K",spring 2018 iGEM distribution,Diya Bhat,,Teal Box,exp036,10.9,4.541666667,No,F,RNA,1," ""GFP fusion brick"""
+BB79,4.17.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J23119,"Plate 4, 17B",spring 2018 iGEM distribution,Diya Bhat,,Teal Box,exp036,12.6,5.25,No,F,Coding,1," ""constitutive promoter family member"""
+BB80,04.17.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1184000,"Plate 4, 20",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,,0,no,F,Generator,3,
+BB81,04.17.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K592011,"Plate 4, 2I",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,NA,1,no,F,Composite,6," ""cjBlue  green chromoprotein"""
+BB82,04.17.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K118019,"Plate 4, 3C",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,,0,no,F,Coding,1," ""Plac+rbs+glgC (ADP-glucose pyrophosphorylase)"""
+BB83,04.17.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K118024,"Plate 4, 3E",spring 2018 iGEM distribution,Jordan Clements,,Teal Box,exp003/exp005,NA,1,no,F,Translational_Unit,1," ""dxs+LIMS1+appY"""
+BB84,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K558009,"Plate 1, E4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp036,NA,1,Yes,F,Composite,3," ""Thiamin monophosphate pyrophosphorylase"""
+BB85,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K346000,"Plate 1, F4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp006/exp026,NA,1,Yes,F,Generator,2," ""RBS(B0032)+T3 DNA-directed RNA polymerase"""
+BB86,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575008,"Plate 1, G4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp006,NA,1,Yes,T,Composite,3," ""LasR/PAI1 Inducible Promoter + RBS (B0030) + GFP"""
+BB87,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K395602,"Plate 1, H4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp006,NA,1,Yes,F,Composite,3," ""Apple fragrance  generator """
+BB88,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575010,"Plate 1, I4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,,,0,No,F,Generator,1," ""LasR/PAI1 Inducible Promoter + RBS (B0030) + RFP"""
+BB89,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575009,"Plate 1, K4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp006,NA,1,Yes,T,Composite,3," ""LasR/PAI1 Inducible Promoter + RBS (B0034) + GFP"""
+BB90,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K325909,"Plate 1, L4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp006,NA,1,Yes,F,Reporter,1," ""Lux Operon (under pBAD)<BR><i>Vibrio Fischeri</i>"""
+BB91,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575011,"Plate 1, M4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp026/exp036,NA,1,Yes,F,Composite,3," ""LasR/PAI1 Inducible Promoter + RBS (B0034) + RFP"""
+BB92,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K325100,"Plate 1, N4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp026/exp036,NA,1,Yes,F,Translational_Unit,1," ""EPIC Firefly Luciferase and LRE <BR><i>P. Pyralis<BR>(E. coli optimised)</i>"""
+BB93,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575012,"Plate 1, O4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp026/exp036,NA,1,Yes,T,Terminator,1," ""RhlR/PAI2  Inducible Promoter + RBS (B0030) + GFP"""
+BB94,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523001,"Plate 1, P4",spring 2018 iGEM distribution,Noor Radde,,Teal Box,exp026/exp036,NA,1,Yes,F,Reporter,5," ""RBS + malS (E. coli periplasmic &#945;-amylase)"""
+BB95,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150012,"Plate 4, A10",spring 2018 iGEM distribution,Shireen Shah,,Teal Box,exp026/exp036,,0,No,F,Reporter,5," ""BGH terminator"""
+BB96,4.20.19,E. coli DH10B + burden monitor,"kan, cam, amp",pSB1AC3,BBa_J04450,"Plate 4, B10",spring 2018 iGEM distribution,Shireen Shah,,Teal Box,exp026/exp036,,0,No,F,Reporter,5," ""RFP Coding Device"""
+BB97,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150013,"Plate 4, E10",spring 2018 iGEM distribution,Shireen Shah,,Teal Box,exp036,,0,No,F,Coding,1," ""AGS Linker"""
+BB98,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150016,"Plate 4, G10",spring 2018 iGEM distribution,Shireen Shah,,Teal Box,exp036,,0,No,F,Tag,1," ""HA tag"""
+BB99,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150034,"Plate 4, I10",spring 2018 iGEM distribution,Shireen Shah,,Teal Box,exp036,,0,No,F,Device,1," ""dCas RNA plasmid: ""uniCAS RNAimer"""""
+BB100,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150035,"Plate 4, K10",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp036,,0,No,F,Device,1," ""uniCAS RNAimer to EMX1"""
+BB101,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150036,"Plate 4, M10",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp036,,0,No,F,Device,1," ""uniCAS RNAimer to target VEGF1"""
+BB102,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150037,"Plate 4, O10",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp036,,0,No,F,Device,1," ""uniCAS RNaimer to target VEGF2"""
+BB103,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J52014,"Plate 4, A11",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp036,,0,No,F,Composite,2, 
+BB104,4.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J52039,"Plate 4, C11",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp036,,0,No,F,Composite,2, 
+BB105,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23100,"Plate 4, D17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,11.2,4.666666667,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB106,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23101,"Plate 4, F17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp054/exp051/exp050,12.2,5.083333333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB107,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23102,"Plate 4, H17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,29.4,12.25,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB108,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23103,"Plate 4, J17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,8.17,3.404166667,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB109,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23104,"Plate 4, L17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp054/exp051/exp050,5.21,2.170833333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB110,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23105,"Plate 4, N17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp026,59.1,24.625,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB111,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23106,"Plate 4, P17",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp026,52.7,21.95833333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB112,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23107,"Plate 4, B19",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp054/exp051/exp050,12.9,5.375,No,F,Regulatory,1," ""constitutive promoter family member """
+BB113,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23110,"Plate 4, D19",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,11,4.583333333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB114,4.20.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23112,"Plate 4, F19",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,13.1,5.458333333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB115,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I746107,"Plate 4, A1",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp036,25.3,10.54166667,No,F,Signalling,8," ""I746101 (AIP sensor infrastructure) + I746105 (Inducible P2 + GFP reporter)"""
+BB116,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K525305,"Plate 4, A2",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp036,34,14.16666667,No,F,Composite,1," ""Fusion Protein of S-Layer SgsE and mCitrine"""
+BB117,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J23108,"Plate 4, 4c",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006/exp026,,0,No,F,Regulatory,1," ""constitutive promoter family member """
+BB118,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J23109,"Plate 4, 4E",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006/exp026,,0,No,F,Regulatory,1," ""constitutive promoter family member """
+BB119,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_B0030,"Plate 4, 4G",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006/exp026,1.04,0.433333333,No,F,Regulatory,1," ""RBS.1 (strong) -- modified from R. Weiss"""
+BB120,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1188002,"Plate 4, 4I",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006,1.79,0.745833333,No,F,RBS,1," ""RTX - Calcium Binding Protein"""
+BB121,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_k1218003,"Plate 4, 4K",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006,5.8,2.416666667,No,F,Tag,1,
+BB122,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_k1218011,"Plate 4, 4M",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,,,0,No,F,Generator,5,
+BB123,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_k1184000,"Plate 4, 4O",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006,,0,No,F,Composite,10,
+BB124,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I746908,"Plate 4, 5C",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp006,,0,No,F,Signalling,15," ""superfolder GFP driven by pBAD promoter"""
+BB125,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K137076,"Plate 4, 5E",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp036,,0,No,F,Regulatory,1," ""AHL inducible production of hydrogen peroxide"""
+BB126,4.24.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K137019,"Plate 4, 5G",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,,,0,No,F,Regulatory,1," ""AHL receiver + tet inverter + GFP"""
+BB127,,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23113,"Plate 4, 19H",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp054/exp051/exp050,5.48,2.283333333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB128,,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23114,"Plate 4, 19J",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,6.88,2.866666667,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB129,,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23115,"Plate 4, 19L",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045/exp054/exp051/exp050,3.71,1.545833333,No,F,Regulatory,1," ""constitutive promoter family member"""
+BB130,,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23116,"Plate 4, 19N",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,4.25,1.770833333,No,F,DNA,1," ""constitutive promoter family member"""
+BB131,,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23118,"Plate 4, 21B",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp045,6.97,2.904166667,No,F,Composite,2," ""constitutive promoter family member"""
+BB132,,E. coli DH10B + burden monitor,"kan, amp",pSB1A3,BBa_I13452,"Plate 4, 21D",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp054/exp051/exp050/exp049/exp046,9.88,4.116666667,No,F,Intermediate,2," ""Adds another BioBrick site"""
+BB133,,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13500,"Plate 4, 21F",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp049/exp046,10.6,4.416666667,No,F,Intermediate,2," ""Screening plasmid intermediate"""
+BB134,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608003,"Plate 1, A5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp018/exp049/exp046,3,1.25,No,F,Intermediate,2," ""strong Promoter   medium RBS"""
+BB135,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S05050,"Plate 1, B5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,,,0,No,F,Regulatory,1," ""B0034:K748002"""
+BB136,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608004,"Plate 1, C5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp018/exp049/exp046,5.14,12.336,No,F,Intermediate,2," ""strong Promoter   weak RBS"""
+BB137,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K819017,"Plate 1, D5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp018/exp054/exp051/exp050/exp049/exp046,5.66,2.358333333,No,F,Coding,1," ""Luminesensor repressible SulA408 promoter"""
+BB138,05.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608006,"Plate 1, E5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp018/exp049/exp046,4.84,2.016666667,No,F,DNA,1," ""medium Promoter   medium RBS"""
+BB139,5/3/19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0056,"PLate 4, 23B",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp049/exp046,13.3,5.541666667,No,F,Reporter,5," ""cI repressor from phage 434 (no LVA)"""
+BB140,5/3/19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0040,"PLate 4, 23D",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp049/exp046,8.46,3.525,No,F,Reporter,4," ""Spacer.1 (generic)"""
+BB141,5/3/19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13600,"PLate 4, 23F",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp049/exp046,16.5,6.875,No,F,Reporter,4," ""Tet with CFP reporter (without LVA tag)"""
+BB142,5/3/19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13001,"PLate 4, 23H",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp054/exp051/exp050/exp049/exp046,12.3,5.125,No,F,Composite,2," ""RBS B0030 w/ YFP (-LVA) TT"""
+BB143,5/3/19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13002,"PLate 4, 23J",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp018/exp049/exp046,16.5,6.875,No,F,Composite,2," ""RBS B0031 w/ YFP (-LVA) TT"""
+BB144,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J52022,"Plate 4, 11E",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp054/exp051/exp050/exp049/exp046,15.8,6.583333333,No,F,Generator,4, 
+BB145,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J52040,"Plate 4, 11G",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp049/exp046,9.7,4.041666667,No,F,Generator,4, 
+BB146,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J45219,"Plate 4, 11I",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp049/exp046,8.05,3.354166667,No,F,Intermediate,12," ""Banana odor enzyme (ATF1) generator"""
+BB147,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J45299,"Plate 4, 11K",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp049/exp046,5.44,2.266666667,No,F,Coding,1," ""PchA & PchB enzyme generator"""
+BB148,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I732920,"Plate 4, 11M",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp049/exp046,8.07,3.3625,No,F,Device,1," ""B0015 J09855 I732835"""
+BB149,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I746200,"Plate 4, 11O",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp018/exp049/exp046,14.5,6.041666667,No,F,Device,1," ""FepA L8T Mutant - Large Diffusion pore for E. coli outer membrane."""
+BB150,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150038,"Plate 4, 12A",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp036,4,1.666666667,No,F,Device,1," ""uniCAS RNAimer to target VEGF3"""
+BB151,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150039,"Plate 4, 12C",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp033,7.4,3.083333333,No,F,Device,1," ""uniCAS RNAimer to target VEGF4"""
+BB152,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150040,"Plate 4, 12E",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp033,7.37,3.070833333,No,F,Device,1," ""uniCAS RNAimer to Bla Target 2"""
+BB153,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150041,"Plate 4, 12G",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp033,4.51,1.879166667,No,F,Device,2," ""uniCAS RNaimer to Bla Target 3"""
+BB154,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150042,"Plate 4, 12I",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp033,11.7,4.875,No,F,Terminator,1," ""uniCAS RNaimer to Bla Target 4"""
+BB155,5/3/19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150043,"Plate 4, 12K",spring 2018 iGEM distribution,Shireen Shah,,Pink Box,exp008/exp033,7.25,3.020833333,No,F,Terminator,1," ""uniCAS RNAimer multiple targets to VEGF 2 and VEGF 3"""
+BB156,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0025,"Plate 4, 1F",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp008/exp033,,0,no,F,RBS,1," ""double terminator (B0015)  reversed"""
+BB157,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0031,"Plate 4, 1H",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp018/exp049/exp046,,0,no,F,RBS,1," ""RBS.2 (weak) -- derivative of BBa_0030"""
+BB158,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0032,"Plate 4, 1J",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp018/exp049/exp046,,0,no,F,RBS,1," ""RBS.3 (medium) -- derivative of BBa_0030"""
+BB159,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0033,"Plate 4, 1L",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp018/exp049/exp046,,0,no,F,RBS,1," ""RBS.4 (weaker) -- derivative of BBa_0030"""
+BB160,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0034,"Plate 4, 1N",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,,0,no,F,RBS,1," ""RBS (Elowitz 1999) -- defines RBS efficiency"""
+Bb161,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0012,"Plate 4, 1P",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021/exp033,,0,no,F,RBS,1," ""lacI repressor  from E. coli (+LVA)"""
+BB162,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0040,"Plate 4, 3B",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,,0,no,F,RBS,1," ""tetracycline repressor from transposon Tn10 (+LVA)"""
+BB163,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0050,"Plate 4, 3D",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,,0,no,F,Coding,1," ""cI repressor from phage HK022  (+LVA?)"""
+BB164,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K819010,"Plate 1, F5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp008/exp033/exp054/exp051/exp050,10.7,4.458333333,,F,Coding,1," ""Medium cheZ generator"""
+BB165,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608007,"Plate 1, G5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp008/exp033,20.1,8.375,,F,Coding,1," ""medium Promoter   weak RBS"""
+BB166,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K934012,"Plate 1, H5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,,,0,,F,Coding,1," ""Plas-LuxI"""
+BB167,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,"BBa_K660004
+","Plate 1, M7",spring 2018 iGEM distribution,Noor Radde,,Pink Box,,,0,,F,Coding,1,
+BB168,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K934022,"Plate 1, J5 ",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,,0,,F,Generator,1," ""Plux-LasI"""
+BB169,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608010,"Plate 1, K5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,17.3,7.208333333,,T,Intermediate,2," ""Medium promoter with strong RBS and GFP"""
+BB170,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K934026,"Plate 1, L5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp033,,0,,F,Composite,3," ""Plux-LacI"""
+BB171,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608011,"Plate 1, M5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,15.9,6.625,,T,Reporter,1," ""Medium promoter with medium RBS and GFP"""
+BB172,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733001,"Plate 1, N5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,13,5.416666667,,F,Composite,4," ""<i>Ptms</i> - a constitutive promoter in <i>E. coli</i> and <i>B. subtilis</i>."""
+BB173,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608012,"Plate 1, O5 ",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,19,7.916666667,,T,Regulatory,3," ""Medium promoter with weak RBS and GFP"""
+BB174,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733006,"Plate 1, P5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,,,0,,F,Composite,5," ""<i>ydjM</i>+<i>Bmp2</i>"""
+BB175,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575014,"Plate 1, A6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,20.7,8.625,,F,Regulatory,3," ""RhlR/PAI2 Inducible Promoter + RBS (B0030) + RFP"""
+BB176,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523002,"Plate 1, B6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,14.1,5.875,,F,Regulatory,1," ""RBS + bglX (E. coli perisplasmic &#946;-glucosidase)"""
+BB177,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,"BBa_K817002
+","Plate 1, P7",spring 2018 iGEM distribution,Noor Radde,,Pink Box,,,0,,F,Regulatory,3,
+BB178,5.25.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523003,"Plate 1, D6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,24.4,10.16666667,,F,Coding,1," ""malS for BioSandwich"""
+BB179,5.25.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575015,"Plate 1, E6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,21.2,8.833333333,,F,Composite,3," ""RhlR/PAI2 Inducible Promoter + RBS (B0034) + RFP"""
+BB180,5.25.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523004,"Plate 1, F6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,29.5,12.29166667,,F,Translational_Unit,1," ""bglX for BioSandwich"""
+BB181,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575020,"Plate 1, G6",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp021,18.2,7.583333333,,F,Regulatory,1," ""Genomic LasR/PAI1 Inducible Promoter (Long)"""
+BB182,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0010,"Plate 4, 16G",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,12.1,5.041666667,,F,Coding,1," ""T1 from E. coli rrnB"""
+BB183,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13502,"Plate 4, 21H",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,10.5,4.375,,F,Composite,3," ""Screening plasmid intermediate"""
+BB184,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13504,"Plate 4, 21J",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,18.5,7.708333333,,F,Coding,1," ""Screening plasmid intermediate"""
+BB185,5.24.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I15017,"Plate 4, 21N",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,28.1,11.70833333,,F,Regulatory,1," ""B0032.EYFP"""
+BB186,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0025,"Plate 4, 16A",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,17.1,7.125,,F,Terminator,1," ""double terminator (B0015)  reversed"""
+BB187,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J61000,"Plate 4, 23N",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021/exp054/exp051/exp050,4.31,1.795833333,,F,Translational_Unit,2," ""chloramphenicol resistance cassette"""
+BB188,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0020,"Plate 4, 5B",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,5.56,2.316666667,,F,Reporter,4," ""engineered cyan fluorescent protein derived from A. victoria GFP """
+BB189,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0022,"Plate 4, 5D",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,6.17,2.570833333,,F,Translational_Unit,2," "" enhanced cyan fluorescent protein derived from A. victoria GFP"""
+BB190,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0032,"Plate 4, 5F",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp021,5.96,2.483333333,,F,Generator,1," ""enhanced yellow fluorescent protein derived from A. victoria GFP"""
+BB191,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0011,"Plate 4, 5H",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp033,2.41,1.004166667,,F,Coding,1," ""Promoter (lacI regulated  lambda pL hybrid)"""
+BB192,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0040,"Plate 4, 5J",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp033,2.4,1,,F,Coding,1," ""TetR repressible promoter"""
+BB193,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J36335,"Plate 4, 5K",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp033,10.9,4.541666667,,F,Reporter,1," ""Lac+RBS+KaiA+Lac+RBS+KaiC"""
+BB194,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0051,"Plate 4, 5L",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,2.1,0.875,,F,Reporter,1," ""promoter (lambda cI regulated)"""
+BB195,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0053,"Plate 4, 5N",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,2.83,1.179166667,,F,Reporter,1," ""Promoter (p22 cII regulated)"""
+BB196,5.31.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0062,"Plate 4, 5P",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,3.26,1.358333333,,F,Regulatory,1," ""Promoter (luxR & HSL regulated -- lux pR)"""
+BB197,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1033000,"Plate 4, 6C",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,7.67,3.195833333,,F,Regulatory,1," ""Tyrosine ammonia-lyase (TAL) with RBS"""
+BB198,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1092001,"Plate 4, 6E",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,4.3,1.791666667,,F,Regulatory,1," ""T7-RBS-QsrR"""
+BB199,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1104204,"Plate 4, 6G",spring 2018 iGEM distribution,Diya Bhat,,Pink Box,exp007,3.97,1.654166667,,F,Regulatory,1," ""AhpCp2D1"""
+BB200,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1166002,"Plate 4, 6I",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp033,11.9,4.958333333,,F,Composite,6," ""HlyA-tag+Secretion system"""
+BB201,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1033910,"Plate 4, 6K",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp007,5.17,2.154166667,,F,Regulatory,1," ""fwYellow  yellow chromoprotein"""
+BB202,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1033916,"Plate 4, 6M",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp007,6.87,2.8625,,F,Regulatory,1," ""amajLime  yellow-green chromoprotein"""
+BB203,5.31.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1150001,"Plate 4, 6O",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp007,4.6,1.916666667,,F,Regulatory,1," ""VP16"""
+BB204,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523006,"Plate 1, 6H",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp007,48.7,20.29166667,,F,Regulatory,1," ""Plac + LacZ + malS"""
+BB205,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K575021,"Plate 1, 6I",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,15.3,6.375,,F,Coding,1," ""Genomic LasR/PAI1 Inducible Promoter (Short)"""
+BB206,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K538101,"Plate 1, 6J",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,17.9,7.458333333,,F,Device,2," ""RBS + Cpn60"""
+BB207,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523006,"Plate 1, 6K",spring 2018 iGEM distribution,Noor Radde,,Orange Box,,,0,,F,Regulatory,1," ""Plac + LacZ + malS"""
+BB208,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K525710,"Plate 1, 6L",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,15.6,6.5,,F,Composite,1," ""DNA ligase from Escherichia coli (LigA) with PT7  RBS and His-tag"""
+BB209,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K590034,"Plate 1, 6M",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,4.21,1.754166667,,F,Coding,1," ""FabH2"""
+BB210,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608351,"Plate 1, 6N",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,,0,,F,Coding,1," ""(correct) temperature sensitive promoter"""
+BB211,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K576003,"Plate 1, 6O",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,2.77,1.154166667,,F,Coding,1," ""Left Part of Self-Excising Ribozyme"""
+BB212,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K564012,"Plate 1, 6P",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exo033,,0,,F,Coding,1,"""promoter and RBS of E. coli chitoporin translationally fused with lacZ."""
+BB213,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K607035,"Plate 1, 7A",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,1.87,0.779166667,,F,Composite,2," ""pUC18 replication origin"""
+BB214,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733008,"Plate 1, 7B",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,4.94,2.058333333,,F,Composite,2,NA
+BB215,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K608351,"Plate 1, 7C",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exo033,9.97,4.154166667,,F,Regulatory,1," ""(correct) temperature sensitive promoter"""
+BB216,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733009,"Plate 1, 7D",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp011,,0,,T,Translational_Unit,2,"""Ptms+BBa_E0240: Ptms+RBS+GFP+Double"""
+BB217,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K515007,"Plate 1, 7E",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp011,,0,,F,Coding,1,"""Dendra2"""
+BB218,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733010,"Plate 1, 7F",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009/exp026/exp054/exp051/exp050,6.65,2.770833333,,F,Coding,1," ""<i>Ptms</i>+RBS+<i>ydcD</i>."""
+BB219,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K584000,"Plate 1, 7G",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,,0,,T,Composite,1,"""pBAD + GFP generator"""
+BB220,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733013,"Plate 1, 7H",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009/exp054/exp051/exp050,18.1,7.541666667,,F,Composite,1," ""<i>Pveg</i>+R.B.S."""
+BB221,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523008,"Plate 1, 7I",spring 2018 iGEM distribution,Noor Radde,,Orange Box,,,0,,F,RNA,1,"""INP for BioSandwich"""
+BB222,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K733014,"Plate 1, 7J",spring 2018 iGEM distribution,Noor Radde,,Orange Box,,,0,,F,DNA,1,"""Pveg+RBS+ydjM+Bmp2"""
+BB223,6.6.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K660610,"Plate 1, 7K",spring 2018 iGEM distribution,Noor Radde,,Orange Box,exp009,,0,,F,Coding,1," ""RBS + RcsB"""
+BB224,06.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_k145014,"Plate 4, 1E",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007,,0,,F,Composite,1,
+BB225,06.03.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_k145302,"Plate 4, 1G",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp007,,0,,F,Regulatory,2,
+BB226,06.03.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_k118000,"Plate 4, 1M",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp015/exp026,,0,,F,Composite,2,
+BB227,06.03.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_I746101,"Plate 4, 5M",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp026,,0,,F,Signalling,3," ""I746100 (AIP sensor infrastructure - agrC + agrA with RBSes) + B0015 (Terminator)"""
+BB228,06.03.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_K118028,"Plate 4, 3G",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp015,,0,,F,Coding,1," ""beta-glucosidase gene bglX (chu_2268) from Cytophaga hutchinsonii"""
+BB229,06.03.19,E. coli DH10B + burden monitor,"Kan,cam",pSB1C3,BBa_I7421111,"Plate 4, 3I",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007,,0,,F,Composite,11,
+BB230,06.03.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_I746381,"Plate 4, 3M",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp015,,0,,F,Composite,11," ""PSP3 pag inducing PO promoter"""
+BB231,06.03.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_I746391,"Plate 4, 3O",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp015,,0,,T,Coding,1," ""phiR73 delta inducing PO promoter"""
+BB232,06.03.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_c0051,"Plate 4, 3F",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007,,0,,F,Coding,1,
+Bb233,06.03.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_c0052,"Plate 4, 3H",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp026,,0,,F,Measurement,5,
+BB234,06.03.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_c0053,"Plate 4, 3J",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp026,,0,,F,Composite,11,
+BB235,06.03.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_c0060,"Plate 4, 3L",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp026,,0,,F,Composite,11,
+BB236,06.03.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0061,"Plate 4, 3N",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007/exp026,,0,,F,Generator,2," ""autoinducer synthetase for AHL"""
+BB237,06.03.19,E. coli DH10B + burden monitor,"Kan, amp",pSB1A2,BBa_c0062,"Plate 4, 3P",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp007,,0,,F,Generator,2,
+BB238,06.05.19,E. coli DH10B + burden monitor,"Kan, cam",pSB1C3,BBa_K648013,"Plate 4, 2M",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,14.8,6.166666667,,F,Protein_Domain,1," ""GFP with Standard 25 Prefix/Suffix """
+BB239,06.05.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I6057,"Plate 4, 5O",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,17.6,7.333333333,,T,Device,1," ""Promoter O_H Test I0500.E0420"""
+BB240,06.05.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I746375,"Plate 4, 3K",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,21.3,8.875,,T,Coding,1," ""P2 ogr inducing PLL promoter"""
+BB241,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_I746375,"Plate 4, 4C",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,,0,,T,Device,1," ""P2 ogr inducing PLL promoter"""
+BB242,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_J23109,"Plate 4, 4E",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,,0,,F,Coding,1," ""constitutive promoter family member """
+BB243,06.05.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_I768908,"Plate 4, 5C",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,,0,,F,Reporter,1,
+BB244,06.05.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_k137076,"Plate 4, 5E",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017/exp026,6.95,2.895833333,,F,Composite,1,
+BB245,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_k137019,"Plate 4, 5G",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,14.2,5.916666667,,F,Reporter,1,
+BB246,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa+K1166002,"Plate 4, 6I",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,7.29,3.0375,,F,Coding,1,
+BB247,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_K1033910,"Plate 4, 6M",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,,0,,F,Translational_Unit,1," ""fwYellow  yellow chromoprotein"""
+BB248,06.06.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_k1033916,"Plate 4, 6K",spring 2018 iGEM distribution,Jordan Clements,,Orange Box,exp010/exp017,9.88,4.116666667,,F,Reporter,1,
+BB249,06.05.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_k1150001,"Plate 4, 60",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp010/exp017,,0,,F,Coding,1,
+BB250,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K649303,"Plate 2, 1A",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,,,0,,F,Protein_Domain,1," ""PlacIQ-RBS-ispS"""
+BB251,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K909007,"Plate 2, 1B",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,9.66,4.025,,F,Terminator,1," ""TetR DNA binding domain containing BamHI site for protein fusions"""
+BB252,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K598014,"Plate 2, 1C",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,6.49,2.704166667,,F,Protein_Domain,1," ""pBAD+HH+CdIntron+E0040+b0015"""
+BB253,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K777113,"Plate 2, 1D",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,,,0,,F,Terminator,1," ""motA"""
+BB254,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K598019,"Plate 2, 1E",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,,,0,,F,Protein_Domain,1," ""B0015+pBAD+vioABD+B0015+pBAD+TPP Down-regulated Hammerhead Ribozyme 2.5+vioE"""
+BB255,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K777117,"Plate 2, 1F",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,7.38,3.075,,F,Terminator,1," ""motB"""
+BB256,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K812032,"Plate 2, 1H",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,15.2,6.333333333,,F,Coding,1," ""mCFP with kozak sequence for eukaryotic expression"""
+BB257,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_567001,"Plate 2, 1I",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,,,0,,F,Composite,10,
+BB258,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K936013,"Plate 2, 1J",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,5.03,2.095833333,,F,Coding,1," ""pelB-LC-Cutinase fusion protein"""
+BB259,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K567008,"Plate 2, 1K",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,5.89,2.454166667,,F,Translational_Unit,2," ""PT7-Luc-2AGG"""
+BB260,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K936000,"Plate 2, 1L",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,8.83,3.679166667,,F,Coding,1," ""LC Cutinase"""
+BB261,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K567015,"Plate 2, 1M",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,5.79,2.4125,,F,Device,1," ""PT7-metGN"""
+BB262,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K876000,"Plate 2, 1N",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,8.24,3.433333333,,F,Regulatory,1," ""pLac-TetR"""
+BB263,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K567018,"Plate 2, 1O",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,19.1,7.958333333,,F,Coding,2," ""PT7-GFP-TAG-RFP"""
+BB264,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K773002,"Plate 2, 1P",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,8.75,3.645833333,,F,Composite,4," ""Proteorhodopsin"""
+BB265,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K747000,"Plate 2, 2A",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,11.6,4.833333333,,F,RNA,1," ""TAL-Protein_AA1_DiRepeat"""
+BB266,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_B0012,"Plate 2, 2B",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,8.66,3.608333333,,F,Composite,2," ""TE from coliphageT7"""
+BB267,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K747001,"Plate 2, 2C",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,7.23,3.0125,,F,Measurement,5," ""TAL-Protein_AC1_Direpeat"""
+BB268,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_B0013,"Plate 2, 2D",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,10.4,4.333333333,,F,Coding,1," ""TE from coliphage T7 (+/-)"""
+BB269,6.10.19,E. coli DH10B + burden monitor,"kan, cam ",pSB1C3,BBa_K747002,"Plate 2, 2E",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp022/exp028,7.31,3.045833333,,F,Composite,5," ""TAL-Protein_AG1_Direpeat"""
+BB270,06.11.19,E. coli DH10B + burden monitor,"Kan, cam ",pSB1C3,BBa_B0023,"Plate 2, 2F",spring 2018 iGEM distribution,Jordan CLements,,Orange Box,exp014,,0,,F,Composite,1," ""TE from coliphage T7  reversed"""
+BB271,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K654058,"Plate 1, 10E",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,14.1,5.875,,F,Regulatory,1," ""Thioesterase (TesA from E. coli) with 8-His Tag"""
+BB272,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K639003,"Plate 1, 10F",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,18,7.5,,F,Regulatory,1," ""rrnB P1-LacI-pLac-mCherry plausible stress sensor"""
+BB273,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K634001,"Plate 1, 10G",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020/exp054/exp051/exp050,12.1,5.041666667,,F,Regulatory,1," ""exaE"""
+BB274,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K606017,"Plate 1, 10H",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,26,10.83333333,,F,Intermediate,1," ""T7 polymerase expression casette for Bacillus Subtilis"""
+BB275,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K624003,"Plate 1, 10I",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,9.58,3.991666667,,F,Coding,1," ""rep gene"""
+BB276,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K627011,"Plate 1, 10J",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,21.4,8.916666667,,F,Regulatory,1," ""Fusion part of pBAD arabinose-inducible induction system and the HRV 14_3C protease"""
+BB277,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K624000,"Plate 1, 10K",,,,Orange Box,exp020,10.1,4.208333333,,F,Regulatory,1," ""ori+Pmsp1"""
+BB278,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K624004,"Plate 1, 10M",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,16.6,6.916666667,,F,Composite,1," ""ori+Pmsp1+rep (pYMB essentials)"""
+BB279,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K592016,"Plate 1, 10N",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,24.3,10.125,,F,Regulatory,1," ""B0034-YF1-B0034-FixJ  blue light sensor and RR with RBS """
+BB280,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K581005,"Plate 1, 10O",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,7.36,3.066666667,,F,Regulatory,1," ""Pc+sgrS(wt)+Terminator (small RNA regulator  conjugate part of ptsG(wt)) """
+BB281,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K592018,"Plate 1, 10P",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020/exp054/exp051/exp050,19.6,8.166666667,,F,Composite,8," ""B0034-cph8"""
+BB282,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516132,"Plate 1, 11A",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,9.58,3.991666667,,F,Regulatory,1," ""Constitutive promoter [J23101] with mRFP  RBS B0032"""
+BB283,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K797001,"Plate 1, 11B",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,12.2,5.083333333,,F,Composite,8," ""phage shock protein A: one of the components of out Tat cassette"""
+BB284,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K553003,"Plate 1, 11C",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,,0,,F,Regulatory,1," ""constitutive production of LasR trans-activator"""
+BB285,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K914001,"Plate 1, 11D",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,7.55,3.145833333,,F,Regulatory,1," ""pLac Colicin E2 Immunity protein"""
+BB286,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541501,"Plate 1, 11E",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020/exp054/exp051/exp050,4.75,1.979166667,,F,Composite,8," ""Promoter Pveg  RBS spoVG and SacB signal peptide for B. subtilis"""
+BB287,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K914003,"Plate 1, 11F",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,8.11,3.379166667,,F,Reporter,4," ""L-rhamnose-inducible promoter (pRha)"""
+BB288,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541502,"Plate 1, 11G",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,7.07,2.945833333,,F,Composite,8," ""Promoter Pveg  RBS spoVG and LipA signal peptide for B. subtilis"""
+BB289,06.12.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K914011,"Plate 1, 11H",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp023,6.82,2.841666667,,F,Reporter,4," ""supD-T - intermediate"""
+BB290,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J52011,"Plate 4, 7A",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp023,9.36,3.9,,F,Composite,8," ""dnMyD88-linker-Rluc"""
+BB291,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0063,"Plate 4, 7B",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,12.6,5.25,,F,Composite,8," ""Promoter (luxR & HSL regulated -- lux pL)<br>"""
+BB292,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I751100,"Plate 4, 7C",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,22.9,9.541666667,,F,Composite,3," ""J54140 delPr"""
+BB293,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0065,"Plate 4, 7D",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp020,9.47,3.945833333,,F,Coding,1," ""Promoter (lambda cI and luxR regulated -- hybrid)"""
+BB294,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759014,"Plate 4, 7E",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp022/exp028,47.5,19.79166667,,F,Composite,3," ""cis2-repressed  tet-regulated YFP"""
+BB295,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R1051,"Plate 4, 7F",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp035,4.49,1.870833333,,F,Composite,3," ""Promoter  Standard (lambda cI regulated)<br>"""
+BB296,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759016,"Plate 4, 7G",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp022/exp028,43.8,18.25,,F,Intermediate,8," ""cis4-repressed  tet-regulated YFP"""
+BB297,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R1062,"Plate 4, 7H",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp035,12.2,5.083333333,,F,Intermediate,8," ""Promoter  Standard (luxR and HSL regulated -- lux pR)<br>"""
+BB298,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759017,"Plate 4, 7I",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp022/exp028,19.8,8.25,,F,Generator,4," ""cis5-repressed  tet-regulated YFP"""
+BB299,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0430,"Plate 4, 7J",spring 2018 iGEM distribution,Diya Bhat,,Orange Box,exp035,16.1,6.708333333,,F,Composite,2," ""EYFP (RBS+ LVA- TERM) (B0034.E0030.B0015)"""
+BB300,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759018,"Plate 4, 7K",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp023/exp035,31,12.91666667,,F,Regulatory,6," ""cis6-repressed  tet-regulated YFP"""
+BB301,06.06.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0420,"Plate 4, 7L",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp035,22.4,9.333333333,,F,Coding,1," ""ECFP (RBS+ LVA- TERM) (B0034.E0020.B0015)"""
+BB302,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759019,"Plate 4, 7M",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp023,16.8,7,,F,RNA,1," ""cis7-repressed  tet-regulated YFP"""
+BB303,06.06.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759020,"Plate 4, 7O",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp035,10.1,4.208333333,,F,RNA,1," ""cis8-repressed  tet-regulated YFP"""
+BB304,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1149051,"Plate 4, 12M",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,11.4,4.75,,F,Regulatory,1," ""Hybrid promoter phaCAB"""
+BB305,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1061001,"Plate 4, 12O",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,17.5,7.291666667,,F,Measurement,4," "" apoptin"""
+BB306,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I712058,"Plate 4, 13A",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,10.2,4.25,,F,Composite,3," ""CMVp - myri - TEVP - GFP"""
+BB307,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I712088,"Plate 4, 13C",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,18.2,7.583333333,,F,Composite,2," ""CMV - CD4(shortened) - Cub - GFP"""
+BB308,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I759005,"Plate 4, 13E",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,6.6,2.75,,F,Regulatory,1," ""tet-regulated cro (Weak tetR promoter)"""
+BB309,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S03749,"Plate 4, 13G",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,12.4,5.166666667,,F,Coding,1," ""tet-regulated cro (Strong tetR promoter)"""
+BB310,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J45319,"Plate 4, 13K",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,NA,#VALUE!,,F,Regulatory,1," ""PchA & PchB enzyme generator"""
+BB311,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I712669,"Plate 4, 13M",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp054/exp051/exp050/exp035,,0,,F,Composite,2," ""CMV - mCer"""
+BB312,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I761014,"Plate 4, 13O",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,,0,,F,Coding,1," ""cinr+cinl (RBS) with double terminator"""
+BB313,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K1061003,"Plate 4, 14A",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,18.3,7.625,,F,Composite,3," ""RIP 3"""
+BB314,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K115001,"Plate 4, 15A",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,,0,,F,Composite,1," ""RNA thermometer (ROSE)"""
+BB315,6.6.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K115002,"Plate 4, 15C",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp023/exp035,,0,,F,DNA,1," ""RNA thermometer (FourU)"""
+BB316,,,,,,,,,,,,,0,,F,Composite,1,
+BB317,,,,,,,,,,,exp011/exp035,,0,,F,Translational_Unit,2,
+BB318,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K588001,"Plate 1, 8A",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011/exp035,,0,,F,DNA,1," ""ptrp"""
+BB319,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K564013,"Plate 1, 8B",spring 2018 iGEM distribution,Noor Radde ,,Green Box,,,0,,F,Intermediate,2," ""Upstream mutated chitoporin part fused with lacZ """
+BB320,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K515100,"Plate 1, 8D",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011/exp053/exp035,,0,,F,Intermediate,2," ""IAA biosynthetic genes under control of the Pveg2 promoter"""
+BB321,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K515102,"Plate 1, 8F",spring 2018 iGEM distribution,Noor Radde ,,Green Box,,,0,,F,Intermediate,5," ""J23100 promoter - PA2652"""
+BB322,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K611025,"Plate 1, 8G",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011/exp035,NA,1,,F,Intermediate,2," ""LacI Promoter Variant #5"""
+BB323,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523013,"Plate 1, 8H",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp015,,0,,F,Translational_Unit,2," ""Plac + INP-EYFP"""
+BB324,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K611026,"Plate 1, 8I",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011,NA,1,,F,Intermediate,2," ""LacI Promoter Variant #6"""
+BB325,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523014,"Plate 1, 8J",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011,18,7.5,,F,Reporter,4," ""Plac + LacZ + bglX"""
+BB326,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K569017,"Plate 1, 8K",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011,15.4,6.416666667,,F,Intermediate,4," ""CheY"""
+BB327,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523015,"Plate 1, 8L",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011,9.51,3.9625,,F,Reporter,4," ""Plac + RBS + cenA (endoglucanase)"""
+BB328,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523020,"Plate 1, 8N",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011/exp026,17.4,7.25,,F,Reporter,1," ""Plac + INP-bglX"""
+BB329,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K617004,"Plate 1, 8O",spring 2018 iGEM distribution,Noor Radde ,,Green Box,exp011,12.5,5.208333333,,F,Reporter,4, Confirmed(A)
+BB330,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523022,"Plate 1, 8P",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp011/exp026,3.47,1.445833333,,F,Reporter,1," ""PlacLacZ + crtEIB"""
+BB331,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S04602,"Plate 1, 9A",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp011,,0,,F,Device,4," ""B0034:C0077"""
+BB332,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817016,"Plate 1, 9B",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp016,,0,,F,Composite,1," ""parS site"""
+BB333,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S04607,"Plate 1, 9C",spring 2018 iGEM distribution,Angela Pak,,Green Box,,7.39,3.079166667,,F,Composite,6," ""R0011:C0077"""
+BB334,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817021,"Plate 1, 9D",spring 2018 iGEM distribution,Angela Pak,,Green Box,,3.23,1.345833333,,F,Protein_Domain,1," ""RBS-SP1-Penetratin-Flag"""
+BB335,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K568006,"Plate 1, 9E",spring 2018 iGEM distribution,Angela Pak,,Green Box,,,0,,F,Protein_Domain,1," ""Intermediate synthetic part of optogenetical AND-Gate"""
+BB336,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817022,"Plate 1, 9F",spring 2018 iGEM distribution,Angela Pak,,Green Box,,2.7,1.125,,F,Protein_Domain,1," ""RBS-SP2-Penetratin-Flag"""
+BB337,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516011,"Plate 1, 9G",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp011,8.67,3.6125,,F,Protein_Domain,1," ""luxI protein generator TERM- RBS+(B0031)"""
+BB338,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817023,"Plate 1, 9H",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015,14.7,6.125,,F,Protein_Domain,1," ""RBS-SP3-Penetratin-Flag"""
+BB339,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516030,"Plate 1, 9I",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015,8.36,3.483333333,,F,Translational_Unit,1," ""mRFP protein generator TERM+ RBS+(B0030)"""
+BB340,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817024,"Plate 1, 9J",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015,11.4,4.75,,F,Translational_Unit,1," ""RBS-SP1-Penetratin-Flag-xx"""
+BB341,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516031,"Plate 1, 9K",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp011,4.96,2.066666667,,F,Signalling,7," ""mRFP protein generator TERM+ RBS+(B0031)"""
+BB342,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K763001,"Plate 1, 9L",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp011/exp026,3.29,1.370833333,,F,Signalling,7," ""pGroE + Gene encoding AsRed2"""
+BB343,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516032,"Plate 1, 9M",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp023,9.06,3.775,,F,Generator,2," ""mRFP protein generator TERM+ RBS+(B0032)"""
+BB344,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K763002,"Plate 1, 9N",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015 ,8.11,3.379166667,,F,Regulatory,1," ""pNirB  + Gene encoding ZsGreen1"""
+BB345,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K516022,"Plate 1, 9O",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015 ,12.5,5.208333333,,F,Device,15," ""AiiA protein generator TERM+ RBS+(B0032)"""
+BB346,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K523023,"Plate 1, 10B",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp015 ,12.3,5.125,,T,Device,7," ""PlacLacZ + EYFP"""
+BB347,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K562004,"Plate 1, 10C",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp023,7.48,3.116666667,,F,Composite,2,
+BB348,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K568004,"Plate 1, 10D",spring 2018 iGEM distribution,Angela Pak,,Green Box,exp023,,0,,F,Composite,8," ""Optogenetical AND-Gate blue light - without first promoter - choose your first input"""
+BB349,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747003,"Plate 2, 2G",,Jordan Clements,,Green Box,exp014,,0,,F,Device,11," ""TAL-Protein_AT1_Direpeat"""
+BB350,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_B0031,"Plate 2, 2H",,Jordan Clements,,Green Box,exp014,,0,,F,Terminator,1," ""RBS.2 (weak) -- derivative of BBa_0030"""
+BB351,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747004,"Plate 2, 2I",,Jordan Clements,,Green Box,exp014 ,,0,,F,Coding,1," ""TAL-Protein_CA1_Direpeat"""
+BB352,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_B0032,"Plate 2, 2J",,Jordan Clements,,Green Box,exp014,,0,,F,Regulatory,1," ""RBS.3 (medium) -- derivative of BBa_0030"""
+BB353,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747005,"Plate 2, 2K",,Jordan Clements,,Green Box,exp014,,0,,F,RBS,1," ""TAL-Protein_CC1_Direpeat"""
+BB354,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_B0033,"Plate 2, 2L",,Jordan Clements,,Green Box,exp014,,0,,F,Translational_Unit,2," ""RBS.4 (weaker) -- derivative of BBa_0030"""
+BB355,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747006,"Plate 2, 2M",,Jordan Clements,,Green Box,exp014,,0,,F,Regulatory,1," ""TAL-Protein_CG1_Direpeat"""
+BB356,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0012,"Plate 2, 2N",,Jordan Clements,,Green Box,exp014,,0,,F,Regulatory,1," ""lacI repressor  from E. coli (+LVA)"""
+BB357,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747007,"Plate, 2O",,Jordan Clements,,Green Box,exp014,,0,,F,Regulatory,1," ""TAL-Protein_CT1_Direpeat"""
+BB358,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0040,"Plate 2, 2P",,Jordan Clements,,Green Box,,,0,,F,Reporter,5," ""tetracycline repressor from transposon Tn10 (+LVA)"""
+BB359,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K773003,"Plate 2, 3B",,Jordan Clements,,Green Box,exp014,,0,,F,Signalling,4," ""mCherry-LVA"""
+BB360,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K773004,"Plate 2, 3D",,Jordan Clements,,Green Box,exp014,,0,,F,Translational_Unit,2," ""mCherry-AAV"""
+BB361,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K574005,"Plate 2, 3E",,Jordan Clements,,Green Box,exp021,,0,,F,Intermediate,2," ""3OC12HSL and YFP regulated by pBad"""
+BB362,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K880005,"Plate 2, 3F",,Jordan Clements,,Green Box,exp014,,0,,F,Reporter,1," ""Strong promoter  strong RBS combination for high expression levels of proteins"""
+BB363,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K801010,"Plate 2, 3H",,Jordan Clements,,Green Box,,,0,,F,Reporter,1," ""TEF2 constitutive yeast promoter"""
+BB364,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K658001,"Plate 2, 3I",,Jordan Clements,,Green Box,,,0,,F,Reporter,1," ""a bacteria population-control device with RBS1.0 driven by lacl+pL"""
+BB365,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K561000,"Plate 2, 3K",,Jordan Clements,,Green Box,,,0,,F,Reporter,1," ""Pvgb+YFP+tetR"""
+BB366,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K784006,"Plate 2, 3L",,Jordan Clements,,Green Box,exp014,,0,,F,Coding,1," ""Theophylline riboswitch 12.1 + mCherry"""
+BB367,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K649303,"plate 2, 3A",,Jordan Clements,,Green Box,,,0,,F,Regulatory,1," ""PlacIQ-RBS-ispS"""
+BB368,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K519030,"Plate 2, 3C",,Jordan Clements,,Green Box,,,0,,F,Regulatory,1," ""Photocontrol device"""
+BB369,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K574005,"Plate 2, 3E",,Jordan Clements,,Green Box,,,0,,F,Reporter,5," ""3OC12HSL and YFP regulated by pBad"""
+BB370,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K574006,"Plate 2, 3G",,Jordan Clements,,Green Box,,,0,,F,Regulatory,1," ""3OC12HSL regulated by pTet and pBad"""
+BB371,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K801012,"Plate 2, 3J",,Jordan Clements,,Green Box,,,0,,F,Regulatory,1," ""ADH1 yeast terminator"""
+BB372,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K629005,"Plate 2, 3M",,Jordan Clements,,Green Box,,,0,,F,RNA,1," ""trkD  a functional Kup (formerly TrkD) system took up Cs+ with a moderate rate and affinity"""
+BB373,6.16.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J61002,BBa_J23117,"Plate 4, 19P",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp023/exp054/exp051/exp050/exp045,21.9,9.125,,F,Regulatory,1," ""constitutive promoter family member"""
+BB374,6.16.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J61101,"Plate 4, 16E",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp023,11.2,4.666666667,,F,Generator,1," ""Ribosome Binding Site Family Member"""
+BB375,6.16.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I15016,"Plate 4, 21L",spring 2018 iGEM distribution,Diya Bhat,,Green Box,exp023,18.3,7.625,,F,Generator,1," ""B0032.ECFP"""
+BB376,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0079,"Plate 4, 11B",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,2.14,0.891666667,No,F,Other,1," ""Promoter (LasR & PAI regulated)"""
+BB377,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0071,"Plate 4, 11D",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,1.93,0.804166667,No,F,Generator,1," ""Promoter (RhlR & C4-HSL regulated)"""
+BB378,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0080,"Plate 4, 11F",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,1.92,0.8,No,F,Coding,1," ""Promoter (AraC regulated)"""
+BB379,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13602,"Plate 4, 11J",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp054/exp051/exp050/exp034,1.01,0.420833333,No,F,Device,2," ""Tet operator with CFP reporter (with LVA tag) [R/Tc+]"""
+BB380,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1AK3,BBa_J04450,"Plate 4, 12B",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,0.661,0.275416667,No,F,Regulatory,1," ""RFP Coding Device"""
+BB381,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1AK8,BBa_J04450,"Plate 4, 12D",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,0.526,0.219166667,No,F,Reporter,8," ""RFP Coding Device"""
+BB382,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I0466,"Plate 4, 13B",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,1.09,0.454166667,No,F,Generator,4," ""RhlR Protein Generator"""
+BB383,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0261,"Plate 4, 13D",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp016/exp034,1.54,0.641666667,No,F,Composite,3," ""AHL-making Enzyme  luxI (+RBS)"""
+BB384,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_S03154,"Plate 4, 13F",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,,1,No,F,Coding,1," ""B0034.C0078"""
+BB385,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0036,"Plate 4, 13J",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,,1,No,F,Composite,3," ""enhanced yellow fluorescent protein derived from A. victoria GFP"""
+BB386,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0024,"Plate 4, 13N",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,1.44,0.6,No,F,Protein_Domain,1," "" enhanced cyan fluorescent protein derived from A. victoria GFP"""
+BB387,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0026,"Plate 4, 13P",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024/exp054/exp051/exp050,,0,No,F,Coding,1," ""enhanced cyan fluorescent protein derived from A. victoria GFP"""
+BB388,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0034,"Plate 4, 15B",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,1.25,0.520833333,No,F,Protein_Domain,1," ""enhanced yellow fluorescent protein derived from A. victoria GFP"""
+BB389,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0160,"Plate 4, 15D",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,1.19,0.495833333,No,F,Coding,1," ""autoinducer inactivation enzyme aiiA (no LVA)"""
+BB390,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0084,"Plate 4, 15F",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,NA,1,No,F,Protein_Domain,1," ""Promoter (OmpR  positive)"""
+BB391,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0078,"Plate 4, 15H",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,NA,1,No,F,Coding,1," ""Promoter (cinR and HSL regulated)"""
+BB392,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_I13601,"Plate 4, 15J",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024/exp052,1.32,0.55,No,F,Protein_Domain,1," ""Lac operator with CFP reporter (without LVA tag) [R/Lc-]"""
+BB393,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0082,"Plate 4, 15L",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,,0,No,F,Coding,1," ""Promoter (OmpR  positive)"""
+BB394,6.19.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_R0083,"Plate 4, 15N",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024,,0,No,F,Protein_Domain,1," ""Promoter (OmpR  positive)"""
+BB395,6.19.19,E. coli DH10B + burden monitor,"kan, amp",BBa_J23006,BBa_J23070,"Plate 4, 15P",spring 2018 iGEM distribution,Shireen Shah,,Green Box,exp024/exp054/exp052/exp051/exp050,1.03,0.429166667,No,F,Generator,2," ""Ser2 derived key"""
+BB396,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541503,"Plate 1, 11I",spring 2018 iGEM distribution,Alex MacAskill,,Green Box,exp024/exp052,5.39,2.245833333,,F,Translational_Unit,1," ""Constitutive Strong promoter  Strong RBS and TAT signal peptide"""
+BB397,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K738002,"Plate 1,11J",spring 2018 iGEM distribution,Alex MacAskill,,Green Box,exp024/exp052,10.6,4.416666667,,F,Coding,1," ""Theophyline riboswitch regulated RNA Scaffold (clover vision 2)"""
+BB398,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541505,"Plate 1, 11K",spring 2018 iGEM distribution,Alex MacAskill,,Green Box,exp024,19.2,8,,F,Translational_Unit,1," ""limulus anti-LPS factor (LALF)"""
+BB399,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K863206,"Plate 1, 11L",spring 2018 iGEM distribution,Alex MacAskill,,Green Box,exp024/exp052,8.95,3.729166667,,F,Translational_Unit,1," ""Mating factor alpha 1 with Kozak sequence"""
+BB400,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541506,"Plate 1, 11M",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,9.18,3.825,,F,Coding,1," ""Reflectin1A from Cephalopod"""
+BB401,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K875009,"Plate 1, 11N",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,6.53,2.720833333,,F,Regulatory,1," ""LL 37 - Cathelicidin"""
+BB402,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K541526,"Plate 1, 11O",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,7.84,3.266666667,,F,Protein_Domain,1," ""reflectin for b.subtilis with LipA signal peptide"""
+BB403,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K895000,"Plate 1, 11P",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,7.01,2.920833333,,F,Coding,1," ""Eco_Ptat2"""
+BB404,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K592020,"Plate 1, 12B",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,5.17,2.154166667,,F,Composite,2," ""PFixK2-lambda C1-B0034-amilCP blue light sensor output"""
+BB405,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K581008,"Plate 1, 12C",spring 2018 iGEM distribution,Alex MacAskill,,,exp024/exp052,6.74,2.808333333,,F,Coding,1," ""RBS+ccdB+Termintor """
+BB406,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K784013,"plate 2, 3N",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Composite,2," ""pLux+Theophylline riboswitch+mCherry"""
+BB407,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K775000,"plate 2, 3O",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Coding,1," "" RI7-GPR109A Niacin chimeric GPCR"""
+BB408,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K784014,"plate 2, 3P",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Coding,1," ""pLux+Spacer2+RBS+mCherry"""
+BB409,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747008,"plate 2, 4A",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Composite,4," ""TAL-Protein_GA1_Direpeat"""
+BB410,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0051,"plate 2, 4B",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Composite,2," ""cI repressor from E. coli phage lambda (+LVA) """
+BB411,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747009,"plate 2, 4C",spring 2018 iGEM distribution,jordan clements,,,exp017,,0,,F,Composite,2," ""TAL-Protein_GC1_Direpeat"""
+BB412,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0052,"plate 2, 4D",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Reporter,4," ""cI repressor from phage  434 (+LVA)"""
+BB413,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747010,"plate 2, 4E",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Composite,5," ""TAL-Protein_GG1_Direpeat"""
+BB414,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0053,"plate 2, 4F",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Coding,1," ""c2  repressor from Salmonella phage P22  (+LVA)"""
+BB415,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747011,"plate 2, 4G",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Composite,5," ""TAL-Protein_GT1_Direpeat"""
+BB416,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0060,"plate 2, 4H",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Tag,1," ""autoinducer inactivation enzyme from Bacillus; hydrolyzes acetyl homoserine lactone"""
+BB417,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747012,"plate 2, 4I",spring 2018 iGEM distribution,Michelle Chang,,,exp017,,0,,F,Protein_Domain,1," ""TAL-Protein_TA1_Direpeat"""
+BB418,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K539421,"Plate 1, 12G",spring 2018 iGEM distribution,Angela Pak,,,exp024/exp052,,0,,F,Protein_Domain,1," ""promoter (lacI regulated)+RNA thermometer """
+BB419,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K517002,"Plate 1, 12J",spring 2018 iGEM distribution,Angela Pak,,,exp052,5.18,2.158333333,,F,Protein_Domain,1," ""alpha-pinene synthase"""
+BB420,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K539119,"Plate 1, 12K",spring 2018 iGEM distribution,Angela Pak,,,exp052,3.68,1.533333333,,F,Protein_Domain,1," ""crtY (lycopene cyclase)"""
+BB421,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K517003,"Plate 1, 12L",spring 2018 iGEM distribution,Angela Pak,,,exp052,3.47,1.445833333,,F,Translational_Unit,4," ""beta-pinene synthase """
+BB422,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K517005,"Plate 1, 12N",spring 2018 iGEM distribution,Angela Pak,,,exp052,3.44,1.433333333,,F,Translational_Unit,4," ""erg20-2"""
+BB423,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K519010,"Plate 1, 12O",spring 2018 iGEM distribution,Angela Pak,,,exp052,,0,,F,Generator,2," ""SmtA"""
+BB424,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K861173,"Plate 1, 13H",spring 2018 iGEM distribution,Angela Pak,,,exp052,2.94,1.225,,F,Regulatory,1," ""mRFP generator controlled by  PcstA (glucose-repressible promoter)"""
+BB425,6.20.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K540001,"Plate 1, 13I",spring 2018 iGEM distribution,Angela Pak,,,exp052,3.51,1.4625,,F,Intermediate,3," ""rcn  cobalt-sensitive promoter"""
+BB426,7.16.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_E0020,"Plate 2, 4N",spring 2018 iGEM distribution,Michelle Chang,,,exp022/exp028,,0,,F,Regulatory,1," ""engineered cyan fluorescent protein derived from A. victoria GFP """
+BB427,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747015,"Plate 2, 4O",spring 2018 iGEM distribution,Michelle Chang,,,,,0,,F,Reporter,10," ""TAL-Protein_TT1_Direpeat"""
+BB428,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K775001,"Plate 2, 5A",spring 2018 iGEM distribution,Michelle Chang,,,,,0,,F,Coding,1," ""RI7-Olfr154 Isoamylacetate chimeric GPCR"""
+BB429,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K876010,"Plate 2, 5B",spring 2018 iGEM distribution,Michelle Chang,,,,,0,,F,Device,10," ""pLux-TetR"""
+BB430,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K775002,"Plate 2, 5C",spring 2018 iGEM distribution,Michelle Chang,,,,,0,,F,Reporter,1," ""RI7-OR1G1 Isoamylacetate chimeric GPCR"""
+BB431,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K876014,"Plate 2, 5D",spring 2018 iGEM distribution,Raul Lopez,,,,2.5,1.041666667,,F,Reporter,1," ""pLac-LuxI"""
+BB432,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K775003,"Plate 2, 5E",spring 2018 iGEM distribution,Raul Lopez,,,,4.28,1.783333333,,F,Device,1," ""RI7-odr10 (diacetyl) chimeric GPCR with promoter and terminator"""
+BB433,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K847060,"Plate 2, 5G",spring 2018 iGEM distribution,Raul Lopez,,,exp053,2.78,1.158333333,,F,Composite,6," ""''Escherichia coli'' osmoregulatory trehalose synthesis A (otsA)"""
+BB434,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K876057,"Plate 2, 5H",spring 2018 iGEM distribution,Raul Lopez,,,,4.71,1.9625,,F,RBS,1," ""pTetR-lasR-Term-Term"""
+BB435,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K731020,"Plate 2, 5I",spring 2018 iGEM distribution,Raul Lopez,,,,2.18,0.908333333,,F,RNA,1," ""Inducible araC-pBAD promoter regulating WT CysE"""
+BB436,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K876069,"Plate 2, 5J",spring 2018 iGEM distribution,Raul Lopez,,,,4.7,1.958333333,,F,DNA,1," ""Term-Term-pLuxR-TetR"""
+BB437,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K731030,"Plate 2, 5K",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Generator,4," ""Inducible araC-pBAD promoter regulating M256I CysE"""
+BB438,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K876070,"Plate 2, 5L",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Reporter,1," ""CP-GFP-Term"""
+BB439,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K731250,"Plate 2, 5M",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Regulatory,1," ""Inducible araC-pBAD promoter with GFPmut3b  strong RBS"""
+BB440,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K817000,"Plate 2, 5N",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Coding,1," ""SP1-GLP1"""
+BB441,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K731255,"Plate 2, 5O",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Coding,1," ""Inducible araC-pBAD promoter with GFPmut3b  weak RBS"""
+BB442,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K844000,"Plate 5, 5P",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Regulatory,1," ""10x-Histidine (10x-His) Tag with double stop codon (TAATAA)"""
+BB443,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747016,"Plate 2, 6A",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Other,1," ""TAL-Protein_AA2_Direpeat"""
+BB444,6.26.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_E0032,"Plate 2, 6B",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Device,1," ""enhanced yellow fluorescent protein derived from A. victoria GFP"""
+BB445,6.26.28,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747017,"Plate 2, 6C",spring 2018 iGEM distribution,Alex MacAskill,,,,,0,,F,Coding,1," ""TAL-Protein_AC2_Direpeat"""
+BB446,7.16.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0011,"Plate 2, 6D",spring 2018 iGEM distribution,Alex MacAskill,,,exp022,,0,,F,Measurement,3," ""Promoter (lacI regulated  lambda pL hybrid)"""
+BB447,,,,,,,,,,,,,0,,F,Coding,1,
+BB448,,,,,,,,,,,,,0,,F,Device,1,
+BB449,,,,,,,,,,,,,0,,F,Device,1,
+BB450,,,,,,,,,,,,,0,,F,Device,1,
+BB451,,,,,,,,,,,,,0,,F,Composite,6,
+BB452,,,,,,,,,,,,,0,,F,Reporter,2,
+BB453,,,,,,,,,,,,,0,,F,Signalling,4,
+BB454,,,,,,,,,,,,,0,,F,Composite,6,
+BB455,,,,,,,,,,,,,0,,F,Measurement,3,
+BB456,,,,,,,,,,,,,0,,F,Coding,1,
+BB457,,,,,,,,,,,,,0,,F,Terminator,1,
+BB458,,,,,,,,,,,,,0,,F,Measurement,3,
+BB459,,,,,,,,,,,,,0,,F,Regulatory,1,
+BB460,,,,,,,,,,,,,0,,F,Reporter,2,
+BB461,,,,,,,,,,,,,0,,F,Coding,1,
+BB462,,,,,,,,,,,,,0,,F,Coding,1,
+BB463,,,,,,,,,,,,,0,,F,Intermediate,2,
+BB464,,,,,,,,,,,,,0,,F,Coding,1,
+BB465,,,,,,,,,,,,,0,,F,Intermediate,6,
+BB466,,,,,,,,,,,,,0,,F,Composite,6,
+BB467,,,,,,,,,,,,,0,,F,Reporter,4,
+BB468,,,,,,,,,,,,,0,,F,Regulatory,1,
+BB469,,,,,,,,,,,,,0,,F,Coding,1,
+BB470,,,,,,,,,,,,,0,,F,Coding,1,
+BB471,,,,,,,,,,,,,0,,F,Composite,4,
+BB472,,,,,,,,,,,,,0,,F,Coding,1,
+BB473,,,,,,,,,,,,,0,,F,Composite,8,
+BB474,,,,,,,,,,,,,0,,F,Coding,1,
+BB475,,,,,,,,,,,,,0,,F,Coding,1,
+BB476,,,,,,,,,,,,,0,,F,Other,1,
+BB477,,,,,,,,,,,,,0,,F,Coding,1,
+BB478,,,,,,,,,,,,,0,,F,Other,1,
+BB479,,,,,,,,,,,,,0,,F,Composite,7,
+BB480,,,,,,,,,,,,,0,,F,Other,1,
+BB481,,,,,,,,,,,,,0,,F,Coding,1,
+BB482,,,,,,,,,,,,,0,,F,Other,1,
+BB483,,,,,,,,,,,,,0,,F,Coding,1,
+BB484,,,,,,,,,,,,,0,,F,Regulatory,1,
+BB485,,,,,,,,,,,,,0,,F,Signalling,10,
+BB486,,,,,,,,,,,,,0,,F,Composite,10,
+BB487,,,,,,,,,,,,,0,,F,Composite,1,
+BB488,,,,,,,,,,,,,0,,F,Intermediate,2,
+BB489,,,,,,,,,,,,,0,,F,Reporter,10,
+BB490,,,,,,,,,,,,,0,,F,Device,3,
+BB491,,,,,,,,,,,,,0,,F,Coding,1,
+BB492,,,,,,,,,,,,,0,,F,Coding,1,
+BB493,,,,,,,,,,,,,0,,F,Generator,5,
+BB494,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB495,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB496,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB497,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB498,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB499,,,,,,,,,,,,,0,,F,Protein_Domain,1,
+BB500,,,,,,,,,,,,,0,,F,Reporter,4,
+BB501,,,,,,,,,,,,,0,,F,Composite,5,
+BB502,,,,,,,,,,,,,0,,F,Coding,1,
+BB503,,,,,,,,,,,,,0,,F,Composite,1,
+BB504,,,,,,,,,,,,,0,,F,Coding,1,
+BB505,,,,,,,,,,,,,0,,F,Regulatory,1,
+BB506,,,,,,,,,,,,,0,,F,Coding,1,
+BB507,07.17.19,,"kan,cam",pSB1C3,BBa_K808002,"plate 2, 7g",spring 2018 iGEM distribution,Michelle Chang,,,,5.98,2.491666667,,F,Protein_Domain,1," ""tctA_503: large subunit A1 of the tripartite tricarboxylate transporter family """
+BB508,,,,,,,,,,,,,,,F,,,
+BB509,07.17.19,,"kan,cam",pSB1C3,BBa_K808004,"plate 2, 7i",spring 2018 iGEM distribution,Michelle Chang,,,,6.3,2.625,,F,Protein_Domain,1," ""tctA_505: large subunit A2 of the tripartite tricarboxylate transporter family"""
+BB510,,,,,,,,,,,,,,,F,,,
+BB511,07.17.19,,"kan, cam",pSB1C3,BBa_K808007,"plate 2, 7k",spring 2018 iGEM distribution,Michelle Chang,,,,12.8,5.333333333,,F,Protein_Domain,1," ""putative terephtalate uptake operon2"""
+BB512,07.17.19,,"kan, cam",pSB1C3,BBa_K779503,"plate 2, 7l",spring 2018 iGEM distribution,Michelle Chang,,,,9.93,4.1375,,F,Generator,4," ""Long input strand MammoBlock"""
+BB513,07.17.19,,"kan, cam",pSB1C3,BBa_K808012,"plate 2, 7m",spring 2018 iGEM distribution,Michelle Chang,,,,10.1,4.208333333,,F,Coding,," ""tphA2: Catalyzes together with tphA3 TPA to DCD"""
+BB514,07.17.19,,"kan, cam",pSB1C3,BBa_K779504,"plate 2, 7n",spring 2018 iGEM distribution,Michelle Chang,,,,2.31,0.9625,,F,Other ,," ""Long scrambled input strand MammoBlock"""
+BB515,,,,,,,,,,,,,,,F,Regulatory,,
+BB516,07.17.19,,"kan, cam",pSB1C3,BBa_K743002,"plate 2, 7p",spring 2018 iGEM distribution,Michelle Chang,,,,17.2,7.166666667,,F,Signalling,," ""PCaa3 promoter and native rbs from Synechocystis PCC6803"""
+BB517,07.03.19,,"kan,cam",pSB1C3,BBa_K546000,"plate 1, 12D",spring 2018 iGEM distribution,Angela Pak,,,,,0,,F,Signalling,," ""Lux pL controlled LuxR with lux pR autoinducing LuxI(lva tag)- AHL."""
+BB518,07.03.19,,"kan,cam",pSB1C3,BBa_K546001,"plate 1, 12F",spring 2018 iGEM distribution,Angela Pak,,,,,0,,F,Composite ,," ""Lux pL controlled luxR with lux pR controlled AHL degrading enzyme AiiA(lva tag). """
+BB519,07.03.19,,"kan,cam",pSB1C3,BBa_K641009,"plate 1, 12H",spring 2018 iGEM distribution,Angela Pak,,,,6.39,2.6625,,F,Composite ,," ""P_rffGH.rbs.ToxR-Nhe1.{gsgsgs}{LambdaRep}"""
+BB520,07.03.19,,"kan,cam",pSB1C3,BBa_K539622,"plate 1, 12I",spring 2018 iGEM distribution,Angela Pak,,,,2.9,1.208333333,,F,Intermediate,," ""a RBS (B0032)+ilvC"""
+BB521,07.03.19,,"kan,cam",pSB1C3,BBa_K577894,"plate 1, 12P",spring 2018 iGEM distribution,Angela Pak,,,,3.68,1.533333333,,T,Reporter ,," ""TetR repressed YFP"""
+BB522,07.03.19,,"kan,cam",pSB1C3,BBa_K541596,"plate 1, 13A",spring 2018 iGEM distribution,Angela Pak,,,exp032,,0,,F,Device ,," ""Reflectin  gene with J04500 promoter """
+BB523,07.03.19,,"kan,cam",pSB1C3,BBa_K895004,"plate 1, 13B",spring 2018 iGEM distribution,Angela Pak,,,exp032,4.39,1.829166667,,F,Coding,," ""Salty_Hcp-CD27_endolysin"""
+BB524,07.03.19,,"kan,cam",pSB1C3,BBa_K861090,"plate 1, 13D",spring 2018 iGEM distribution,Angela Pak,,,exp032,,0,,F,Coding,," ""YhjH Gene From <i>E.coli str. K12</i>"""
+BB525,07.03.19,,"kan,cam",pSB1C3,BBa_K861172,"plate 1, 13F",spring 2018 iGEM distribution,Angela Pak,,,exp032,,0,,F,Generator,," "" lambda cI generator controlled by PcstA (glucose-repressible promoter)"""
+BB526,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747018,"plate 2, 6E",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,46.3,19.29166667,,F,Protein_Domain,," ""TAL-Protein_AG2_Direpeat"""
+BB527,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0040,"plate 2, 6F",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,48.3,20.125,,F,Regulatory,," ""TetR repressible promoter"""
+BB528,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747019,"plate 2, 6G",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,40.3,16.79166667,,F,Protein_Domain,," ""TAL-Protein_AT2_Direpeat"""
+BB529,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0062,"plate 2, 6H",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,28.7,11.95833333,,F,Regulatory,," ""Promoter (luxR & HSL regulated -- lux pR)"""
+BB530,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747020,"plate 2, 6I",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,50.4,21,,F,Protein_Domain,," ""TAL-Protein_CA2_Direpeat"""
+BB531,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0063,"plate 2, 6J",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,41.2,17.16666667,,F,Regulatory,," ""Promoter (luxR & HSL regulated -- lux pL)<br>"""
+BB532,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747021,"plate 2, 6K",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,28.1,11.70833333,,F,Protein_Domain,," ""TAL-Protein_CC2_Direpeat"""
+BB533,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0065,"plate 2, 6L",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,37.7,15.70833333,,F,Regulatory,," ""Promoter (lambda cI and luxR regulated -- hybrid)"""
+BB534,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747022,"plate 2, 6M",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,45.6,19,,F,Protein_Domain,," ""TAL-Protein_CG2_Direpeat"""
+BB535,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R1062,"plate 2, 6N",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,42,17.5,,F,Regulatory,," ""Promoter  Standard (luxR and HSL regulated -- lux pR)<br>"""
+BB536,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747023,"plate 2, 6O",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,37.2,15.5,,F,Protein_Domain,," ""TAL-Protein_CT2_Direpeat"""
+BB537,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_E0422,"plate 2, 6P",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,40.5,16.875,,F,Reporter ,," ""ECFP (RBS+ LVA+ TERM) (B0034.E0022.B0015)"""
+BB538,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K731520,"plate 2, 7A",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,56.1,23.375,,F,Composite ,," ""IPTG inducible GFPmut3b"""
+BB539,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K844006,"plate 2, 7B",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,32.9,13.70833333,,F,Coding,," ""Spider Silk 1x Subunit ""W"" with Met (ATG) start codon"""
+BB540,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K808032,"plate 2, 7C",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,78.9,32.875,,F,Composite ,," ""Arabinose regulated RBS-PhoA-His6tag-pNBEst13-Myctag-EstA"""
+BB541,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K844007,"plate 2, 7D",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,30.9,12.875,,F,Coding,," ""Spider Silk 1x Subunit ""F"" (Fewest tRNA codon optimized) with Met (ATG) added"""
+BB542,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K808000,"plate 2, 7E",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,36.3,15.125,,F,Regulatory,," "" araC-Pbad - Arabinose inducible regulatory promoter/repressor unit"""
+BB543,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K844008,"plate 2, 7F",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp032/exp047,32.3,13.45833333,,F,Coding,," ""Spider Silk 1x Subunit ""B"" (Balanced tRNA codon optimized) with Met (ATG) added"""
+BB544,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747029,"plate 2, 8K",spring 2018 iGEM distribution,Diya Bhat,,,exp025/exp047,30.6,12.75,,F,Protein_Domain,," ""TAL-Protein_TC2_Direpeat"""
+BB545,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S0116,"plate 2, 8L",spring 2018 iGEM distribution,Diya Bhat,,,exp025,51.5,21.45833333,,F,Intermediate,," ""B0031.C0052"""
+BB546,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747030,"plate 2, 8M",spring 2018 iGEM distribution,Diya Bhat,,,exp025,42.2,17.58333333,,F,Protein_Domain,," ""TAL-Protein_TG2_Direpeat"""
+BB547,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_S0117,"plate 2, 8N",spring 2018 iGEM distribution,Diya Bhat,,,exp025,45.7,19.04166667,,F,Intermediate,," ""B0031.C0053"""
+BB548,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K747031,"plate 2, 8O",spring 2018 iGEM distribution,Diya Bhat,,,,,0,,F,Protein_Domain,," ""TAL-Protein_TT2_Direpeat"""
+BB549,07.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_P0152,"plate 2, 8P",spring 2018 iGEM distribution,Diya Bhat,,,,,0,,F,Generator,," ""PoPS -> cI (434)   [S0166]"""
+BB550,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_K592009,"Plate 1, 19E",spring 2018 iGEM distribution,Noor Radde,,,exp022/exp027,,0,,F,Coding,," ""amilCP  blue chromoprotein"""
+BB551,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_R0040,"Plate 7, 21D",spring 2018 iGEM distribution,Noor Radde,,,exp022/exp027,,0,,F,Regulatory,," ""TetR repressible promoter"""
+BB552,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_B0015,"Plate 3, 3F",spring 2018 iGEM distribution,Noor Radde,,,exp025/exp027,,0,,F,Terminator,," ""double terminator (B0010-B0012)"""
+BB553,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_E1010,"Plate 3, 11N",spring 2018 iGEM distribution,Noor Radde,,,exp025/exp027/exp053,,0,,F,Coding,," "" **highly** engineered mutant of red fluorescent protein from Discosoma striata (coral)"""
+BB554,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_K731721,"Plate 1, 24K",spring 2018 iGEM distribution,Noor Radde,,,exp027/exp054/exp051/exp050,,0,,F,Terminator,," ""T7 terminator"""
+BB555,08.04.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J61100,"Plate 4, 16C",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,RBS,," ""Ribosome Binding Site Family Member"""
+BB556,08.04.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0011,"Plate 4, 1B",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Terminator,," ""LuxICDABEG (+/-)"""
+BB557,08.04.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_E0040,"Plate 4, 13L",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Coding,," "" green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212"""
+BB558,08.04.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0031,"Plate 4, 1H",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,RBS,," ""RBS.2 (weak) -- derivative of BBa_0030"""
+BB559,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_P10304,"Plate 2, 18B",spring 2018 iGEM distribution,Jordan Clements,,,exp053,,0,,F,DNA,,
+BB560,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_K592012,"Plate 4, 15I",spring 2019 iGEM distribution ,Jordan Clements,,,exp053,,0,,F,Coding,,
+BB561,08.04.19,E. coli DH10B + burden monitor,"kan,cam",pSB1C3,BBa_K515100,"Plate 1, 24C",spring 2018 iGEM distribution,Jordan Clements,,,exp053,,0,,F,Composite ,,
+BB562,,,,,,,,,,,,,0,,F,,,
+BB563,,,,,,,,,,,,,0,,F,,,
+BB564,,,,,,,,,,,,,0,,F,,,
+BB565,,,,,,,,,,,,,0,,F,,,
+BB566,,,,,,,,,,,,,0,,F,,,
+BB567,,,,,,,,,,,,,0,,F,,,
+BB568,,,,,,,,,,,,,0,,F,,,
+BB569,,,,,,,,,,,,,0,,F,,,
+BB570,,,,,,,,,,,,,0,,F,,,
+BB571,,,,,,,,,,,,,0,,F,,,
+BB572,,,,,,,,,,,,,0,,F,,,
+BB573,,,,,,,,,,,,,0,,F,,,
+BB574,,,,,,,,,,,,,0,,F,,,
+BB575,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K783031,"Plate 6, 8L ",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Regulatory,,
+BB576,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C00,BBa_J97005,"Plate 6, 10N",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Coding,,
+BB577,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114007,"Plate 6, 2J",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Regulatory,,
+BB578,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114009,"Plate 6, 2L ",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Regulatory,,
+BB579,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114101,"Plate 6, 6D",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,RBS,,
+BB580,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114104,"Plate 6, 6J ",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,RBS,,
+BB581,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114012,"Plate 6, 4B ",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Regulatory,,
+BB582,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C6,BBa_K1114021,"Plate 6, 4L ",spring 2019 iGEM distribution ,Noor Radde,,,exp027/exp053,,0,,F,Regulatory,,
+BB583,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_C0061,"Plate 2, 4J",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Coding,," ""autoinducer synthetase for AHL"""
+BB584,08.04.19,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_J61101,"Plate 4, 16E ",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,RBS,,"""Ribosome Binding Site Family Member"""
+BB585,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_R0010,"Plate 3, 4G ",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Regulatory,," ""promoter (lacI regulated)"""
+BB586,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_P10302,"Plate 6, 18D",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,DNA,," ""GVG"""
+BB587,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_E0030,"Plate 3, 15D ",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Coding,," ""enhanced yellow fluorescent protein derived from A. victoria GFP"""
+BB588,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_I0500,"Plate 6, 21E",spring 2018 iGEM distribution,Noor Radde,,,exp027,,0,,F,Regulatory,," ""Inducible pBad/araC promoter"""
+BB589,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_B1006,"Plate 3, 5D",spring 2018 iGEM distribution,Noor Radde,,,exp028,,0,,F,Terminator,," ""Terminator (artificial  large  %T~>90)"""
+BB590,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_J23119,"Plate 3, 17O ",spring 2018 iGEM distribution,Noor Radde,,,exp028,,0,,F,Regulatory,," ""constitutive promoter family member"""
