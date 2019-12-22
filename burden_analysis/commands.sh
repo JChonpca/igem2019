@@ -20,7 +20,7 @@ batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit
 mkdir -p $MAINDIR/02-output-summary-merged/$SETTINGS
 cd $MAINDIR/01-output-plate-fits
 batch_run.pl "cp #d.rates.summary.csv $MAINDIR/02-output-summary-merged/$SETTINGS"
-$SCRIPTDIR/burden_merge.R -i $MAINDIR/02-output-summary-merged/$SETTINGS -o $MAINDIR/02-output-summary-merged/$SETTINGS.csv
+$SCRIPTDIR/burden_merge.R -i $MAINDIR/02-output-summary-merged/$SETTINGS -o $MAINDIR/02-output-summary-merged/$SETTINGS.csv -m $MAINDIR/igem2019_strain_metadata.csv
 rm -r $MAINDIR/02-output-summary-merged/$SETTINGS
 
 ## Create merged all results file

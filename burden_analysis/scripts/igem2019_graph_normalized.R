@@ -9,8 +9,7 @@ library(cowplot)
 #debug
 input.file.string="04-normalization/minOD_0.08_maxmethod_2_fit2pts_F_timeptdelta_2.part_burden.csv"
 output.base.name="04-normalization/test"
-control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
-metadata.file.string = "igem2019_plate_metadata.csv"
+metadata.file.string = "igem2019_strain_metadata.csv"
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -27,10 +26,6 @@ if (!exists("input.file.string")) {
       make_option(
          c("-m", "--metadata"), type="character", default=NULL, 
          help="CSV file containing one line per strain analyzed.", metavar="strain_metadata.csv"
-      ),
-      make_option(
-         c("-c", "--controls"), type="character", default=NULL, 
-         help="Comma-separated list of control strains that will be used for normalization.", metavar="XX01,XX02,XX03"
       )
    )
    
@@ -59,15 +54,26 @@ cat("Input file of strain metadata: ", metadata.file.string, "\n")
 cat("Output base name: ", output.base.name, "\n")
 cat("Control strains:", paste0(control.strains, collapse=","), "\n")
 
-
 ##############  Read in the input files
 
 all.data = read.csv(input.file.string)
 all.data$experiment.strain = paste0(all.data$experiment, "_", all.data$strain)
 
+################################################################################
+## Read in the input files and subset to the data we want to include
 
+#Only trust if we have at least three good measurements (not applicable to control strains)
+all.data = all.data %>% filter( (replicates>2) | (category == "control"))
+#all.data = all.data %>% filter(burden.cv<2)
+
+################################################################################
+### How many unique strains did we analyze total?
+
+noncontrolstrains = all.data %>% filter(category != "control")
+cat("Total strains analyzed:", length(unique(noncontrolstrains$strain)))
+
+################################################################################
 ### Plot testing for trend in coefficient of variation versus growth rate
-
 non.control.parts.means = all.data %>% filter(category != "control")
 
 
@@ -80,13 +86,16 @@ fit = lm(normalized.growth.rate.mean~normalized.growth.rate.cv, data=non.control
 cat("Is there a trend in the coefficient of variation such that smaller values have a higher coefficient of variation?\n")
 summary(fit)
 
+################################################################################
 ### Plot showing points colored by significance
 
 p = ggplot(all.data, aes(x=plate, y=normalized.growth.rate.mean, color=category)) + geom_jitter() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 ggsave(paste0(output.base.name, ".growth-rate-normalized-colored-by-significance.pdf"), p)
 
-# Distribution plot showing where the controls end up
+
+################################################################################
+# Distribution plots showing where the controls end up
 
 control.means = all.data %>% filter(category=="control") %>% group_by(strain) %>% summarize(normalized.growth.rate.grand.mean=mean(normalized.growth.rate.mean), normalized.GFP.rate.grand.mean=mean(normalized.GFP.rate.mean))
 
@@ -108,62 +117,63 @@ p = ggplot(all.data %>% filter(category!="control"), aes(x=1-normalized.GFP.rate
 ggsave(paste0(output.base.name, ".GFP-rate-normalized-distribution.pdf"), p)
 
 
-
-
-
-############## Subset to the experiments that we want to include
-
-metadata = read.csv("igem_2019_experiment_tracker.csv")
-include.experiments = (metadata %>% filter(Include==T))$Experiment
-
-all.data = all.data %>% filter(experiment %in% include.experiments)
-all.data$experiment = droplevels(all.data$experiment)
-
-all.data = all.data %>% filter(replicates>1)
-
-all.data = all.data %>% filter(burden.cv<2)
-
-
 ##############  Make a general graph showing all of the points
-control.data=all.data %>% filter(strain %in% c("JEB1204", "JEB1205", "JEB1206", "JEB1207", "JEB1208"))
-not.control.data = all.data %>% filter(!(strain %in% c("JEB1204", "JEB1205", "JEB1206", "JEB1207", "JEB1208")))
+control.data=all.data %>% filter(category=="control")
+not.control.data = all.data %>% filter(!(category=="control"))
 
 min.plot.coord = 0.4
 max.plot.coord = 1.4
+
+# What is the fit slope for the controls?
+all.data$sub.normalized.GFP.rate.mean = all.data$normalized.GFP.rate.mean - 1
+all.data$sub.normalized.growth.rate.mean = all.data$normalized.growth.rate.mean - 1
+all.data$sub.normalized.growth.rate.mean.minus.normalized.GFP.mean = all.data$sub.normalized.GFP.rate.mean - all.data$sub.normalized.growth.rate.mean
+
+
+fit3 = lm(sub.normalized.GFP.rate.mean ~ sub.normalized.growth.rate.mean + 0, all.data %>% filter(category=="control"))
+fit4 = lm(sub.normalized.GFP.rate.mean ~ sub.normalized.growth.rate.mean, all.data %>% filter(category=="control"))
+anova(fit3, fit4)
+## Not Significant = the intercept at 1,1 is correct...
+
+fit5 = lm(sub.normalized.growth.rate.mean.minus.normalized.GFP.mean ~ sub.normalized.growth.rate.mean + 0, all.data %>% filter(category=="control"))
+## Significant => The slope is significantly greater than 1
+
+sub.slope = coef(fit3)[1]
+sub.intercept = -sub.slope+1
 
 ggplot(all.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=category)) + 
    geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = 0, slope = 1) +
    geom_errorbarh(aes(xmin=normalized.growth.rate.mean-normalized.growth.rate.sd, xmax=normalized.growth.rate.mean+normalized.growth.rate.sd, height=0.01)) +
    geom_errorbar(aes(ymin=normalized.GFP.rate.mean-normalized.GFP.rate.sd, ymax=normalized.GFP.rate.mean+normalized.GFP.rate.sd, width=0.01))
 
-   
 
-# What is the fit slope for the controls?
-fit1 = lm(normalized.GFP.rate.mean ~ normalized.growth.rate.mean, all.data %>% filter(category=="control"))
-fit2 = lm(normalized.GFP.rate.mean ~ normalized.growth.rate.mean + 0, all.data %>% filter(category=="control"))
-anova(fit1, fit2)
+ggplot(all.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=category)) + 
+   geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = 0, slope = 1, show.legend=T) + geom_abline(intercept = sub.intercept, slope = sub.slope, color="blue")
 
-## It's 1! With y-intercept not distinguishable from 0!
+
 
 ##### Analyze the replicate runs
 plot_with_error_bars <- function(in.data) {
    
-   ggplot(in.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=strain, shape=experiment)) + 
+   ggplot(in.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=strain, shape=plate)) + 
       geom_point(size=2) + 
       coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + 
-      geom_abline(intercept = 0, slope = 1) +
+      geom_abline(intercept = 0, slope = 1) + geom_abline(intercept = sub.intercept, slope = sub.slope, color="blue") +
       geom_errorbarh(aes(xmin=normalized.growth.rate.mean-normalized.growth.rate.sd, xmax=normalized.growth.rate.mean+normalized.growth.rate.sd, height=0.01)) +
       geom_errorbar(aes(ymin=normalized.GFP.rate.mean-normalized.GFP.rate.sd, ymax=normalized.GFP.rate.mean+normalized.GFP.rate.sd, width=0.01))
 }
 
+################################################################################
+### Reproducibility tests
+in.data=all.data %>% filter (plate %in% c("exp003", "exp005"))
+plot_with_error_bars(in.data)
 
-in.data=all.data %>% filter (experiment %in% c("exp003", "exp005"))
-
-in.data=all.data %>% filter (experiment %in% c("exp050", "exp054"))
+#exp54 is not included currently, but this should be a duplicate of the test strains
+#in.data=all.data %>% filter (experiment %in% c("exp050", "exp054"))
 
 #RFP Strains
-in.data=all.data %>% filter (experiment %in% c("exp045")) %>% filter (!category %in% c("control"))
-
+in.data=all.data %>% filter (plate %in% c("exp045")) %>% filter (!category %in% c("control"))
+plot_with_error_bars(in.data)
 
 
 

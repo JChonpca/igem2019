@@ -27,7 +27,7 @@ if (!exists("input.path")) {
     ),
     make_option(
       c("-m", "--metadata"), type="character", default=NA, 
-      help="Optional CSV file containing one line per strain analyzed. Must contain a column called 'GPF.interference.metadata'. All strains with this tag will have theif GFP rate set to NA.", metavar="strain_metadata.csv"
+      help="Optional CSV file containing one line per strain analyzed. Must contain a column called 'GPF.interference.metadata'. All strains with this tag will have theif GFP rate set to NA. All strains that have a blank 'accession' entry will be removed.", metavar="strain_metadata.csv"
     )
   )
   
@@ -117,11 +117,18 @@ for (this.file.name in input.rates.file.names) {
 ############# Remove GFP measurements from contains.GFP parts
 
 if (!is.na(metadata.file.path)) {
-  cat("Setting GFP.rate to NA for strains marked with 'GFP.inteference' in metadata file:", metadata.file.path, "\n")
+  cat("Setting GFP.rate to NA for strains marked with 'GFP.interference' in metadata file:", metadata.file.path, "\n")
   metadata = read.csv(metadata.file.path)
   metadata$GFP.interference = as.logical(metadata$GFP.inteference)
   GPF.interference.metadata = metadata %>% filter(GFP.interference==T)
   all.data$GFP.rate[all.data$strain %in% GPF.interference.metadata$strain] = NA
+  
+  removed.count = length(unique(all.data$strain))
+  no.accession.metadata = metadata %>% filter(accession=="")
+  all.data = all.data %>% filter(!(strain %in% unique(no.accession.metadata$strain)))
+  removed.count = removed.count - length(unique(all.data$strain))
+    
+  cat("Removed data for", removed.count, "strain(s) with no 'accession' in metadata file.\n")
 }
 
 

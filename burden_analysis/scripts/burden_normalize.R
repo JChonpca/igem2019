@@ -12,7 +12,7 @@ library(cowplot)
 #input.file.string="02-output-all-merged/minOD_0.08_maxmethod_2_fit2pts_F_timeptdelta_2.csv"
 #output.base.name="04-normalization/test"
 #control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
-#metadata.file.string = "igem2019_experiment_tracker.csv"
+#metadata.file.string = "igem2019_plate_metadata.csv"
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -113,7 +113,7 @@ p = ggplot(control.data.means, aes(x=plate, y=growth.rate.mean, color=strain)) +
    #geom_errorbar(aes(ymin=growth.rate.mean-growth.rate.sd, ymax=growth.rate.mean+growth.rate.sd), width=.2,) +
    geom_point(data=no.burden.quantile, aes(x=plate, y=growth.rate.quantile, group="new"), color="black")
 
-ggsave(paste0(output.base.name,".growth-unnormalized-rate-control-mean-and-q80.pdf"), p)
+ggsave(paste0(output.base.name,".growth-rate-unnormalized-control-mean-and-q80.pdf"), p)
 
 p = ggplot(control.data.means, aes(x=plate, y=GFP.rate.mean, color=strain)) + 
    geom_jitter(data=control.data, width=0.2, size=1, aes(x=plate, y=GFP.rate, color=strain)) +
@@ -136,27 +136,33 @@ metadata$no.burden.growth.rate = c()
 metadata$no.burden.GFP.rate = c()
 
 for (i in 1:nrow(metadata)) {
+   growth.rate.bw.adjust=2
+   GFP.rate.bw.adjust=2
+   
+   
    this.plate = as.character(metadata$plate[i])
    plate.no.control.data = not.control.data %>% filter(plate==this.plate)
    
-   this.density = density(plate.no.control.data$growth.rate)
+   this.density = density(plate.no.control.data$growth.rate, adjust=growth.rate.bw.adjust)
    max.y.index = which.max(this.density$y)
    no.burden.growth.rate = this.density$x[max.y.index]
    
-   ggplot(plate.no.control.data, aes(x=growth.rate)) + 
-      geom_density() + scale_x_continuous(breaks = seq(0, 2, by = 0.1), limits=c(0,2)) + geom_vline(xintercept=no.burden.growth.rate) 
+   p = ggplot(plate.no.control.data, aes(x=growth.rate)) + 
+      geom_density(adjust=growth.rate.bw.adjust) + scale_x_continuous(breaks = seq(0, 2, by = 0.1), limits=c(0,2)) + geom_vline(xintercept=no.burden.growth.rate) 
+   ggsave(paste0(output.base.name,".",this.plate,".growth-rate-density-plot.pdf"), p)
    
    metadata$no.burden.growth.rate[i] = no.burden.growth.rate
    
    #Remove some that have no GFP measurements
    plate.no.control.data.has.GFP = plate.no.control.data %>% filter(!is.na(GFP.rate))
    
-   this.density = density(plate.no.control.data.has.GFP$GFP.rate)
+   this.density = density(plate.no.control.data.has.GFP$GFP.rate, adjust=GFP.rate.bw.adjust)
    max.y.index = which.max(this.density$y)
    no.burden.GFP.rate = this.density$x[max.y.index]
    
-   ggplot(plate.no.control.data.has.GFP, aes(x=GFP.rate)) + 
-      geom_density() + scale_x_continuous(breaks = seq(200, 800, by = 50), limits=c(200,800)) + geom_vline(xintercept=no.burden.GFP.rate) 
+   p = ggplot(plate.no.control.data.has.GFP, aes(x=GFP.rate)) + 
+      geom_density(adjust=GFP.rate.bw.adjust) + scale_x_continuous(breaks = seq(200, 800, by = 50), limits=c(200,800)) + geom_vline(xintercept=no.burden.GFP.rate) 
+   ggsave(paste0(output.base.name,".",this.plate,".GFP-rate-density-plot.pdf"), p)
    
    metadata$no.burden.GFP.rate[i] = no.burden.GFP.rate
 }
