@@ -10,12 +10,13 @@ library(adaptivetau)
   ##### Plot fraction of engineered cells in time as dictated by burden (b) and mutation rate (u) #####
   #####################################################################################################
 
+## this syntax is weird, do you want all of this commented out...?
 #pars<- c(
-  b  = 0.1  # burden as reduction in growth rate
-  u  = 1e-5  # mutation rate
+#  b  = 0.1  # burden as reduction in growth rate
+#  u  = 1e-5  # mutation rate
 #)
   
-
+#I need more comments to help me understand what the code is doing -SPL
 burdenmod <- function(t, y, p) {
   with(as.list(c(y, p)), {
     dEt <- ((1-b) * Et) - (u * (1-b) * Et)  # rate at which engineered cells decrease while growing
@@ -33,7 +34,8 @@ pars <- c(
   this.generation=p$this.generation
 )
 yini  <- c(Et = 1, Ft = 0)
-times <- seq(0, p$this.generation, 0,01)
+
+times <- seq(0, p$this.generation, 0, 01)
 #times <- seq(0,200)
 
 ## Run model
@@ -80,11 +82,11 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$plotmod <- renderPlot({
-    pars <- data.frame(
-      b <- input$b,
-      u <- input$u,
-      this.generation<- input$this.generation,
-      volumes<-input$volumes
+    pars = data.frame(
+      b = input$b,
+      u = input$u,
+      this.generation = input$this.generation,
+      volumes = input$volumes
       )
     plot.ode.mod(pars)
   }, 
@@ -97,8 +99,9 @@ shinyApp(ui = ui, server = server)
 
 
 ############################# IN PROGRESS - STOCHASTIC SIMULATION ####################################
-parms<-list(b=0.1, u=1e5);
-stochastic_burden=ssa.adaptivetau(c(1,0),
-                  matrix(c(,0, -1,1), nrow=2), plot.ode.mod, parms, tf=200)
-stochastic_burden_plot
+# commenting out unused code -SPL
+#parms<-list(b=0.1, u=1e5);
+#stochastic_burden=ssa.adaptivetau(c(1,0),
+#                  matrix(c(,0, -1,1), nrow=2), plot.ode.mod, parms, tf=200)
+#stochastic_burden_plot
 
