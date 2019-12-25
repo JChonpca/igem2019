@@ -11,10 +11,13 @@ library(adaptivetau)
   #####################################################################################################
 
 ## this syntax is weird, do you want all of this commented out...?
-#pars<- c(
-#  b  = 0.1  # burden as reduction in growth rate
-#  u  = 1e-5  # mutation rate
-#)
+#example parameters to test ODE function
+test_pars<- tibble(
+  b  = 0.1,  # burden as reduction in growth rate
+  u  = 1e-5,  # mutation rate
+  fraction = .5,
+  this.generation = 200
+)
   
 #I need more comments to help me understand what the code is doing -SPL
 burdenmod <- function(t, y, p) {
@@ -27,15 +30,16 @@ burdenmod <- function(t, y, p) {
 
 plot.ode.mod<- function(p) {
 
-pars <- c(
+pars <- tibble(
   b=p$b,
   u=p$u,
   fraction=p$fraction,
   this.generation=p$this.generation
 )
+print(pars)
 yini  <- c(Et = 1, Ft = 0)
 
-times <- seq(0, p$this.generation, 0, 01)
+times <- seq(0, pars$this.generation[1], by = 1)
 #times <- seq(0,200)
 
 ## Run model
@@ -45,7 +49,7 @@ summary(out)
 out <- data.frame(out)
 out$fraction <- (out$Et/(out$Et+out$Ft))  # fraction of engineered cells
 out$generation <- log2(out$Et+out$Ft)  # number of cell doublings
-outout = outout %>% filter(generation<=p$this.generation)
+outout = out %>% filter(generation<=pars$this.generation[1])
 
 ## Plot model
 plot.mod = ggplot(outout, aes(x=generation, y=fraction)) + geom_line() + ylim(c(0, 1)) + xlim(c(0, 150))
