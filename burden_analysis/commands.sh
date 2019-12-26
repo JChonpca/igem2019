@@ -1,8 +1,9 @@
-MINOD=0.08
+MINOD=0.06
 MAXMETHOD=2
 FITTWOPOINTS=F
-TIMEPOINTDELTA=2
+TIMEPOINTDELTA=3
 SETTINGS=minOD_${MINOD}_maxmethod_${MAXMETHOD}_fit2pts_${FITTWOPOINTS}_timeptdelta_${TIMEPOINTDELTA}
+VECTOR=pSB1C3
 
 MAINDIR=$PWD
 SCRIPTDIR=$MAINDIR/scripts
@@ -41,6 +42,8 @@ $SCRIPTDIR/igem2019_setting_variation.R -i $MAINDIR/02-output-summary-merged -o 
 mkdir -p $MAINDIR/04-normalization
 $SCRIPTDIR/burden_normalize.R \
   -i $MAINDIR/02-output-all-merged/$SETTINGS.csv \
-  -o $MAINDIR/04-normalization/$SETTINGS \
+  -o $MAINDIR/04-normalization/${SETTINGS}_${VECTOR} \
   -m $MAINDIR/igem2019_plate_metadata.csv \
+  -s $MAINDIR/igem2019_strain_metadata.csv \
+  -v $VECTOR \
   -c "JEB1204,JEB1205,JEB1206,JEB1207,JEB1208"

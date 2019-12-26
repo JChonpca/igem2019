@@ -1,9 +1,9 @@
 strain,DATE,SPECIES.SUBTYPE,antibiotic,vector,accession,NOTES.RE..CONTRUCTION..ORIGIN..PHENOTYPE,STRAIN.ACQUIRED.FROM.PARENT.STRAIN,DEPOSITOR,OTHER.NOTES,GLYCEROL.STOCK.LOCATION,BURDEN.ASSAY,MINIPREP.DNA.CONCENTRATION..ng.uL.,SEQUENCED...0..IF.NOT,SEQUENCE.CONFIRMED.,GFP.inteference,TYPE,SUBPARTS,SHORT.DESCRIPTION.,measured
-JEB1204,,,"cam, kan",pSB1C3,K3174002,,,,,,,,,,FALSE,,,,TRUE
-JEB1205,,,"cam, kan",pSB1C3,K3174003,,,,,,,,,,FALSE,,,,TRUE
-JEB1206,,,"cam, kan",pSB1C3,K3174004,,,,,,,,,,FALSE,,,,TRUE
-JEB1207,,,"cam, kan",pSB1C3,K3174006,,,,,,,,,,FALSE,,,,TRUE
-JEB1208,,,"cam, kan",pSB1C3,K3174007,,,,,,,,,,FALSE,,,,TRUE
+JEB1204,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K3174002,,,,,,,,,,FALSE,,,,TRUE
+JEB1205,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K3174003,,,,,,,,,,FALSE,,,,TRUE
+JEB1206,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K3174004,,,,,,,,,,FALSE,,,,TRUE
+JEB1207,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K3174006,,,,,,,,,,FALSE,,,,TRUE
+JEB1208,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K3174007,,,,,,,,,,FALSE,,,,TRUE
 BB1,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_J45199,"Plate 4, I5",spring 2018 iGEM distribution,Shireen Shah,Colony #1,Teal Box,exp014,NA,0,No,FALSE,Generator,4," ""Banana odor enzyme (ATF1) generator""",TRUE
 BB2,03.08.19,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_J45199,"Plate 4, I5",spring 2018 iGEM distribution,Shireen Shah,Colony #2,Teal Box,exp015/exp031,NA,0,No,FALSE,Generator,4," ""Banana odor enzyme (ATF1) generator""",TRUE
 BB3,3.06.2019,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,BBa_K325218,"Plate 1, 4J",spring 2018 iGEM distribution,Diya Bhat,Colony #1,Teal Box,exp015,NA,1,No,FALSE,Generator,2," ""Orange Firefly Luciferase (under pBAD)<BR><i>L. Cruciata<BR>(E. coli optimised)</i>""",TRUE
@@ -163,7 +163,7 @@ BB157,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0031,"Plat
 BB158,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0032,"Plate 4, 1J",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp018/exp049/exp046,NA,0,no,FALSE,RBS,1," ""RBS.3 (medium) -- derivative of BBa_0030""",TRUE
 BB159,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0033,"Plate 4, 1L",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp018/exp049/exp046,NA,0,no,FALSE,RBS,1," ""RBS.4 (weaker) -- derivative of BBa_0030""",TRUE
 BB160,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_B0034,"Plate 4, 1N",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,NA,0,no,FALSE,RBS,1," ""RBS (Elowitz 1999) -- defines RBS efficiency""",TRUE
-Bb161,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0012,"Plate 4, 1P",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021/exp033,NA,0,no,FALSE,RBS,1," ""lacI repressor  from E. coli (+LVA)""",FALSE
+BB161,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0012,"Plate 4, 1P",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021/exp033,NA,0,no,FALSE,RBS,1," ""lacI repressor  from E. coli (+LVA)""",FALSE
 BB162,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0040,"Plate 4, 3B",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,NA,0,no,FALSE,RBS,1," ""tetracycline repressor from transposon Tn10 (+LVA)""",TRUE
 BB163,5.15.2019,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,BBa_C0050,"Plate 4, 3D",spring 2018 iGEM distribution,Jordan Clements,,Pink Box,exp021,NA,0,no,FALSE,Coding,1," ""cI repressor from phage HK022  (+LVA?)""",TRUE
 BB164,5.24.2019,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,BBa_K819010,"Plate 1, F5",spring 2018 iGEM distribution,Noor Radde,,Pink Box,exp008/exp033/exp054/exp051/exp050,10.7,4.458333333,,FALSE,Coding,1," ""Medium cheZ generator""",TRUE

@@ -9,10 +9,12 @@ library(ggplot2)
 library(cowplot)
 
 #debug
-#input.file.string="02-output-all-merged/minOD_0.08_maxmethod_2_fit2pts_F_timeptdelta_2.csv"
+#input.file.string="02-output-all-merged/minOD_0.06_maxmethod_2_fit2pts_F_timeptdelta_3.csv"
 #output.base.name="04-normalization/test"
+#plate.metadata.file.string = "igem2019_plate_metadata.csv"
+#strain.metadata.file.string = "igem2019_strain_metadata.csv"
 #control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
-#metadata.file.string = "igem2019_plate_metadata.csv"
+#included.vectors = c("pSB1C3")
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -27,12 +29,21 @@ if (!exists("input.file.string")) {
       help="Output base name.", metavar="output"
       ),
       make_option(
-         c("-m", "--metadata"), type="character", default=NULL, 
+         c("-m", "--plate-metadata"), type="character", default=NULL, 
                   help="CSV file containing one line per plate analyzed that controls which plates are included in the overall analysis. This file must have columns: 'plate' and 'include'.", metavar="plate_metadata.csv"
                   ),
       make_option(
+         c( "-s", "--strain-metadata"), type="character", default=NULL, 
+                  help="CSV file containing one line per strain analyzed that controls which vectors are included in the overall analysis. This file must have columns: 'strain' and 'vector'", 
+                  metavar="strain_metadata.csv"
+      ),
+      make_option(
          c("-c", "--controls"), type="character", default=NULL, 
          help="Comma-separated list of control strains that will be used for normalization.", metavar="XX01,XX02,XX03"
+      ),
+      make_option(
+         c("-v", "--vectors"), type="character", default=NA, 
+         help="Comma-separated list of vectors to include in dataset.", metavar="pSB1C3,pSB1A2"
       )
    )
    
@@ -44,22 +55,33 @@ if (!exists("input.file.string")) {
    opt_parser = OptionParser(usage=usage_string, option_list=option_list)
    opt = parse_args(opt_parser)
    
-   if (is.null(opt$input) || is.null(opt$output) || is.null(opt$metadata) || is.null(opt$controls)) {
+   if (is.null(opt$input) || is.null(opt$output) || is.null(opt$'plate-metadata') || is.null(opt$controls)) {
       print_help(opt_parser)
       stop("You must supply the -i, -o, -m, and -c arguments", call.=FALSE)
    }
    
    input.file.string = opt$input
    output.base.name = opt$output
-   metadata.file.string = opt$metadata
+   plate.metadata.file.string = opt$'plate-metadata'
+   strain.metadata.file.string = opt$'strain-metadata'
    control.strains = as.vector(strsplit(opt$controls, ",")[[1]])
+   included.vectors = c()
+   if (!is.na(opt$vectors)) {
+      included.vectors = as.vector(strsplit(opt$vectors, ",")[[1]])
+   }
 }
 
 cat("Normalizing across different plates...\n")
 cat("Input file of merged plates:  ", input.file.string, "\n")
-cat("Input file of plate metadata: ", metadata.file.string, "\n")
+cat("Input file of plate metadata: ", plate.metadata.file.string, "\n")
+cat("Input file of strain metadata: ", strain.metadata.file.string, "\n")
 cat("Output base name: ", output.base.name, "\n")
 cat("Control strains:", paste0(control.strains, collapse=","), "\n")
+if (length(included.vectors)==0) {
+   cat("Included vectors:", "all", "\n")
+} else {
+   cat("Included vectors:", paste0(included.vectors, collapse=","), "\n")
+}
 
 ##############  Read in the input files
 
@@ -68,16 +90,43 @@ all.data$plate.strain = paste0(all.data$plate, "_", all.data$strain)
 
 ############## Subset to the plates that we want to include
 
-metadata = read.csv(metadata.file.string)
-include.plates = (metadata %>% filter(include==T))$plate
+plate.metadata = read.csv(plate.metadata.file.string)
+include.plates = (plate.metadata %>% filter(include==T))$plate
 
 all.data = all.data %>% filter(plate %in% include.plates)
 all.data$plate = droplevels(all.data$plate)
+
+
+############## Subset to the vectors that we want to include
+
+cat("Input plates (before filtering):", length(unique(all.data$plate)), "\n")
+cat("Analyzed strains (before filtering):", length(unique(all.data$strain)), "\n")
+
+if (length(included.vectors)>0) {
+   strain.metadata = read.csv(strain.metadata.file.string)
+   strain.metadata.merge = strain.metadata %>% select(strain, vector)
+   all.data = all.data %>% left_join(strain.metadata.merge, by="strain")
+   all.data = all.data %>% filter(vector %in% included.vectors)
+   
+   not.control.data = all.data %>% filter(!(strain %in% control.strains))
+   num.not.control.per.plate = not.control.data %>% group_by(plate,strain) %>% summarize(n=n()) %>% group_by(plate) %>% summarize(n=n())
+   
+   #Remove empty plates - could remove ones with fewer than some number of strains
+   all.data = all.data %>% filter(plate %in% unique(num.not.control.per.plate$plate))
+   include.plates = unique(all.data$plate)
+   all.data$plate = droplevels(all.data$plate)
+}
+cat("Analyzed plates (after filtering):", length(unique(all.data$plate)), length(unique(all.data$vector)), "\n")
+cat("Analyzed strains (after filtering):", length(unique(all.data$strain)), "\n")
 
 ##############  Make a general QC graph that highlights the controls
 control.data=all.data %>% filter(strain %in% control.strains)
 not.control.data = all.data %>% filter(!(strain %in% control.strains))
 
+# how many are left on each plate that are not controls?
+num.not.control.per.plate = not.control.data %>% group_by(plate,strain) %>% summarize(n=n()) %>% group_by(plate) %>% summarize(n=n())
+
+#filter out any that don't appear in num.not.control.per.plate
 
 p = ggplot(not.control.data , aes(x=plate, y=growth.rate, color=plate)) + 
    geom_jitter( width=0.2, size=0.3, color="gray") + 
@@ -129,52 +178,66 @@ ggsave(paste0(output.base.name,".GFP-rate-unnormalized-control-mean-and-q80.pdf"
 ##############  Determine the no-burden growth rate for each run 
 ##############  by looking for the maximum density of points
 
-metadata = metadata %>% filter(plate %in% include.plates)
-droplevels(metadata$plate)
+plate.metadata = plate.metadata %>% filter(plate %in% include.plates)
+droplevels(plate.metadata$plate)
 
-metadata$no.burden.growth.rate = c()
-metadata$no.burden.GFP.rate = c()
+plate.metadata$no.burden.growth.rate = c()
+plate.metadata$no.burden.GFP.rate = c()
 
-for (i in 1:nrow(metadata)) {
-   growth.rate.bw.adjust=2
-   GFP.rate.bw.adjust=2
+normalize.stats = data.frame(
+   plate=plate.metadata$plate, 
+   growth.rate.no.burden=NA, 
+   growth.rate.bandwidth=NA,
+   GFP.rate.no.burden=NA,
+   GFP.rate.bandwidth=NA
+)
+
+for (i in 1:nrow(plate.metadata)) {
+   growth.rate.bw=0.05
+   GFP.rate.bw=100
    
-   
-   this.plate = as.character(metadata$plate[i])
+   this.plate = as.character(plate.metadata$plate[i])
    plate.no.control.data = not.control.data %>% filter(plate==this.plate)
    
-   this.density = density(plate.no.control.data$growth.rate, adjust=growth.rate.bw.adjust)
+   this.density = density(plate.no.control.data$growth.rate, bw=growth.rate.bw)
    max.y.index = which.max(this.density$y)
    no.burden.growth.rate = this.density$x[max.y.index]
    
-   p = ggplot(plate.no.control.data, aes(x=growth.rate)) + 
-      geom_density(adjust=growth.rate.bw.adjust) + scale_x_continuous(breaks = seq(0, 2, by = 0.1), limits=c(0,2)) + geom_vline(xintercept=no.burden.growth.rate) 
+   normalize.stats$growth.rate.no.burden[i] = no.burden.growth.rate
+   normalize.stats$growth.rate.bandwidth[i] = growth.rate.bw
+
+      p = ggplot(plate.no.control.data, aes(x=growth.rate)) + 
+      geom_density(bw=growth.rate.bw) + scale_x_continuous(breaks = seq(0, 2, by = 0.1), limits=c(0,2)) + geom_vline(xintercept=no.burden.growth.rate) 
    ggsave(paste0(output.base.name,".",this.plate,".growth-rate-density-plot.pdf"), p)
    
-   metadata$no.burden.growth.rate[i] = no.burden.growth.rate
+   plate.metadata$no.burden.growth.rate[i] = no.burden.growth.rate
    
    #Remove some that have no GFP measurements
    plate.no.control.data.has.GFP = plate.no.control.data %>% filter(!is.na(GFP.rate))
    
-   this.density = density(plate.no.control.data.has.GFP$GFP.rate, adjust=GFP.rate.bw.adjust)
+   this.density = density(plate.no.control.data.has.GFP$GFP.rate, bw=GFP.rate.bw)
    max.y.index = which.max(this.density$y)
    no.burden.GFP.rate = this.density$x[max.y.index]
    
+   normalize.stats$GFP.rate.no.burden[i] = no.burden.GFP.rate
+   normalize.stats$GFP.rate.bandwidth[i] = GFP.rate.bw
+   
    p = ggplot(plate.no.control.data.has.GFP, aes(x=GFP.rate)) + 
-      geom_density(adjust=GFP.rate.bw.adjust) + scale_x_continuous(breaks = seq(200, 800, by = 50), limits=c(200,800)) + geom_vline(xintercept=no.burden.GFP.rate) 
+      geom_density(bw=GFP.rate.bw) + scale_x_continuous(breaks = seq(200, 800, by = 50), limits=c(200,800)) + geom_vline(xintercept=no.burden.GFP.rate) 
    ggsave(paste0(output.base.name,".",this.plate,".GFP-rate-density-plot.pdf"), p)
    
-   metadata$no.burden.GFP.rate[i] = no.burden.GFP.rate
+   plate.metadata$no.burden.GFP.rate[i] = no.burden.GFP.rate
 }
+
+write.csv(normalize.stats, paste0(output.base.name, ".normalize_stats.csv"), row.names=F)
 
 
 ## Normalize to the no.burden.growth.rate
-no.burden.growth.rate.data = data.frame(plate=as.character(metadata$plate), no.burden.growth.rate = metadata$no.burden.growth.rate, no.burden.GFP.rate = metadata$no.burden.GFP.rate)
+no.burden.growth.rate.data = data.frame(plate=as.character(plate.metadata$plate), no.burden.growth.rate = plate.metadata$no.burden.growth.rate, no.burden.GFP.rate = plate.metadata$no.burden.GFP.rate)
 
 no.burden.normalized.data = all.data %>% left_join(no.burden.growth.rate.data, by="plate")
 no.burden.normalized.data$normalized.growth.rate = no.burden.normalized.data$growth.rate / no.burden.normalized.data$no.burden.growth.rate
 no.burden.normalized.data$normalized.GFP.rate = no.burden.normalized.data$GFP.rate / no.burden.normalized.data$no.burden.GFP.rate
-
 
 no.burden.normalized.control.data = no.burden.normalized.data %>% filter(strain %in% control.strains)
 no.burden.normalized.not.control.data = no.burden.normalized.data %>% filter(!(strain %in% control.strains))
@@ -198,12 +261,21 @@ ggsave(paste0(output.base.name,".GFP-rate-no-burden-normalized.pdf"), p)
 
 
 
+
 ##############  Further normalize values between runs based on controls. 
 
 
 ## determine the grand means for the controls across all plates
 
+#control.means = no.burden.normalized.control.data %>% group_by(strain) %>% summarize(normalized.growth.rate.grand.mean=mean(normalized.growth.rate), normalized.GFP.rate.grand.mean=mean(normalized.GFP.rate))
+
 control.means = no.burden.normalized.control.data %>% group_by(strain) %>% summarize(normalized.growth.rate.grand.mean=mean(normalized.growth.rate), normalized.GFP.rate.grand.mean=mean(normalized.GFP.rate))
+
+## testing mean of mean to force slope closer to 1
+#control.means$normalized.grand.mean.mean  = (control.means$normalized.growth.rate.grand.mean + control.means$normalized.GFP.rate.grand.mean)/2
+#control.means$normalized.grand.mean.mean = control.means$normalized.growth.rate.grand.mean
+#control.means$normalized.grand.mean.mean = control.means$normalized.GFP.rate.grand.mean
+
 
 #now fit the best line going through 1,1 for each run individually
 
@@ -281,41 +353,41 @@ for (this.plate.strain in unique(parts$plate.strain)) {
       test.result = data.frame(p.value=NA)
    }
    
-   p.values = bind_rows(p.values, data.frame(plate.strain=this.plate.strain, p.value = test.result$p.value ))
+   p.values = bind_rows(p.values, data.frame(plate.strain=this.plate.strain, growth.rate.reduced.p.value = test.result$p.value ))
 }
-p.values$adj.p.value = p.adjust(p.values$p.value, method="BH")
+p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced.p.value, method="BH")
 
-parts = final.normalized.not.control.data
-translational.burden.fraction.p.values = data.frame()
-for (this.plate.strain in unique(parts$plate.strain)) {
-   
-   this.strain.plate.data = parts %>% filter(plate.strain == this.plate.strain) %>% filter(!is.na(normalized.GFP.rate))
-   
-   cat(this.plate.strain, "  ", length(this.strain.plate.data$normalized.GFP.rate), "\n")
-   
-   if ( (length(this.strain.plate.data$normalized.GFP.rate) > 1)) {
-      
-      test.result = t.test(this.strain.plate.data$normalized.GFP.rate, this.strain.plate.data$normalized.growth.rate, alternative = "greater")
-      cat(this.plate.strain, "  ", test.result$p.value, "\n")
-   } else {
-      test.result = data.frame(p.value=NA)
-   }
-   translational.burden.fraction.p.values = bind_rows(translational.burden.fraction.p.values, data.frame(plate.strain=this.plate.strain, translational.burden.fraction.p.value = test.result$p.value ))
-}
-translational.burden.fraction.p.values$translational.burden.fraction.adj.p.value = p.adjust(translational.burden.fraction.p.values$translational.burden.fraction.p.value, method="BH")
+# parts = final.normalized.not.control.data
+# translational.burden.fraction.p.values = data.frame()
+# for (this.plate.strain in unique(parts$plate.strain)) {
+#    
+#    this.strain.plate.data = parts %>% filter(plate.strain == this.plate.strain) %>% filter(!is.na(normalized.GFP.rate))
+#    
+#    cat(this.plate.strain, "  ", length(this.strain.plate.data$normalized.GFP.rate), "\n")
+#    
+#    if ( (length(this.strain.plate.data$normalized.GFP.rate) > 1)) {
+#       
+#       test.result = t.test(this.strain.plate.data$normalized.GFP.rate, this.strain.plate.data$normalized.growth.rate, alternative = "greater")
+#       cat(this.plate.strain, "  ", test.result$p.value, "\n")
+#    } else {
+#       test.result = data.frame(p.value=NA)
+#    }
+#    translational.burden.fraction.p.values = bind_rows(translational.burden.fraction.p.values, data.frame(plate.strain=this.plate.strain, translational.burden.fraction.p.value = test.result$p.value ))
+# }
+# translational.burden.fraction.p.values$translational.burden.fraction.adj.p.value = p.adjust(translational.burden.fraction.p.values$translational.burden.fraction.p.value, method="BH")
 
 parts = final.normalized.data
 
 
 parts.means = parts %>% group_by(plate, strain, plate.strain) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range =  normalized.GFP.rate.sem*qt(0.975, df=replicates-1))
 parts.means = parts.means %>%left_join(p.values, by="plate.strain")
-parts.means = parts.means %>%left_join(translational.burden.fraction.p.values, by="plate.strain")
+#parts.means = parts.means %>%left_join(translational.burden.fraction.p.values, by="plate.strain")
 parts.means = parts.means %>% group_by() %>% select(-plate.strain)
 
-parts.means$category = c()
-parts.means$category = "no burden";
-parts.means$category[parts.means$p.value < 0.05] = "significant"
-parts.means$category[parts.means$strain %in% control.strains] = "control"
+parts.means$burden.category = c()
+parts.means$burden.category = "no burden";
+parts.means$burden.category[parts.means$growth.rate.reduced.adj.p.value < 0.05] = "significant"
+parts.means$burden.category[parts.means$strain %in% control.strains] = "control"
 
 parts.means$burden.mean = 1-parts.means$normalized.growth.rate.mean
 parts.means$burden.sd = parts.means$normalized.growth.rate.sd
@@ -323,10 +395,10 @@ parts.means$burden.sem = parts.means$normalized.growth.rate.sem
 parts.means$burden.95CI.range = parts.means$normalized.growth.rate.95CI.range
 parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
 
-parts.means$translational.burden.fraction.mean =  (1 - parts.means$normalized.GFP.rate.mean) / (1 - parts.means$normalized.growth.rate.mean)
-parts.means$translational.burden.fraction.sd = parts.means$normalized.GFP.rate.sd / (1 - parts.means$normalized.growth.rate.mean)
-parts.means$translational.burden.fraction.sem = parts.means$normalized.growth.rate.sem / (1 - parts.means$normalized.growth.rate.mean)
-parts.means$translational.burden.fraction.95CI.range = parts.means$normalized.growth.rate.95CI.range / (1 - parts.means$normalized.growth.rate.mean)
+# parts.means$translational.burden.fraction.mean =  (1 - parts.means$normalized.GFP.rate.mean) / (1 - parts.means$normalized.growth.rate.mean)
+# parts.means$translational.burden.fraction.sd = parts.means$normalized.GFP.rate.sd / (1 - parts.means$normalized.growth.rate.mean)
+# parts.means$translational.burden.fraction.sem = parts.means$normalized.growth.rate.sem / (1 - parts.means$normalized.growth.rate.mean)
+# parts.means$translational.burden.fraction.95CI.range = parts.means$normalized.growth.rate.95CI.range / (1 - parts.means$normalized.growth.rate.mean)
 
 #parts.means = parts.means %>% select(-growth.rate.mean,-growth.rate.sd)
 
