@@ -1,23 +1,32 @@
-MINOD=0.06
-MAXMETHOD=2
-FITTWOPOINTS=F
-TIMEPOINTDELTA=3
-SETTINGS=minOD_${MINOD}_maxmethod_${MAXMETHOD}_fit2pts_${FITTWOPOINTS}_timeptdelta_${TIMEPOINTDELTA}
-VECTOR=pSB1C3
+#!/usr/bin/env sh
+
+## One-time setup
 
 MAINDIR=$PWD
 SCRIPTDIR=$MAINDIR/scripts
 
+## Setup for certain settings
+
+MINOD=0.03
+MAXMETHOD=1
+FITTWOPOINTS=F
+FPPERODATTIME=T
+TIMEPOINTDELTA=4
+SETTINGS=minOD_${MINOD}_maxmethod_${MAXMETHOD}_fit2pts_${FITTWOPOINTS}_timeptdelta_${TIMEPOINTDELTA}_fpperofattimept_${FPPERODATTIME}
+VECTOR=pSB1C3,pSB1A2
+
+
+
 cd $MAINDIR/input-plate-data
 rm -r $MAINDIR/01-output-plate-fits
-batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d -p --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --time-point-delta ${TIMEPOINTDELTA}"
+batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -p -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --FP-per-OD-at-time ${FPPERODATTIME} --time-point-delta ${TIMEPOINTDELTA}"
 
 
 ##For graphing to spot check
 #batch_run.pl -p exp018 "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --time-point-delta ${TIMEPOINTDELTA}"
 
 
-## Create merged summary file
+## Create merged summary filemkdir -p $MAINDIR/02-output-summary-merged/$SETTINGS
 mkdir -p $MAINDIR/02-output-summary-merged/$SETTINGS
 cd $MAINDIR/01-output-plate-fits
 batch_run.pl "cp #d.rates.summary.csv $MAINDIR/02-output-summary-merged/$SETTINGS"
@@ -37,6 +46,7 @@ $SCRIPTDIR/igem2019_plate_variation.R -i $SETTINGS.csv -o $MAINDIR/03-plate-vari
 
 mkdir -p $MAINDIR/03-setting-variation
 $SCRIPTDIR/igem2019_setting_variation.R -i $MAINDIR/02-output-summary-merged -o $MAINDIR/03-setting-variation
+
 
 
 mkdir -p $MAINDIR/04-normalization

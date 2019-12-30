@@ -67,6 +67,9 @@ all.data$GFP.rate.cv = all.data$GFP.rate.sd / all.data$GFP.rate
 dir.create(output.path)
 
 setting.data = all.data %>% group_by(setting) %>% summarize(n=n(), mean.growth.rate.cv = mean(growth.rate.cv), mean.GFP.rate.cv = mean(GFP.rate.cv))
+
+
+write.csv(setting.data, file.path(output.path, paste0("setting_comparison.csv")))
 print(setting.data)
 
 

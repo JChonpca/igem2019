@@ -69,6 +69,7 @@ default.two.point.fit = F
 default.minimum.OD = 0.0
 default.maximum.time = 600
 default.offset.readings.to.average.time.span.end = 60
+default.FP.per.OD.at.time = F
 
 if (!exists("input.prefix")) {
   suppressMessages(library(optparse))
@@ -79,8 +80,10 @@ if (!exists("input.prefix")) {
                 help="Output file prefix. Output files of the form <output>.* will be created. If this option is not provided the input file prefix will be used.", metavar="output_prefix"),
     make_option(c("-m", "--max-method"), type="numeric", default=2, 
                 help="Maximum picking method. 1=pick max growth rate time and use other rates at this same time. 2=pick maximum value of each curve at whatever time it occurs (may be different for growth rate and for fluorescence)", metavar="1/2"),
-    make_option(c("-f", "--two-point-fit"), type="logical", action="store", default=default.two.point.fit, 
+    make_option(c("--two-point-fit"), type="logical", action="store", default=default.two.point.fit, 
                 help="Fit rates using just the first and last point in the intervals. The default without this flag is to use all time points."),
+    make_option(c("--FP-per-OD-at-time"), type="logical", action="store", default=default.FP.per.OD.at.time, 
+                help="Fit GFP and other rates from fluorescence divided by OD per time point, rather than fitting the change in signal per time and then dividing by the midpoint OD value. Only works iwhen --two-point-fit is FALSE"),
     make_option(c("-t", "--time-point-delta"), type="numeric", default=3, 
                 help="Time point delta used in calculating rates. This many points before and after the current point will be used for fitting rates. So, if you recorded data every 10 minutes and choose a value of 2 (the default), then 50 minute long windows spanning five data point are used for fitting rates.", metavar="int"),
     make_option(c("-d", "--min-OD"), type="numeric", default=default.minimum.OD, 
@@ -119,6 +122,10 @@ if (!exists("input.prefix")) {
   
   if (!is.null(opt$'two-point-fit')) {
     two.point.fit = opt$'two-point-fit' 
+  }
+  
+  if (!is.null(opt$'FP-per-OD-at-time' )) {
+    FP.per.OD.at.time= opt$'FP-per-OD-at-time' 
   }
   
   if (!is.null(opt$'time-point-delta')) {
@@ -178,6 +185,17 @@ if (exists("two.point.fit")) {
   option.two.point.fit = two.point.fit
 } else {
   option.two.point.fit = default.two.point.fit
+}
+
+
+if (exists("FP.per.OD.at.time")) {
+  option.FP.per.OD.at.time = FP.per.OD.at.time
+} else {
+  option.FP.per.OD.at.time = default.FP.per.OD.at.time
+}
+
+if (option.two.point.fit & option.FP.per.OD.at.time) {
+  fatal_error("Cannot have both --FP-per-OD-at-time and --two-point-fit set to TRUE")
 }
 
 if (exists("time.point.delta")) {
@@ -334,10 +352,18 @@ sdf = add_setting(sdf, "Maximum Time", option.maximum.time)
 
 if (option.two.point.fit) {
   option.fit.method.string = "using two points (first and last in time window)"
-} else if (option.max.method == 2) {
+} else {
   option.fit.method.string = "using all points in time window"  
 }      
-sdf = add_setting(sdf, "Fittine method", option.fit.method.string)
+sdf = add_setting(sdf, "Fitting method", option.fit.method.string)
+
+if (option.FP.per.OD.at.time) {
+  option.option.FP.per.OD.at.time = "fit regression to FP/OD values"
+} else {
+  option.option.FP.per.OD.at.time = "fit regression to FP values, then divide by midpoint OD"  
+}      
+sdf = add_setting(sdf, "FP fitting use of OD", option.option.FP.per.OD.at.time)
+
 
 sdf = add_setting(sdf, "Time Point Span", 2 * option.time.point.delta + 1)
 sdf = add_setting(sdf, "Time Point Delta", option.time.point.delta)
@@ -821,23 +847,48 @@ for (strain.of.interest in unique(Z$strain.isolate) )
           #create a matrix
           
           times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
-          fluorescences = replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)]
           
-          #don't do this with NAs => caused by overflow of fluorescent challenges
-          if (!is.na(mean(fluorescences))) {
-            fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
-            replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
-            replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+          if (option.FP.per.OD.at.time) {
+            log_fluorescence_per_ODs = log(replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)])
+            #/ replicate.fluorescence.data$fit.OD[(i-option.time.point.delta):(i+option.time.point.delta)]
+            
+            if (!is.na(mean(log_fluorescence_per_ODs))) {
+              fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
+              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i]
+              
+
+              replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+            }
+            
+          } else {
+            fluorescences = replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)]
+            #don't do this with NAs => caused by overflow of fluorescent challenges
+            if (!is.na(mean(fluorescences))) {
+              fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
+              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
+              replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+            }
           }
           
           if (num.readings == 3) {
             
-            fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
-            
-            if (!is.na(mean(fluorescences))) {
-              fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
-              replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
-              replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+            if (option.FP.per.OD.at.time) {
+              fluorescence_per_ODs = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)] / replicate.fluorescence.data$OD[(i-option.time.point.delta):(i+option.time.point.delta)]
+              
+              if (!is.na(mean(fluorescence_per_ODs))) {
+                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescence_per_ODs))
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]]
+                replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+              }
+              
+            } else {
+              fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
+              
+              if (!is.na(mean(fluorescences))) {
+                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
+                replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+              }
             }
           }
           
@@ -861,7 +912,6 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     if (num.readings == 2) {
       p = grid.arrange(plot1, plot2, nrow=2)
     } else if (num.readings == 3) {
-      fluorescence.data = fluorescence.data %>% mutate(other.rate = (other.t2 - other.t1) / (t2 - t1) / OD)
       plot3 = ggplot(fluorescence.data , aes(time.min, other.rate, color=well)) +  geom_point() 
       p = grid.arrange(plot1, plot2, plot3, nrow=3)
     }

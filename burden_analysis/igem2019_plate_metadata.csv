@@ -1,55 +1,55 @@
-﻿plate,responsible,date,description,protocol version,deviations from protocol,include,notes
-exp001,SPL,2/16/19,Test burden monitor strains and initial BFP constructs from DM. Design protocol for plate reader and data analysis,,,F,
-exp002,SPL,2/20/19,"First run by iGEM team members, included WT and 3 BFP plasmids",,,F,Does not have controls
-exp003,Noor and Jordan,4/18/19,First test of iGEM plasmids and updated plate reader protocol,4/16/16,Strains were started from freezer stocks instead of colonies on the day before. Used completely clear 96-well plate instead of black clear bottom. LB was hurriedly warmed in water bath instead of in incubator.,T,
-exp004,Ginny and Diya,4/24/19,Second test of iGEM plasmids from exp003 with updated plate reader protocol,4/16/19,Identical to exp003 except strain well positions were shifted and LB was warmed in the 37 degree fridge 3 hours prior to plating. Strains BB82 and BB83 were accidentally unincluded. Failed because read stationary.,F,
-exp005,Ginny,4/30/19,Third test of iGEM plasmids from exp003 with updated SOP.,4/18/19,Strains were started from freezer stocks and locations of strains were shifted in plate wells relative to exp003.,T,
-exp006,Noor and Jordan,5/3/19,Run of iGEM plasmids,4/18/19,Strains were from freezer stocks. Strains N1-N5 were O/N cultures from colonies on plates.,T,
-exp007,Jordan and Angela,6/5/19,iGEM plasmids,6/5/19,,F,Measurements have good precision but controls seem off
-exp008,Ginny,6/7/19,iGEM plasmids,4/18/19,Strains were started from freezer stocks instead of colonies on the day before.,T,
-exp009,Noor,6/9/19,iGEM plasmids,4/18/19,freezer stocks. Control plasmid cultures were a day old ,T,
-exp010,Jordan ,6/11/19,iGEM plasmids ,4/18/19,freezer stocks,T,
-exp011,Noor,6/12/19,iGEM plasmids ,4/18/19,freezer stocks,T,
-exp012,Diya,6/14/19,First version of the Anderson Series run- contained 2 contaminated samples. Refer to exp045 for the correct version,4/18/19,freezer stocks ,F,Rerun later
-exp013,Noor,6/19/19,iGEM plasmids; Rerun as exp047,4/18/19,freezer stocks,F,Missing highest burden control strain
-exp014,Jordan,6/18/19,iGEM plasmids,4/18/19,,T,All strains have very similar growth rates? Compressed controls?
-exp015,Jordan,6/18/19,"iGEM plasmids BB238-249, Rerun as exp048",,,F,All strains have very similar growth rates? Compressed controls?
-exp016,??????????,,,,,T,
-exp017,Jordan,6/26/18,iGEM plasmids,4/18/19,,T,
-exp018,Ginny,7/3/19,iGEM plasmids,4/18/19,,T,
-exp019,Noor,7/5/19,iGEM plasmids,4/18/19,freezer stocks. All samples were transformed into possibly contaminated comp cells,F,
-exp020,Diya,7/8/19,iGEM plasmids,4/18/19,,T,
-exp021,,,,,,T,
-exp022,Jordan,7/16/19,,,,T,
-exp023,Jordan ,7/16/19,,,,F,Controls are not in the right places and are noisy
-exp024,,,,,,T,
-exp025,Diya,8/9/19,iGEM plasmids,4/18/19,freezer stocks ,F,All samples had high and compressed growth rates
-exp026,Noor,8/1/19,iGEM plasmids - ones that had large error bars,4/18/19,freezer stocks ,F,Very low growth rates for all strains. Controls also have very large error bars
-exp027,,,,,,T,
-exp028,,,,,,F,Compressed growth rates. Controls overlap all of the strains and one another
-exp029,Diya,8/21/19,Run with all the BFP controls (JEB 1203-1208) and the control plasmid BB_0 (empty pSB1C3 backbone),4/18/19,freezer stocks ,F,"RFP experiment, all strains have burden"
-exp030,Ginny?,,Rerun of the BFP controls ,,freezer stocks ,F,Was a test of controls? Very compressed data
-exp031,,,,,,F,Low growth rates and compressed data
-exp032,Diya,9/5/19,iGEM plasmids,4/18/19,freezer stocks ,T,
-exp033,Diya,9/11/19,iGEM plasmids,4/18/19,freezer stocks ,T,
-exp034,,,,,,F,Something happened to the high burden BFP control
-exp035,,,,,,F,Something happened to the high burden BFP control
-exp036,Alex,9/19/19,iGEM plasmids,4/18/19,freezer stocks ,F,Something happened to the high burden BFP control
-exp037,Noor,9/16/19,Evostab (Anderson series) - day 0 cultures ,4/18/19,"colonies on plates (that were streaked out from glycerol stocks), not in triplicate pattern ",F,Special experiment with no controls
-exp038,Noor,9/17/19,Evostab (Anderson series) - day 1 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp039,Noor,9/18/19,Evostab (Anderson series) - day 2 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp040,Noor,9/19/19,Evostab (Anderson series) - day 3 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp041,Noor,9/20/19,Evostab (Anderson series) - day 4 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp042,Noor,9/21/19,Evostab (Anderson series) - day 5 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp043,Noor,9/22/19,Evostab (Anderson series) - day 6 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp044,Noor,9/23/19,Evostab (Anderson series) - day 7 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
-exp045,Diya,8/8/19,Redo run of exp012 (Anderson Series),,,T,
-exp046,Alex,,Redo run of exp018,4/18/19,freezer stocks ,F,Something happened to the high burden BFP control
-exp047,Noor,,Redo run of exp013?,,,F,Missing high burden control
-exp048,Jordan,,Redo run of exp015?,,,T,
-exp049,Ginny?,,Redo run of exp018 (before 046?),,,F,Controls are in the wrong order
-exp050,Angela,9/7/19,reproducibility run 1,,,T,"Controls are not in the right places, special distribution"
-exp051,angela,9/38/29,reproducibility run 2,,,F,Has overflows from beginning in OD
-exp052,Diya,9/28/19,iGEM plasmids ,4/18/19,freezer stocks ,F,
-exp053,Jordan,10/2/19,TTU + Rice ,,,F,
-exp054,Angela,10/5/19,,,,F,
+﻿plate,responsible,date,description,protocol version,deviations from protocol,include,old.include,notes
+exp001,SPL,2/16/19,Test burden monitor strains and initial BFP constructs from DM. Design protocol for plate reader and data analysis,,,F,F,
+exp002,SPL,2/20/19,"First run by iGEM team members, included WT and 3 BFP plasmids",,,F,F,Does not have controls
+exp003,Noor and Jordan,4/18/19,First test of iGEM plasmids and updated plate reader protocol,4/16/16,Strains were started from freezer stocks instead of colonies on the day before. Used completely clear 96-well plate instead of black clear bottom. LB was hurriedly warmed in water bath instead of in incubator.,T,T,
+exp004,Ginny and Diya,4/24/19,Second test of iGEM plasmids from exp003 with updated plate reader protocol,4/16/19,Identical to exp003 except strain well positions were shifted and LB was warmed in the 37 degree fridge 3 hours prior to plating. Strains BB82 and BB83 were accidentally unincluded. Failed because read stationary.,F,F,
+exp005,Ginny,4/30/19,Third test of iGEM plasmids from exp003 with updated SOP.,4/18/19,Strains were started from freezer stocks and locations of strains were shifted in plate wells relative to exp003.,T,T,
+exp006,Noor and Jordan,5/3/19,Run of iGEM plasmids,4/18/19,Strains were from freezer stocks. Strains N1-N5 were O/N cultures from colonies on plates.,T,T,
+exp007,Jordan and Angela,6/5/19,iGEM plasmids,6/5/19,,T,F,Measurements have good precision but controls seem off
+exp008,Ginny,6/7/19,iGEM plasmids,4/18/19,Strains were started from freezer stocks instead of colonies on the day before.,T,T,
+exp009,Noor,6/9/19,iGEM plasmids,4/18/19,freezer stocks. Control plasmid cultures were a day old ,T,T,
+exp010,Jordan ,6/11/19,iGEM plasmids ,4/18/19,freezer stocks,T,T,
+exp011,Noor,6/12/19,iGEM plasmids ,4/18/19,freezer stocks,T,T,
+exp012,Diya,6/14/19,First version of the Anderson Series run- contained 2 contaminated samples. Refer to exp045 for the correct version,4/18/19,freezer stocks ,T,F,Rerun later
+exp013,Noor,6/19/19,iGEM plasmids; Rerun as exp047,4/18/19,freezer stocks,F,F,"Missing highest burden control strain, controls out of order"
+exp014,Jordan,6/18/19,iGEM plasmids,4/18/19,,T,T,All strains have very similar growth rates? Compressed controls?
+exp015,Jordan,6/18/19,"iGEM plasmids BB238-249, Rerun as exp048",,,T,F,All strains have very similar growth rates? Compressed controls?
+exp016,??????????,,,,,T,T,
+exp017,Jordan,6/26/18,iGEM plasmids,4/18/19,,T,T,
+exp018,Ginny,7/3/19,iGEM plasmids,4/18/19,,T,T,
+exp019,Noor,7/5/19,iGEM plasmids,4/18/19,freezer stocks. All samples were transformed into possibly contaminated comp cells,F,F,
+exp020,Diya,7/8/19,iGEM plasmids,4/18/19,,T,T,
+exp021,,,,,,T,T,
+exp022,Jordan,7/16/19,,,,T,T,
+exp023,Jordan ,7/16/19,,,,F,F,Controls are not in the right places and are noisy
+exp024,,,,,,T,T,
+exp025,Diya,8/9/19,iGEM plasmids,4/18/19,freezer stocks ,T,F,All samples had high and compressed growth rates
+exp026,Noor,8/1/19,iGEM plasmids - ones that had large error bars,4/18/19,freezer stocks ,T,F,Very low growth rates for all strains. Controls also have very large error bars
+exp027,,,,,,T,T,
+exp028,,,,,,T,F,Compressed growth rates. Controls overlap all of the strains and one another
+exp029,Diya,8/21/19,Run with all the BFP controls (JEB 1203-1208) and the control plasmid BB_0 (empty pSB1C3 backbone),4/18/19,freezer stocks ,F,F,"RFP experiment, all strains have burden"
+exp030,Ginny?,,Rerun of the BFP controls ,,freezer stocks ,F,F,Was a test of controls? Very compressed data
+exp031,,,,,,F,F,Low growth rates and compressed data
+exp032,Diya,9/5/19,iGEM plasmids,4/18/19,freezer stocks ,T,T,
+exp033,Diya,9/11/19,iGEM plasmids,4/18/19,freezer stocks ,T,T,
+exp034,,,,,,F,F,Control strains overlap no burden
+exp035,,,,,,T,F,
+exp036,Alex,9/19/19,iGEM plasmids,4/18/19,freezer stocks ,F,F,Something happened to the high burden BFP control
+exp037,Noor,9/16/19,Evostab (Anderson series) - day 0 cultures ,4/18/19,"colonies on plates (that were streaked out from glycerol stocks), not in triplicate pattern ",F,F,Special experiment with no controls
+exp038,Noor,9/17/19,Evostab (Anderson series) - day 1 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp039,Noor,9/18/19,Evostab (Anderson series) - day 2 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp040,Noor,9/19/19,Evostab (Anderson series) - day 3 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp041,Noor,9/20/19,Evostab (Anderson series) - day 4 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp042,Noor,9/21/19,Evostab (Anderson series) - day 5 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp043,Noor,9/22/19,Evostab (Anderson series) - day 6 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp044,Noor,9/23/19,Evostab (Anderson series) - day 7 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,F,Special experiment with no controls
+exp045,Diya,8/8/19,Redo run of exp012 (Anderson Series),,,T,T,
+exp046,Alex,,Redo run of exp018,4/18/19,freezer stocks ,F,F,Something happened to the high burden BFP control
+exp047,Noor,,Redo run of exp013?,,,T,F,Missing high burden control
+exp048,Jordan,,Redo run of exp015?,,,T,T,
+exp049,Ginny?,,Redo run of exp018 (before 046?),,,T,F,Controls are in the wrong order
+exp050,Angela,9/7/19,reproducibility run 1,,,T,T,"Controls are not in the right places, special distribution"
+exp051,angela,9/38/29,reproducibility run 2,,,F,F,"Has overflows from beginning in OD, blanks are not blank "
+exp052,Diya,9/28/19,iGEM plasmids ,4/18/19,freezer stocks ,T,F,
+exp053,Jordan,10/2/19,TTU + Rice ,,,F,F,"Not enough no burden strains for fitting, controls out of order"
+exp054,Angela,10/5/19,,,,F,F,"Not enough no burden strains for fitting, controls out of order"
