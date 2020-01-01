@@ -9,12 +9,12 @@ library(ggplot2)
 library(cowplot)
 
 #debug
-#input.file.string="02-output-all-merged/minOD_0.03_maxmethod_1_fit2pts_F_timeptdelta_4_fpperofattimept_T.csv"
-#output.base.name="04-normalization/test"
-#plate.metadata.file.string = "igem2019_plate_metadata.csv"
-#strain.metadata.file.string = "igem2019_strain_metadata.csv"
-#control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
-#included.vectors = c("pSB1C3","pSB1A2")
+input.file.string="02b-output-all-merged/output.csv"
+output.base.name="04-normalization/output"
+plate.metadata.file.string = "igem2019_plate_metadata.csv"
+strain.metadata.file.string = "igem2019_strain_metadata.csv"
+control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
+included.vectors = c("pSB1C3","pSB1A2")
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -104,7 +104,7 @@ cat("Analyzed strains (before filtering):", length(unique(all.data$strain)), "\n
 
 if (length(included.vectors)>0) {
    strain.metadata = read.csv(strain.metadata.file.string)
-   strain.metadata.merge = strain.metadata %>% select(strain, vector)
+   strain.metadata.merge = strain.metadata %>% select(strain, vector, accession)
    all.data = all.data %>% left_join(strain.metadata.merge, by="strain")
    all.data = all.data %>% filter(vector %in% included.vectors)
    
@@ -132,7 +132,7 @@ p = ggplot(not.control.data , aes(x=plate, y=growth.rate, color=plate)) +
    geom_jitter( width=0.2, size=0.3, color="gray") + 
    geom_jitter(data=control.data, width=0.2, size=1, aes(x=plate, y=growth.rate, color=strain)) + 
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0.4,1.6)
+   ylim(0,1.6)
 
 ggsave(paste0(output.base.name,".growth-rate-unnormalized.pdf"), p)
 
@@ -140,7 +140,7 @@ p = ggplot(not.control.data , aes(x=plate, y=GFP.rate, color=plate)) +
    geom_jitter( width=0.2, size=0.3, color="gray") + 
    geom_jitter(data=control.data, width=0.2, size=1, aes(x=plate, y=GFP.rate, color=strain)) + 
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(200,800)
+   ylim(0,50000)
 
 ggsave(paste0(output.base.name,".GFP-rate-unnormalized.pdf"), p)
 
@@ -194,7 +194,7 @@ normalize.stats = data.frame(
 
 for (i in 1:nrow(plate.metadata)) {
    growth.rate.bw=0.05
-   GFP.rate.bw=80
+   GFP.rate.bw=480
    #GFP.rate.bw=0.05
    
    this.plate = as.character(plate.metadata$plate[i])
@@ -226,7 +226,7 @@ for (i in 1:nrow(plate.metadata)) {
    
    p = ggplot(plate.no.control.data.has.GFP, aes(x=GFP.rate)) + 
       geom_density(bw=GFP.rate.bw) + 
-      scale_x_continuous(breaks = seq(200, 800, by = 50), limits=c(200,800)) + 
+      scale_x_continuous(breaks = seq(0,50000, by = 5000), limits=c(0,50000)) + 
       geom_vline(xintercept=no.burden.GFP.rate) 
    ggsave(paste0(output.base.name,".",this.plate,".GFP-rate-density-plot.pdf"), p)
    
@@ -250,7 +250,7 @@ p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.gro
    geom_jitter( width=0.2, size=0.3, color="gray") + 
    geom_jitter(data=no.burden.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.growth.rate, color=strain)) + 
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0.4,1.2)
+   ylim(0,1.4)
 
 ggsave(paste0(output.base.name,".growth-rate-no-burden-normalized.pdf"), p)
 
@@ -258,7 +258,7 @@ p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.GFP
    geom_jitter( width=0.2, size=0.3, color="gray") + 
    geom_jitter(data=no.burden.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.GFP.rate, color=strain)) + 
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0.2,1.4)
+   ylim(0,1.4)
 
 ggsave(paste0(output.base.name,".GFP-rate-no-burden-normalized.pdf"), p)
 
@@ -337,9 +337,7 @@ ggsave(paste0(output.base.name,".GFP-rate-no-burden-and-control-normalized.pdf")
 ### File for performing stats while keeping unique plate-strain combinations
 
 parts = final.normalized.not.control.data
-significant.ones = c()
 p.values = data.frame()
-number.of.tests = length(unique(parts$plate.strain))
 for (this.plate.strain in unique(parts$plate.strain)) {
    
    this.strain.plate.data = parts %>% filter(plate.strain == this.plate.strain)
@@ -347,12 +345,7 @@ for (this.plate.strain in unique(parts$plate.strain)) {
    #cat(this.plate.strain, "  ", length(this.strain.plate.data$normalized.growth.rate), "\n")
    
    if (length(this.strain.plate.data$normalized.growth.rate) > 1) {
-      
       test.result = t.test(this.strain.plate.data$normalized.growth.rate-1, alternative = "less")
-      #cat(this.plate.strain, "  ", test.result$p.value, "\n")
-      if (test.result$p.value < 0.05) {
-         significant.ones = c(significant.ones, this.plate.strain)
-      }
    } else {
       test.result = data.frame(p.value=NA)
    }
@@ -387,9 +380,7 @@ write.csv(parts.means, paste0(output.base.name, ".plate-strain.burden.csv"), row
 
 parts = final.normalized.not.control.data
 
-significant.ones = c()
 p.values = data.frame()
-number.of.tests = length(unique(parts$plate.strain))
 for (this.strain in unique(parts$strain)) {
    
    this.strain.data = parts %>% filter(strain == this.strain)
@@ -411,7 +402,7 @@ p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced
 
 parts = final.normalized.data
 
-parts.means = parts %>% group_by(strain) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), plates=paste(unique(plate), collapse=","))
+parts.means = parts %>% group_by(strain) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), plates=paste(unique(plate), collapse=","), vector=paste(unique(vector), collapse=","), accession=paste(unique(accession), collapse=","))
 parts.means = parts.means %>%left_join(p.values, by="strain")
 
 parts.means = parts.means %>% group_by()
@@ -429,20 +420,52 @@ parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
 
 write.csv(parts.means, paste0(output.base.name, ".strain.burden.csv"), row.names=F)
 
-### Calculate one-tailed tests of more than certain burden cutoffs
-
-not.control.data = parts.means %>% filter(!(strain %in% control.strains))
 
 
-cat("burden cutoff", "# sig> than", "% sig > than", "\n")
-for (b in seq(0, 0.5, by=0.05)) {
+
+
+########################################################################################
+### File for performing stats that only keeps one entry for each part
+### (That is, it combines data for all strains with a part and across different plates)
+
+parts = final.normalized.not.control.data
+control.accessions = (strain.metadata %>% filter(strain %in% control.strains))$accession
+
+p.values = data.frame()
+for (this.accession in unique(parts$accession)) {
    
-  p.values = pt((b-not.control.data$burden.mean)/not.control.data$burden.sem, not.control.data$replicates-1)
-  #Uncomment for multiple testing correction
-  #p.values = p.adjust(p.values, method="BH")
-  num.significant = sum(p.values <= 0.05)
-  cat(b, num.significant, (num.significant/length(p.values))*100, "\n")
+   this.accession.data = parts %>% filter(accession == this.accession)
+   
+   if (length(this.accession.data$normalized.growth.rate) > 1) {
+      
+      test.result = t.test(this.accession.data$normalized.growth.rate-1, alternative = "less")
+
+   } else {
+      test.result = data.frame(p.value=NA)
+   }
+   
+   p.values = bind_rows(p.values, data.frame(accession=this.accession, growth.rate.reduced.p.value = test.result$p.value ))
 }
+p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced.p.value, method="BH")
 
+parts = final.normalized.data
 
+parts.means = parts %>% group_by(accession) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), plates=paste(sort(unique(plate)), collapse=","), strains=paste(sort(unique(strain)), collapse=","), strain=unique(strain)[1], vectors=paste(sort(unique(vector)), collapse=","))
+
+parts.means = parts.means %>%left_join(p.values, by="accession")
+
+parts.means = parts.means %>% group_by()
+
+parts.means$burden.category = c()
+parts.means$burden.category = "no burden";
+parts.means$burden.category[parts.means$growth.rate.reduced.adj.p.value < 0.05] = "significant"
+parts.means$burden.category[parts.means$accession %in% control.accessions] = "control"
+
+parts.means$burden.mean = 1-parts.means$normalized.growth.rate.mean
+parts.means$burden.sd = parts.means$normalized.growth.rate.sd
+parts.means$burden.sem = parts.means$normalized.growth.rate.sem
+parts.means$burden.95CI.range = parts.means$normalized.growth.rate.95CI.range
+parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
+
+write.csv(parts.means, paste0(output.base.name, ".part.burden.csv"), row.names=F)
 

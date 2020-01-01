@@ -7,8 +7,8 @@ library(ggplot2)
 library(cowplot)
 
 ## Uncomment to use in interactive mode
-input.file.path = "minOD_0.1_maxmethod_2.csv"
-output.path = "../03-plate-variation/minOD_0.1_maxmethod_2"
+#input.file.path = "minOD_0.1_maxmethod_2.csv"
+#output.path = "../03-plate-variation/minOD_0.1_maxmethod_2"
 
 if (!exists("input.file.path")) {
    suppressMessages(library(optparse))

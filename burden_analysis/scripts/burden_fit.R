@@ -824,10 +824,10 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     
     fluorescence.data = fluorescence.data %>% filter(!is.na(t1) & !is.na(t2))
     fluorescence.data = fluorescence.data %>% mutate(time.min = (t1+t2)/2)
-    fluorescence.data = fluorescence.data %>% mutate(GFP.rate = (GFP.t2 - GFP.t1) / (t2 - t1) / OD)
+    fluorescence.data = fluorescence.data %>% mutate(GFP.rate = (GFP.t2 - GFP.t1) / (t2 - t1) / OD * 60)
     
     if (num.readings == 3) {
-      fluorescence.data = fluorescence.data %>% mutate(other.rate = (other.t2 - other.t1) / (t2 - t1) / OD)
+      fluorescence.data = fluorescence.data %>% mutate(other.rate = (other.t2 - other.t1) / (t2 - t1) / OD * 60)
     }
     
   } else {
@@ -854,7 +854,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
             
             if (!is.na(mean(log_fluorescence_per_ODs))) {
               fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
-              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i]
+              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
               
 
               replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
@@ -865,7 +865,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
             #don't do this with NAs => caused by overflow of fluorescent challenges
             if (!is.na(mean(fluorescences))) {
               fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
-              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
+              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
               replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
             }
           }
@@ -877,7 +877,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
               
               if (!is.na(mean(fluorescence_per_ODs))) {
                 fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescence_per_ODs))
-                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]]
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * 60
                 replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
               }
               
@@ -886,7 +886,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
               
               if (!is.na(mean(fluorescences))) {
                 fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
-                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i]
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
                 replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
               }
             }
