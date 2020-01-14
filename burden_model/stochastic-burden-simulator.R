@@ -27,7 +27,7 @@ burdenode <- function(t, y, p) {
   })
 }
 
-yini  <- c(Et = 1, Ft = 0)       # initial values of Et and Ft. Begin with one engineered cell.
+yini  <- c(Et = 1, Ft = 0)  # initial values of Et and Ft. Begin with one engineered cell.
 times <- seq(0,200, 0.1)         # arbitrary number of time steps
 
 ## Run model
@@ -54,7 +54,7 @@ rates.function <- function(x, params, t) {
     return(c(
               (1 - params$b) * x["e"],             # rate of e cells growing
               x["f"],                              # rate of f cells growing
-              (1 - params$b) * x["e"] * params$u   # rate of e cells turning into f cells
+              (1 - params$b) * x["e"] * params$u   # rate of e cells mutating into f cells
           )) 
 }
 
@@ -62,15 +62,14 @@ rates.function <- function(x, params, t) {
 ## Store all results in a dataframe for easier graphing
 sim.results.df = data.frame()
 
+## Loops over seeds and parameters to generate all possible graphs (takes ~5 mins) -GAM
 
-## This loops over different seeds to get replicates
-## It could loop over b and u values as well to populate a table for generating all graphs
+for (this.u in 8:5) {
+for (this.b in 1:4) {
 for (this.seed in 1:20) {
-  this.b = 0.4
-  this.u = 1E-5
   
   set.seed(this.seed) # set random number generator seed to be reproducible
-  par=list(b=this.b, u=this.u);
+  par=list(b=this.b/10, u=1*10^-this.u);
   sim.results = ssa.adaptivetau(
     init.values = c(e = 1, f = 0),
     transition.list,
@@ -87,32 +86,15 @@ for (this.seed in 1:20) {
     f = sim.results[,c("f")],
     fr.e = sim.results[,c("e")] / (sim.results[,c("e")] + sim.results[,c("f")]),
     seed = this.seed,
-    b = this.b,
-    u = this.u,
+    b = this.b/10,
+    u = 1*10^-this.u,
     method = "stochastic"
   )
   sim.results.df = rbind(sim.results.df, this.sim.results.df)
 }
+}
+}
 
 sim.results.df$seed = as.factor(sim.results.df$seed)
 
-ggplot() +
-  geom_line(data = sim.results.df, aes(x=generation, y=fr.e, group=seed), alpha = 0.3)
-
-################### Compare methods ################
-
-ggplot() +
-  geom_line(data = sim.results.df, aes(x=generation, y=fr.e, group=seed), alpha = 0.3)+
-  geom_line(data = out, aes(x=generation, y= fraction), color = "red", alpha = 0.6)+
-  ylab("fraction")
-
-fifty.sim.df=filter(sim.results.df, fr.e < .6 & fr.e > .4)
-fifty.ode.df=filter(out, fraction < .6 & fraction > .4)
-
-ggplot()+
-  geom_point(data = fifty.sim.df, aes(x=generation, y = fr.e))+
-  geom_point(data= fifty.ode.df, aes(x=generation, y= fraction), color = "red")+
-  ylab("fraction")
-
-mean(fifty.sim.df$generation)
-mean(fifty.ode.df$generation)
+################### Generate graphs ################
