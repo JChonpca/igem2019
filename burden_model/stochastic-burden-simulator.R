@@ -1,16 +1,12 @@
 
-
 ################################### STOCHASTIC BURDEN SIMULATOR #####################################
 #####  Stochastically plot fraction of engineered cells in a population versus cell doublings  ######
 #####   depending only on the mutation rate and burden                                         ######
 #####################################################################################################
 
-library(ggplot2)
-library(shiny)
-library(tidyr)
-library(dplyr)
 library(deSolve)
 library(adaptivetau)
+library(tidyverse)
 
 ################ Build ODE model #################
 
@@ -21,20 +17,19 @@ pars<- c(
 
 burdenode <- function(t, y, p) {
   with(as.list(c(y, p)), {
-    dEt <- ((1-b) * Et) - (u * (1-b) * Et)  # rate at which engineered cells (Et) decrease while growing
-    dFt <- Ft + (u * (1-b) * Et)            # rate at which failed cells (Ft) accumulate
+    dEt <- ((1-b) * Et) - (u * (1-b) * Et)  # rate at which engineered cells (Et) grow/mutate
+    dFt <- Ft + (u * (1-b) * Et)            # rate at which failed cells (Ft) accumulate/grow
     return(list(c(dEt, dFt)))
   })
 }
 
 yini  <- c(Et = 1, Ft = 0)  # initial values of Et and Ft. Begin with one engineered cell.
-times <- seq(0,200, 0.1)         # arbitrary number of time steps
+times <- seq(0,200, 0.1)    # time sequence for ODE solver
 
 ## Run model
 out   <- ode(yini, times, burdenode, pars)
-
-out <- data.frame(out)
-out$fraction <- (out$Et/(out$Et+out$Ft))  # fraction of engineered cells
+out <- data.frame(out)                    # save output into dataframe
+out$fraction <- (out$Et/(out$Et+out$Ft))  # fraction of engineered cells remaining in population
 out$generation <- log2(out$Et+out$Ft)     # number of cell doublings
 summary(out)
 
@@ -63,7 +58,6 @@ rates.function <- function(x, params, t) {
 sim.results.df = data.frame()
 
 ## Loops over seeds and parameters to generate all possible graphs (takes ~5 mins) -GAM
-
 for (this.u in 8:5) {
 for (this.b in 1:4) {
 for (this.seed in 1:20) {
@@ -98,3 +92,15 @@ for (this.seed in 1:20) {
 sim.results.df$seed = as.factor(sim.results.df$seed)
 
 ################### Generate graphs ################
+
+f5.sim.results = data.frame()
+#filter simulation results rounding to 0.5
+f5.sim.results = filter(sim.results.df, fr.e < 0.64 & fr.e > 0.45)
+#make b variable a factor percentage for plotting
+f5.sim.results$b = f5.sim.results$b*100
+f5.sim.results$b = as.factor(f5.sim.results$b)
+
+f5.plot= ggplot(f5.sim.results, aes(b, generation, group = b)) +
+  geom_boxplot(aes(color = b), outlier.shape =1, outlier.alpha =0.1) + facet_grid(.~u)+ theme(legend.position = "none")+
+  labs(title = "Simulator Distribution by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
+f5.plot
