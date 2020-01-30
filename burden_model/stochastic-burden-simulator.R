@@ -11,8 +11,8 @@ library(tidyverse)
 ################ Build ODE model #################
 
 pars<- c(
-  b  = 0.4,  # burden
-  u  = 1E-5  # mutation rate
+  b = 0.4,  # burden value
+  u = 1e-5  # mutation rate
 )
 
 burdenode <- function(t, y, p) {
@@ -72,7 +72,7 @@ for (this.seed in 1:20) {
     tf=200
   )
   
-  #Reformat as a data frame and calculate generations
+  # reformat as a data frame and calculate generations
   this.sim.results.df =   data.frame (
     time = sim.results[,c("time")],
     generation = log2(sim.results[,c("e")] + sim.results[,c("f")]),
@@ -93,14 +93,26 @@ sim.results.df$seed = as.factor(sim.results.df$seed)
 
 ################### Generate graphs ################
 
+## Compare ODE v stochastic methods
+# filter results which match ODE parameters
+b4.u5.sim = filter(sim.results.df, b == 0.4 & u == 1e-5)
+comp.plot= ggplot() +
+  geom_line(data = b4.u5.sim, aes(x=generation, y=fr.e, group=seed, color = "black"))+
+  geom_line(data = out, aes(x=generation, y= fraction, color = "red"))+
+  labs(title = "Comparison of Models", x = "Cell Doublings", y = "Fraction of Engineered Cells")+
+  scale_colour_manual(values = c('black', 'red'), labels = c("Stochastic", "ODE"), name = "Type")+
+  scale_x_continuous(limits = c(0,100))
+comp.plot
+
+## Show distribution of failure generations created in simulator
 f5.sim.results = data.frame()
-#filter simulation results rounding to 0.5
+# filter fraction results rounding to 0.5
 f5.sim.results = filter(sim.results.df, fr.e < 0.64 & fr.e > 0.45)
-#make b variable a factor percentage for plotting
 f5.sim.results$b = f5.sim.results$b*100
 f5.sim.results$b = as.factor(f5.sim.results$b)
 
 f5.plot= ggplot(f5.sim.results, aes(b, generation, group = b)) +
   geom_boxplot(aes(color = b), outlier.shape =1, outlier.alpha =0.1) + facet_grid(.~u)+ theme(legend.position = "none")+
-  labs(title = "Simulator Distribution by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
+  labs(title = "Stochastic Distribution Faceted by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
 f5.plot
+
