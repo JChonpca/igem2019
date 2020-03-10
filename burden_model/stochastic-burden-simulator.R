@@ -10,11 +10,6 @@ library(tidyverse)
 
 ################ Build ODE model #################
 
-pars<- c(
-  b = 0.4,  # burden value
-  u = 1e-5  # mutation rate
-)
-
 burdenode <- function(t, y, p) {
   with(as.list(c(y, p)), {
     dEt <- ((1-b) * Et) - (u * (1-b) * Et)  # rate at which engineered cells (Et) grow/mutate
@@ -23,19 +18,28 @@ burdenode <- function(t, y, p) {
   })
 }
 
-yini  <- c(Et = 1, Ft = 0)  # initial values of Et and Ft. Begin with one engineered cell.
-times <- seq(0,200, 0.1)    # time sequence for ODE solver
+yini  <- c(Et = 1, Ft = 0)    # initial values of Et and Ft. Begin with one engineered cell.
+times <- seq(0,200, by=0.1)   # time sequence for ODE solver
 
-## Run model
-out   <- ode(yini, times, burdenode, pars)
-out <- data.frame(out)                    # save output into dataframe
-out$fraction <- (out$Et/(out$Et+out$Ft))  # fraction of engineered cells remaining in population
-out$generation <- log2(out$Et+out$Ft)     # number of cell doublings
-summary(out)
+burdenvec<- seq(0,0.5,by=0.1) #vector of burden values, loops only by whole number
 
-## Plot model
-ggplot(out, aes(x=generation, y=fraction)) +
-  geom_line()
+results<- vector(length(burdenvec), mode="list")  #store results
+
+dataODE<-data.frame() #store in dataframe when combining parameters
+
+library(deSolve)
+for(u2 in 5:8){
+  for (burd in seq_along(burdenvec)){
+    results[[burd]]<-ode(yini, times, burdenode,
+                    parms=c(b=burdenvec[burd], u=1*10^-u2))
+  names(results)<-burdenvec 
+  df<-dplyr::bind_rows(lapply(results,as.data.frame),.id="burden")
+  df$mutation<-as.numeric(1*10^-u2)
+  dataODE=rbind(dataODE, df)
+  }
+}
+dataODE$burden<-as.numeric(dataODE$burden)
+
 
 ################# Build stochastic simulator  #################
 
@@ -46,47 +50,47 @@ transition.list = list(
 )
 
 rates.function <- function(x, params, t) {
-    return(c(
-              (1 - params$b) * x["e"],             # rate of e cells growing
-              x["f"],                              # rate of f cells growing
-              (1 - params$b) * x["e"] * params$u   # rate of e cells mutating into f cells
-          )) 
+  return(c(
+    (1 - params$b) * x["e"],             # rate of e cells growing
+    x["f"],                              # rate of f cells growing
+    (1 - params$b) * x["e"] * params$u   # rate of e cells mutating into f cells
+  )) 
 }
 
 
 ## Store all results in a dataframe for easier graphing
 sim.results.df = data.frame()
 
-## Loops over seeds and parameters to generate all possible graphs (takes ~5 mins) -GAM
+## Loops over all whole number parameters
 for (this.u in 8:5) {
-for (this.b in 1:4) {
-for (this.seed in 1:20) {
-  
-  set.seed(this.seed) # set random number generator seed to be reproducible
-  par=list(b=this.b/10, u=1*10^-this.u);
-  sim.results = ssa.adaptivetau(
-    init.values = c(e = 1, f = 0),
-    transition.list,
-    rates.function,
-    par,
-    tf=200
-  )
-  
-  # reformat as a data frame and calculate generations
-  this.sim.results.df =   data.frame (
-    time = sim.results[,c("time")],
-    generation = log2(sim.results[,c("e")] + sim.results[,c("f")]),
-    e = sim.results[,c("e")],
-    f = sim.results[,c("f")],
-    fr.e = sim.results[,c("e")] / (sim.results[,c("e")] + sim.results[,c("f")]),
-    seed = this.seed,
-    b = this.b/10,
-    u = 1*10^-this.u,
-    method = "stochastic"
-  )
-  sim.results.df = rbind(sim.results.df, this.sim.results.df)
-}
-}
+  for (this.b in 1:4) {
+    for (this.seed in 1:20) {
+      
+      set.seed(this.seed) # set random number generator seed to be reproducible
+      par=list(b=this.b/10, u=1*10^-this.u);
+      sim.results = ssa.adaptivetau(
+        init.values = c(e = 1, f = 0),
+        transition.list,
+        rates.function,
+        par,
+        tf=200
+      )
+      
+      # reformat as a data frame and calculate generations
+      this.sim.results.df =   data.frame (
+        time = sim.results[,c("time")],
+        generation = log2(sim.results[,c("e")] + sim.results[,c("f")]),
+        e = sim.results[,c("e")],
+        f = sim.results[,c("f")],
+        fr.e = sim.results[,c("e")] / (sim.results[,c("e")] + sim.results[,c("f")]),
+        seed = this.seed,
+        b = this.b/10,
+        u = 1*10^-this.u,
+        method = "stochastic"
+      )
+      sim.results.df = rbind(sim.results.df, this.sim.results.df)
+    }
+  }
 }
 
 sim.results.df$seed = as.factor(sim.results.df$seed)
@@ -115,4 +119,3 @@ f5.plot= ggplot(f5.sim.results, aes(b, generation, group = b)) +
   geom_boxplot(aes(color = b), outlier.shape =1, outlier.alpha =0.1) + facet_grid(.~u)+ theme(legend.position = "none")+
   labs(title = "Stochastic Distribution Faceted by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
 f5.plot
-
