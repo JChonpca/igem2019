@@ -19,13 +19,11 @@ burdenode <- function(t, y, p) {
 }
 
 yini  <- c(Et = 1, Ft = 0)    # initial values of Et and Ft. Begin with one engineered cell.
-times <- seq(0,200, by=0.1)   # time sequence for ODE solver
+times <- seq(0,200)   # time sequence for ODE solver
 
-burdenvec<- seq(0,0.5,by=0.1) #vector of burden values, loops only by whole number
-
+burdenvec<- seq(0,0.5,by=0.1)                     #vector of burden values, loops only by whole number
 results<- vector(length(burdenvec), mode="list")  #store results
-
-dataODE<-data.frame() #store in dataframe when combining parameters
+out<-data.frame()                                 #store in dataframe when combining parameters
 
 library(deSolve)
 for(u2 in 5:8){
@@ -35,10 +33,12 @@ for(u2 in 5:8){
   names(results)<-burdenvec 
   df<-dplyr::bind_rows(lapply(results,as.data.frame),.id="burden")
   df$mutation<-as.numeric(1*10^-u2)
-  dataODE=rbind(dataODE, df)
+  out=rbind(out, df)
   }
 }
-dataODE$burden<-as.numeric(dataODE$burden)
+out$burden<-as.numeric(out$burden)
+out$fraction <- (out$Et/(out$Et+out$Ft))  #fraction of engineered cells remaining in population
+out$generation <- log2(out$Et+out$Ft)     #number of cell doublings
 
 
 ################# Build stochastic simulator  #################
@@ -100,13 +100,15 @@ sim.results.df$seed = as.factor(sim.results.df$seed)
 ## Compare ODE v stochastic methods
 # filter results which match ODE parameters
 b4.u5.sim = filter(sim.results.df, b == 0.4 & u == 1e-5)
+b4.u5.out = filter(out, burden==0.4 & mutation==1e-5)
 comp.plot= ggplot() +
   geom_line(data = b4.u5.sim, aes(x=generation, y=fr.e, group=seed, color = "black"))+
-  geom_line(data = out, aes(x=generation, y= fraction, color = "red"))+
+  geom_line(data = b4.u5.out, aes(x=generation, y= fraction, color = "red"))+
   labs(title = "Comparison of Models", x = "Cell Doublings", y = "Fraction of Engineered Cells")+
   scale_colour_manual(values = c('black', 'red'), labels = c("Stochastic", "ODE"), name = "Type")+
   scale_x_continuous(limits = c(0,100))
 comp.plot
+
 
 ## Show distribution of failure generations created in simulator
 f5.sim.results = data.frame()
@@ -115,7 +117,15 @@ f5.sim.results = filter(sim.results.df, fr.e < 0.64 & fr.e > 0.45)
 f5.sim.results$b = f5.sim.results$b*100
 f5.sim.results$b = as.factor(f5.sim.results$b)
 
+#tidy ODE simulator data
+f5.out=data.frame()
+f5.out=filter(out, fraction<0.64 & fraction>0.45)
+f5.out$burden=f5.out$burden*100
+f5.out$burden=as.factor(f5.out$burden)
+f5.out<-rename(f5.out, "u"="mutation")
+f5.out<-rename(f5.out, "b"="burden")
+
 f5.plot= ggplot(f5.sim.results, aes(b, generation, group = b)) +
   geom_boxplot(aes(color = b), outlier.shape =1, outlier.alpha =0.1) + facet_grid(.~u)+ theme(legend.position = "none")+
   labs(title = "Stochastic Distribution Faceted by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
-f5.plot
+f5.plot + geom_point(data=f5.out, aes(b, generation, group = b), alpha=0.1) + facet_grid(.~u)
