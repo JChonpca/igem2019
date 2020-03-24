@@ -57,8 +57,39 @@ $SCRIPTDIR/burden_normalize.R \
   -v $VECTOR \
   -c "JEB1204,JEB1205,JEB1206,JEB1207,JEB1208"
 
-mkdir -p $MAINDIR/05-final-output
+mkdir -p $MAINDIR/05-burden-final-output
 $SCRIPTDIR/igem2019_graph_normalized.R \
   -i $MAINDIR/04-normalization/$SETTINGS.strain.burden.csv \
-  -o $MAINDIR/04-normalization/${SETTINGS} \
+  -o $MAINDIR/05-burden-final-output/${SETTINGS} \
   -m $MAINDIR/igem2019_plate_metadata.csv
+
+
+##### RFP analysis
+
+mkdir -p $MAINDIR/10-RFP-series-output
+
+#### Fit growth rate and GFP production rate the normal way
+#$SCRIPTDIR/burden_fit.R -i input-plate-data-RFP-promoter-series/exp056/exp056 -o $MAINDIR/10-RFP-series-output/exp056 --min-OD 0 --max-method 1 --two-point-fit ${FITTWOPOINTS} --FP-per-OD-at-time ${FPPERODATTIME} --time-point-delta ${TIMEPOINTDELTA}
+$SCRIPTDIR/burden_fit.R -i input-plate-data-RFP-promoter-series/exp057/exp057 -o $MAINDIR/10-RFP-series-output/exp057 --min-OD 0 --max-method 1 --two-point-fit ${FITTWOPOINTS} --FP-per-OD-at-time ${FPPERODATTIME} --time-point-delta ${TIMEPOINTDELTA}
+
+
+$SCRIPTDIR/burden_summary.R -i $MAINDIR/10-RFP-series-output/exp057.rates.summary.csv
+
+
+### NEED TO ADD MIN TIME PARAMETER
+#### Fitting RFP (other) rate, need to avoid noisy initial points
+$SCRIPTDIR/burden_fit.R -i input-plate-data-RFP-promoter-series/exp056/exp056 -o $MAINDIR/10-RFP-series-output/exp056-RFP-max --min-OD ${MINOD} --max-time 10000 --max-method 2 --two-point-fit ${FITTWOPOINTS} --FP-per-OD-at-time ${FPPERODATTIME} --time-point-delta ${TIMEPOINTDELTA}
+
+
+##### MSU comparison
+mkdir -p $MAINDIR/20-MSU-compare-output
+$SCRIPTDIR/burden_fit.R -i $MAINDIR/input-MSU-compare/msu -o $MAINDIR/20-MSU-compare-output/msu --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --FP-per-OD-at-time ${FPPERODATTIME} --time-point-delta ${TIMEPOINTDELTA}
+
+mkdir -p $MAINDIR/05-burden-final-output
+$SCRIPTDIR/igem2019_graph_normalized.R \
+  -i $MAINDIR/20-MSU-compare-output/msu.rates.all.csv \
+  -o $MAINDIR/20-MSU-compare-output \
+  -m $MAINDIR/msu_plate_metadata.csv
+
+#
+

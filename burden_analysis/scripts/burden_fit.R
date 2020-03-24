@@ -426,7 +426,7 @@ if (file.exists(paste0(option.input.prefix, ".measurements.csv"))) {
 
 # If there is no header row of wells, assume standard order by row from top of plate.
 # Otherwise, take the first row as the well labels.
-if (all_data$X1[1] == "0s") {
+if ((all_data$X1[1] == "0s" || as.character(all_data$X1[1]) == "0")) {
   names(all_data) = c("Time",
                       "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12",
                       "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12",
@@ -873,14 +873,15 @@ for (strain.of.interest in unique(Z$strain.isolate) )
           if (num.readings == 3) {
             
             if (option.FP.per.OD.at.time) {
-              fluorescence_per_ODs = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)] / replicate.fluorescence.data$OD[(i-option.time.point.delta):(i+option.time.point.delta)]
+              log_fluorescence_per_ODs = log(replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)])
+              #/ replicate.fluorescence.data$fit.OD[(i-option.time.point.delta):(i+option.time.point.delta)]
               
-              if (!is.na(mean(fluorescence_per_ODs))) {
-                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescence_per_ODs))
-                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * 60
+              if (!is.na(mean(log_fluorescence_per_ODs))) {
+                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
+                
                 replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
               }
-              
             } else {
               fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
               
@@ -979,7 +980,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
         max.other.fluorescence.data.row$time.min[1] = NA
       }
       
-      cat("Time of GFP production rate:", max.other.fluorescence.data.row$time.min[1], "min\n")
+      cat("Time of other production rate:", max.other.fluorescence.data.row$time.min[1], "min\n")
       cat("Max other production:", max.other.fluorescence.data.row$other.rate, "per hour\n")
     }
     
@@ -1001,7 +1002,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
       
     } else  if (num.readings == 3) {
       
-      if(!is.na(max.growth.rate.row$specific.growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate) && !is.na(max.other.fluorescence.data.row$other.rate)) {
+      if(!is.na(max.growth.rate.row$specific.growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate)) {
         
         strain.max.values = bind_rows(strain.max.values, 
                                       data.frame(

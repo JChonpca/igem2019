@@ -313,6 +313,10 @@ final.normalized.data = final.normalized.data %>% left_join(adjustments, by="pla
 final.normalized.data$normalized.growth.rate = 1-(1-final.normalized.data$normalized.growth.rate)*final.normalized.data$growth.rate.normalization.factor
 final.normalized.data$normalized.GFP.rate = 1-(1-final.normalized.data$normalized.GFP.rate)*final.normalized.data$GFP.rate.normalization.factor
 
+#Output all normalized values
+write.csv(final.normalized.data, paste0(output.base.name, ".normalized.burden.all.wells.csv"), row.names=F)
+
+
 final.normalized.control.data=final.normalized.data %>% filter(strain %in% control.strains)
 final.normalized.not.control.data = final.normalized.data %>% filter(!(strain %in% control.strains))
 
