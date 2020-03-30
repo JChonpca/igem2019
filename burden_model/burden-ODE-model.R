@@ -45,6 +45,8 @@ rates.function <- function(x, pars, t) {
   )) 
 }
 
+sim.results.df = data.frame() # save as a dataframe
+
 all_the_things <- function(burden, mutation_rate){
  for (this.seed in 1:20) {
    set.seed(this.seed) # set random number generator seed to be reproducible
@@ -53,10 +55,11 @@ all_the_things <- function(burden, mutation_rate){
      init.values = c(e = 1, f = 0),
      transition.list,
      rates.function,
-     par,
+     pars,
      tf = 200
    )
-  # reformat as a data frame and calculate generations
+
+  # reformat and calculate generations
    this.sim.results.df =   data.frame (
      time = sim.results[,c("time")],
      generation = log2(sim.results[,c("e")] + sim.results[,c("f")]),
@@ -106,12 +109,12 @@ server <- function(input, output) {
     u <- as.numeric(input$u)
     volumes <-input$volumes
     out.here <- all_the_stuff(burden = b, mutation_rate = u)
-    out.there <- all_the_things(burden = b, mutation_rate = u)  ## Having trouble here
+    out.there <- all_the_things(burden = b, mutation_rate = u)
     ggplot(data = out.here, 
            aes(x = generation, 
                y = fraction)) +
-      geom_line(color = "#ff3232", size = 1.5) +
-      ggplot(data = out.there, aes(x = generation, y = fr.e)) + ### Trouble here, too - GAM
+      geom_line(color = "red", size = 1.5) +
+      geom_line(data = out.there, aes(x = generation, y = fr.e, group = seed)) +
       geom_line()+
       geom_vline(xintercept = as.numeric(volumes), 
                  color = "#696969", 
