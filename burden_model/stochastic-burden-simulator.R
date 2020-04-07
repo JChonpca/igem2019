@@ -25,15 +25,14 @@ burdenvec<- seq(0,0.5,by=0.1)                     #vector of burden values, loop
 results<- vector(length(burdenvec), mode="list")  #store results
 out<-data.frame()                                 #store in dataframe when combining parameters
 
-library(deSolve)
 for(u2 in 5:8){
   for (burd in seq_along(burdenvec)){
     results[[burd]]<-ode(yini, times, burdenode,
-                    parms=c(b=burdenvec[burd], u=1*10^-u2))
-  names(results)<-burdenvec 
-  df<-dplyr::bind_rows(lapply(results,as.data.frame),.id="burden")
-  df$mutation<-as.numeric(1*10^-u2)
-  out=rbind(out, df)
+                         parms=c(b=burdenvec[burd], u=1*10^-u2))
+    names(results)<-burdenvec 
+    df<-bind_rows(lapply(results,as.data.frame),.id="burden")
+    df$mutation<-as.numeric(1*10^-u2)
+    out=rbind(out, df)
   }
 }
 out$burden<-as.numeric(out$burden)
@@ -63,7 +62,7 @@ sim.results.df = data.frame()
 
 ## Loops over all whole number parameters
 for (this.u in 8:5) {
-  for (this.b in 1:4) {
+  for (this.b in 1:5) {
     for (this.seed in 1:20) {
       
       set.seed(this.seed) # set random number generator seed to be reproducible
@@ -129,3 +128,19 @@ f5.plot= ggplot(f5.sim.results, aes(b, generation, group = b)) +
   geom_boxplot(aes(color = b), outlier.shape =1, outlier.alpha =0.1) + facet_grid(.~u)+ theme(legend.position = "none")+
   labs(title = "Stochastic Distribution Faceted by Mutation Rate", x = "Burden (%)", y = "Cell Doublings to 50% Failure")
 f5.plot + geom_point(data=f5.out, aes(b, generation, group = b), alpha=0.1) + facet_grid(.~u)
+ 
+#tidy more data
+out = out %>% rename(b = burden)
+out = out %>% rename(u =mutation)
+sim.results.df = sim.results.df %>% rename(fraction = fr.e)
+out = filter(out, b != 0)
+
+### Plot showing ODE v stochastic curves for all whole number parameters
+fig1s <- ggplot()+
+  geom_line(data = sim.results.df, aes(generation, fraction, group = seed))+
+  geom_line(data = out, aes(generation, fraction), color = "red") +
+  facet_grid(u ~ b)+
+  scale_x_continuous(limits = c(0,100))+
+  theme_classic() +
+  NULL
+fig1s
