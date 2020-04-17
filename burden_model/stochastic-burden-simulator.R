@@ -20,18 +20,21 @@ burdenode <- function(t, y, p) {
 
 yini  <- c(Et = 1, Ft = 0)    # initial values of Et and Ft. Begin with one engineered cell.
 times <- seq(0,200)   # time sequence for ODE solver
-
-burdenvec<- seq(0,0.5,by=0.1)                     #vector of burden values, loops only by whole number
+log10uvec <- seq(-8,-5,by=1)
+burdenvec <- seq(0.1,0.5,by=0.1)                     #vector of burden values, loops only by whole number
 results<- vector(length(burdenvec), mode="list")  #store results
 out<-data.frame()                                 #store in dataframe when combining parameters
 
-for(u2 in 5:8){
-  for (burd in seq_along(burdenvec)){
-    results[[burd]]<-ode(yini, times, burdenode,
-                         parms=c(b=burdenvec[burd], u=1*10^-u2))
-    names(results)<-burdenvec 
-    df<-bind_rows(lapply(results,as.data.frame),.id="burden")
-    df$mutation<-as.numeric(1*10^-u2)
+for(u.i in seq_along(log10uvec)){
+  for (burd.i in seq_along(burdenvec)){
+    this.log10u = log10uvec[u.i]
+    this.u = 10^this.log10u
+    this.b = burdenvec[burd.i]
+    results<-ode(yini, times, burdenode,
+                         parms=c(b=this.b, u=this.u))
+    df = as.data.frame(results)
+    df$burden = this.b
+    df$mutation = this.u
     out=rbind(out, df)
   }
 }
@@ -60,13 +63,18 @@ rates.function <- function(x, params, t) {
 ## Store all results in a dataframe for easier graphing
 sim.results.df = data.frame()
 
-## Loops over all whole number parameters
-for (this.u in 8:5) {
-  for (this.b in 1:5) {
+for(u.i in seq_along(log10uvec)){
+  for (burd.i in seq_along(burdenvec)){
+    
+    this.log10u = log10uvec[u.i]
+    this.u = 10^this.log10u
+    this.b = burdenvec[burd.i]
+    cat(this.u, ", ", this.b, "\n")
+    
     for (this.seed in 1:20) {
       
       set.seed(this.seed) # set random number generator seed to be reproducible
-      par=list(b=this.b/10, u=1*10^-this.u);
+      par=list(b=this.b, u=this.u);
       sim.results = ssa.adaptivetau(
         init.values = c(e = 1, f = 0),
         transition.list,
@@ -83,8 +91,8 @@ for (this.u in 8:5) {
         f = sim.results[,c("f")],
         fr.e = sim.results[,c("e")] / (sim.results[,c("e")] + sim.results[,c("f")]),
         seed = this.seed,
-        b = this.b/10,
-        u = 1*10^-this.u,
+        b = this.b,
+        u = this.u,
         method = "stochastic"
       )
       sim.results.df = rbind(sim.results.df, this.sim.results.df)
