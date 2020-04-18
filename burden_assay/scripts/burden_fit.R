@@ -93,7 +93,7 @@ if (!exists("input.prefix")) {
     make_option(c("-e", "--avg-end-time"), type="numeric", default=default.offset.readings.to.average.time.span.end, 
                 help="Offset the readings of every well of a sample to the average value of all readings in all wells of a  sample over the interval from time zero up through and including this final time. Set to -1 to turn off this initial timepoint averaging.", metavar="value"),
     make_option(c("-b", "--background"), type="character", default=NA, 
-                            help="Constant background measurements to subtract from measurements in place. Must be a comma-separated list with as many background values as there are measurement types. If this is not provided (the defaults), then the time course from BLANK wells is subtracted.", metavar="value1,value2,[value3]"),
+                            help="Constant background measurements to subtract from measurements in place. Must be a comma-separated list with as many background values as there are measurement types. If this is not provided (the default), then the time course from BLANK wells is subtracted.", metavar="value1,value2,[value3]"),
      make_option(c("-p", "--no-plots"), type="logical", action="store_true", 
                 help="Don't create plots for quicker execution.")
   )
@@ -844,15 +844,19 @@ for (strain.of.interest in unique(Z$strain.isolate) )
       if (nrow(replicate.fluorescence.data) >= 2 * option.time.point.delta + 1) {
         
         for(i in (1+option.time.point.delta):(nrow(replicate.fluorescence.data)-option.time.point.delta)) {
+          
+          #cat(i, "\n")
           #create a matrix
           
-          times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
-          
           if (option.FP.per.OD.at.time) {
+            times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
             log_fluorescence_per_ODs = log(replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)])
-            #/ replicate.fluorescence.data$fit.OD[(i-option.time.point.delta):(i+option.time.point.delta)]
             
-            if (!is.na(mean(log_fluorescence_per_ODs))) {
+            ## Remove negative/missing values and fit if half are remaining...
+            times = times[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
+            log_fluorescence_per_ODs = log_fluorescence_per_ODs[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
+            
+            if (length(log_fluorescence_per_ODs) > option.time.point.delta) {
               fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
               replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
               
@@ -861,9 +865,10 @@ for (strain.of.interest in unique(Z$strain.isolate) )
             }
             
           } else {
+            times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
             fluorescences = replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)]
             #don't do this with NAs => caused by overflow of fluorescent challenges
-            if (!is.na(mean(fluorescences))) {
+            if (!is.na(mean(fluorescences)) && !is.infinite(mean(fluorescences))) {
               fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
               replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
               replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
@@ -873,19 +878,24 @@ for (strain.of.interest in unique(Z$strain.isolate) )
           if (num.readings == 3) {
             
             if (option.FP.per.OD.at.time) {
+              times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
               log_fluorescence_per_ODs = log(replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)])
-              #/ replicate.fluorescence.data$fit.OD[(i-option.time.point.delta):(i+option.time.point.delta)]
               
-              if (!is.na(mean(log_fluorescence_per_ODs))) {
+              ## Remove negative/missing values and fit if half are remaining...
+              times = times[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
+              log_fluorescence_per_ODs = log_fluorescence_per_ODs[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
+              
+              if (length(log_fluorescence_per_ODs) > option.time.point.delta) {
                 fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
                 replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
                 
                 replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
               }
             } else {
+              times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
               fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
               
-              if (!is.na(mean(fluorescences))) {
+              if (!is.na(mean(fluorescences)) && !is.infinite(mean(fluorescences))) {
                 fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
                 replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
                 replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
@@ -933,7 +943,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
   
   for (this.well in levels(growth.rate.data$well)) {
     
-    cat("Well:", this.well, "\n")
+    #cat("Well:", this.well, "\n")
     
     replicate.growth.rate.data = growth.rate.data %>% filter(well == this.well)
     
@@ -1028,9 +1038,23 @@ for (strain.of.interest in unique(Z$strain.isolate) )
   }
   cat("\n\n")
   
+  if (!is.na(mean(strain.max.values$growth.rate)) && length(strain.max.values$growth.rate) > 1) {
+    ttest.growth.rate = t.test(strain.max.values$growth.rate)
+  } else {
+    ttest.growth.rate = c()
+    ttest.growth.rate$conf.int = c(NA, NA)
+  }
+  
+  if (!is.na(mean(strain.max.values$GFP.rate)) && length(strain.max.values$GFP.rate) > 1) {
+    ttest.GFP.rate = t.test(strain.max.values$GFP.rate)
+  } else {
+    ttest.growth.rate = c()
+    ttest.growth.rate$conf.int = c(NA, NA)
+  }
   
   if (num.readings == 2) {
     
+
     final.table.summary = bind_rows(final.table.summary, 
                                     data.frame(
                                       strain.isolate = strain.of.interest,
@@ -1038,8 +1062,14 @@ for (strain.of.interest in unique(Z$strain.isolate) )
                                       wells = paste(strain.max.values$well, collapse=","),
                                       growth.rate = mean(strain.max.values$growth.rate),
                                       growth.rate.sd = sd(strain.max.values$growth.rate),
+                                      growth.rate.sem = sd(strain.max.values$growth.rate)/sqrt(length(strain.max.values$growth.rate)),
+                                      growth.rate.95L = ttest.growth.rate$conf.int[1],
+                                      growth.rate.95U = ttest.growth.rate$conf.int[2],
                                       GFP.rate = mean(strain.max.values$GFP.rate),
-                                      GFP.rate.sd = sd(strain.max.values$GFP.rate)
+                                      GFP.rate.sd = sd(strain.max.values$GFP.rate),
+                                      GFP.rate.sem = sd(strain.max.values$GFP.rate)/sqrt(length(strain.max.values$GFP.rate)),
+                                      GFP.rate.95L = ttest.GFP.rate$conf.int[1],
+                                      GFP.rate.95U = ttest.GFP.rate$conf.int[2]
                                     )
     )
     
@@ -1056,6 +1086,13 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     
   } else  if (num.readings == 3) {
     
+    if (!is.na(mean(strain.max.values$other.rate)) && length(strain.max.values$other.rate) > 1) {
+      ttest.other.rate = t.test(strain.max.values$other.rate)
+    } else {
+      ttest.other.rate = c()
+      ttest.other.rate$conf.int = c(NA, NA)
+    }
+    
     final.table.summary = bind_rows(final.table.summary, 
                                     data.frame(
                                       strain.isolate = strain.of.interest,
@@ -1063,10 +1100,19 @@ for (strain.of.interest in unique(Z$strain.isolate) )
                                       wells = paste(strain.max.values$well, collapse=","),
                                       growth.rate = mean(strain.max.values$growth.rate),
                                       growth.rate.sd = sd(strain.max.values$growth.rate),
+                                      growth.rate.sem = sd(strain.max.values$growth.rate)/sqrt(length(strain.max.values$growth.rate)),
+                                      growth.rate.95L = ttest.growth.rate$conf.int[1],
+                                      growth.rate.95U = ttest.growth.rate$conf.int[2],
                                       GFP.rate = mean(strain.max.values$GFP.rate),
                                       GFP.rate.sd = sd(strain.max.values$GFP.rate),
+                                      GFP.rate.sem = sd(strain.max.values$GFP.rate)/sqrt(length(strain.max.values$GFP.rate)),
+                                      GFP.rate.95L = ttest.GFP.rate$conf.int[1],
+                                      GFP.rate.95U = ttest.GFP.rate$conf.int[2],
                                       other.rate = mean(strain.max.values$other.rate),
-                                      other.rate.sd = sd(strain.max.values$other.rate)
+                                      other.rate.sd = sd(strain.max.values$other.rate),
+                                      other.rate.sem = sd(strain.max.values$other.rate)/sqrt(length(strain.max.values$other.rate)),
+                                      other.rate.95L = ttest.other.rate$conf.int[1],
+                                      other.rate.95U = ttest.other.rate$conf.int[2]
                                     )
     )
     
@@ -1094,9 +1140,9 @@ final.table.summary$isolate= sub("^.+__", "", final.table.summary$strain.isolate
 final.table.summary$strain = sub("__.+$", "", final.table.summary$strain.isolate, perl = T)
 final.table.summary = final.table.summary %>% select(-strain.isolate)
 
-final.column.order = c("strain", "isolate", "replicates", "wells", "growth.rate", "growth.rate.sd", "GFP.rate", "GFP.rate.sd")
+final.column.order = c("strain", "isolate", "replicates", "wells", "growth.rate", "growth.rate.sd", "growth.rate.sem", "growth.rate.95L", "growth.rate.95U", "GFP.rate", "GFP.rate.sd", "GFP.rate.sem", "GFP.rate.95L", "GFP.rate.95U")
 if (num.readings == 3) {
-  final.column.order = c(final.column.order, "other.rate", "other.rate.sd")
+  final.column.order = c(final.column.order, "other.rate", "other.rate.sd", "other.rate.sem", "other.rate.95L", "other.rate.95U")
 }
 final.table.summary = final.table.summary %>% select(final.column.order) %>% arrange(strain, isolate)
 

@@ -593,3 +593,23 @@ BB587,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,E0030,"Plate 3, 
 BB588,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,I0500,"Plate 6, 21E",spring 2018 iGEM distribution,Noor Radde,,,exp027,NA,0,,FALSE,,Regulatory,NA," ""Inducible pBad/araC promoter""",TRUE
 BB589,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,B1006,"Plate 3, 5D",spring 2018 iGEM distribution,Noor Radde,,,exp028,NA,0,,FALSE,,Terminator,NA," ""Terminator (artificial  large  %T~>90)""",FALSE
 BB590,08.04.19,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,J23119,"Plate 3, 17O ",spring 2018 iGEM distribution,Noor Radde,,,exp028,NA,0,,FALSE,,Regulatory,NA," ""constitutive promoter family member""",FALSE
+MSU1,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,K819010,"Plate 1, F5",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Coding,1," ""Medium cheZ generator""",TRUE
+MSU2,,E. coli DH10B + burden monitor,"kan, amp",J23006,J23070,"Plate 4, 15P",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Generator,2," ""Ser2 derived key""",TRUE
+MSU3,,E. coli DH10B + burden monitor,"kan, amp",pSB1A3,I13452,"Plate 4, 21D",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Intermediate,2," ""Adds another BioBrick site""",TRUE
+MSU4,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,K819017,"Plate 1, D5",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Coding,1," ""Luminesensor repressible SulA408 promoter""",TRUE
+MSU5,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23115,"Plate 4, 19L",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member""",TRUE
+MSU6,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23107,"Plate 4, B19",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member """,TRUE
+MSU7,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K617003,"Plate 1, M8",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,DNA,1, Confirmed(A),TRUE
+MSU8,,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,J61000,"Plate 4, 23N",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Translational_Unit,2," ""chloramphenicol resistance cassette""",TRUE
+MSU9,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,K541501,"Plate 1, 11E",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Composite,8," ""Promoter Pveg  RBS spoVG and SacB signal peptide for B. subtilis""",TRUE
+MSU10,,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,I13001,"PLate 4, 23H",spring 2018 iGEM distribution,,,,exp057,,,,TRUE,YFP,Composite,2," ""RBS B0030 w/ YFP (-LVA) TT""",TRUE
+MSU11,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,K733013,"Plate 1, 7H",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Composite,1," ""<i>Pveg</i>+R.B.S.""",TRUE
+MSU12,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23104,"Plate 4, L17",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member""",TRUE
+MSU13,,E. coli DH10B + burden monitor,"cam, kan",pSB1C3,K731721,"Plate 1, 24K",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Terminator,1," ""T7 terminator""",TRUE
+MSU14,,E. coli DH10B + burden monitor,"kan, amp",pSB1A2,I13602,"Plate 4, 11J",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Device,2," ""Tet operator with CFP reporter (with LVA tag) [R/Tc+]""",TRUE
+MSU15,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,K634001,"Plate 1, 10G",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""exaE""",TRUE
+MSU16,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,J52022,"Plate 4, 11E",spring 2018 iGEM distribution,,,,exp057,,,,TRUE,GFP,Generator,4," ""Nf_B-dnTraf6-linker-GFP""",TRUE
+MSU17,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23113,"Plate 4, 19H",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member""",TRUE
+MSU18,,E. coli DH10B + burden monitor,"kan, cam",pSB1C3,S05050,"Plate 1, B5",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""B0034:K748002""",FALSE
+MSU19,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23117,"Plate 4, 19P",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member""",TRUE
+MSU20,,E. coli DH10B + burden monitor,"kan, amp",J61002,J23101,"Plate 4, F17",spring 2018 iGEM distribution,,,,exp057,,,,FALSE,,Regulatory,1," ""constitutive promoter family member""",TRUE

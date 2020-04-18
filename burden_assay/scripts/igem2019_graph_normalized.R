@@ -7,9 +7,9 @@ library(ggplot2)
 library(cowplot)
 
 #debug
-input.file.string="04-normalization/output.part.burden.csv"
-output.base.name="04-normalization/output.part.burden"
-metadata.file.string = "igem2019_strain_metadata.csv"
+#input.file.string="04-normalization/output.part.burden.csv"
+#output.base.name="04-normalization/output.part.burden"
+#metadata.file.string = "igem2019_strain_metadata.csv"
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -47,7 +47,7 @@ if (!exists("input.file.string")) {
    metadata.file.string = opt$metadata
 }
 
-cat("Normalizing across different plates...\n")
+
 cat("Input file of normalized values:  ", input.file.string, "\n")
 cat("Input file of strain metadata: ", metadata.file.string, "\n")
 cat("Output base name: ", output.base.name, "\n")
@@ -71,7 +71,7 @@ strain.metadata = read.csv(metadata.file.string)
 ### How many unique strains did we analyze total?
 
 noncontrolstrains = all.data %>% filter(burden.category != "control")
-cat("Total strains analyzed:", length(unique(noncontrolstrains$strain)))
+cat("Total strains analyzed:", length(unique(noncontrolstrains$strain)), "\n")
 
 ################################################################################
 ### Plot testing for trend in coefficient of variation versus growth rate

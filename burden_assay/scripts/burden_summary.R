@@ -98,11 +98,11 @@ slope_fixed_zero = coef(fit_fixed_zero)
 
 # plot showing all strains burden vs growth 
 burdenVsGrowthPlot = ggplot(all.data, aes_(x=as.name(paste0(readings[1], ".rate")), y=as.name(paste0(readings[2], ".rate")), color=as.name("strain"), shape=as.name("isolate")))  +
-  geom_errorbarh(aes(xmin=growth.rate-growth.rate.sd, xmax=growth.rate+growth.rate.sd), height=0) +
-  geom_errorbar(aes(ymin=GFP.rate-GFP.rate.sd, ymax=GFP.rate+GFP.rate.sd), width=0) + 
+  geom_errorbarh(aes(xmin=growth.rate.95L, xmax=growth.rate.95U), height=0) +
+  geom_errorbar(aes(ymin=GFP.rate.95L, ymax=GFP.rate.95U), width=0) + 
   geom_point(size=5)  +
-  scale_x_continuous(limits = c(0, max(all.data$growth.rate+all.data$growth.rate.sd))) + 
-  scale_y_continuous(limits = c(0, max(all.data$GFP.rate+all.data$GFP.rate.sd))) + 
+  scale_x_continuous(limits = c(0, max(all.data$growth.rate.95U))) + 
+  scale_y_continuous(limits = c(0, max(all.data$GFP.rate.95U))) + 
   geom_abline(intercept=0, slope = slope_fixed_zero) +
   NULL
 
@@ -120,8 +120,8 @@ all.data$isolate=as.factor(all.data$isolate)
 # Plot growth rate for every strain
 growthRatePlot = ggplot(all.data, aes_(x=as.name("strain"), y=as.name(paste0(readings[1], ".rate")), fill=as.name("isolate")))  +  
 	geom_bar(size=3, stat="identity", position=position_dodge()) +
-	geom_errorbar(aes(ymin=growth.rate-growth.rate.sd, ymax=growth.rate+growth.rate.sd), position=position_dodge()) + 
-	scale_y_continuous(limits = c(0, max(all.data$growth.rate+all.data$growth.rate.sd))) +
+	geom_errorbar(aes(ymin=growth.rate.95L, ymax=growth.rate.95U), position=position_dodge()) + 
+	scale_y_continuous(limits = c(0, max(all.data$growth.rate.95U))) +
 	NULL	
 
 ggsave(paste0(output.prefix, ".growth_rates.pdf"))
