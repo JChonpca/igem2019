@@ -1,5 +1,5 @@
 
-####  Code separated from main script to reproduce Fig. 1S
+####  Code separated from main script to reproduce Fig. S1
 
 ################################### STOCHASTIC BURDEN SIMULATOR #####################################
 #####  Stochastically plot fraction of engineered cells in a population versus cell doublings  ######
