@@ -1,0 +1,13 @@
+Of the parts they tested, these 11 parts overlap with our final data set:
+
+K819010
+K819017
+K617003
+J61000
+K541501
+I13001
+K634001
+J52022
+K733013
+K731721
+I13602

@@ -71,7 +71,7 @@ F9,1,blank,,
 F10,1,BB215,,
 F11,1,BB216,,
 F12,1,BB217,,
-G1,0,BB229,outlier,
+G1,0,BB229,,outlier
 G2,1,JEB1204,,
 G3,1,JEB1205,,
 G4,1,JEB1206,,

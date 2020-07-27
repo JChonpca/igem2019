@@ -36,6 +36,14 @@ suppressMessages(library(gridExtra))
 suppressMessages(library(cowplot))
 
 
+#debug
+#input.prefix="input-plate-data/exp011/exp011"
+#output.prefix="01-output-plate-fits/exp011"
+#time.point.delta = 4
+#FP.per.OD.at.time = T
+#max.method = 1
+#two.point.fit = F
+#minimum.OD = 0.03
 
 ##############################################################
 #### Error Handler
@@ -69,7 +77,8 @@ default.two.point.fit = F
 default.minimum.OD = 0.0
 default.maximum.time = 600
 default.offset.readings.to.average.time.span.end = 60
-default.FP.per.OD.at.time = F
+default.growth.rate.method ="exponential"
+default.fluorescence.rate.method = "exponential-with-production"
 
 if (!exists("input.prefix")) {
   suppressMessages(library(optparse))
@@ -79,11 +88,13 @@ if (!exists("input.prefix")) {
     make_option(c("-o", "--output"), type="character", default=NULL, 
                 help="Output file prefix. Output files of the form <output>.* will be created. If this option is not provided the input file prefix will be used.", metavar="output_prefix"),
     make_option(c("-m", "--max-method"), type="numeric", default=2, 
-                help="Maximum picking method. 1=pick max growth rate time and use other rates at this same time. 2=pick maximum value of each curve at whatever time it occurs (may be different for growth rate and for fluorescence)", metavar="1/2"),
+                help="Maximum picking method. 1=pick max growth rate time and use other rates at this same time. 2=pick maximum value of each curve at whatever time it occurs (may be different for growth rate and for fluorescence).", metavar="1/2"),
     make_option(c("--two-point-fit"), type="logical", action="store", default=default.two.point.fit, 
-                help="Fit rates using just the first and last point in the intervals. The default without this flag is to use all time points."),
-    make_option(c("--FP-per-OD-at-time"), type="logical", action="store", default=default.FP.per.OD.at.time, 
-                help="Fit GFP and other rates from fluorescence divided by OD per time point, rather than fitting the change in signal per time and then dividing by the midpoint OD value. Only works iwhen --two-point-fit is FALSE"),
+                help="Fit growth and fluorescence rates using just the first and last points in the intervals. The default without this flag is to use all time points in the interval."),
+    make_option(c("-g", "--growth-rate-method"), type="character", action="store", default=NA, 
+                help="Method used for fitting fluorescence production rates. Options are log-linear or exponential. Only works when --two-point-fit is FALSE. Fits to the exponential model may fail to converge. (Default = exponential)"),
+    make_option(c("-f", "--fluorescence-rate-method"), type="character", action="store", default=NA, 
+                help="Method used for fitting fluorescence production rates. Options are log-linear-per-OD or exponential-with-production. Only works when --two-point-fit is FALSE. Fits to the exp-production model may fail to converge. (Default = exponential-production)"),
     make_option(c("-t", "--time-point-delta"), type="numeric", default=3, 
                 help="Time point delta used in calculating rates. This many points before and after the current point will be used for fitting rates. So, if you recorded data every 10 minutes and choose a value of 2 (the default), then 50 minute long windows spanning five data point are used for fitting rates.", metavar="int"),
     make_option(c("-d", "--min-OD"), type="numeric", default=default.minimum.OD, 
@@ -124,8 +135,12 @@ if (!exists("input.prefix")) {
     two.point.fit = opt$'two-point-fit' 
   }
   
-  if (!is.null(opt$'FP-per-OD-at-time' )) {
-    FP.per.OD.at.time= opt$'FP-per-OD-at-time' 
+  if (!is.null(opt$'growth-rate-method' )) {
+    growth.rate.method = opt$'growth-rate-method' 
+  }
+  
+  if (!is.null(opt$'fluorescence-rate-method' )) {
+    fluorescence.rate.method = opt$'fluorescence-rate-method' 
   }
   
   if (!is.null(opt$'time-point-delta')) {
@@ -188,15 +203,36 @@ if (exists("two.point.fit")) {
 }
 
 
-if (exists("FP.per.OD.at.time")) {
-  option.FP.per.OD.at.time = FP.per.OD.at.time
-} else {
-  option.FP.per.OD.at.time = default.FP.per.OD.at.time
+if (option.two.point.fit & exists("growth.rate.method")) {
+  fatal_error("Cannot have both --growth-rate-method and --two-point-fit set to TRUE")
 }
 
-if (option.two.point.fit & option.FP.per.OD.at.time) {
-  fatal_error("Cannot have both --FP-per-OD-at-time and --two-point-fit set to TRUE")
+if (exists("growth.rate.method") && !is.na(growth.rate.method) ) {
+  option.growth.rate.method = growth.rate.method
+} else {
+  option.growth.rate.method = default.growth.rate.method
 }
+option.growth.rate.method = toupper(option.growth.rate.method)
+
+if (!(option.growth.rate.method %in% c("LOG-LINEAR", "EXPONENTIAL"))) {
+  fatal_error("--growth-rate-method must be \"log-linear\" or \"exponential\"")
+}
+
+if (option.two.point.fit & exists("fluorescence.rate.method")) {
+  fatal_error("Cannot have both --fluorescence-rate-method and --two-point-fit set to TRUE")
+}
+
+if (exists("fluorescence.rate.method") && !is.na(fluorescence.rate.method)) {
+  option.fluorescence.rate.method = fluorescence.rate.method
+} else {
+  option.fluorescence.rate.method = default.fluorescence.rate.method
+}
+option.fluorescence.rate.method = toupper(option.fluorescence.rate.method)
+
+if (!(option.fluorescence.rate.method %in% c("LINEAR", "LOG-LINEAR-PER-OD", "EXPONENTIAL-WITH-PRODUCTION"))) {
+  fatal_error("--fluorescence-rate-method must be \"log-linear-per-OD\" or \"exponential-with-production\"")
+}
+  
 
 if (exists("time.point.delta")) {
   option.time.point.delta = time.point.delta
@@ -301,7 +337,7 @@ this_file_path <- function() {
 git_repo_version <- function() {
   
   grv = c()
-  git.fetch.head.path = file.path(dirname(this_file_path()), "..", ".git", "FETCH_HEAD")
+  git.fetch.head.path = file.path(dirname(this_file_path()), "..", "..", ".git", "FETCH_HEAD")
   if(file.exists(git.fetch.head.path)) {
     mystring <- read_file(git.fetch.head.path)
     mystring = str_remove_all(mystring, "[\r\n]")
@@ -311,7 +347,7 @@ git_repo_version <- function() {
     grv$repository = "unknown"
   }
   
-  git.log.head.path = file.path(dirname(this_file_path()), "..", ".git", "logs", "HEAD")
+  git.log.head.path = file.path(dirname(this_file_path()), "..", "..", ".git", "logs", "HEAD")
   if(file.exists(git.log.head.path)) {
     mystring <- read_file(git.log.head.path)
     linelist = strsplit(mystring, "\n")
@@ -352,17 +388,14 @@ sdf = add_setting(sdf, "Maximum Time", option.maximum.time)
 
 if (option.two.point.fit) {
   option.fit.method.string = "using two points (first and last in time window)"
+  sdf = add_setting(sdf, "Fitting method", option.fit.method.string)
 } else {
-  option.fit.method.string = "using all points in time window"  
+  option.fit.method.string = "using all points in time window"
+  sdf = add_setting(sdf, "Fitting method", option.fit.method.string)
+  
+  sdf = add_setting(sdf, "  Growth rate method", option.growth.rate.method)
+  sdf = add_setting(sdf, "  Fluorescence rate method", option.fluorescence.rate.method)
 }      
-sdf = add_setting(sdf, "Fitting method", option.fit.method.string)
-
-if (option.FP.per.OD.at.time) {
-  option.option.FP.per.OD.at.time = "fit regression to FP/OD values"
-} else {
-  option.option.FP.per.OD.at.time = "fit regression to FP values, then divide by midpoint OD"  
-}      
-sdf = add_setting(sdf, "FP fitting use of OD", option.option.FP.per.OD.at.time)
 
 
 sdf = add_setting(sdf, "Time Point Span", 2 * option.time.point.delta + 1)
@@ -371,7 +404,6 @@ sdf = add_setting(sdf, "Time Point Delta", option.time.point.delta)
 
 
 option.use.blanks.for.background = T
-cat(length(option.set.background.values), "\n\n\n\n")
 if (length(option.set.background.values) > 0) {
   option.use.blanks.for.background = F
 }
@@ -488,7 +520,7 @@ for(i in 1:(length(zeros)-1)) {
   tidy.data.chunk <- gather(this.data.chunk, key = "well", value = "value", -Time)
   tidy.data.chunk$reading <- reading.names[i]
   
-  tidy.data.chunk$time.min = definitive_times
+  tidy.data.chunk$time.min = rep(definitive_times, nrow(tidy.data.chunk)/length(definitive_times))
   tidy.data.chunk = tidy.data.chunk %>% select (-Time)
   
   tidy_all = tidy_all %>% bind_rows(tidy.data.chunk)
@@ -718,6 +750,35 @@ if (offset.readings.to.average) {
 #### Calculate and graph rates per strain
 ##############################################################
 
+## Some notes on the fitting equations and procedures
+
+## C = cells (assumed ~ OD)
+## F = fluorescence
+## t = time
+## r = specific growth rate for cells (units of 1/t)
+## P = production rate of fluorescence (units of AU/t)
+
+## Growth equation
+## dC/dt = r * C(t)
+## log[ C(t) ] = r * t + k
+## => C(t) = k * exp(r * t)
+## C(0) = k * exp (0) = k
+## => C(t) = C0 * exp(r * t)
+## => log[ C(t) ] = r * t + log[ C(0) ]
+## slope = r; y-intercept = log[ C(0) ]
+##
+## Fits are to linearized data - this probably has little effect versus fitting
+## directly to exponential equations given the short time windows
+
+## Fluorescence equation
+## dF/dt = P * C(t) = P * C(0) * exp(r * t)
+## => F(t) = P * C(0) * 1/r * exp(r * t) + k
+## => F(t) = P * 1/r * C(t) + k
+
+## F(0) = P * C(0) * 1/r * exp (0) + k
+## k = F(0) - P * C(0) * 1/r 
+## => F(t) = P * C(0) * 1/r * exp(rt) + F(0) - P * C(0) * 1/r
+
 
 Z = Z %>% filter (OD >= option.minimum.OD)
 final.table.summary = data.frame()
@@ -752,7 +813,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
   growth.rate.data = strain.data
   growth.rate.data$well = droplevels(growth.rate.data$well)
   
-
+  
   if (option.two.point.fit) {
     
     growth.rate.data = growth.rate.data %>% 
@@ -765,7 +826,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     growth.rate.data = growth.rate.data %>% filter(!is.na(t1) & !is.na(t2))
     
     growth.rate.data = growth.rate.data %>% mutate(time.min = (t1+t2)/2)
-    growth.rate.data = growth.rate.data %>% mutate(specific.growth.rate = 60 * (logOD.t2 - logOD.t1) /  (t2 - t1))
+    growth.rate.data = growth.rate.data %>% mutate(growth.rate = 60 * (logOD.t2 - logOD.t1) /  (t2 - t1))
     
   } else {
     
@@ -774,22 +835,62 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     for (this.well in levels(growth.rate.data$well)) {
       #cat(this.well, "\n")
       replicate.growth.rate.data = growth.rate.data %>% filter(well == this.well)
-      replicate.growth.rate.data$specific.growth.rate = NA
-      replicate.growth.rate.data$specific.growth.rate.adj.r.squared = NA
+      replicate.growth.rate.data$growth.rate = NA
+      replicate.growth.rate.data$initial.OD = NA
+      replicate.growth.rate.data$growth.rate.adj.r.squared = NA
       replicate.growth.rate.data$fit.OD = NA
+      replicate.growth.rate.data$growth.fit.ss.residuals = NA
+      
       
       if (nrow(replicate.growth.rate.data) >= 2 * option.time.point.delta + 1) {
         
         for(i in (1+option.time.point.delta):(nrow(replicate.growth.rate.data)-option.time.point.delta)) {
-          #create a matrix
           
-          times = replicate.growth.rate.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
-          logODs = replicate.growth.rate.data$logOD[(i-option.time.point.delta):(i+option.time.point.delta)]
+          if (option.growth.rate.method == "LOG-LINEAR") {
+            
+            times = replicate.growth.rate.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
+            logODs = replicate.growth.rate.data$logOD[(i-option.time.point.delta):(i+option.time.point.delta)]
+            
+            fit = lm(logOD~time, data.frame(time=times, logOD=logODs))
+            replicate.growth.rate.data$growth.rate[i] = 60 * coef(fit)[["time"]]
+            replicate.growth.rate.data$initial.OD[i] = exp(coef(fit)[["(Intercept)"]])
+            replicate.growth.rate.data$growth.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+            replicate.growth.rate.data$fit.OD[i] = exp(fit$fitted.values[option.time.point.delta+1])
+            
+            replicate.growth.rate.data$growth.fit.ss.residuals[i] = sum(residuals(nls.fit)^2)
+            
+          } else if (option.growth.rate.method == "EXPONENTIAL") {
+            
+            nls.df = data.frame(
+              t = replicate.growth.rate.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)] - replicate.growth.rate.data$time.min[i-option.time.point.delta],
+              OD = replicate.growth.rate.data$OD[(i-option.time.point.delta):(i+option.time.point.delta)]
+            )
+            
+            ## F(t) = P * 1/r * C(t) + k
+            r_guess = (log(nls.df$OD[nrow(nls.df)]) - log(nls.df$OD[1]))/(nls.df$t[nrow(nls.df)]-nls.df$t[1])
+            C0_guess = replicate.growth.rate.data$OD[i-option.time.point.delta]
+            
+            try(
+              nls.fit <- nls(OD ~ C0 * exp(r * t),
+                             data = nls.df, 
+                             start = list(
+                               r=r_guess,
+                               C0=C0_guess
+                             ), 
+                             control=nls.control(maxiter=1000, tol = 1e-5, minFactor = 1/100000, warnOnly=TRUE),
+                             trace = FALSE)
+            )
+            
+            this.converged = nls.fit$convInfo$isConv
+            
+            if (this.converged) {
+              replicate.growth.rate.data$growth.rate[i] = coef(nls.fit)[["r"]] * 60
+              replicate.growth.rate.data$initial.OD[i] = coef(nls.fit)[["C0"]]
+              replicate.growth.rate.data$fit.OD[i] = predict(nls.fit)[option.time.point.delta+1]
+              replicate.growth.rate.data$growth.fit.ss.residuals[i] = sum(residuals(nls.fit)^2)
+            }
+          }
           
-          fit = lm(logOD~time, data.frame(time=times, logOD=logODs))
-          replicate.growth.rate.data$specific.growth.rate[i] = 60 * coef(fit)[["time"]]
-          replicate.growth.rate.data$specific.growth.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
-          replicate.growth.rate.data$fit.OD[i] = exp(fit$fitted.values[option.time.point.delta+1])
         }
       }
       
@@ -801,12 +902,12 @@ for (strain.of.interest in unique(Z$strain.isolate) )
   }
   
   if (!option.no.plots) {
-    plot1 = ggplot(growth.rate.data , aes(time.min, specific.growth.rate, color=well)) +  geom_point() 
+    plot1 = ggplot(growth.rate.data , aes(time.min, growth.rate, color=well)) +  geom_point() 
   }
   
   #Calculate the growth rate over a given time period and graph
   fluorescence.data = growth.rate.data
-
+  
   if (option.two.point.fit) {
     
     fluorescence.data = fluorescence.data %>% 
@@ -837,9 +938,12 @@ for (strain.of.interest in unique(Z$strain.isolate) )
       #cat(this.well, "\n")
       replicate.fluorescence.data = fluorescence.data %>% filter(well == this.well)
       replicate.fluorescence.data$GFP.rate = NA
-      replicate.fluorescence.data$GFP.rate.adj.r.squared = NA
+      replicate.fluorescence.data$GFP.fit.adj.r.squared = NA
+      replicate.fluorescence.data$GFP.fit.ss.residuals = NA
+      
       replicate.fluorescence.data$other.rate = NA
-      replicate.fluorescence.data$other.rate.adj.r.squared = NA
+      replicate.fluorescence.data$other.fit.adj.r.squared = NA
+      replicate.fluorescence.data$other.fit.ss.residuals = NA
       
       if (nrow(replicate.fluorescence.data) >= 2 * option.time.point.delta + 1) {
         
@@ -848,61 +952,203 @@ for (strain.of.interest in unique(Z$strain.isolate) )
           #cat(i, "\n")
           #create a matrix
           
-          if (option.FP.per.OD.at.time) {
-            times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
-            log_fluorescence_per_ODs = log(replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)])
+          if (option.fluorescence.rate.method == "LINEAR") {
             
-            ## Remove negative/missing values and fit if half are remaining...
-            times = times[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
-            log_fluorescence_per_ODs = log_fluorescence_per_ODs[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
-            
-            if (length(log_fluorescence_per_ODs) > option.time.point.delta) {
-              fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
-              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
-              
-
-              replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
-            }
-            
-          } else {
             times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
             fluorescences = replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)]
             #don't do this with NAs => caused by overflow of fluorescent challenges
             if (!is.na(mean(fluorescences)) && !is.infinite(mean(fluorescences))) {
               fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
               replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
-              replicate.fluorescence.data$GFP.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+              replicate.fluorescence.data$GFP.fit.adj.r.squared[i] = summary(fit)$adj.r.squared
             }
+          }
+          
+          else  if (option.fluorescence.rate.method == "LOG-LINEAR-PER-OD") {
+            
+            times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
+            log_fluorescence = log(replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)])
+            
+            ## Remove negative/missing values and fit if half are remaining...
+            times = times[!is.na(log_fluorescence) & !is.nan(log_fluorescence) & !is.infinite(log_fluorescence)]
+            log_fluorescence = log_fluorescence[!is.na(log_fluorescence) & !is.nan(log_fluorescence) & !is.infinite(log_fluorescence)]
+            
+            if (length(log_fluorescence) > option.time.point.delta) {
+              fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence))
+              replicate.fluorescence.data$GFP.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
+              
+              replicate.fluorescence.data$GFP.fit.adj.r.squared[i] = summary(fit)$adj.r.squared
+              replicate.fluorescence.data$GFP.fit.ss.residuals[i] = sum((exp(fit$fitted.value) - exp(log_fluorescence))^2)
+              
+            }
+          }
+          
+          else if (option.fluorescence.rate.method == "EXPONENTIAL-WITH-PRODUCTION") {
+            
+            times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)] - replicate.fluorescence.data$time.min[i-option.time.point.delta]
+            
+            fluorescences = replicate.fluorescence.data$GFP[(i-option.time.point.delta):(i+option.time.point.delta)]
+            
+            ## Remove negative/missing values and fit if half are remaining...
+            times = times[!is.na(fluorescences) & !is.nan(fluorescences) & !is.infinite(fluorescences)]
+            fluorescences = fluorescences[!is.na(fluorescences) & !is.nan(fluorescences) & !is.infinite(fluorescences)]
+            
+            if (
+              (length(fluorescences) > option.time.point.delta) 
+              && (!is.na(replicate.fluorescence.data$growth.rate[i]))
+              && (!is.na(replicate.fluorescence.data$initial.OD[i]))
+            ) {
+              
+              # specific growth rate (units of 1/min)
+              r = replicate.fluorescence.data$growth.rate[i] / 60
+              C0 = replicate.fluorescence.data$initial.OD[i]
+              
+              nls.df = data.frame(t=times, fl = fluorescences)
+              nls.df$C = C0 * exp(r * nls.df$t)
+              
+              ## F(t) = P * 1/r * C(t) + k
+              
+              # Production rate (units of 1/min)
+              P_guess = (nls.df$fl[nrow(nls.df)] - nls.df$fl[1]) / ((nls.df$C[nrow(nls.df)] + nls.df$C[1])/2) / 60 
+              k_guess = 0
+              #k_guess = nls.df$fl[1] - P_guess * 1/r * C0
+              
+              #Try a first fit
+              try(
+                nls.fit <- nls(
+                  fl ~ P * (1/r) * C + k,
+                  data = nls.df, 
+                  start = list(P=P_guess, k=0), 
+                  control=nls.control(maxiter=1000, tol = 1e-5, minFactor = 1/100000, warnOnly=TRUE),
+                  trace = FALSE)
+              )
+              
+              this.converged = nls.fit$convInfo$isConv
+              
+              # Try a second fit
+              if (!this.converged) {
+                P_guess = 2*(nls.df$fl[nrow(nls.df)] - nls.df$fl[1]) / ((nls.df$C[nrow(nls.df)] + nls.df$C[1])/2) / 60 
+                k_guess = -100
+                
+                try(
+                  nls.fit <- nls(
+                    fl ~ P * (1/r) * C + k,
+                    data = nls.df, 
+                    start = list(P=P_guess, k=k_guess), 
+                    control=nls.control(maxiter=1000, tol = 1e-5, minFactor = 1/100000, warnOnly=TRUE),
+                    trace = FALSE)
+                )
+                this.converged = nls.fit$convInfo$isConv
+              }
+              
+              if (this.converged) {
+                replicate.fluorescence.data$GFP.rate[i] = coef(nls.fit)[["P"]] * 60
+                replicate.fluorescence.data$GFP.fit.ss.residuals[i] = sum(resid(nls.fit)^2)
+              }
+              
+            }
+            
           }
           
           if (num.readings == 3) {
             
-            if (option.FP.per.OD.at.time) {
-              times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
-              log_fluorescence_per_ODs = log(replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)])
+            if (option.fluorescence.rate.method == "LINEAR") {
               
-              ## Remove negative/missing values and fit if half are remaining...
-              times = times[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
-              log_fluorescence_per_ODs = log_fluorescence_per_ODs[!is.nan(log_fluorescence_per_ODs) & !is.infinite(log_fluorescence_per_ODs)]
-              
-              if (length(log_fluorescence_per_ODs) > option.time.point.delta) {
-                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence_per_ODs))
-                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
-                
-                replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
-              }
-            } else {
               times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
               fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
-              
+              #don't do this with NAs => caused by overflow of fluorescent challenges
               if (!is.na(mean(fluorescences)) && !is.infinite(mean(fluorescences))) {
                 fit = lm(fluorescence~time, data.frame(time=times, fluorescence=fluorescences))
                 replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] / replicate.fluorescence.data$fit.OD[i] * 60
-                replicate.fluorescence.data$other.rate.adj.r.squared[i] = summary(fit)$adj.r.squared
+                replicate.fluorescence.data$other.fit.adj.r.squared[i] = summary(fit)$adj.r.squared
+              }
+            }
+            
+            else  if (option.fluorescence.rate.method == "LOG-LINEAR-PER-OD") {
+              
+              times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)]
+              log_fluorescence = log(replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)])
+              
+              ## Remove negative/missing values and fit if half are remaining...
+              times = times[!is.na(log_fluorescence) & !is.nan(log_fluorescence) & !is.infinite(log_fluorescence)]
+              log_fluorescence = log_fluorescence[!is.na(log_fluorescence) & !is.nan(log_fluorescence) & !is.infinite(log_fluorescence)]
+              
+              if (length(log_fluorescence) > option.time.point.delta) {
+                fit = lm(fluorescence~time, data.frame(time=times, fluorescence=log_fluorescence))
+                replicate.fluorescence.data$other.rate[i] = coef(fit)[["time"]] * exp(fit$fitted.values[option.time.point.delta+1]) / replicate.fluorescence.data$fit.OD[i] * 60
+                
+                replicate.fluorescence.data$other.fit.adj.r.squared[i] = summary(fit)$adj.r.squared
+                replicate.fluorescence.data$other.fit.ss.residuals[i] = sum((exp(fit$fitted.value) - exp(log_fluorescence))^2)
+                
+              }
+            }
+            
+            else if (option.fluorescence.rate.method == "EXPONENTIAL-WITH-PRODUCTION") {
+              
+              times = replicate.fluorescence.data$time.min[(i-option.time.point.delta):(i+option.time.point.delta)] - replicate.fluorescence.data$time.min[i-option.time.point.delta]
+              
+              fluorescences = replicate.fluorescence.data$other[(i-option.time.point.delta):(i+option.time.point.delta)]
+              
+              ## Remove negative/missing values and fit if half are remaining...
+              times = times[!is.na(fluorescences) & !is.nan(fluorescences) & !is.infinite(fluorescences)]
+              fluorescences = fluorescences[!is.na(fluorescences) & !is.nan(fluorescences) & !is.infinite(fluorescences)]
+              
+              if (
+                (length(fluorescences) > option.time.point.delta) 
+                && (!is.na(replicate.fluorescence.data$growth.rate[i]))
+                && (!is.na(replicate.fluorescence.data$initial.OD[i]))
+              ) {
+                
+                # specific growth rate (units of 1/min)
+                r = replicate.fluorescence.data$growth.rate[i] / 60
+                C0 = replicate.fluorescence.data$initial.OD[i]
+                
+                nls.df = data.frame(t=times, fl = fluorescences)
+                nls.df$C = C0 * exp(r * nls.df$t)
+                
+                ## F(t) = P * 1/r * C(t) + k
+                
+                # Production rate (units of 1/min)
+                P_guess = (nls.df$fl[nrow(nls.df)] - nls.df$fl[1]) / ((nls.df$C[nrow(nls.df)] + nls.df$C[1])/2) / 60 
+                k_guess = 0
+                #k_guess = nls.df$fl[1] - P_guess * 1/r * C0
+                
+                #Try a first fit
+                try(
+                  nls.fit <- nls(
+                    fl ~ P * (1/r) * C + k,
+                    data = nls.df, 
+                    start = list(P=P_guess, k=0), 
+                    control=nls.control(maxiter=1000, tol = 1e-5, minFactor = 1/100000, warnOnly=TRUE),
+                    trace = FALSE)
+                )
+                
+                this.converged = nls.fit$convInfo$isConv
+                
+                # Try a second fit
+                if (!this.converged) {
+                  P_guess = 2*(nls.df$fl[nrow(nls.df)] - nls.df$fl[1]) / ((nls.df$C[nrow(nls.df)] + nls.df$C[1])/2) / 60 
+                  k_guess = -100
+                  
+                  try(
+                    nls.fit <- nls(
+                      fl ~ P * (1/r) * C + k,
+                      data = nls.df, 
+                      start = list(P=P_guess, k=k_guess), 
+                      control=nls.control(maxiter=1000, tol = 1e-5, minFactor = 1/100000, warnOnly=TRUE),
+                      trace = FALSE)
+                  )
+                  this.converged = nls.fit$convInfo$isConv
+                }
+                
+                if (this.converged) {
+                  replicate.fluorescence.data$other.rate[i] = coef(nls.fit)[["P"]] * 60
+                  replicate.fluorescence.data$other.fit.ss.residuals[i] = sum(resid(nls.fit)^2)
+                }
+                
               }
             }
           }
-          
         }
       }
       
@@ -915,6 +1161,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     if (!option.no.plots) {
       write.csv(fluorescence.data, file.path(plot.directory, paste0(strain.of.interest, ".rates.csv")))
     }
+    
   }
   
   if (!option.no.plots) {
@@ -929,11 +1176,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     
     ggsave(file.path(plot.directory, paste0(strain.of.interest, ".rates.pdf")), plot=p)
   }
-  
-  #ggplot(fluorescence.data , aes(time.min, GFP.rate, color=well)) + scale_x_continuous(limits = c(0, 400)) +  geom_point() 
-  
-  #ggplot(fluorescence.data , aes(time.min, other.rate, color=well)) + scale_x_continuous(limits = c(0, 400)) +  geom_point() 
-  
+
   growth.rate.data$well = droplevels(growth.rate.data$well)
   
   strain.max.values = data.frame()
@@ -948,7 +1191,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     replicate.growth.rate.data = growth.rate.data %>% filter(well == this.well)
     
     #identify the best growth rate row/time
-    max.growth.rate.row = replicate.growth.rate.data[which.max(replicate.growth.rate.data$specific.growth.rate),]
+    max.growth.rate.row = replicate.growth.rate.data[which.max(replicate.growth.rate.data$growth.rate),]
     
     #Case for failing to find a max
     if (nrow(max.growth.rate.row) == 0) {
@@ -957,7 +1200,7 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     }
     
     cat("Time of maximum growth rate:", max.growth.rate.row$time.min[1], "min\n")
-    cat("Max growth rate:", max.growth.rate.row$specific.growth.rate, "per hour\n")
+    cat("Max growth rate:", max.growth.rate.row$growth.rate, "per hour\n")
     
     if (option.max.method==1) {
       max.GFP.fluorescence.data.row = fluorescence.data %>% filter(well == this.well) %>% filter(time.min == max.growth.rate.row$time.min[1])
@@ -998,31 +1241,36 @@ for (strain.of.interest in unique(Z$strain.isolate) )
     
     if (num.readings == 2) {
       
-      if(!is.na(max.growth.rate.row$specific.growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate)) {
+      if(!is.na(max.growth.rate.row$growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate)) {
         strain.max.values = bind_rows(strain.max.values, 
                                       data.frame(
                                         well = this.well,
-                                        growth.rate = max.growth.rate.row$specific.growth.rate,
+                                        growth.rate = max.growth.rate.row$growth.rate,
                                         GFP.rate = max.GFP.fluorescence.data.row$GFP.rate,
                                         max.growth.rate.time = max.growth.rate.row$time.min[1],
-                                        max.GFP.rate.time = max.GFP.fluorescence.data.row$time.min[1]
+                                        max.GFP.rate.time = max.GFP.fluorescence.data.row$time.min[1],
+                                        growth.fit.ss.residuals = max.growth.rate.row$growth.fit.ss.residuals[1],
+                                        GFP.fit.ss.residuals = max.GFP.fluorescence.data.row$GFP.fit.ss.residuals[1]
                                       )
         )
       }
       
     } else  if (num.readings == 3) {
       
-      if(!is.na(max.growth.rate.row$specific.growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate)) {
+      if(!is.na(max.growth.rate.row$growth.rate) && !is.na(max.GFP.fluorescence.data.row$GFP.rate)) {
         
         strain.max.values = bind_rows(strain.max.values, 
                                       data.frame(
                                         well = this.well,
-                                        growth.rate = max.growth.rate.row$specific.growth.rate,
+                                        growth.rate = max.growth.rate.row$growth.rate,
                                         GFP.rate = max.GFP.fluorescence.data.row$GFP.rate,
                                         other.rate = max.other.fluorescence.data.row$other.rate,
                                         max.growth.rate.time = max.growth.rate.row$time.min[1],
                                         max.GFP.rate.time = max.GFP.fluorescence.data.row$time.min[1],
-                                        max.other.rate.time = max.other.fluorescence.data.row$time.min[1]
+                                        max.other.rate.time = max.other.fluorescence.data.row$time.min[1],
+                                        growth.fit.ss.residuals = max.growth.rate.row$growth.fit.ss.residuals[1],
+                                        GFP.fit.ss.residuals = max.GFP.fluorescence.data.row$GFP.fit.ss.residuals[1],
+                                        other.fit.ss.residuals = max.other.fluorescence.data.row$other.fit.ss.residuals[1]
                                       )
         )
       }
@@ -1080,7 +1328,9 @@ for (strain.of.interest in unique(Z$strain.isolate) )
                                         growth.rate = strain.max.values$growth.rate,
                                         GFP.rate = strain.max.values$GFP.rate,
                                         max.growth.rate.time = strain.max.values$max.growth.rate.time,
-                                        max.GFP.rate.time = strain.max.values$max.GFP.rate.time
+                                        max.GFP.rate.time = strain.max.values$max.GFP.rate.time,
+                                        growth.fit.ss.residuals = strain.max.values$growth.fit.ss.residuals,
+                                        GFP.fit.ss.residuals = strain.max.values$GFP.fit.ss.residuals
                                       )
     )
     
@@ -1125,7 +1375,10 @@ for (strain.of.interest in unique(Z$strain.isolate) )
                                         other.rate = strain.max.values$other.rate,                              
                                         max.growth.rate.time = strain.max.values$max.growth.rate.time,
                                         max.GFP.rate.time = strain.max.values$max.GFP.rate.time,
-                                        max.other.rate.time = strain.max.values$max.other.rate.time
+                                        max.other.rate.time = strain.max.values$max.other.rate.time,
+                                        growth.fit.ss.residuals = strain.max.values$growth.fit.ss.residuals,
+                                        GFP.fit.ss.residuals = strain.max.values$GFP.fit.ss.residuals,
+                                        other.fit.ss.residuals = strain.max.values$other.fit.ss.residuals
                                       )
     )
   }
@@ -1144,7 +1397,7 @@ final.column.order = c("strain", "isolate", "replicates", "wells", "growth.rate"
 if (num.readings == 3) {
   final.column.order = c(final.column.order, "other.rate", "other.rate.sd", "other.rate.sem", "other.rate.95L", "other.rate.95U")
 }
-final.table.summary = final.table.summary %>% select(final.column.order) %>% arrange(strain, isolate)
+final.table.summary = final.table.summary %>% select(all_of(final.column.order)) %>% arrange(strain, isolate)
 
 #### All table
 final.table.all.wells$isolate= sub("^.+__", "", final.table.all.wells$strain.isolate, perl = T)
@@ -1161,7 +1414,12 @@ if (num.readings== 3) {
   final.column.order = c(final.column.order, "max.other.rate.time")
 }
 
-final.table.all.wells = final.table.all.wells %>% select(final.column.order) %>% arrange(strain, isolate, well)
+final.column.order = c(final.column.order, "growth.fit.ss.residuals", "GFP.fit.ss.residuals")
+if (num.readings== 3) {
+  final.column.order = c(final.column.order, "other.fit.ss.residuals")
+}
+
+final.table.all.wells = final.table.all.wells %>% select(all_of(final.column.order)) %>% arrange(strain, isolate, well)
 
 ### Write both final tables
 write_csv(final.table.summary, paste0(option.output.prefix, ".rates.summary.csv"))

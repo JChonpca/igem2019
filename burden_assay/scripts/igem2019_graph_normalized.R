@@ -5,10 +5,11 @@
 library(tidyverse)
 library(ggplot2)
 library(cowplot)
+library(deming)
 
 #debug
 #input.file.string="04-normalization/output.part.burden.csv"
-#output.base.name="04-normalization/output.part.burden"
+#output.base.name="05-burden-final-output/output"
 #metadata.file.string = "igem2019_strain_metadata.csv"
 
 if (!exists("input.file.string")) {
@@ -64,7 +65,7 @@ strain.metadata = read.csv(metadata.file.string)
 ## Read in the input files and subset to the data we want to include
 
 #Only trust if we have at least three good measurements (not applicable to control strains)
-#all.data = all.data %>% filter( (replicates>2) | (burden.category == "control"))
+all.data = all.data %>% filter( (replicates>=2) | (burden.category == "control"))
 #all.data = all.data %>% filter(burden.cv<2)
 
 ################################################################################
@@ -77,31 +78,20 @@ cat("Total strains analyzed:", length(unique(noncontrolstrains$strain)), "\n")
 ### Plot testing for trend in coefficient of variation versus growth rate
 
 if (T) {
-
-non.control.parts.means = all.data %>% filter(burden.category != "control")
-
-ggplot(non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv, color=burden.category)) + geom_point() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + geom_smooth(data=non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv), method = "lm", se = FALSE, inherit.aes=F)
-
-fit1 = lm(normalized.growth.rate.sd~normalized.growth.rate.mean, data=non.control.parts.means)
-
-fit2 = lm(normalized.growth.rate.sd~1, data=non.control.parts.means)
-
-anova(fit1, fit2)
-
-cat("Is there a trend in the coefficient of variation such that smaller values have a higher coefficient of variation?\n")
-
-
-}
-
-################################################################################
-### Plot showing points colored by significance
-
-if (F) {
-
-p = ggplot(all.data, aes(x=plate, y=normalized.growth.rate.mean, color=burden.category)) + geom_jitter() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-ggsave(paste0(output.base.name, ".growth-rate-normalized-colored-by-significance.pdf"), p)
-
+   
+   non.control.parts.means = all.data %>% filter(burden.category != "control")
+   
+   ggplot(non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv, color=burden.category)) + geom_point() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + geom_smooth(data=non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv), method = "lm", se = FALSE, inherit.aes=F)
+   
+   fit1 = lm(normalized.growth.rate.sd~normalized.growth.rate.mean, data=non.control.parts.means)
+   
+   fit2 = lm(normalized.growth.rate.sd~1, data=non.control.parts.means)
+   
+   
+   cat("Is there a trend in the coefficient of variation such that smaller values have a higher coefficient of variation?\n")
+   
+   print(anova(fit1, fit2))
+   
 }
 
 ################################################################################
@@ -117,7 +107,7 @@ control.burdens = rbind(data.frame(strain="no burden", burden.mean=0), control.b
 p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=burden.mean)) +
    geom_density(bw=0.005) + 
    scale_x_continuous(limits = c(-0.1,0.6), breaks = seq(-0.1,0.6, by=0.1), expand = c(0, 0)) +
-   scale_y_continuous(expand = expand_scale(mult = c(0, 0.05))) +
+   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
    geom_vline(data = control.burdens, aes(xintercept=burden.mean, color=strain)) +
    theme_cowplot(12) +
    panel_border(color = "black")
@@ -129,8 +119,14 @@ control.burdens$GFP.rate.mean = 1 - control.burdens$normalized.GFP.rate.grand.me
 control.burdens = control.burdens %>% select(-normalized.growth.rate.grand.mean, -normalized.GFP.rate.grand.mean)
 control.burdens = rbind(data.frame(strain="no burden", GFP.rate.mean=0), control.burdens)
 
-p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=1-normalized.GFP.rate.mean)) + geom_density(bw=0.01) + xlim(-0.4, 0.6) + geom_vline(data = control.burdens, aes(xintercept=GFP.rate.mean, color=strain)) 
-ggsave(paste0(output.base.name, ".GFP-rate-normalized-distribution.pdf"), p)
+p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=1-normalized.GFP.rate.mean)) + 
+   geom_density(bw=0.005) + 
+   xlim(-0.4, 0.6) + 
+   geom_vline(data = control.burdens, aes(xintercept=GFP.rate.mean, color=strain)) +
+   theme_cowplot(12) +
+   panel_border(color = "black")
+
+ggsave(paste0(output.base.name, ".GFP-rate-normalized-distribution.pdf"), plot=p, width=8, height=5)
 
 
 ##############  Make a general graph showing all of the points
@@ -141,34 +137,24 @@ min.plot.coord = 0.4
 max.plot.coord = 1.4
 
 # What is the fit slope for the controls?
-all.data$sub.normalized.GFP.rate.mean = all.data$normalized.GFP.rate.mean - 1
-all.data$sub.normalized.growth.rate.mean = all.data$normalized.growth.rate.mean - 1
-all.data$sub.normalized.growth.rate.mean.minus.normalized.GFP.mean = all.data$sub.normalized.GFP.rate.mean - all.data$sub.normalized.growth.rate.mean
+control.data$sub.normalized.GFP.rate.mean = control.data$normalized.GFP.rate.mean - 1
+control.data$sub.normalized.growth.rate.mean = control.data$normalized.growth.rate.mean - 1
 
-
-fit3 = lm(sub.normalized.GFP.rate.mean ~ sub.normalized.growth.rate.mean + 0, all.data %>% filter(burden.category %in% c("control")))
-fit4 = lm(sub.normalized.GFP.rate.mean ~ sub.normalized.growth.rate.mean, all.data %>% filter(burden.category %in% c("control")))
-anova(fit3, fit4)
-## Not Significant = the intercept at 1,1 is correct...
-
-fit5 = lm(sub.normalized.growth.rate.mean.minus.normalized.GFP.mean ~ sub.normalized.growth.rate.mean + 0, all.data %>% filter(burden.category=="control"))
-## Significant => The slope is significantly greater than 1
-
-
-sub.slope = coef(fit3)[1]
-sub.intercept = -sub.slope+1
+the.fit = deming(sub.normalized.GFP.rate.mean ~ sub.normalized.growth.rate.mean + 0, data=control.data, xstd=normalized.growth.rate.sd, ystd=normalized.GFP.rate.sd)
+the.slope = coef(the.fit)[2]
+the.intercept = 1-the.slope
 
 #sub.slope = coef(fit4)[2]
 #sub.intercept = -sub.slope+1+coef(fit4)[1]
 
 ggplot(all.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=burden.category)) + 
-   geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = 0, slope = 1) +
+   geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = the.intercept, slope = the.slope) +
    geom_errorbarh(aes(xmin=normalized.growth.rate.mean-normalized.growth.rate.sd, xmax=normalized.growth.rate.mean+normalized.growth.rate.sd, height=0.01)) +
    geom_errorbar(aes(ymin=normalized.GFP.rate.mean-normalized.GFP.rate.sd, ymax=normalized.GFP.rate.mean+normalized.GFP.rate.sd, width=0.01))
 
 
 ggplot(all.data , aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean, color=burden.category)) + 
-   geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = 0, slope = 1, show.legend=T) + geom_abline(intercept = sub.intercept, slope = sub.slope, color="blue") + geom_hline(aes(yintercept=1)) + geom_vline(aes(xintercept=1))
+   geom_point() + coord_cartesian(xlim = c(min.plot.coord, max.plot.coord ), ylim = c(min.plot.coord, max.plot.coord)) + geom_abline(intercept = 0, slope = 1, show.legend=T) + geom_abline(intercept = the.intercept, slope = the.slope, color="blue") + geom_hline(aes(yintercept=1)) + geom_vline(aes(xintercept=1))
 
 
 
@@ -216,7 +202,7 @@ t.above.line <- function(x.mean,x.sd,y.mean,y.sd,this.n,slope,intercept) {
    
    ggplot(tdata, aes(x,y)) + geom_raster(aes(fill = d))
    tdata$f = (tdata$y-(intercept + tdata$x * slope)) / (1 - (intercept + tdata$x * slope))
-
+   
    q = wtd.quantile(tdata$f, weights=tdata$d, normwt=T, probs=c(0.025, 0.500, 0.975))
    
    ##return two-tailed test
@@ -247,32 +233,35 @@ all.data$other.burden.maximum.likelihood = NA
 all.data$other.burden.median = NA
 all.data$other.burden.fraction.L95 = NA
 all.data$other.burden.fraction.U95 = NA
-for(i in 1:nrow(all.data)) {
-   cat("\nCalculating:", i,"\n")
-   this.strain.experiment=all.data[i,]
-   if (is.na(this.strain.experiment$normalized.GFP.rate.mean)) {
-      next
-   }
-   ret_val=t.above.line(
-      this.strain.experiment$normalized.growth.rate.mean,
-      this.strain.experiment$normalized.growth.rate.sd,
-      this.strain.experiment$normalized.GFP.rate.mean,
-      this.strain.experiment$normalized.GFP.rate.sd,
-      this.strain.experiment$replicates,
-      1,
-      0
-      )
-   print(ret_val)
-   
-   all.data$other.burden.greater.p.value[i] = ret_val$greater.p.value 
-   all.data$other.burden.two.tailed.p.value[i] = ret_val$two.tailed.p.value 
-   
-   all.data$other.burden.maximum.likelihood[i] = (all.data$normalized.GFP.rate.mean[i]-(0 + all.data$normalized.growth.rate.mean[i] * 1)) / (1 - (0 + all.data$normalized.growth.rate.mean[i] * 1))
 
-   all.data$other.burden.median[i] = ret_val$median
-   all.data$other.burden.fraction.L95[i] = ret_val$L95 
-   all.data$other.burden.fraction.U95[i] = ret_val$U95 
-   
+if (T) {
+   for(i in 1:nrow(all.data)) {
+      cat("\nCalculating:", i,"\n")
+      this.strain.experiment=all.data[i,]
+      if (is.na(this.strain.experiment$normalized.GFP.rate.mean)) {
+         next
+      }
+      ret_val=t.above.line(
+         this.strain.experiment$normalized.growth.rate.mean,
+         this.strain.experiment$normalized.growth.rate.sd,
+         this.strain.experiment$normalized.GFP.rate.mean,
+         this.strain.experiment$normalized.GFP.rate.sd,
+         this.strain.experiment$replicates,
+         the.slope,
+         the.intercept
+      )
+      print(ret_val)
+      
+      all.data$other.burden.greater.p.value[i] = ret_val$greater.p.value 
+      all.data$other.burden.two.tailed.p.value[i] = ret_val$two.tailed.p.value 
+      
+      all.data$other.burden.maximum.likelihood[i] = (all.data$normalized.GFP.rate.mean[i]-(0 + all.data$normalized.growth.rate.mean[i] * 1)) / (1 - (0 + all.data$normalized.growth.rate.mean[i] * 1))
+      
+      all.data$other.burden.median[i] = ret_val$median
+      all.data$other.burden.fraction.L95[i] = ret_val$L95 
+      all.data$other.burden.fraction.U95[i] = ret_val$U95 
+      
+   }
 }
 
 #drop controls
@@ -316,16 +305,16 @@ p = ggplot(
       shape=other.burden.greater.significant, 
       #shape=other.burden.two.tailed.significant, 
       label=plate.strain,
-      )
-   ) +
+   )
+) +
    scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
    coord_cartesian(
       xlim = c(min.plot.coord, max.plot.coord), 
       ylim = c(min.plot.coord, max.plot.coord)
-      ) + 
+   ) + 
    scale_x_continuous(breaks = seq(0,15, by=0.1)) +
    scale_y_continuous(breaks = seq(0,15, by=0.1))+
-   geom_abline(intercept = 0, slope = 1, show.legend=T, linetype = "dashed") + 
+   geom_abline(intercept = the.intercept, slope = the.slope, show.legend=T, linetype = "dashed") + 
    geom_hline(aes(yintercept=1), color="grey") + 
    geom_vline(aes(xintercept=1), color="grey") +
    geom_errorbarh(
@@ -333,17 +322,17 @@ p = ggplot(
          xmin=normalized.growth.rate.mean-normalized.growth.rate.95CI.range, 
          xmax=normalized.growth.rate.mean+normalized.growth.rate.95CI.range, 
          height=0.01,
-         ),
+      ),
       alpha=0.2
-      ) +
+   ) +
    geom_errorbar(
       aes(
          ymin=normalized.GFP.rate.mean-normalized.GFP.rate.95CI.range, 
          ymax=normalized.GFP.rate.mean+normalized.GFP.rate.95CI.range, 
          width=0.01
-         ),
+      ),
       alpha=0.2
-      ) + 
+   ) + 
    geom_point(alpha=0.7, size=2) + 
    geom_text_repel(
       #data = subset(print.data, burden.category=="significant"), 
@@ -380,7 +369,7 @@ p = ggplot(
    ) + 
    scale_x_continuous(breaks = seq(0,15, by=0.1)) +
    scale_y_continuous(breaks = seq(0,15, by=0.1))+
-   geom_abline(intercept = 0, slope = 1, show.legend=T, linetype = "dashed") + 
+   geom_abline(intercept = the.intercept, slope = the.slope, show.legend=T, linetype = "dashed") + 
    geom_hline(aes(yintercept=1), color="grey") + 
    geom_vline(aes(xintercept=1), color="grey") + 
    geom_point(alpha=0.7, size=2) + 
@@ -401,22 +390,27 @@ p = ggplot(
 p
 ggsave(paste0(output.base.name, ".burden_significantly_greater_labeled_no_error_bars.pdf"), plot=p, width=10, height=7)
 
-## Make a graph showing sorted 95% confidence limits
+## Make a graph showing sorted 95% confidence limits on other burden values
 sig.burden = print.data %>% filter(burden.category=="significant")
 
 p = ggplot(
-   print.data %>% filter(!is.na(other.burden.greater.adj.p.value)), 
+   print.data %>% filter(!is.na(other.burden.greater.adj.p.value)) %>% filter (other.burden.fraction.L95 > 0), 
    aes(
       x=accession,
       y=other.burden.maximum.likelihood,
       ymin=other.burden.fraction.L95,
       ymax=other.burden.fraction.U95,
-      )
-   ) +
+   )
+) +
    geom_crossbar(width = 0.8) +
    theme_cowplot(12) +
    panel_border(color = "black") +
-   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5))
+   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5)) +
+   geom_hline(aes(yintercept=0), color="grey") + 
+   geom_hline(aes(yintercept=1), color="grey")
+p
+ggsave(paste0(output.base.name, ".other.burden.confidence.limits.pdf"), plot=p, width=10, height=7)
+
 
 p = ggplot(
    print.data, 
@@ -436,7 +430,7 @@ p = ggplot(
    ) + 
    scale_x_continuous(breaks = seq(0,15, by=0.1)) +
    scale_y_continuous(breaks = seq(0,15, by=0.1))+
-   geom_abline(intercept = 0, slope = 1, show.legend=T, linetype = "dashed") + 
+   geom_abline(intercept = the.intercept, slope = the.slope, show.legend=T, linetype = "dashed") + 
    geom_hline(aes(yintercept=1), color="grey") + 
    geom_vline(aes(xintercept=1), color="grey") +
    geom_point(alpha=0.7, size=2) + 

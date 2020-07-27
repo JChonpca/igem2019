@@ -1,0 +1,305 @@
+﻿accession,manual.curation.description,manual.curation.total.components,manual.curation.has.promoter,manual.curation.has.RBS,manual.curation.has.CDS,manual.curation.operon.1,manual.curation.operon.2,manual.curation.notes,manual.curation.subparts,automated.curation.common.promoter,automated.curation.common.RBS
+K523022,"Lac promoter driving expression of carotenoid biosynthesis genes (crtE, crtI, crtB) as single operon.",,,,,,,"Used a weird ""biosandwich"" assembly method. Trying to determine if there are RBS between coding sequences or not. Also contains b-carotene synthesis genes. Maybe the ones used in Borkowski 2018 (cell free burden monitor)",,,B0034
+K515100,IAA biosynthetic genes under control Pveg2 promoter. Makes indole-3-acetic acid (IAA) (auxin) from tryptophan. ,5,1,2,2,Pveg2-RBS-IaaM-RBS-IaaH,,,,,
+K3174004,Our BFP Construct ,,,,,,,,,J23104,
+J36335,Kai proteins are related to a circadian clock sensing. Looks like two expression cassettes featuring KaiA and KaiC. Used the same promoter/RBS for KaiA and KaiC,6,2,2,2,Plac-RBS-KaiA,Plac-RBS-KaiC,,,,B0034; B0034
+K733010,low constitutive expression of antitoxin gene ydcD (endB). Protein produced counteracts EndoA toxin,3,1,1,1,pTms-RBS-ydcD,,,,,
+K523014,Expression of periplasmic B-glucosidase gene bglX under lac control. Maybe extra burden has to do with periplasmic localization from BglX?,3,1,1,1,Plac-RBS-LacZ'-bglX,,,,,
+K523020,Expression of Ice nucleation protein and the bglX under control of lac,3,1,1,1,,,,,,
+K3174007,Our BFP Construct ,3,1,1,1,pJ23110-RBS-BFP,,One of our BFP constructs,K608007; K592100; J23110; B0031,J23110,
+K880005,"Strong promoter and strong RBS, but no CDS",2,1,1,0,pJ23100-RBS,,Empty promoter and RBS- look for downstream transcription?,J23100; B0034,J23100,B0034
+K346000,Supposedly RBS and T3 RNAP only. Not sure if there is some additional promoter upstream or not. I think there is a T7 RNAP promoter upstream based on reading their wiki.,2,0,1,1,RBS-T3RNAP,,Really need to confirm that there is no promoter upstream,,,B0032
+J61000,Weird backbone- has chloramphenicol part (reverse orientation) and ampicilin resistance.,,,,,,,,,,
+I759017,YFP under inducible pTet control with some cis5 element (also includes tet expression cassete),8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759017; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0034
+K608012,Expression of GFP from medium promoter and weak RBS,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0031; E0040,J23110,
+I759014,Expression of YFP under inducible tet expression and cis2 cis-repressive element,8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759034; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
+K541502,Expression of LipA signal peptide from promoter and B. subtilis RBS. CDS is only a small signal peptide,3,1,1,1,Pveg-RBS-LipA,,,K143012; K143021,,
+K541526,Expression of of LipA signal peptide and reflectin,4,1,1,2,Pveg-RBS-LipA-reflection,,,K143012; K143021; K541506,,
+K592020,Produces amilCP in the absence of blue light using YF1/FixJ blue light sensing system,7,2,2,2,pFixK2-RBS-cI,pcI-RBS-amilCP,,K592006; Q04510; B0034; K592009; B0034; C0051; B0015; R0051,,B0034; B0034
+C0056,"supposedly just the cI repressor from ""phage 434"". No promoter and no RBS? Maybe need to dig int to backbone",1,0,0,1,cI,,,,,
+K1149051,"Produces phaC, phaA, phaB from wt promoter and additiounal upstream promoter",9,2,4,3,pJ23104-RBS-pWT-RBS-phaC1-RBS-phaA-RBS-phaB1,,,J23104; B0034; K934001,J23104,B0034
+I742111,Limonene synthase gene (LIMS1) with ribosome binding site. Has no promoter?,2,0,1,1,RBS-LIMS1,,,J15001; I742110,,
+C0053,c2 repressor (no promoter / RBS) with LVA degradation tag,1,0,0,1,,,,,,
+I761014,RBS with cinR and cinI with double terminator end (no promoter?),6,0,2,2,RBS-cinR-RBS-cinI,,,I761000; B0014; B0034; C0077; B0034; C0076,,B0034; B0034
+B0011,supposedly only a bidirectional terminator. I'd like to confirm if theres anything else on this plasmid. This is a large fitness defect from just a terminator,1,0,0,0,,,,,,
+K3174006,One of our BFP plasmids,3,1,1,1,,,,,J23110,B0032
+K523013,Expression of eYFP fused to INP (ice nucleation protein) under plac promoter (with lacZ fragment). Not sure of RBS in spacers (after lacZ?),5,1,1,2,Plac-RBS-LacZ'-RBS-INP-EYFP,,,,,
+K395602,Expression of MpAAT1 from T7 promoter. Also lac repressed. Should not be expressed in absence of T7 induction. Also has T7 terminator.,4,1,1,1,pT7-RBS-MpAAT1,,,R0185; K395600; K395601,,
+I759005,Expression of cro under tet induction,6,2,2,2,pTet-RBS-cro,pJ23116-RBS-tetR,,I759002; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
+K3174002,One of our BFP plasmids,,,,,,,,,J23104,B0034
+K733013,Promoter and RBS combination with no CDS. RBS is strong B. subtilis RBS,2,1,1,0,pVeg-RBS,,,K316001; K143021,,
+K3174003,One of our BFP plasmids,,,,,,,,,J23104,B0032
+K639003,Expression of mCherryand Lac under pLac and rrnBP1 control. Should fluoresce in response to stress (and ppGpp signalling),8,2,2,2,pP1-RBSLacI,pLac-RBS-mCherry,,K639002; K639000; B0034; C0012; B0015; R0011; J06702; J06602; B0015; B0034; J06504,,B0034; B0034
+K137018,Produces GFP in response to AHL. Also produces luxR to respond to AHL,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-GFP,,F2622; B0034; I13401; R0011; I0462; R0062; E0040; B0015,,B0034; B0034
+C0051,Should be cI repressor from lambda with LVA tag (like K327018). Supposedly no promoter or RBS,1,0,0,1,,,,,,
+K731721,"Supposedly just a T7 terminator. Part page describes it as part of a fluorescence assay, but near as I can tell this part is just the terminator. Someone else should look",1,0,0,0,,,,,,
+K541501,Promoter and RBS for expression of SacB signal peptide in B. subtilis. Only CDS is SacB signal peptide. ,3,1,1,1,pVeg-RBS-SacB',,,K143053; K143012; K143021,,
+K608011,Expression of GFP from medium promoter and medium RBS,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0032; E0040,J23110,B0032
+E0420,RBS and CDS for eCFP. No promoter.,3,0,1,1,,,,B0034; E0020; B0015,,B0034
+K861172,Expression of cI (lambda repressor) from glucose-repressible promoter,4,1,1,1,pcstA-RBS-cI,,,K118011; B0034; C0051; B0015,,B0034
+I0466,"RBS and CDS for rhlR, no promoter.",3,0,1,1,,,,B0034; C0071; B0015,,B0034
+K523023,Expression of eYFP under  Plac promoter. Has lacZ' fragment.,5,1,2,2,pLac-RBS-LacZ'-RBS-eYFP,,,,,
+K797001,"CDS for ""phage shock protein A (pspA)."" Supposedly CDS only.. But I think I see an RBS upstream.",2,0,1,1,,,,,,
+K325218,Part page is not great for navigating. Looks like an inducible promoter driving luciferase production (2 genes). No mention of expression of ara protein,1,1,2,2,pBAD-RBS-LucRegen-RBS-Luciferase,,,I0500; K325210; ,,
+K516132,Constitutive expression of RFP from promoter,4,1,1,1,pJ23101-RBS-mRFP1,,,J23101; B0032; E1010; B0015,J23101,B0032
+K137076,Expressed pyruvate oxidates in response to AHL. Also expresses luxR to detect AHL.,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-spxB,,F2622; B0034; K137069; B0015; R0011; I0462; R0062; B0034; C0062; B0015,,B0034; B0034
+K523006,Expressed periplasmic a-amylase gene malS under lac control. Also has lacZ' fragment.,5,1,2,2,pLac-RBS-lacZ'-RBS-malS,,,J33207; K523001; ,,
+K325909,Expression of luciferase operon (luxCDABE) under arabinose control. ,15,2,7,7,pBAD-RBS-luxC-RBS-luxD-RBS-luxA-RBS-luxB-RBS-luxE-RBS-luxG,,,I0500; K325909,,
+K316003,RBS and CDS for XylE (catechol dioxygenase). Supposedly without promoter,3,0,1,1,,,,J33204; B0014; ,,
+K575014,RFP under inducible promoter RhIR / PA12,3,1,1,1,pR0071-RBS-E1010,,,R0071; B0030; E1010,,B0030
+I746908,superfolder GFP expressed under inducible pBAD promoter,7,2,2,2,pBAD-RBS-GFP,,,I746910; I746916; B0015; I0500; B0034; ,,B0034
+K118024,"Expression of three genes: dxs, appY, and LIMS1. Expression of dxs and appY increase yields of carotenoids. LIMS1 produces limonene (lemon scent). No annotated promoter",6,0,3,3,RBS-dxs-RBS-LIMS1-appY-RBS,,,K118010; K118007; K118004; I742111; J15001; K118000; J15001; I742110; J15001; K118001,,
+K553003,,,,,,,,,,J23100,B0034
+K1150042,,,,,,,,,,,
+B0023,,,,,,,,,,,
+K747000,,,,,,,,,,,
+K733001,,,,,,,,,,,
+K617004,Lambda phage attachment site attP P'OP,1,0,0,0,attP,,,,,
+B1006,,,,,,,,,,,
+I759018,,,,,,,,,,J23116,B0034
+K118019,Expression of glgC from Plac with rbs and lacZ fragment. glgC catalyzes a step in the production of glucose from glycogen,5,1,2,2,pLac-RBS-lacZ'-RBS-glgC,,,K33207; K118017; J15001; K118015,,
+K844008,,,,,,,,,,,
+K608002,,,,,,,,,,J23104,
+K575009,,,,,,,,,,,B0034
+K747003,,,,,,,,,,,
+I759016,,,,,,,,,,J23116,B0030; B0034
+E0430,,,,,,,,,,,B0034
+B0015,,,,,,,,,,,
+K568004,,,,,,,,,,,B0030
+K581008,,,,,,,,,,,
+K118028,,,,,,,,,,,
+K844006,,,,,,,,,,,
+I13602,Expression of CFP under tet control. Has terminator,4,1,1,1,ptetR-RBS-eCFP,,,R0040; E0422; B0034; E0022; B0015,,B0034
+K747001,,,,,,,,,,,
+C0050,,,,,,,,,,,
+K773003,,,,,,,,,,,B0034
+K773002,,,,,,,,,,,
+K748002,,,,,,,,,,,
+I0500,,,,,,,,,,,
+I712669,,,,,,,,,,,
+I13601,,,,,,,,,,,B0034
+K784013,,,,,,,,,,,
+K747009,,,,,,,,,,,
+I13600,,,,,,,,,,,B0034
+I13500,,,,,,,,,,,B0034
+K861173,mRFP expressed from glucose-repressible promoter,4,1,1,1,pcstA-RBS-mRFP,,,K118011; I13507; B0034; E1010; B0015,,B0034
+K608351,,,,,,,,,,J23114,B0034
+K895000,,,,,,,,,,,
+R0083,,,,,,,,,,,
+J52011,,,,,,,,,,,
+C0040,,,,,,,,,,,
+K115002,,,,,,,,,,,
+K575015,,,,,,,,,,,B0034
+K914003,,,,,,,,,,,
+K1166002,,,,,,,,,,,B0034; B0034
+K844007,,,,,,,,,,,
+B0025,,,,,,,,,,,
+E0036,,,,,,,,,,,
+I13504,,,,,,,,,,,B0034
+K581005,,,,,,,,,,J23106,
+K774001,,,,,,,,,,,
+K516030,,,,,,,,,,,B0030
+K575008,,,,,,,,,,,B0030
+K608003,,,,,,,,,,J23104,B0032
+K608004,,,,,,,,,,J23104,
+R1051,,,,,,,,,,,
+K914011,,,,,,,,,,,
+J23119,,,,,,,,,,J23119; J23108,
+K516011,luxI protein generator,2,0,1,1,RBS-luxI,,,B0031; C0061,,
+K517005,,,,,,,,,,,
+K541503,,,,,,,,,,J23100,B0034
+I13002,,,,,,,,,,,
+E0020,,,,,,,,,,,
+E0026,,,,,,,,,,,
+B0032,,,,,,,,,,,B0032
+I13001,,,,,,,,,,,B0030
+B0033,,,,,,,,,,,
+K861090,,,,,,,,,,,
+k1184000,,,,,,,,,,,
+S03154,,,,,,,,,,,B0034
+R1062,,,,,,,,,,,
+I746391,,,,,,,,,,,B0034; B0034; B0034
+K611025,,,,,,,,,,,
+K137019,,,,,,,,,,,B0034; B0034; B0034
+P10302,,,,,,,,,,,
+K747012,,,,,,,,,,,
+K145001,,,,,,,,,,,
+K608007,,,,,,,,,,J23110,
+K538104,,,,,,,,,,,B0034
+K523004,,,,,,,,,,,
+K634001,,,,,,,,,,,
+I746200,,,,,,,,,,,
+E0024,,,,,,,,,,,
+K819010,,,,,,,,,,J23113,B0034
+K398326,,,,,,,,,,,
+K608006,,,,,,,,,,J23110,B0032
+K876000,,,,,,,,,,,
+E0422,,,,,,,,,,,B0034
+K808000,,,,,,,,,,,
+K624000,,,,,,,,,,,
+K525406,,,,,,,,,,,B0034
+K523015,,,,,,,,,,,
+K525404,,,,,,,,,,,B0034
+K1150001,,,,,,,,,,,
+K808032,,,,,,,,,,,
+K523000,,,,,,,,,,,
+B0034,,,,,,,,,,,B0034
+K747004,,,,,,,,,,,
+K1061003,,,,,,,,,,,
+K590034,,,,,,,,,,,
+K895004,,,,,,,,,,,
+K747002,,,,,,,,,,,
+K577894,,,,,,,,,,,B0034; B0034
+K145302,,,,,,,,,,J23109,B0032
+K775000,,,,,,,,,,,
+K118000,,,,,,,,,,,
+B0013,,,,,,,,,,,
+K819017,,,,,,,,,,,
+K1033916,,,,,,,,,,,
+C0052,,,,,,,,,,,
+K567015,,,,,,,,,,,
+K747023,,,,,,,,,,,
+K1188002,,,,,,,,,,,
+K873002,,,,,,,,,,,
+K1806004,,,,,,,,,,,
+I751100,,,,,,,,,,,B0030; B0034
+C0160,,,,,,,,,,,
+K516031,,,,,,,,,,,
+K747008,,,,,,,,,,,
+K567008,,,,,,,,,,,
+K763001,,,,,,,,,,,
+K624003,,,,,,,,,,,
+K115001,,,,,,,,,,,
+K747021,,,,,,,,,,,
+I746381,,,,,,,,,,,B0034; B0034; B0034
+K936000,,,,,,,,,,,
+K517003,,,,,,,,,,,
+K1150039,,,,,,,,,,,
+K863206,,,,,,,,,,,
+K592009,,,,,,,,,,,
+B0010,,,,,,,,,,,
+K538101,,,,,,,,,,,B0034
+K747019,,,,,,,,,,,
+K747005,,,,,,,,,,,
+K648013,,,,,,,,,,,
+K747010,,,,,,,,,,,
+K1415006,,,,,,,,,,,
+R0079,,,,,,,,,,,
+K575021,,,,,,,,,,,
+K567018,,,,,,,,,,,
+K1150038,,,,,,,,,,,
+K817024,,,,,,,,,,,B0030
+K1061001,,,,,,,,,,,
+B0031,,,,,,,,,,,
+K738002,,,,,,,,,,,
+I6057,,,,,,,,,,,B0034
+B0040,,,,,,,,,,,
+K914001,,,,,,,,,,,B0030
+B0012,,,,,,,,,,,
+E1010,,,,,,,,,,,
+R0065,,,,,,,,,,,
+R0010,,,,,,,,,,,
+K538000,,,,,,,,,,,
+K773004,,,,,,,,,,,B0034
+J61101,,,,,,,,,,,
+K525998,,,,,,,,,,,B0034
+K576003,,,,,,,,,,,
+K606017,,,,,,,,,,,
+K823017,,,,,,,,,,,
+K733009,,,,,,,,,,,B0032
+K592011,,,,,,,,,,,
+K540001,,,,,,,,,,,
+K648029,,,,,,,,,,,
+J52022,,,,,,,,,,,
+E0034,,,,,,,,,,,
+K584000,,,,,,,,,,,B0032
+K1150041,,,,,,,,,,,
+R0062,,,,,,,,,,,
+K747011,,,,,,,,,,,
+K523002,,,,,,,,,,,
+I746375,,,,,,,,,,,B0034; B0034; B0034
+K588001,,,,,,,,,,,
+K517002,,,,,,,,,,,
+K654058,,,,,,,,,,,
+C0061,,,,,,,,,,,
+K519010,,,,,,,,,,,
+S05060,,,,,,,,,,,
+K784014,,,,,,,,,,,
+K731520,,,,,,,,,,,B0032
+J45219,,,,,,,,,,,B0032
+K523003,,,,,,,,,,,
+K539119,,,,,,,,,,,
+K747007,,,,,,,,,,,
+K617003,,,,,,,,,,,
+K1033910,,,,,,,,,,,
+K539421,,,,,,,,,,,
+R0071,,,,,,,,,,,
+R0040,,,,,,,,,,,
+K1150040,,,,,,,,,,,
+K817018,,,,,,,,,,,
+K575020,,,,,,,,,,,
+R0084,,,,,,,,,,,
+K817023,,,,,,,,,,,B0030
+K525710,,,,,,,,,,,B0034
+R0080,,,,,,,,,,,
+K515007,,,,,,,,,,,
+J45299,,,,,,,,,,,B0030
+K936013,,,,,,,,,,,
+K733008,,,,,,,,,,,
+J45199,,,,,,,,,,,B0030
+K538004,,,,,,,,,,,
+R0063,,,,,,,,,,,
+E0030,,,,,,,,,,,
+K525306,,,,,,,,,,,B0034
+J45319,,,,,,,,,,,B0032
+k1218003,,,,,,,,,,,
+C0261,,,,,,,,,,,B0034
+K875009,,,,,,,,,,,
+R0011,,,,,,,,,,,
+C0012,,,,,,,,,,,
+K1150043,,,,,,,,,,,
+K569017,,,,,,,,,,,
+J23108,,,,,,,,,,J23108; J23119,
+K784006,,,,,,,,,,,
+K592018,,,,,,,,,,,B0034
+K592016,,,,,,,,,,,B0034; B0034
+K747018,,,,,,,,,,,
+S03749,,,,,,,,,,J23100,B0030; B0034
+K660610,,,,,,,,,,,B0030
+K611026,,,,,,,,,,,
+K516022,,,,,,,,,,,B0032
+K808003,,,,,,,,,,,
+C0060,,,,,,,,,,,
+K541506,,,,,,,,,,,
+E0032,,,,,,,,,,,
+I732920,,,,,,,,,,,B0034; B0034
+K808025,,,,,,,,,,,
+K747022,,,,,,,,,,,
+K325903,,,,,,,,,,,
+K747020,,,,,,,,,,,
+K541505,,,,,,,,,,,
+J61100,,,,,,,,,,,
+K607035,,,,,,,,,,,
+J23109,,,,,,,,,,J23109,
+S04602,,,,,,,,,,,B0034
+K624004,,,,,,,,,,,
+K398331,,,,,,,,,,,B0032
+I712058,,,,,,,,,,,
+I15017,,,,,,,,,,,B0032
+I13502,,,,,,,,,,,B0034
+E0022,,,,,,,,,,,
+K812032,,,,,,,,,,,
+K598014,,,,,,,,,,,
+K777117,,,,,,,,,,,
+J52040,,,,,,,,,,,
+B0030,,,,,,,,,,,B0030
+K909007,,,,,,,,,,,
+K627011,,,,,,,,,,,
+K731722,,,,,,,,,,,
+I712088,,,,,,,,,,,
+R0078,,,,,,,,,,,
+K314110,,,,,,,,,,,
+R0082,,,,,,,,,,,
+I759020,,,,,,,,,,J23116,B0034
+I759019,,,,,,,,,,J23116,B0034
+B0015,,,,,,,,,,,

@@ -1,0 +1,329 @@
+﻿Strain,ID,DatabaseRow,Backbone.Plasmid.,SequencingResultBackbone,SequencingResultBiobrick,SequencingCompleteness,overall.breseq.diagnosis,sequenced,matt.analyzed,sequencing.result
+BB1,1,NA,,,,,,,,not.sequenced
+BB2,2,,,,,,,,,not.sequenced
+BB3,3,308,pSB1C3,correct,"1 bp deletion, 31 bp insertion",complete,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB5,5,309,pSB1C3,"29 pt mutations, two 2bp substitutions, 3bp subtitution, 4bp substitution , missing coverage ",missing coverage,"missing coverage, new junction in middle of backbone sequence - deletion? ",sequencing.bad,0,,not.sequenced
+BB6,6,,,,,,,,,not.sequenced
+BB7,7,311,pSB1C3,missing coverage,missing coverage ,missing coverage,sequencing.bad,0,,not.sequenced
+BB8,8,,,,,,,,,not.sequenced
+BB14,14,NA,,,,,,,,not.sequenced
+BB15,15,,,,,,,,,not.sequenced
+BB16,16,,,,,,,,,not.sequenced
+BB17,17,NA,,,,,,,,not.sequenced
+BB19,19,611,pSB1C3,correct,1 pt mutation,complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB20,20,NA,,,,,,,,not.sequenced
+BB21,21,313,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB22,22,314,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB23,23,315,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB24,24,316,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB25,25,317,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB28,28,320,pSB1C3,"1 pt mutation, 1 bp insertion, 2 bp deletion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB40,40,331,pSB1C3,"1 pt mutation, 4bp substitution ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB47,47,337,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB54,54,343,pSB1C3,"1 pt mutation, 1bp insertion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB55,55,344,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB56,56,345,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB57,57,346,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB58,58,347,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB59,59,348,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB60,60,349,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB61,61,350,pSB1C3,two 1 bp deletions,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB62,62,351,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB63,63,612,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB64,64,352,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB65,65,353,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB66,66,354,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB72,72,606,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB73,73,607,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB74,74,NA,,,,,,,,not.sequenced
+BB75,75,608,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB80,80,NA,,,,,,,,not.sequenced
+BB81,81,609,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB82,82,NA,,,,,,,,not.sequenced
+BB83,83,610,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB85,85,614,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB86,86,615,pSB1C3,1 pt mutation,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB87,87,616,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB89,89,617,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB90,90,618,pSB1C3,"2 pt mutations, missing coverage ",missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB117,117,NA,,,,,,,,not.sequenced
+BB118,118,NA,,,,,,,,not.sequenced
+BB119,119,1000,pSB1C3,1 pt mutation,1 pt mutation,new junction from beginning to the start of biobrick ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB120,120,1001,pSB1C3,2 bp deletion,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB121,121,605,pSB1C3,,,ERROR-no results ,sequencing.bad,0,,not.sequenced
+BB123,123,NA,,,,,,,,not.sequenced
+BB124,124,NA,,,,,,,,not.sequenced
+BB133,133,604,pSB1A2,2 pt mutations,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB134,134,623,pSB1C3,1 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB136,136,624,pSB1C3,3 pt mutations,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB137,137,625,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB138,138,986,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB139,139,NA,,,,,,,,not.sequenced
+BB140,140,NA,,,,,,,,not.sequenced
+BB141,141,NA,,,,,,,,not.sequenced
+BB142,142,NA,,,,,,,,not.sequenced
+BB143,143,NA,,,,,,,,not.sequenced
+BB144,144,626,pSB1C3,two 1bp deletions,"1 bp deletion, 1 bp insertion",complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB145,145,627,pSB1C3,two 1bp deletions,"1 bp deletion, 1 bp insertion",complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB146,146,628,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB147,147,629,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB148,148,630,pSB1C3,correct,2301bp deletion ,biobrick deletion ,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB149,149,631,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB150,150,632,pSB1C3,"6bp insertion, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB151,151,633,pSB1C3,"6bp insertion, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB152,152,662,pSB1C3,"6bp insertion, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB153,153,663,pSB1C3,"6bp insertion, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB154,154,664,pSB1C3,"6bp insertion, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB155,155,665,pSB1C3,"22bp substitution for 7bp, 1bp insertion",new junction from start to middle of biobrick ,new junction in biobrick region ,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB156,156,NA,,,,,,,,not.sequenced
+BB157,157,NA,,,,,,,,not.sequenced
+BB158,158,,,,,,,,,not.sequenced
+BB159,159,,,,,,,,,not.sequenced
+BB160,160,NA,,,,,,,,not.sequenced
+BB161,161,,,,,,,,,not.sequenced
+BB162,162,NA,,,,,,,,not.sequenced
+BB163,163,NA,,,,,,,,not.sequenced
+BB164,164,1004,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB165,165,1005,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB171,171,1007,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB172,172,1008,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB173,173,1009,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB175,175,1010,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB176,176,1011,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB178,178,1012,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB179,179,1013,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB180,180,1014,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB181,181,1015,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB182,182,1016,pSB1A2,"2 pt mutations, missing coverage",missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB183,183,NA,,,,,,,,not.sequenced
+BB184,184,NA,,,,,,,,not.sequenced
+BB185,185,NA,,,,,,,,not.sequenced
+BB186,186,,,,,,,,,not.sequenced
+BB187,187,1018,pSB1A2,2 pt mutations,"1 pt mutation, two 1bp insertions ",new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB188,188,1019,pSB1A2,"2 pt mutations, 2bp deletion ",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB189,189,1020,pSB1A2,"2 pt mutations, 2bp deletion ",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB190,190,1021,pSB1A2,"2 pt mutations, 2bp deletion ",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB191,191,,,,,,,,,not.sequenced
+BB192,192,,,,,,,,,not.sequenced
+BB193,193,1024,pSB1C3,correct,2 bp insertion ,complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB200,200,,,,,,,,,not.sequenced
+BB204,204,1035,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB205,205,1036,pSB1C3,1 pt mutation,4 pt mutations ,complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB206,206,1037,pSB1C3,"2 pt mutations, missing coverage ",missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB208,208,1038,pSB1C3,11 bp insertion,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB209,209,1039,pSB1C3,two 1 bp deletions,correct,new junction in first 196 bases of sequence - deletion? ,correct.biobrick ,1,,biobrick.confirmed
+BB210,210,1043,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB211,211,1040,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB213,213,1041,pSB1C3,correct,correct,new junction in first 196 bases of sequence - deletion? ,correct.biobrick ,1,,biobrick.confirmed
+BB214,214,1042,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB215,215,,,,,,,,,not.sequenced
+BB216,216,NA,,,,,,,,not.sequenced
+BB217,217,NA,,,,,,,,not.sequenced
+BB218,218,1044,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB219,219,NA,,,,,,,,not.sequenced
+BB220,220,1045,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB223,223,1078,pSB1C3,1 pt mutation ,missing coverage ,missing coverage ,sequencing.bad,0,,not.sequenced
+BB225,225,1079,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB226,226,NA,,,,,,,,not.sequenced
+BB228,228,1080,pSB1C3,"2 pt mutations, missing coverage ",missing coverage ,missing coverage,sequencing.bad,0,,not.sequenced
+BB229,229,NA,,,,,,,,not.sequenced
+BB230,230,NA,,,,,,,,not.sequenced
+BB231,231,NA,,,,,,,,not.sequenced
+BB238,238,,,,,,,,,not.sequenced
+BB239,239,1199,pSB1C3,"1 pt mutation,  26 bp insertion near biobrick ",correct,complete ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB240,240,1200,pSB1C3,1 pt mutation,"two 1bp deletions, 2 bp deletion ",complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB241,241,,,,,,,,,not.sequenced
+BB242,242,,,,,,,,,not.sequenced
+BB243,243,,,,,,,,,not.sequenced
+BB244,244,NA,,,,,,,,not.sequenced
+BB245,245,NA,,,,,,,,not.sequenced
+BB246,246,NA,,,,,,,,not.sequenced
+BB247,247,NA,,,,,,,,not.sequenced
+BB248,248,NA,,,,,,,,not.sequenced
+BB249,249,NA,,,,,,,,not.sequenced
+BB251,251,NA,,,,,,,,not.sequenced
+BB252,252,1205,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB255,255,1270,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB256,256,NA,,,,,,,,not.sequenced
+BB258,258,1271,pSB1C3,"4 pt mutations, 1bp insertion, missing coverage ",missing coverage ,missing coverage ,sequencing.bad,0,,not.sequenced
+BB259,259,1272,pSB1C3,1 pt mutation,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB260,260,1273,pSB1C3,2 bp deletion,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB261,261,1274,pSB1C3,correct,correct,"new junction?????? No new junction in 8/22, but there is one in earlier run ",correct.biobrick ,1,,biobrick.confirmed
+BB262,262,1275,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB263,263,1276,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB264,264,1277,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB265,265,1278,pSB1C3,1 pt mutation,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB266,266,NA,,,,,,,,not.sequenced
+BB267,267,1279,pSB1C3,1 pt mutation,correct,new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB268,268,NA,,,,,,,,not.sequenced
+BB269,269,NA,,,,,,,,not.sequenced
+BB270,270,NA,,,,,,,,not.sequenced
+BB271,271,1280,pSB1C3,"1 pt mutation, 1bp deletion",correct,new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB272,272,1281,pSB1C3,2bp deletion,"3 pt mutations, 2 bp substitution, 1bp substitution for 2bp ",complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB273,273,1282,pSB1C3,"2 pt mutations, 1 bp deletion, 1 bp insertion",correct,new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB274,274,1283,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB275,275,1284,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB276,276,1285,pSB1C3,"two 1bp deletions, 4 pt mutations, 1 bp insertion ",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB277,277,1287,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB278,278,1288,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB279,279,1289,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB280,280,1290,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB281,281,1291,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB282,282,1292,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB283,283,1293,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB284,284,1082,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB285,285,NA,,,,,,,,not.sequenced
+BB286,286,1083,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB287,287,NA,,,,,,,,not.sequenced
+BB288,288,1084,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB289,289,1085,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB290,290,942,pSB1C3,two 1 bp deletions,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB291,291,943,pSB1A2,2 pt mutations ,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB292,292,944,pSB1C3,missing coverage,missing coverage,missing coverage ,sequencing.bad,0,,not.sequenced
+BB293,293,945,pSB1A2,2 pt mutations ,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB294,294,946,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB295,295,947,pSB1A2,2 pt mutations ,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB296,296,948,pSB1C3,correct,3 pt mutations,complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB297,297,,,,,,,,,not.sequenced
+BB298,298,950,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB299,299,951,pSB1A2,3 pt mutations,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB300,300,952,pSB1C3,2 pt mutations ,correct,fit graph looks weird??? ,sequencing.bad,0,,not.sequenced
+BB301,301,953,pSB1A2,"2 pt mutations, missing coverage in first 107 bases ",correct,missing coverage in first 107 bases of sequence ,correct.biobrick ,1,,biobrick.confirmed
+BB302,302,954,pSB1C3,correct,891 bp deletion ,complete,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB303,303,955,pSB1C3,1 pt mutation,891 bp deletion ,complete,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB304,304,NA,,,,,,,,not.sequenced
+BB305,305,1086,pSB1C3,"1 pt mutation, 2 bp deletion",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB306,306,1087,pSB1C3,1 bp deletion,"two 1bp deletions, two 1bp insertions",new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.minor.discrepancy
+BB307,307,1088,pSB1C3,"two 1 bp deletions, 2 pt mutations","1bp deletion, 1 pt mutation, two 1bp insertions, 16bp substitution for 1bp",complete,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB308,308,1089,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB309,309,1090,pSB1C3,correct,"2 pt mutations, 2bp substitution",complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB310,310,1091,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB311,311,1092,pSB1C3,two 1bp deletions,"1 bp deletion, 1 bp insertion",complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB312,312,1093,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB313,313,NA,,,,,,,,not.sequenced
+BB314,314,1094,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB315,315,1095,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB318,318,1096,pSB1C3,"1 pt mutation, 2 bp substitution",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB320,320,1097,pSB1C3,"1 pt mutation, 1bp insertion",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB322,322,1098,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB323,323,NA,,,,,,,,not.sequenced
+BB324,324,1099,pSB1C3,correct,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB325,325,958,pSB1C3,1 pt mutation,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB326,326,959,pSB1C3,1 bp deletion,correct,new junction from beginning to end of sequence - deletion?  ,wrong.biobrick,1,T,biobrick.confirmed
+BB327,327,960,pSB1C3,correct,2 bp substitution,complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB328,328,961,pSB1C3,1 bp insertion,"53 bp deletion, 1 pt mutation ",complete,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB329,329,962,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB330,330,1046,pSB1C3,1 pt mutation,"918 bp deletion, 1 pt mutation",new junction in biobrick region ,wrong.biobrick,1,T,biobrick.major.discrepancy
+BB331,331,1070,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB337,337,1061,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB338,338,1062,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB339,339,1063,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB340,340,1064,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB341,341,1049,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB342,342,1050,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB345,345,1067,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB346,346,1068,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB348,348,NA,,,,,,,,not.sequenced
+BB349,349,NA,,,,,,,,not.sequenced
+BB351,351,NA,,,,,,,,not.sequenced
+BB352,352,NA,,,,,,,,not.sequenced
+BB353,353,NA,,,,,,,,not.sequenced
+BB354,354,NA,,,,,,,,not.sequenced
+BB356,356,NA,,,,,,,,not.sequenced
+BB357,357,NA,,,,,,,,not.sequenced
+BB359,359,NA,,,,,,,,not.sequenced
+BB360,360,NA,,,,,,,,not.sequenced
+BB362,362,NA,,,,,,,,not.sequenced
+BB366,366,NA,,,,,,,,not.sequenced
+BB376,376,963,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB377,377,964,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB378,378,965,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB379,379,966,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB382,382,967,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB383,383,968,pSB1A2,2 pt mutations ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB384,384,NA,,,,,,,,not.sequenced
+BB385,385,NA,,,,,,,,not.sequenced
+BB386,386,969,pSB1A2,"2 pt mutations, 2 bp deletion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB387,387,NA,,,,,,,,not.sequenced
+BB388,388,970,pSB1A2,"2 pt mutations, 2 bp deletion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB389,389,971,pSB1A2,"2 pt mutations, 2 bp deletion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB390,390,NA,,,,,,,,not.sequenced
+BB391,391,NA,,,,,,,,not.sequenced
+BB392,392,972,pSB1A2,2 pt mutations ,"4bp substitution for 3bp, two 3bp substitutions, 2bp substitution, 4bp substitution, 1bp substitution for 2bp, 4 pt mutations, 1 bp deletion, 39 bp insertion ","complete, lots of biobrick mutations ",wrong.biobrick,1,T,biobrick.major.discrepancy
+BB393,393,NA,,,,,,,,not.sequenced
+BB394,394,NA,,,,,,,,not.sequenced
+BB396,396,974,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB397,397,975,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB398,398,976,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB399,399,977,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB400,400,978,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB401,401,979,pSB1C3,three 1bp deletions,1 bp delection,complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB402,402,980,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB403,403,981,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB404,404,982,pSB1C3,correct,1 pt mutation,complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB405,405,983,pSB1C3,correct,correct,new junction from  shortly before the biobrick start to the end of sequence- deletion? ,wrong.biobrick,1,T,biobrick.confirmed
+BB406,406,NA,,,,,,,,not.sequenced
+BB407,407,NA,,,,,,,,not.sequenced
+BB408,408,1102,pSB1C3,missing coverage,missing coverage ,missing coverage ,sequencing.bad,0,,not.sequenced
+BB409,409,1103,pSB1C3,"1 pt mutation, missing coverage",missing coverage ,missing coverage ,sequencing.bad,0,,not.sequenced
+BB410,410,NA,,,,,,,,not.sequenced
+BB411,411,1104,pSB1C3,missing coverage,missing coverage ,missing coverage ,sequencing.bad,0,,not.sequenced
+BB412,412,NA,,,,,,,,not.sequenced
+BB413,413,NA,,,,,,,,not.sequenced
+BB414,414,NA,,,,,,,,not.sequenced
+BB415,415,NA,,,,,,,,not.sequenced
+BB416,416,NA,,,,,,,,not.sequenced
+BB417,417,NA,,,,,,,,not.sequenced
+BB418,418,1073,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB419,419,NA,,,,,,,,not.sequenced
+BB420,420,1051,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB421,421,1052,pSB1C3,2 bp deletion,1 pt mutation,complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB422,422,1053,pSB1C3,2 bp deletion,"1 bp insertion, 1 bp deletion",complete,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB423,423,1074,pSB1C3,"1 pt mutation, 2 bp deletion",correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB424,424,,,,,,,,,not.sequenced
+BB425,425,1055,pSB1C3,43 bp insertion near biobrick ,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB426,426,,,,,,,,,not.sequenced
+BB446,446,NA,,,,,,,,not.sequenced
+BB521,521,1058,pSB1C3,correct,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB523,523,1059,pSB1C3,2 bp deletion,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB524,524,1077,pSB1C3,two 1 bp deletions,correct,complete,correct.biobrick ,1,,biobrick.confirmed
+BB525,525,NA,,,,,,,,not.sequenced
+BB526,526,918,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB527,527,,,,,,,,,not.sequenced
+BB528,528,920,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB529,529,921,pSB1C3,"2 pt mutations , missing coverage ",correct,missing coverage in backbone ,sequencing.bad,0,,not.sequenced
+BB530,530,922,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB531,531,,,,,,,,,not.sequenced
+BB532,532,924,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB533,533,,,,,,,,,not.sequenced
+BB534,534,926,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB535,535,927,pSB1C3,"2 pt mutations, missing coverage ",correct,missing coverage ,sequencing.bad,0,,not.sequenced
+BB536,536,928,pSB1C3,1 pt mutation,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB537,537,929,pSB1C3,2 pt mutations ,correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB538,538,930,pSB1C3,correct,1 bp insertion,complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB539,539,931,pSB1C3,1 bp deletion,correct,"two new junctions, one from beginning to end, and another from start of biobrick to end - deletions? ",wrong.biobrick,1,T,biobrick.confirmed
+BB540,540,932,pSB1C3,correct,2 bp deletion,complete ,correct.biobrick.pt.muts,1,,biobrick.minor.discrepancy
+BB541,541,933,pSB1C3,two 1 bp deletions,correct,new junction in biobrick sequence - deletion? ,wrong.biobrick,1,T,biobrick.confirmed
+BB542,542,934,pSB1C3,"1 pt mutation, 1 bp insertion",correct,complete ,correct.biobrick ,1,,biobrick.confirmed
+BB543,543,935,pSB1C3,Two 1 bp deletions,correct,new junction in biobrick sequence - deletion? ,wrong.biobrick,1,T,biobrick.confirmed
+BB550,550,NA,,,,,,,,not.sequenced
+BB551,551,NA,,,,,,,,not.sequenced
+BB552,552,NA,,,,,,,,not.sequenced
+BB553,553,NA,,,,,,,,not.sequenced
+BB554,554,,,,,,,,,not.sequenced
+BB555,555,NA,,,,,,,,not.sequenced
+BB556,556,NA,,,,,,,,not.sequenced
+BB558,558,,,,,,,,,not.sequenced
+BB583,583,NA,,,,,,,,not.sequenced
+BB584,584,NA,,,,,,,,not.sequenced
+BB585,585,NA,,,,,,,,not.sequenced
+BB586,586,NA,,,,,,,,not.sequenced
+BB587,587,NA,,,,,,,,not.sequenced
+BB588,588,NA,,,,,,,,not.sequenced
+BB589,589,NA,,,,,,,,not.sequenced
+BB590,590,NA,,,,,,,,not.sequenced
+JEB1204,JEB1204,NA,,,,,,,,biobrick.confirmed
+JEB1205,JEB1205,NA,,,,,,,,biobrick.confirmed
+JEB1206,JEB1206,NA,,,,,,,,biobrick.confirmed
+JEB1207,JEB1207,NA,,,,,,,,biobrick.confirmed
+JEB1208,JEB1208,NA,,,,,,,,biobrick.confirmed

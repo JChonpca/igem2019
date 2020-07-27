@@ -5,6 +5,9 @@ library(ggplot2)
 library(cowplot)
 
 input.prefix = "04-normalization/output"
+output.prefix = "05-burden-final-output/output"
+
+
 strain.metadata.file.string = "igem2019_strain_metadata.csv"
 all.data.file.string = "02b-output-all-merged/output.csv"
 
@@ -44,6 +47,8 @@ anova(fit)
 
 not.control.data = parts.means %>% filter(burden.category != "control")
 
+cutoff.df = data.frame()
+
 cat("burden cutoff", "# sig> than", "% sig > than", "\n")
 for (b in seq(0, 0.5, by=0.05)) {
   
@@ -51,8 +56,11 @@ for (b in seq(0, 0.5, by=0.05)) {
   #Uncomment for multiple testing correction
   #p.values = p.adjust(p.values, method="BH")
   num.significant = sum(p.values <= 0.05)
-  cat(b, num.significant, (num.significant/length(p.values))*100, "\n")
+  
+  cutoff.df = bind_rows(cutoff.df, data.frame(greater.than.burden=b, num.significant.parts=num.significant, total.parts=length(p.values), percent.significant.parts=(num.significant/length(p.values))*100))
 }
+
+write.csv(cutoff.df, paste0(output.prefix, ".parts.with.at.least.burden.csv"))
 
 
 

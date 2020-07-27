@@ -32,9 +32,9 @@ exp030,Ginny,,Rerun of the BFP controls ,,freezer stocks ,F,Test of control plas
 exp031,,,,,,F,Low growth rates and compressed data
 exp032,Diya,9/5/19,iGEM plasmids,4/18/19,freezer stocks ,T,
 exp033,Diya,9/11/19,iGEM plasmids,4/18/19,freezer stocks ,T,
-exp034,,,,,,F,Control strains overlap no burden
+exp034,,,,,,F,"Controls are wrong, even after removing JEB1206"
 exp035,,,,,,T,
-exp036,Alex,9/19/19,iGEM plasmids,4/18/19,freezer stocks ,F,Something happened to the high burden BFP control
+exp036,Alex,9/19/19,iGEM plasmids,4/18/19,freezer stocks ,F,"Controls are wrong, even after removing JEB1206"
 exp037,Noor,9/16/19,Evostab (Anderson series) - day 0 cultures ,4/18/19,"colonies on plates (that were streaked out from glycerol stocks), not in triplicate pattern ",F,Special experiment with no controls
 exp038,Noor,9/17/19,Evostab (Anderson series) - day 1 cultures,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls
 exp039,Noor,9/18/19,Evostab (Anderson series) - day 2 cultures ,4/18/19,propagation from previous day - and not in triplicate pattern  ,F,Special experiment with no controls

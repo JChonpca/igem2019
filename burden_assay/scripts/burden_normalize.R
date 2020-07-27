@@ -7,17 +7,23 @@
 library(tidyverse)
 library(ggplot2)
 library(cowplot)
+library(deming)
 
 #debug
-#input.file.string="02b-output-all-merged/output.csv"
-#output.base.name="04-normalization/output"
-#plate.metadata.file.string = "igem2019_plate_metadata.csv"
-#strain.metadata.file.string = "igem2019_strain_metadata.csv"
-#control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
-#included.vectors = c("pSB1C3","pSB1A2")
-#control.fitting.excluded.plates = ()
-#control.only.normalization.plates = ()
+if (F) {
+   input.file.string="02b-output-all-merged/output.csv"
+   output.base.name="04-normalization/output"
+   plate.metadata.file.string = "igem2019_plate_metadata.csv"
+   strain.metadata.file.string = "igem2019_strain_metadata.csv"
+   control.strains = c("JEB1204","JEB1205","JEB1206","JEB1207","JEB1208")
+   included.vectors = c("pSB1C3","pSB1A2")
+   control.fitting.excluded.plates = c()
+   control.only.normalization.plates = c()
+}
 
+# Define these in case we aren't using options
+growth.rate.bw = NA
+GFP.rate.bw = NA
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -50,11 +56,23 @@ if (!exists("input.file.string")) {
       ),
       make_option(
          c("-x", "--control-fitting-excluded-plates"), type="character", default=NA, 
-         help="Comma-separated list of plates to exclude when calculating which plates have controls that wil be used to normalize to (plates will still be normalized)", metavar="exp11,exp99"
+         help="Comma-separated list of plates to exclude when calculating which plates have controls that will be used to normalize to (plates will still be normalized)", metavar="exp11,exp99"
       ),
       make_option(
          c("-n", "--control-only-normalization-plates"), type="character", default=NA, 
          help="Plates that will be normalized only to control strains, not also assuming the greatest density has no-burden", metavar="exp11,exp99"
+      ),
+      make_option(
+         c("-z", "--no-control-normalization"), type="logical", action="store_true", 
+         help="Plates that will be normalized only to control strains, not also assuming the greatest density has no-burden"
+      ),
+      make_option(
+         c("--growth-rate-bw"), type="numeric", default=NA, 
+         help="Bandwidth to use for smoothing the growth rate distribution to identify the no-burden peak used for normalization. If not specified, it will be predicted from the data."
+      ),
+      make_option(
+         c("--GFP-rate-bw"), type="numeric", default=NA, 
+         help="Bandwidth to use for smoothing the GFP rate distribution to identify no-burden peak used for normalization. If not specified, it will be predicted from the data."
       )
    )
    
@@ -91,6 +109,16 @@ if (!exists("input.file.string")) {
       control.only.normalization.plates = as.vector(strsplit(opt$'control-only-normalization-plates', ",")[[1]])
    }
    
+   if (!is.null(opt$'no-control-normalization')) {
+      no.control.normalization = opt$'no-control-normalization'
+   }
+   
+   growth.rate.bw = opt$'growth-rate-bw'
+   GFP.rate.bw = opt$'GFP-rate-bw'
+}
+
+if (!exists("no.control.normalization")) {
+   no.control.normalization = F
 }
 
 cat("Normalizing across different plates...\n")
@@ -98,6 +126,14 @@ cat("Input file of merged plates:  ", input.file.string, "\n")
 cat("Input file of plate metadata: ", plate.metadata.file.string, "\n")
 cat("Input file of strain metadata: ", strain.metadata.file.string, "\n")
 cat("Output base name: ", output.base.name, "\n")
+
+if (no.control.normalization) {
+   cat("Control normalization: DISABLED\n")
+} else {
+   cat("Control normalization: ENABLED\n")
+}
+
+
 cat("Control strains:", paste0(control.strains, collapse=","), "\n")
 if (length(included.vectors)==0) {
    cat("Included vectors:", "all", "\n")
@@ -117,6 +153,17 @@ if (length(control.only.normalization.plates)==0) {
    cat("Plates only normalized to controls:", paste0(control.only.normalization.plates, collapse=","), "\n")
 }
 
+if (is.na(growth.rate.bw)) {
+   cat("Growth rate bandwidth: AUTO\n")
+} else {
+   cat("Growth rate bandwidth:", growth.rate.bw, "\n")
+}
+
+if (is.na(GFP.rate.bw)) {
+   cat("GFP rate bandwidth: AUTO\n")
+} else {
+   cat("GFP rate bandwidth:", GFP.rate.bw, "\n")
+}
 
 
 ##############  Read in the input files
@@ -130,7 +177,7 @@ plate.metadata = read.csv(plate.metadata.file.string)
 include.plates = (plate.metadata %>% filter(include==T))$plate
 
 all.data = all.data %>% filter(plate %in% include.plates)
-all.data$plate = droplevels(all.data$plate)
+all.data$plate = factor(all.data$plate)
 
 
 ############## Subset to the vectors that we want to include
@@ -150,9 +197,9 @@ if (length(included.vectors)>0) {
    #Remove empty plates - could remove ones with fewer than some number of strains
    all.data = all.data %>% filter(plate %in% unique(num.not.control.per.plate$plate))
    include.plates = unique(all.data$plate)
-   all.data$plate = droplevels(all.data$plate)
+   all.data$plate = factor(all.data$plate)
 }
-cat("Analyzed plates (after filtering):", length(unique(all.data$plate)), length(unique(all.data$vector)), "\n")
+cat("Analyzed plates (after filtering):", length(unique(all.data$plate)), "\n")
 cat("Analyzed strains (after filtering):", length(unique(all.data$strain)), "\n")
 
 ##############  Make a general QC graph that highlights the controls
@@ -215,7 +262,7 @@ ggsave(paste0(output.base.name,".GFP-rate-unnormalized-control-mean-and-q80.pdf"
 ##############  by looking for the maximum density of points
 
 plate.metadata = plate.metadata %>% filter(plate %in% include.plates)
-droplevels(plate.metadata$plate)
+plate.metadata$plate = factor(plate.metadata$plate)
 
 plate.metadata$no.burden.growth.rate = c()
 plate.metadata$no.burden.GFP.rate = c()
@@ -228,40 +275,90 @@ normalize.stats = data.frame(
    GFP.rate.bandwidth=NA
 )
 
+lower.peak.density.factor = 0.5
 for (i in 1:nrow(plate.metadata)) {
-   growth.rate.bw=0.05
-   GFP.rate.bw=480
-   #GFP.rate.bw=0.05
+   
+   #automatically calculated now
+   #growth.rate.bw=0.015
+   #GFP.rate.bw=300
    
    this.plate = as.character(plate.metadata$plate[i])
+   cat(this.plate, "\n")
    plate.no.control.data = not.control.data %>% filter(plate==this.plate)
    
-   this.density = density(plate.no.control.data$growth.rate, bw=growth.rate.bw)
-   max.y.index = which.max(this.density$y)
-   no.burden.growth.rate = this.density$x[max.y.index]
    
+   ############### Growth Rate
+   
+   # Find the peak of maximum no-burden growth
+   if (is.na(growth.rate.bw)) {
+      this.growth.rate.bw = bw.SJ(plate.no.control.data$growth.rate)
+   } else {
+      this.growth.rate.bw = growth.rate.bw
+   }
+   
+   this.density = density(plate.no.control.data$growth.rate, bw=this.growth.rate.bw, kernal="gaussian")
+   highest.growth.rate.peak.index = which.max(this.density$y)
+   highest.growth.rate.peak.density = this.density$y[highest.growth.rate.peak.index]
+   highest.growth.rate.peak = this.density$x[highest.growth.rate.peak.index]
+   new.highest.growth.rate.peak = highest.growth.rate.peak
+   
+   for (j in 2:(length(this.density$y)-1)) {
+      if ( (this.density$y[j] > this.density$y[j-1]) && (this.density$y[j] > this.density$y[j+1]) ) {
+         cat("Peak at growth rate of ", this.density$x[j], " with height of ", this.density$y[j], "\n")
+         
+         if ( (j >= highest.growth.rate.peak.index) && (this.density$y[j] > highest.growth.rate.peak.density*lower.peak.density.factor) ) {
+            cat("  using this peak\n")
+            new.highest.growth.rate.peak=this.density$x[j]
+         }
+      }
+   }
+   
+   no.burden.growth.rate = new.highest.growth.rate.peak
    normalize.stats$growth.rate.no.burden[i] = no.burden.growth.rate
-   normalize.stats$growth.rate.bandwidth[i] = growth.rate.bw
+   normalize.stats$growth.rate.bandwidth[i] = this.growth.rate.bw
 
    p = ggplot(plate.no.control.data, aes(x=growth.rate)) + 
-   geom_density(bw=growth.rate.bw) + 
+   geom_density(bw=this.growth.rate.bw) + 
       scale_x_continuous(breaks = seq(0, 2, by = 0.1), limits=c(0,2)) + geom_vline(xintercept=no.burden.growth.rate) 
    ggsave(paste0(output.base.name,".",this.plate,".growth-rate-density-plot.pdf"), p)
    
    plate.metadata$no.burden.growth.rate[i] = no.burden.growth.rate
    
+   ############### GFP
+   
    #Remove some that have no GFP measurements
    plate.no.control.data.has.GFP = plate.no.control.data %>% filter(!is.na(GFP.rate))
    
-   this.density = density(plate.no.control.data.has.GFP$GFP.rate, bw=GFP.rate.bw)
-   max.y.index = which.max(this.density$y)
-   no.burden.GFP.rate = this.density$x[max.y.index]
+   if (is.na(GFP.rate.bw)) {
+      this.GFP.rate.bw = bw.SJ(plate.no.control.data.has.GFP$GFP.rate)
+   } else {
+      this.GFP.rate.bw = GFP.rate.bw
+   }
+
+   # Find the peak of maximum no-burden GFP
+   this.density = density(plate.no.control.data.has.GFP$GFP.rate, bw=this.GFP.rate.bw)
+   highest.GFP.rate.peak.index = which.max(this.density$y)
+   highest.GFP.rate.peak.density = this.density$y[highest.GFP.rate.peak.index]
+   highest.GFP.rate.peak = this.density$x[highest.GFP.rate.peak.index]
+   new.highest.GFP.rate.peak = highest.GFP.rate.peak
    
+   for (j in 2:(length(this.density$y)-1)) {
+      if ( (this.density$y[j] > this.density$y[j-1]) && (this.density$y[j] > this.density$y[j+1]) ) {
+         cat("Peak at GFP rate of ", this.density$x[j], " with height of ", this.density$y[j], "\n")
+         
+         if ( (j >= highest.GFP.rate.peak.index) && (this.density$y[j] > highest.GFP.rate.peak.density*lower.peak.density.factor) ) {
+            cat("  using this peak\n")
+            new.highest.GFP.rate.peak=this.density$x[j]
+         }
+      }
+   }
+   
+   no.burden.GFP.rate = new.highest.GFP.rate.peak
    normalize.stats$GFP.rate.no.burden[i] = no.burden.GFP.rate
-   normalize.stats$GFP.rate.bandwidth[i] = GFP.rate.bw
+   normalize.stats$GFP.rate.bandwidth[i] = this.GFP.rate.bw
    
    p = ggplot(plate.no.control.data.has.GFP, aes(x=GFP.rate)) + 
-      geom_density(bw=GFP.rate.bw) + 
+      geom_density(bw=this.GFP.rate.bw) + 
       scale_x_continuous(breaks = seq(0,50000, by = 5000), limits=c(0,50000)) + 
       geom_vline(xintercept=no.burden.GFP.rate) 
    ggsave(paste0(output.base.name,".",this.plate,".GFP-rate-density-plot.pdf"), p)
@@ -269,10 +366,12 @@ for (i in 1:nrow(plate.metadata)) {
    plate.metadata$no.burden.GFP.rate[i] = no.burden.GFP.rate
 }
 
-write.csv(normalize.stats, paste0(output.base.name, ".normalize_stats.csv"), row.names=F)
+write.csv(normalize.stats, paste0(output.base.name, ".no.burden.normalize.stats.csv"), row.names=F)
 
 
 ## Normalize to the no.burden.growth.rate
+## This sets the normalized point (1,1) to be the same between runs
+
 no.burden.growth.rate.data = data.frame(plate=as.character(plate.metadata$plate), no.burden.growth.rate = plate.metadata$no.burden.growth.rate, no.burden.GFP.rate = plate.metadata$no.burden.GFP.rate)
 
 no.burden.normalized.data = all.data %>% left_join(no.burden.growth.rate.data, by="plate")
@@ -298,77 +397,299 @@ p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.GFP
 
 ggsave(paste0(output.base.name,".GFP-rate-no-burden-normalized.pdf"), p)
 
+## Plot a regression on the controls for each plate on its own
 
-
-
-
-##############  Further normalize values between runs based on controls. 
-
-
-## determine the grand means for the controls across all plates
-
-
-control.means = no.burden.normalized.control.data %>% filter(!(plate %in% control.fitting.excluded.plates)) %>% group_by(strain) %>% summarize(normalized.growth.rate.grand.mean=mean(normalized.growth.rate), normalized.GFP.rate.grand.mean=mean(normalized.GFP.rate))
-
-## testing mean of mean to force slope closer to 1
-#control.means$normalized.grand.mean.mean  = (control.means$normalized.growth.rate.grand.mean + control.means$normalized.GFP.rate.grand.mean)/2
-#control.means$normalized.growth.rate.grand.mean = control.means$normalized.grand.mean.mean
-#control.means$normalized.GFP.rate.grand.mean = control.means$normalized.grand.mean.mean
-
-print(control.means)
-
-
-adjustments = data.frame()
+GFP.versus.growth.rate.normalization.x.intercepts = c()
 for (this.plate in unique(all.data$plate)) {
-   print(this.plate)
-   if (this.plate %in% control.only.normalization.plates) {
-      # alternative normalization that uses only control strains -- not no-burden normalization
-      # force the line to go through (0,0)
-      
-      this.normalized.control.data.means = no.burden.normalized.data %>% filter(plate==this.plate)
-      this.normalized.control.data.means = this.normalized.control.data.means %>% left_join(control.means, by="strain")
-      
-      to.fit = this.normalized.control.data.means %>% select(normalized.growth.rate, normalized.growth.rate.grand.mean, normalized.GFP.rate, normalized.GFP.rate.grand.mean)
-      
-      the.growth.rate.fit = lm(normalized.growth.rate.grand.mean~normalized.growth.rate+0, data=to.fit)
-      the.GFP.rate.fit = lm(normalized.GFP.rate.grand.mean~normalized.GFP.rate+0, data=to.fit)
-      
-      adjustments = bind_rows(adjustments, data.frame(plate=this.plate, growth.rate.normalization.slope = coef(the.growth.rate.fit)[1], growth.rate.normalization.y.intercept = 0, GFP.rate.normalization.slope = coef(the.GFP.rate.fit)[1], GFP.rate.normalization.y.intercept = 0))
-      
-   } else {
-      # Normal strategy = line must go through (1,1)
-      
-      this.normalized.control.data.means = no.burden.normalized.data %>% filter(plate==this.plate)
-      this.normalized.control.data.means = this.normalized.control.data.means %>% left_join(control.means, by="strain")
-      
-      to.fit = this.normalized.control.data.means %>% select(normalized.growth.rate, normalized.growth.rate.grand.mean, normalized.GFP.rate, normalized.GFP.rate.grand.mean)
-      
-      to.fit$normalized.growth.rate = to.fit$normalized.growth.rate - 1
-      to.fit$normalized.growth.rate.grand.mean = to.fit$normalized.growth.rate.grand.mean - 1
-      
-      to.fit$normalized.GFP.rate = to.fit$normalized.GFP.rate - 1
-      to.fit$normalized.GFP.rate.grand.mean = to.fit$normalized.GFP.rate.grand.mean - 1
-      
-      the.growth.rate.fit = lm(normalized.growth.rate.grand.mean~normalized.growth.rate+0, data=to.fit)
-      the.GFP.rate.fit = lm(normalized.GFP.rate.grand.mean~normalized.GFP.rate+0, data=to.fit)
-      
-      #Note, we have to transform coords back to normal here (recalc y-intercept)
-      adjustments = bind_rows(adjustments, data.frame(plate=this.plate, growth.rate.normalization.slope = coef(the.growth.rate.fit)[1], growth.rate.normalization.y.intercept=1-coef(the.growth.rate.fit)[1], GFP.rate.normalization.slope = coef(the.GFP.rate.fit)[1], GFP.rate.normalization.y.intercept=1-coef(the.GFP.rate.fit)[1]))
-   }
+   
+   # Line must go through (1,1)
+   this.normalized.control.data = no.burden.normalized.data %>% filter(plate==this.plate) 
+   this.normalized.control.data = this.normalized.control.data %>% filter(strain %in% control.strains)
+   
+   to.fit = this.normalized.control.data %>% select(normalized.growth.rate, normalized.GFP.rate)
+   
+   to.fit$normalized.growth.rate = to.fit$normalized.growth.rate - 1
+   to.fit$normalized.GFP.rate = to.fit$normalized.GFP.rate - 1
+
+   the.fit = lm(normalized.GFP.rate~normalized.growth.rate+0, data=to.fit)
+   
+   #Note, we have to transform coords back to normal here (recalc x-intercept)
+   this.fit.x.intercept = 1 - 1/coef(the.fit)[1]
+   GFP.versus.growth.rate.normalization.x.intercepts = c(GFP.versus.growth.rate.normalization.x.intercepts, this.fit.x.intercept)
+   
+   p = ggplot(this.normalized.control.data, aes(x=normalized.growth.rate, y=normalized.GFP.rate, color=strain)) + 
+      geom_point() + 
+      geom_abline(intercept = 1-coef(the.fit)[1], slope = coef(the.fit)[1], color="red", size=1) + 
+      xlim(0,1.2) + 
+      ylim(0,1.2)
+   
+   ggsave(paste0(output.base.name, ".", this.plate, ".no.burden.normalized.control.fit.pdf"), p)
 }
 
-print(adjustments)
-final.normalized.data = no.burden.normalized.data
 
-final.normalized.data = final.normalized.data %>% left_join(adjustments, by="plate")
+# Fit the relation between normalized growth rate and normalized GFP expression
 
-#Transform points into fit control coordinates y = mx + b
-final.normalized.data$normalized.growth.rate = final.normalized.data$growth.rate.normalization.slope * final.normalized.data$normalized.growth.rate + final.normalized.data$growth.rate.normalization.y.intercept
+# Using Deming regression to account for error in x and y
+this.normalized.control.data = no.burden.normalized.data 
+#this.normalized.control.data = this.normalized.control.data %>% filter(strain %in% control.strains)
 
-final.normalized.data$normalized.GFP.rate = final.normalized.data$GFP.rate.normalization.slope * final.normalized.data$normalized.GFP.rate + final.normalized.data$GFP.rate.normalization.y.intercept
+this.normalized.control.data = 
+   this.normalized.control.data %>% 
+   group_by(plate,strain) %>% 
+   summarize(normalized.growth.rate.mean = mean(normalized.growth.rate), 
+             normalized.growth.rate.sd = sd(normalized.growth.rate),
+             normalized.GFP.rate.mean = mean(normalized.GFP.rate), 
+             normalized.GFP.rate.sd = sd(normalized.GFP.rate)
+   )
+
+
+to.fit = this.normalized.control.data %>% select(plate, strain, normalized.growth.rate.mean, normalized.GFP.rate.mean, normalized.growth.rate.sd, normalized.GFP.rate.sd)
+
+to.fit$normalized.growth.rate.mean = to.fit$normalized.growth.rate.mean - 1
+to.fit$normalized.GFP.rate.mean = to.fit$normalized.GFP.rate.mean - 1
+
+all.fit = deming(normalized.GFP.rate.mean~normalized.growth.rate.mean+0, data=to.fit, xstd=normalized.growth.rate.sd, ystd=normalized.GFP.rate.sd)
+
+control.fit = deming(normalized.GFP.rate.mean~normalized.growth.rate.mean+0, data=to.fit %>% filter(strain %in% control.strains), xstd=normalized.growth.rate.sd, ystd=normalized.GFP.rate.sd)
+
+p = ggplot(this.normalized.control.data, aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean)) + 
+   geom_point() + 
+   geom_point(data=(this.normalized.control.data %>% filter(strain %in% control.strains)), aes(color=strain)) +
+   geom_abline(intercept = 1-coef(all.fit)[2], slope = coef(all.fit)[2], color="green", size=1, show.legend=TRUE) + 
+   geom_abline(intercept = 1-coef(control.fit)[2], slope = coef(control.fit)[2], color="red", size=1, show.legend=TRUE) #+ 
+#   geom_abline(intercept = coef(the.fit.3)[1], slope = coef(the.fit.3)[2], color="blue", size=1) + 
+#   xlim(0,1.2) + 
+#   ylim(0,1.2)
+
+ggsave(paste0(output.base.name, ".all.plates.no.burden.normalized.fit.pdf"), p)
+
 
 #Output all normalized values
-write.csv(final.normalized.data, paste0(output.base.name, ".normalized.burden.all.wells.csv"), row.names=F)
+write.csv(no.burden.normalized.data, paste0(output.base.name, ".no.burden.normalized.all.wells.csv"), row.names=F)
+
+#Further normalize the controls between plates to be consistent with the grand means across plates
+use.deming.for.control.fits = TRUE
+
+if (no.control.normalization) {
+   final.normalized.data = no.burden.normalized.data
+} else {
+   
+   ## determine the grand means for the controls across all plates
+   control.means = no.burden.normalized.control.data %>% filter(!(plate %in% control.fitting.excluded.plates)) %>% group_by(strain) %>% summarize(normalized.growth.rate.grand.mean=mean(normalized.growth.rate), normalized.growth.rate.grand.sd=sd(normalized.growth.rate), normalized.GFP.rate.grand.mean=mean(normalized.GFP.rate), normalized.GFP.rate.grand.sd=sd(normalized.GFP.rate))
+   
+   print(control.means)
+   
+   adjustments = data.frame()
+   for (this.plate in unique(all.data$plate)) {
+      print(this.plate)
+      
+      this.normalized.control.data.means = 
+         no.burden.normalized.data %>% 
+         filter(plate==this.plate) %>% 
+         filter(strain %in% control.strains) %>% 
+         left_join(control.means, by="strain")
+      
+      to.fit = this.normalized.control.data.means %>% select(normalized.growth.rate, normalized.growth.rate.grand.mean, normalized.growth.rate.grand.mean, normalized.GFP.rate, normalized.GFP.rate.grand.mean)
+      
+      if (this.plate %in% control.only.normalization.plates) {
+         # alternative normalization that uses only control strains -- does not include no-burden normalization
+         # force the line to go through (0,0)
+         
+         the.growth.rate.fit = lm(normalized.growth.rate~normalized.growth.rate.grand.mean, data=to.fit)
+         growth.rate.residuals = c(growth.rate.residuals, residuals(the.growth.rate.fit))
+         
+         the.GFP.rate.fit = lm(normalized.GFP.rate~normalized.GFP.rate.grand.mean, data=to.fit)
+         GFP.rate.residuals = c(GFP.rate.residuals, residuals(the.GFP.rate.fit))
+         
+         adjustments = bind_rows(
+            adjustments, 
+            data.frame(
+               plate=this.plate, 
+               growth.rate.normalization.slope = coef(the.growth.rate.fit)[2], 
+               growth.rate.normalization.y.intercept = coef(the.growth.rate.fit)[1], 
+               growth.rate.ss.res = sum(residuals(the.growth.rate.fit)^2), 
+               growth.rate.num.points = length(residuals(the.growth.rate.fit)),  
+               GFP.rate.normalization.slope = coef(the.GFP.rate.fit)[2], 
+               GFP.rate.normalization.y.intercept = coef(the.GFP.rate.fit)[1],
+               GFP.rate.ss.res = sum(residuals(the.GFP.rate.fit)^2), 
+               GFP.rate.num.points = length(residuals(the.GFP.rate.fit)
+               )
+            )
+         )
+         
+      } else {
+         # Normal strategy = line must go through (1,1) due to no-burden normalization
+         
+         if (use.deming.for.control.fits) {
+            
+            to.fit = this.normalized.control.data.means = 
+               no.burden.normalized.data %>% 
+               filter(plate==this.plate) %>% 
+               filter(strain %in% control.strains)
+            
+            to.fit = to.fit %>% group_by(strain) %>% summarize(normalized.growth.rate.mean = mean(normalized.growth.rate), normalized.growth.rate.sd = sd(normalized.growth.rate), normalized.GFP.rate.mean = mean(normalized.growth.rate), normalized.GFP.rate.sd = sd(normalized.GFP.rate)) %>% left_join(control.means, by="strain")
+            
+            to.fit$normalized.growth.rate.mean = to.fit$normalized.growth.rate.mean - 1
+            to.fit$normalized.growth.rate.grand.mean = to.fit$normalized.growth.rate.grand.mean - 1
+            
+            to.fit$normalized.GFP.rate.mean = to.fit$normalized.GFP.rate.mean - 1
+            to.fit$normalized.GFP.rate.grand.mean = to.fit$normalized.GFP.rate.grand.mean - 1
+            
+            the.growth.rate.fit = deming(normalized.growth.rate.mean ~ normalized.growth.rate.grand.mean + 0, data=to.fit, ystd=to.fit$normalized.growth.rate.sd, xstd=to.fit$normalized.growth.rate.grand.sd)
+            
+            the.GFP.rate.fit = deming(normalized.GFP.rate.mean ~ normalized.GFP.rate.grand.mean + 0, data=to.fit, ystd=to.fit$normalized.GFP.rate.sd, xstd=to.fit$normalized.GFP.rate.grand.sd)
+            
+            p = ggplot(to.fit, aes(x=normalized.growth.rate.grand.mean+1, y=normalized.growth.rate.mean+1)) + 
+               geom_point() + 
+               geom_abline(intercept = 1-coef(the.growth.rate.fit)[2], slope = coef(the.growth.rate.fit)[2], color="red", size=1, show.legend=TRUE) + 
+               geom_abline(intercept = 0, slope = 1, color="blue", size=1) + 
+               geom_errorbar(aes(ymin=normalized.growth.rate.mean+1-normalized.growth.rate.sd, ymax=normalized.growth.rate.mean+1+normalized.growth.rate.sd), width=0) + geom_errorbar(aes(xmin=normalized.growth.rate.grand.mean+1-normalized.growth.rate.grand.sd, xmax=normalized.growth.rate.grand.mean+1+normalized.growth.rate.grand.sd), width=0) +
+               xlim(0,1.2) + 
+               ylim(0,1.2)
+            
+            ggsave(paste0(output.base.name, ".", this.plate, ".no.burden.normalized.controls.growth.rate.to.grand.means.fit.pdf"), p)
+            
+            p = ggplot(to.fit, aes(x=normalized.GFP.rate.grand.mean+1, y=normalized.GFP.rate.mean+1)) + 
+               geom_point() + 
+               geom_abline(intercept = 1-coef(the.GFP.rate.fit)[2], slope = coef(the.GFP.rate.fit)[2], color="red", size=1, show.legend=TRUE) + 
+               geom_abline(intercept = 0, slope = 1, color="blue", size=1) + 
+               geom_errorbar(aes(ymin=normalized.GFP.rate.mean+1-normalized.GFP.rate.sd, ymax=normalized.GFP.rate.mean+1+normalized.GFP.rate.sd), width=0) +
+               geom_errorbar(aes(xmin=normalized.GFP.rate.grand.mean+1-normalized.GFP.rate.grand.sd, xmax=normalized.GFP.rate.grand.mean+1+normalized.GFP.rate.grand.sd), width=0) +
+               
+               xlim(0,1.2) + 
+               ylim(0,1.2)
+            
+            ggsave(paste0(output.base.name, ".", this.plate, ".no.burden.normalized.controls.GFP.rate.to.grand.means.fit.pdf"), p)
+            
+            #Note, we have to transform coords back to normal here (recalc y-intercept)
+            adjustments = bind_rows(
+               adjustments, 
+               data.frame(
+                  plate=this.plate, 
+                  growth.rate.normalization.slope = as.numeric(coef(the.growth.rate.fit)[2]), 
+                  growth.rate.normalization.y.intercept=1-as.numeric(coef(the.growth.rate.fit)[2]), 
+                  growth.rate.ss.res = sum(residuals(the.growth.rate.fit)^2), 
+                  growth.rate.num.points = length(residuals(the.growth.rate.fit)), 
+                  GFP.rate.normalization.slope = as.numeric(coef(the.GFP.rate.fit)[2]), 
+                  GFP.rate.normalization.y.intercept=1-as.numeric(coef(the.GFP.rate.fit)[2]),
+                  GFP.rate.ss.res = sum(residuals(the.GFP.rate.fit)^2), 
+                  GFP.rate.num.points = length(residuals(the.GFP.rate.fit)
+                  )
+               )
+            )
+            
+            
+         } else {
+            to.fit$normalized.growth.rate = to.fit$normalized.growth.rate - 1
+            to.fit$normalized.growth.rate.grand.mean = to.fit$normalized.growth.rate.grand.mean - 1
+            
+            to.fit$normalized.GFP.rate = to.fit$normalized.GFP.rate - 1
+            to.fit$normalized.GFP.rate.grand.mean = to.fit$normalized.GFP.rate.grand.mean - 1
+            
+            the.growth.rate.fit = lm(normalized.growth.rate~normalized.growth.rate.grand.mean+0, data=to.fit)
+            the.GFP.rate.fit = lm(normalized.GFP.rate~normalized.GFP.rate.grand.mean+0, data=to.fit)
+            
+            p = ggplot(to.fit, aes(x=normalized.growth.rate.grand.mean+1, y=normalized.growth.rate+1)) + 
+               geom_point() + 
+               geom_abline(intercept = 1-coef(the.growth.rate.fit)[1], slope = coef(the.growth.rate.fit)[1], color="red", size=1, show.legend=TRUE) + 
+               geom_abline(intercept = 0, slope = 1, color="blue", size=1) + 
+               xlim(0,1.2) + 
+               ylim(0,1.2)
+            
+            ggsave(paste0(output.base.name, ".", this.plate, ".no.burden.normalized.controls.growth.rate.to.grand.means.fit.pdf"), p)
+            
+            p = ggplot(to.fit, aes(x=normalized.GFP.rate.grand.mean+1, y=normalized.GFP.rate+1)) + 
+               geom_point() + 
+               geom_abline(intercept = 1-coef(the.GFP.rate.fit)[1], slope = coef(the.GFP.rate.fit)[1], color="red", size=1, show.legend=TRUE) + 
+               geom_abline(intercept = 0, slope = 1, color="blue", size=1) + 
+               xlim(0,1.2) + 
+               ylim(0,1.2)
+            
+            ggsave(paste0(output.base.name, ".", this.plate, ".no.burden.normalized.controls.GFP.rate.to.grand.means.fit.pdf"), p)
+            
+            #Note, we have to transform coords back to normal here (recalc y-intercept)
+            adjustments = bind_rows(
+               adjustments, 
+               data.frame(
+                  plate=this.plate, 
+                  growth.rate.normalization.slope = coef(the.growth.rate.fit)[1], 
+                  growth.rate.normalization.y.intercept=1-coef(the.growth.rate.fit)[1]), 
+                  growth.rate.ss.res = sum(residuals(the.growth.rate.fit)^2), 
+                  growth.rate.num.points = length(residuals(the.growth.rate.fit),  
+                  GFP.rate.normalization.slope = coef(the.GFP.rate.fit)[1]), 
+                  GFP.rate.normalization.y.intercept=1-coef(the.GFP.rate.fit)[1],
+                  GFP.rate.ss.res = sum(residuals(the.GFP.rate.fit)^2), 
+                  GFP.rate.num.points = length(residuals(the.GFP.rate.fit)
+               )
+            )
+         }
+      }
+   }
+   
+   
+   adjustments$growth.rate.rmse = sqrt(adjustments$growth.rate.ss.res/adjustments$growth.rate.num.points)
+   overall.growth.rate.rmse = sqrt(sum(adjustments$growth.rate.ss.res)/sum(adjustments$growth.rate.num.points))
+      
+   adjustments$GFP.rate.rmse = sqrt(adjustments$GFP.rate.ss.res/adjustments$GFP.rate.num.points)
+   overall.GFP.rate.rmse = sqrt(sum(adjustments$GFP.rate.ss.res)/sum(adjustments$GFP.rate.num.points))
+   
+   write.csv(adjustments, paste0(output.base.name, ".fits.of.no.burden.normalized.controls.to.grand.means.csv"), row.names=F)
+   
+   ## Output some stats about how well the fitting went on each plate
+   cat("Statistics for fitting control strains on each plate to grand means\n")
+   cat("Overall growth rate RMSE:", overall.growth.rate.rmse, "\n")
+   cat("Overall GFP    rate RMSE:", overall.GFP.rate.rmse, "\n")
+   
+   
+   final.normalized.data = no.burden.normalized.data
+   final.normalized.data = final.normalized.data %>% left_join(adjustments, by="plate")
+   
+   #Transform points into fit control coordinates x = (y-b)/m
+   final.normalized.data$normalized.growth.rate = (final.normalized.data$normalized.growth.rate - final.normalized.data$growth.rate.normalization.y.intercept) / final.normalized.data$growth.rate.normalization.slope 
+   
+   final.normalized.data$normalized.GFP.rate = (final.normalized.data$normalized.GFP.rate - final.normalized.data$GFP.rate.normalization.y.intercept) / final.normalized.data$GFP.rate.normalization.slope
+   
+}
+
+# Fit and plot the relation between normalized growth rate and normalized GFP expression
+
+# Using Deming regression to account for error in x and x
+this.normalized.control.data = final.normalized.data 
+#this.normalized.control.data = this.normalized.control.data %>% filter(strain %in% control.strains)
+
+this.normalized.control.data = 
+   this.normalized.control.data %>% 
+   group_by(plate,strain) %>% 
+   summarize(normalized.growth.rate.mean = mean(normalized.growth.rate), 
+             normalized.growth.rate.sd = sd(normalized.growth.rate),
+             normalized.GFP.rate.mean = mean(normalized.GFP.rate), 
+             normalized.GFP.rate.sd = sd(normalized.GFP.rate)
+   )
+
+
+to.fit = this.normalized.control.data %>% select(plate, strain, normalized.growth.rate.mean, normalized.GFP.rate.mean, normalized.growth.rate.sd, normalized.GFP.rate.sd)
+
+to.fit$normalized.growth.rate.mean = to.fit$normalized.growth.rate.mean - 1
+to.fit$normalized.GFP.rate.mean = to.fit$normalized.GFP.rate.mean - 1
+
+all.fit = deming(normalized.GFP.rate.mean~normalized.growth.rate.mean+0, data=to.fit, xstd=normalized.growth.rate.sd, ystd=normalized.GFP.rate.sd)
+
+control.fit = deming(normalized.GFP.rate.mean~normalized.growth.rate.mean+0, data=to.fit %>% filter(strain %in% control.strains), xstd=normalized.growth.rate.sd, ystd=normalized.GFP.rate.sd)
+
+p = ggplot(this.normalized.control.data, aes(x=normalized.growth.rate.mean, y=normalized.GFP.rate.mean)) + 
+   geom_point() + 
+   geom_point(data=(this.normalized.control.data %>% filter(strain %in% control.strains)), aes(color=strain)) +
+   geom_abline(intercept = 1-coef(all.fit)[2], slope = coef(all.fit)[2], color="green", size=1, show.legend=TRUE) + 
+   geom_abline(intercept = 1-coef(control.fit)[2], slope = coef(control.fit)[2], color="red", size=1, show.legend=TRUE) #+ 
+   #   geom_abline(intercept = coef(the.fit.3)[1], slope = coef(the.fit.3)[2], color="blue", size=1) + 
+   #xlim(0,1.2) + 
+   #ylim(0,1.2)
+
+ggsave(paste0(output.base.name, ".all.plates.no.burden.and.control.normalized.fit.pdf"), p)
+
+
+#Output all normalized values
+write.csv(final.normalized.data, paste0(output.base.name, ".no.burden.and.control.normalized.all.wells.csv"), row.names=F)
 
 
 final.normalized.control.data=final.normalized.data %>% filter(strain %in% control.strains)
@@ -414,7 +735,7 @@ p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced
 
 parts = final.normalized.data
 
-parts.means = parts %>% group_by(plate, strain, plate.strain) %>% summarize(replicates=n(), accession=paste(unique(accession), collapse=","), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range =  normalized.GFP.rate.sem*qt(0.975, df=replicates-1))
+parts.means = parts %>% group_by(plate, strain, plate.strain) %>% summarize(replicates=n(), accession=paste(unique(accession), collapse=","), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range =  normalized.GFP.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate))
 parts.means = parts.means %>%left_join(p.values, by="plate.strain")
 #parts.means = parts.means %>%left_join(translational.burden.fraction.p.values, by="plate.strain")
 parts.means = parts.means %>% group_by() %>% select(-plate.strain)
@@ -428,7 +749,7 @@ parts.means$burden.mean = 1-parts.means$normalized.growth.rate.mean
 parts.means$burden.sd = parts.means$normalized.growth.rate.sd
 parts.means$burden.sem = parts.means$normalized.growth.rate.sem
 parts.means$burden.95CI.range = parts.means$normalized.growth.rate.95CI.range
-parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
+parts.means$burden.cv = abs(parts.means$burden.sd  / parts.means$burden.mean)
 
 write.csv(parts.means, paste0(output.base.name, ".plate-strain.burden.csv"), row.names=F)
 
@@ -460,7 +781,7 @@ p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced
 
 parts = final.normalized.data
 
-parts.means = parts %>% group_by(strain) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), plates=paste(unique(plate), collapse=","), vector=paste(unique(vector), collapse=","), accession=paste(unique(accession), collapse=","))
+parts.means = parts %>% group_by(strain) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), plates=paste(unique(plate), collapse=","), vector=paste(unique(vector), collapse=","), accession=paste(unique(accession), collapse=","))
 parts.means = parts.means %>%left_join(p.values, by="strain")
 
 parts.means = parts.means %>% group_by()
@@ -474,7 +795,7 @@ parts.means$burden.mean = 1-parts.means$normalized.growth.rate.mean
 parts.means$burden.sd = parts.means$normalized.growth.rate.sd
 parts.means$burden.sem = parts.means$normalized.growth.rate.sem
 parts.means$burden.95CI.range = parts.means$normalized.growth.rate.95CI.range
-parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
+parts.means$burden.cv = abs(parts.means$burden.sd  / parts.means$burden.mean)
 
 write.csv(parts.means, paste0(output.base.name, ".strain.burden.csv"), row.names=F)
 
@@ -508,7 +829,7 @@ p.values$growth.rate.reduced.adj.p.value = p.adjust(p.values$growth.rate.reduced
 
 parts = final.normalized.data
 
-parts.means = parts %>% group_by(accession) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), plates=paste(sort(unique(plate)), collapse=","), strains=paste(sort(unique(strain)), collapse=","), strain=unique(strain)[1], vectors=paste(sort(unique(vector)), collapse=","))
+parts.means = parts %>% group_by(accession) %>% summarize(replicates=n(), normalized.growth.rate.mean=mean(normalized.growth.rate), normalized.growth.rate.sd=sd(normalized.growth.rate), normalized.growth.rate.sem = normalized.growth.rate.sd/sqrt(replicates), normalized.growth.rate.95CI.range =  normalized.growth.rate.sem*qt(0.975, df=replicates-1), normalized.growth.rate.cv=sd(normalized.growth.rate)/mean(normalized.growth.rate), normalized.GFP.rate.mean=mean(normalized.GFP.rate), normalized.GFP.rate.sd=sd(normalized.GFP.rate), normalized.GFP.rate.sem = normalized.GFP.rate.sd/sqrt(replicates), normalized.GFP.rate.95CI.range = normalized.GFP.rate.sem*qt(0.975, df=replicates-1), normalized.GFP.rate.cv=sd(normalized.GFP.rate)/mean(normalized.GFP.rate), plates=paste(sort(unique(plate)), collapse=","), strains=paste(sort(unique(strain)), collapse=","), strain=unique(strain)[1], vectors=paste(sort(unique(vector)), collapse=","))
 
 parts.means = parts.means %>%left_join(p.values, by="accession")
 
@@ -523,7 +844,7 @@ parts.means$burden.mean = 1-parts.means$normalized.growth.rate.mean
 parts.means$burden.sd = parts.means$normalized.growth.rate.sd
 parts.means$burden.sem = parts.means$normalized.growth.rate.sem
 parts.means$burden.95CI.range = parts.means$normalized.growth.rate.95CI.range
-parts.means$burden.cv = parts.means$burden.sd  / parts.means$burden.mean
+parts.means$burden.cv = abs(parts.means$burden.sd  / parts.means$burden.mean)
 
 write.csv(parts.means, paste0(output.base.name, ".part.burden.csv"), row.names=F)
 

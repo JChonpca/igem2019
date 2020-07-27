@@ -74,15 +74,15 @@ F12,1,JEB1205,,
 G1,1,BB116,,
 G2,1,BB125,,
 G3,1,BB150,,
-G4,1,JEB1206,,
+G4,0,JEB1206,,High burden control strain clearly wrong
 G5,1,BB116,,
 G6,1,BB125,,
 G7,1,BB150,,
-G8,1,JEB1206,,
+G8,0,JEB1206,,High burden control strain clearly wrong
 G9,1,BB116,,
 G10,1,BB125,,
 G11,1,BB150,,
-G12,1,JEB1206,,
+G12,0,JEB1206,,High burden control strain clearly wrong
 H1,1,blank,,
 H2,1,JEB1207,,
 H3,1,JEB1208,,
