@@ -52,24 +52,13 @@ batch_run.pl "cp #d.rates.all.csv $MAINDIR/02b-output-all-merged/$SETTINGS"
 $SCRIPTDIR/burden_merge.R -i $MAINDIR/02b-output-all-merged/$SETTINGS -o $MAINDIR/02b-output-all-merged/$SETTINGS.csv -m $MAINDIR/igem2019_strain_metadata.csv
 rm -r $MAINDIR/02b-output-all-merged/$SETTINGS
 
+cd $MAINDIR
 mkdir -p $MAINDIR/03a-plate-variation
 cd $MAINDIR/02a-output-summary-merged
 $SCRIPTDIR/igem2019_plate_variation.R -i $SETTINGS.csv -o $MAINDIR/03a-plate-variation/$SETTINGS.csv
 
 mkdir -p $MAINDIR/03b-setting-variation
 $SCRIPTDIR/igem2019_setting_variation.R -i $MAINDIR/02a-output-summary-merged -o $MAINDIR/03b-setting-variation
-
-mkdir -p $MAINDIR/04-normalization
-$SCRIPTDIR/burden_normalize.R \
-  -i $MAINDIR/02b-output-all-merged/$SETTINGS.csv \
-  -o $MAINDIR/04-normalization/${SETTINGS} \
-  -m $MAINDIR/igem2019_plate_metadata.csv \
-  -s $MAINDIR/igem2019_strain_metadata.csv \
-  -v $VECTOR \
-  -c "JEB1204,JEB1205,JEB1206,JEB1207,JEB1208" \
-  --no-control-normalization \
-  --growth-rate-bw 0.014 \
-  --GFP-rate-bw 400
 
 mkdir -p $MAINDIR/04-normalization
 $SCRIPTDIR/burden_normalize.R \
@@ -107,9 +96,8 @@ mkdir -p $MAINDIR/11-BFP-series-output
 $SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-BFP-series/exp030/exp030 -o $MAINDIR/11-BFP-series-output/exp030 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
 $SCRIPTDIR/burden_summary.R -i $MAINDIR/11-BFP-series-output/exp030.rates.summary.csv
 
-
 ##### Graphs
-
+cd $MAINDIR
 $SCRIPTDIR/igem2019_BFP_RFP_series_graphs.R
 
 ##### MSU comparison
