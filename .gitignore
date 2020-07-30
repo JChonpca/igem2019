@@ -1,3 +1,8 @@
+# Output
+*.pdf
+burden_assay/0*
+burden_assay/1*
+
 # History files
 .Rhistory
 .Rapp.history
@@ -41,3 +46,5 @@ Rplots.pdf
 # Output files of analysis
 burden_analysis/0*
 
+# Apple
+.DS_Store

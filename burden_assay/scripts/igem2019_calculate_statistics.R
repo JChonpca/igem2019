@@ -9,7 +9,7 @@ output.prefix = "05-burden-final-output/output"
 
 
 strain.metadata.file.string = "igem2019_strain_metadata.csv"
-all.data.file.string = "02b-output-all-merged/output.csv"
+all.data.file.string = paste0(input.prefix, ".no.burden.and.control.normalized.all.wells.csv")
 
 strain.input.file.string = paste0(input.prefix, ".strain.burden.csv")
 strain.means = read.csv(strain.input.file.string)
@@ -20,6 +20,7 @@ parts.means = read.csv(part.input.file.string)
 strain.metadata = read.csv(strain.metadata.file.string)
 
 all.data = read.csv(all.data.file.string)
+all.data = all.data %>% left_join(strain.metadata %>% select(strain, accession, vector), by="strain")
 
 ########################################################################
 ### Calculate KS test on different vectors
@@ -39,7 +40,7 @@ measured.twice.data = all.data %>% filter(strain %in% measured.twice.strains)
 
 measured.twice.data = measured.twice.data %>%left_join(strain.metadata, by="strain")
 
-fit = lm(growth.rate~accession+vector, measured.twice.data )
+fit = lm(normalized.growth.rate~accession+vector, measured.twice.data )
 anova(fit)
 
 ########################################################################
@@ -55,7 +56,7 @@ for (b in seq(0, 0.5, by=0.05)) {
   p.values = pt((b-not.control.data$burden.mean)/not.control.data$burden.sem, not.control.data$replicates-1)
   #Uncomment for multiple testing correction
   #p.values = p.adjust(p.values, method="BH")
-  num.significant = sum(p.values <= 0.05)
+  num.significant = sum(p.values <= 0.05, na.rm=T)
   
   cutoff.df = bind_rows(cutoff.df, data.frame(greater.than.burden=b, num.significant.parts=num.significant, total.parts=length(p.values), percent.significant.parts=(num.significant/length(p.values))*100))
 }
