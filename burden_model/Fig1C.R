@@ -1,50 +1,75 @@
 
 library(tidyverse)
+library(deSolve)
+library(cowplot)
 
-################################### GRAPHIC MODEL ###########################################
-######Plot fraction of producers in time as dictated by burden (b) and escape rate (k)#######
+################################### ODE MODEL ###########################################
+# Plot fraction of unmutated cells over time.
+# Parameters:
+#   burden (b), expressed as fractional decrease in growth rate
+#   failure mutation rate (u), in units of mutations per cell doubling
 
-##Create parameters
-u = 1 #specific growth rate of producers
-k = 1*10^-6
-b = .1
-e = exp(1)
-t = seq(0,100)
 
-##plug into curves
-eq = function (t){(k+0*u)/(k*e^((k+u*0)*t)+0*u)}
-eq1 = function (t){(k+.1*u)/(k*e^((k+u*.1)*t)+.1*u)}
-eq2 = function (t){(k+.2*u)/(k*e^((k+u*.2)*t)+.2*u)}
-eq3 = function (t){(k+.3*u)/(k*e^((k+u*.3)*t)+.3*u)}
-eq4 = function (t){(k+.4*u)/(k*e^((k+u*.4)*t)+.4*u)}
-eq5 = function (t){(k+.5*u)/(k*e^((k+u*.5)*t)+.5*u)}
+ODE_failure_model <- function(t, y, p) {
+  with(as.list(c(y, p)), {
+    
+    # dE(t) is the change in engineered (functional) cells over time.
+    #   It is equal to the rate at which they increase due to replication
+    #   minus the rate at which some offspring are converted to mutated cells.
+    dEt <- ((1-b) * Et) - (u * (1-b) * Et)  
+    
+    # dF(t) is the change in failed (mutated) cells over time.
+    #   It is equal to the rate at which they increase due to replication
+    #   plus the rate at which some engineered cells are converted to mutated cells.
+    dFt <- Ft + (u * (1-b) * Et)
+    return(list(c(dEt, dFt)))
+  })
+}
 
-##create generation @ volume reference lines (liters)
-v= 0.005
-v2=2
-v200=200
-v200k=200000
+# Create a data frame with the results for several different values of burden and a mutation rate of 1E-6
+u = 1e-6
+all.output = data.frame()
+for (b in seq(from=0, to=0.5, by=0.1)) {
+  pars<- c(
+    b  = b,  # burden
+    u  = u  # mutation rate
+  )
 
-vol={log2((5*10^9)*(v*1000))}
-vol2={log2((5*10^9)*(v2*1000))}
-vol200={log2((5*10^9)*(v200*1000))}
-vol200k={log2((5*10^9)*(v200k*1000))}
+  yini  <- c(Et = 1, Ft = 0)  # initial values of Et and Ft. Begin with one engineered cell.
+  times <- seq(from=0, to=200, by=0.1)  # arbitrary number of time steps
+  
+  ## Run model
+  out   <- ode(yini, times, ODE_failure_model, pars)
+  
+  out <- data.frame(out)
+  out$fraction.engineered.cells <- (out$Et/(out$Et+out$Ft))  # fraction of engineered cells
+  out$total.cell.doublings <- log2(out$Et+out$Ft)  # calculate the actual number of cell doublings
+  summary(out)
+  
+  out$b = b
+  out$u = u
+  
+  all.output = all.output %>% bind_rows(out)
+}
 
-##plot model
-producers= ggplot(data.frame(x=t), aes(x=x)) +
-  stat_function(fun=eq, geom="line", color= "#ffcccc", size = 1.5)+
-  stat_function(fun=eq1, geom="line", color= "#ff9999", size = 1.5)+
-  stat_function(fun=eq2, geom="line", color= "#ff3232", size = 1.5)+
-  stat_function(fun=eq3, geom="line", color= "#cc0000", size = 1.5)+
-  stat_function(fun=eq4, geom="line", color= "#7f0000", size = 1.5)+
-  stat_function(fun=eq5, geom="line", color = "black", size = 1.5)+
-  geom_vline(xintercept = vol, color = "#7fbff5", size = 0.8)+
-  geom_vline(xintercept = vol2, color = "#619ed2", size = 0.8)+
-  geom_vline(xintercept = vol200, color = "#3c66da", size = 0.8)+
-  geom_vline(xintercept = vol200k, color = "#0c34a1", size = 0.8)+
-  labs(title = expression(paste("Production Curves (", mu, " = 1E-6)")))+
-  xlab("Cell Doublings") + ylab("Fraction of Engineered Cells") +
-  theme_linedraw()+
-  theme_classic()+
+
+all.output$line.color = factor(all.output$b)
+  
+## Plot model
+plot.mod= ggplot(all.output, aes(x=total.cell.doublings, y=fraction.engineered.cells, group=b, color=line.color), clip="off") +
+  geom_hline(aes(yintercept=0.5), linetype="dashed") +
+  geom_vline(xintercept = 22.93156857, color = "#6BAED5", size = 0.8) +
+  geom_vline(xintercept = 34.21928095, color = "#4292C5", size = 0.8) +
+  geom_vline(xintercept = 41.12617154, color = "#2271B5", size = 0.8) +
+  geom_vline(xintercept = 56.15084952, color = "#194891", size = 0.8) +
+  geom_line(size=1.5) +
+  scale_color_manual(values = c("black", "#ffcccc", "#ff9999", "#ff3232", "#cc0000", "#7f0000")) +
+  scale_x_continuous(limits=c(0,100), expand = expansion(add = c(0, 0))) +
+  scale_y_continuous(limits=c(0,1), expand = expansion(add = c(0, 0)), breaks = seq(0, 1, 0.25)) +
+  theme_linedraw() +
+  theme_classic() +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
   NULL
-producers
+plot.mod
+
+ggsave("Fig. 1C.pdf", plot = plot.mod)
