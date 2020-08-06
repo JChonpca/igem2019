@@ -72,4 +72,5 @@ plot.mod= ggplot(all.output, aes(x=total.cell.doublings, y=fraction.engineered.c
   NULL
 plot.mod
 
+#This used to be Fig. 1C in a prior version of the paper
 ggsave("Fig. 1C.pdf", plot = plot.mod)
