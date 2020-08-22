@@ -48,6 +48,8 @@ RFP.data = read_csv(RFP.file.string)
 ## Remove BB0 and controls that are not in same plasmid backbone
 RFP.data = RFP.data %>% filter(! strain %in% c("BB0", "JEB1203", "JEB1204", "JEB1205", "JEB1206", "JEB1207", "JEB1208") )
 
+# Correlation (uses means only)
+cor(RFP.data$growth.rate, RFP.data$GFP.rate)
 
 ### Fit with maximumin a way that accounts for error in X and Y
 RFP.deming.fit = deming(GFP.rate~growth.rate, RFP.data, xstd=RFP.data$growth.rate.sd, ystd=RFP.data$GFP.rate.sd,)
@@ -56,8 +58,6 @@ RFP.deming.slope = coef(RFP.deming.fit)[2]
 
 RFP.promoter.strengths.file.string = "input-plate-data-RFP-series/RFP_promoter_strengths.csv"
 RFP.promoter.strengths = read_csv(RFP.promoter.strengths.file.string)
-
-
 
 RFP.data = RFP.data %>% left_join(RFP.promoter.strengths, by="strain")
 
@@ -116,6 +116,35 @@ rfpRatePlot
 ggsave("10-RFP-series-output/RFP_rate_colored_by_promoter_strength.pdf")
 
 
+# Do some stats on these...
+RFP.file.string = "10-RFP-series-output/exp057.rates.all.csv"
+no.plasmid.data = read_csv(RFP.file.string) %>% filter(strain=="BB0")
+RFP.data = read_csv(RFP.file.string) %>% filter(! strain %in% c("BB0", "JEB1203", "JEB1204", "JEB1205", "JEB1206", "JEB1207", "JEB1208") )
+
+cat("RFP strains have reduced growth rate?\n")
+
+pvals = c()
+pvals.more.than.40.percent = c()
+control.growth.rates = no.plasmid.data$growth.rate
+for(this.strain in unique(RFP.data$strain)) {
+  cat("Testing strain:", this.strain, "\n")
+  this.strain.data = RFP.data %>% filter(strain==this.strain)
+  this.strain.growth.rates = this.strain.data$growth.rate
+  res = t.test(control.growth.rates, this.strain.growth.rates, alternative="greater")
+  print(res)
+  pvals = c(pvals, res$p.value)
+  
+  this.strain.relative.growth.rates = this.strain.growth.rates / mean(control.growth.rates) - 0.6
+  res = t.test(this.strain.relative.growth.rates, alternative="less")
+  print(res)
+  pvals.more.than.40.percent = c(pvals.more.than.40.percent, res$p.value)
+}
+
+#Correct for multiple testing
+pvals = p.adjust(pvals, method="BH")
+cat(as.character(sum(pvals<0.05)), "strains do after correction for multiple testing.\n")
+
+
 
 # BFP ##########################  
 
@@ -157,6 +186,9 @@ BFP.data = BFP.data %>% filter(! strain %in% c("JEB1203", "JEB1303") )
 
 ##Filter second set of strains, ones not used
 #BFP.data = BFP.data %>% filter(! strain %in% c("JEB1304", "JEB1305", "JEB1306", "JEB1307", "JEB1308") )
+
+# Correlation (uses means only)
+cor(BFP.data$growth.rate, BFP.data$GFP.rate)
 
 BFP.deming.fit = deming(GFP.rate~growth.rate, BFP.data, xstd=BFP.data$growth.rate.sd, ystd=BFP.data$GFP.rate.sd,)
 BFP.deming.y.intercept = coef(BFP.deming.fit)[1]

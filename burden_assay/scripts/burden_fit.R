@@ -778,6 +778,7 @@ if (offset.readings.to.average) {
 ## F(0) = P * C(0) * 1/r * exp (0) + k
 ## k = F(0) - P * C(0) * 1/r 
 ## => F(t) = P * C(0) * 1/r * exp(rt) + F(0) - P * C(0) * 1/r
+## => F(t) = P * C(0) * 1/r * (exp(rt) - 1)+ F(0)
 
 
 Z = Z %>% filter (OD >= option.minimum.OD)

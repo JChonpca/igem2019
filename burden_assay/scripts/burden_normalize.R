@@ -9,6 +9,10 @@ library(ggplot2)
 library(cowplot)
 library(deming)
 
+# Define these in case we aren't using options
+growth.rate.bw = NA
+GFP.rate.bw = NA
+
 #debug
 if (F) {
    input.file.string="02b-output-all-merged/output.csv"
@@ -19,11 +23,12 @@ if (F) {
    included.vectors = c("pSB1C3","pSB1A2")
    control.fitting.excluded.plates = c()
    control.only.normalization.plates = c()
+   no.control.normalization=T
+   growth.rate.bw = 0.014
+   GFP.rate.bw = 300
 }
 
-# Define these in case we aren't using options
-growth.rate.bw = NA
-GFP.rate.bw = NA
+
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -211,21 +216,31 @@ num.not.control.per.plate = not.control.data %>% group_by(plate,strain) %>% summ
 
 #filter out any that don't appear in num.not.control.per.plate
 
-p = ggplot(not.control.data , aes(x=plate, y=growth.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=control.data, width=0.2, size=1, aes(x=plate, y=growth.rate, color=strain)) + 
+p = ggplot(not.control.data , aes(x=plate, y=growth.rate)) + 
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=control.data, width=0.3, size=1.5, aes(x=plate, y=growth.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,1.6), expand=expansion(mult=c(0,0.05)), breaks=seq(0,1.6,by=0.1)) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0,1.6)
+   NULL
 
-ggsave(paste0(output.base.name,".growth-rate-unnormalized.pdf"), p)
+ggsave(paste0(output.base.name,".growth-rate-unnormalized.pdf"), plot=p, height=6, width=12)
 
-p = ggplot(not.control.data , aes(x=plate, y=GFP.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=control.data, width=0.2, size=1, aes(x=plate, y=GFP.rate, color=strain)) + 
+p = ggplot(not.control.data , aes(x=plate, y=GFP.rate)) + 
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=control.data, width=0.3, size=1.5, aes(x=plate, y=GFP.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,35000), expand=expansion(mult=c(0,0.05)), breaks=seq(0,35000,by=5000)) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0,50000)
+   NULL
 
-ggsave(paste0(output.base.name,".GFP-rate-unnormalized.pdf"), p)
+ggsave(paste0(output.base.name,".GFP-rate-unnormalized.pdf"), plot=p, height=6, width=12)
 
 
 #Show control strains only
@@ -326,7 +341,7 @@ for (i in 1:nrow(plate.metadata)) {
    
    ############### GFP
    
-   #Remove some that have no GFP measurements
+   # Remove some that have no GFP measurements
    plate.no.control.data.has.GFP = plate.no.control.data %>% filter(!is.na(GFP.rate))
    
    if (is.na(GFP.rate.bw)) {
@@ -381,21 +396,34 @@ no.burden.normalized.data$normalized.GFP.rate = no.burden.normalized.data$GFP.ra
 no.burden.normalized.control.data = no.burden.normalized.data %>% filter(strain %in% control.strains)
 no.burden.normalized.not.control.data = no.burden.normalized.data %>% filter(!(strain %in% control.strains))
 
-p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.growth.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=no.burden.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.growth.rate, color=strain)) + 
+p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.growth.rate)) + 
+   geom_hline(yintercept=1) +
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=no.burden.normalized.control.data, width=0.3, size=1.5, aes(x=plate, y=normalized.growth.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,1.5), expand=expansion(mult=c(0,0.05))) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0,1.4)
+   NULL
 
-ggsave(paste0(output.base.name,".growth-rate-no-burden-normalized.pdf"), p)
+ggsave(paste0(output.base.name,".growth-rate-no-burden-normalized.pdf"), plot=p, height=6, width=12)
 
-p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.GFP.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=no.burden.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.GFP.rate, color=strain)) + 
+p = ggplot(no.burden.normalized.not.control.data , aes(x=plate, y=normalized.GFP.rate)) + 
+   geom_hline(yintercept=1) +
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=no.burden.normalized.control.data, width=0.3, size=1.5, aes(x=plate, y=normalized.GFP.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,1.5), expand=expansion(mult=c(0,0.05))) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0,1.4)
+   NULL
 
-ggsave(paste0(output.base.name,".GFP-rate-no-burden-normalized.pdf"), p)
+ggsave(paste0(output.base.name,".GFP-rate-no-burden-normalized.pdf"), plot=p, height=6, width=12)
+
 
 ## Plot a regression on the controls for each plate on its own
 
@@ -695,21 +723,32 @@ write.csv(final.normalized.data, paste0(output.base.name, ".no.burden.and.contro
 final.normalized.control.data=final.normalized.data %>% filter(strain %in% control.strains)
 final.normalized.not.control.data = final.normalized.data %>% filter(!(strain %in% control.strains))
 
-p = ggplot(final.normalized.not.control.data , aes(x=plate, y=normalized.growth.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=final.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.growth.rate, color=strain)) + 
+p = ggplot(final.normalized.not.control.data , aes(x=plate, y=normalized.growth.rate)) + 
+   geom_hline(aes(yintercept=1)) +
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=final.normalized.control.data, width=0.3, size=1.5, aes(x=plate, y=normalized.growth.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,1.5), expand=expansion(mult=c(0,0.05)), breaks=seq(0,1.5,by=0.1)) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0.4,1.2)
+   NULL
 
-ggsave(paste0(output.base.name,".growth-rate-no-burden-and-control-normalized.pdf"), p)
+ggsave(paste0(output.base.name,".growth-rate-no-burden-and-control-normalized.pdf"), plot=p, height=6, width=12)
 
-p = ggplot(final.normalized.not.control.data , aes(x=plate, y=normalized.GFP.rate, color=plate)) + 
-   geom_jitter( width=0.2, size=0.3, color="gray") + 
-   geom_jitter(data=final.normalized.control.data, width=0.2, size=1, aes(x=plate, y=normalized.GFP.rate, color=strain)) + 
+p = ggplot(final.normalized.not.control.data , aes(x=plate, y=normalized.GFP.rate)) + 
+   geom_jitter( width=0.3, size=1, color="black", alpha=0.3, shape=16) + 
+   geom_jitter(data=final.normalized.control.data, width=0.3, size=1.5, aes(x=plate, y=normalized.GFP.rate, color=strain, fill=strain, shape=strain)) + 
+   scale_shape_manual(values=c(21, 22, 23, 24, 25)) +
+   scale_y_continuous(limits=c(0,1.5), expand=expansion(mult=c(0,0.05)), breaks=seq(0,1.5,by=0.1)) +
+   theme_linedraw() +
+   theme_classic() +
+   theme(panel.border = element_rect(colour = "black", fill=NA, size=1)) +
    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-   ylim(0.4,1.2)
+   NULL
 
-ggsave(paste0(output.base.name,".GFP-rate-no-burden-and-control-normalized.pdf"), p)
+ggsave(paste0(output.base.name,".GFP-rate-no-burden-and-control-normalized.pdf"), plot=p, height=6, width=12)
 
 
 ########################################################################################

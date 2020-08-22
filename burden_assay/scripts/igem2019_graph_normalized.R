@@ -8,9 +8,9 @@ library(cowplot)
 library(deming)
 
 #debug
-#input.file.string="04-normalization/output.part.burden.csv"
-#output.base.name="05-burden-final-output/output"
-#metadata.file.string = "igem2019_strain_metadata.csv"
+input.file.string="04-normalization/output.part.burden.csv"
+output.base.name="05-burden-final-output/output"
+metadata.file.string = "igem2019_strain_metadata.csv"
 
 if (!exists("input.file.string")) {
    suppressMessages(library(optparse))
@@ -64,7 +64,7 @@ strain.metadata = read.csv(metadata.file.string)
 ################################################################################
 ## Read in the input files and subset to the data we want to include
 
-#Only trust if we have at least three good measurements (not applicable to control strains)
+#Only trust if we have at least two good measurements (not applicable to control strains)
 all.data = all.data %>% filter( (replicates>=2) | (burden.category == "control"))
 #all.data = all.data %>% filter(burden.cv<2)
 
@@ -107,34 +107,53 @@ control.burdens = rbind(data.frame(strain="no burden", burden.mean=0), control.b
 p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=burden.mean)) +
    geom_density(bw=0.005) + 
    scale_x_continuous(limits = c(-0.1,0.6), breaks = seq(-0.1,0.6, by=0.1), expand = c(0, 0)) +
-   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+   #scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
    geom_vline(data = control.burdens, aes(xintercept=burden.mean, color=strain)) +
    theme_cowplot(12) +
    panel_border(color = "black")
 
 ggsave(paste0(output.base.name, ".burden-normalized-distribution.pdf"), plot=p, width=8, height=5)
 
+p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=normalized.growth.rate.mean)) +
+   geom_density(bw=0.005) + 
+   scale_x_continuous(limits = c(0.4,1.3), breaks = seq(0.4,1.3, by=0.1), expand = expansion(add = c(0.02, 0.02))) +
+   #scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+   geom_vline(data = control.burdens, aes(xintercept=1-burden.mean, color=strain)) +
+   theme_cowplot(12) +
+   panel_border(color = "black")
+
+ggsave(paste0(output.base.name, ".growth-rate-normalized-distribution.pdf"), plot=p, width=8, height=5)
+
 control.burdens = control.means
-control.burdens$GFP.rate.mean = 1 - control.burdens$normalized.GFP.rate.grand.mean
+control.burdens$GFP.rate.mean = control.burdens$normalized.GFP.rate.grand.mean
 control.burdens = control.burdens %>% select(-normalized.growth.rate.grand.mean, -normalized.GFP.rate.grand.mean)
-control.burdens = rbind(data.frame(strain="no burden", GFP.rate.mean=0), control.burdens)
+control.burdens = rbind(data.frame(strain="no burden", GFP.rate.mean=1), control.burdens)
 
 p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=1-normalized.GFP.rate.mean)) + 
    geom_density(bw=0.005) + 
    xlim(-0.4, 0.6) + 
+   geom_vline(data = control.burdens, aes(xintercept=1-GFP.rate.mean, color=strain)) +
+   theme_cowplot(12) +
+   panel_border(color = "black")
+
+ggsave(paste0(output.base.name, ".GFP-rate-reduction-normalized-distribution.pdf"), plot=p, width=8, height=5)
+
+
+p = ggplot(all.data %>% filter(burden.category!="control"), aes(x=normalized.GFP.rate.mean)) + 
+   geom_density(bw=0.005) + 
+   scale_x_continuous(limits = c(0.4,1.3), breaks = seq(0.4,1.3, by=0.1), expand = expansion(add = c(0.02, 0.02))) +
    geom_vline(data = control.burdens, aes(xintercept=GFP.rate.mean, color=strain)) +
    theme_cowplot(12) +
    panel_border(color = "black")
 
 ggsave(paste0(output.base.name, ".GFP-rate-normalized-distribution.pdf"), plot=p, width=8, height=5)
 
-
 ##############  Make a general graph showing all of the points
 control.data=all.data %>% filter(burden.category=="control")
 not.control.data = all.data %>% filter(!(burden.category=="control"))
 
 min.plot.coord = 0.4
-max.plot.coord = 1.4
+max.plot.coord = 1.3
 
 # What is the fit slope for the controls?
 control.data$sub.normalized.GFP.rate.mean = control.data$normalized.GFP.rate.mean - 1
@@ -267,24 +286,30 @@ if (T) {
 #drop controls
 all.data$other.burden.greater.adj.p.value = all.data$other.burden.greater.p.value
 all.data$other.burden.greater.adj.p.value[all.data$burden.category!="significant"] = NA
+all.data$other.burden.greater.adj.p.value[all.data$burden.mean<0.1] = NA
 all.data$other.burden.greater.adj.p.value[!is.na(all.data$other.burden.greater.adj.p.value)] = p.adjust(all.data$other.burden.greater.adj.p.value[!is.na(all.data$other.burden.greater.adj.p.value)], method="BH")
 
 all.data$other.burden.two.tailed.adj.p.value = all.data$other.burden.two.tailed.p.value
 all.data$other.burden.two.tailed.adj.p.value[all.data$burden.category!="significant"] = NA
+all.data$other.burden.two.tailed.adj.p.value[all.data$burden.mean<0.1] = NA
 all.data$other.burden.two.tailed.adj.p.value[!is.na(all.data$other.burden.two.tailed.adj.p.value)] = p.adjust(all.data$other.burden.two.tailed.adj.p.value[!is.na(all.data$other.burden.two.tailed.adj.p.value)], method="BH")
 
 #### Graph coloring these by which are significant
-all.data$other.burden.greater.significant = "not significant"
+all.data$other.burden.greater.significant = "not tested"
+all.data$other.burden.greater.significant[!is.na(all.data$other.burden.greater.adj.p.value)] = "not significant"
 all.data$other.burden.greater.significant[all.data$other.burden.greater.adj.p.value <= 0.05] = "significant"
+all.data$other.burden.greater.significant = factor(all.data$other.burden.greater.significant, levels=c("not tested", "not significant", "significant"))
 
-all.data$other.burden.two.tailed.significant = "not significant"
+all.data$other.burden.two.tailed.significant = "not tested"
+all.data$other.burden.two.tailed.significant[!is.na(all.data$other.burden.greater.adj.p.value)] = "not significant"
 all.data$other.burden.two.tailed.significant[all.data$other.burden.two.tailed.adj.p.value <= 0.05] = "significant"
+all.data$other.burden.two.tailed.significant = factor(all.data$other.burden.two.tailed.significant, levels=c("not tested", "not significant", "significant"))
 
 
 
 all.data$burden.category=factor(all.data$burden.category, levels=c("no burden", "control", "significant"))
 
-all.data = all.data %>% arrange(burden.category)
+all.data = all.data %>% arrange(burden.category, other.burden.greater.significant)
 
 ### Let's put back all of the metadata
 print.data = all.data %>% left_join(strain.metadata %>% select(-accession), by="strain")
@@ -293,6 +318,8 @@ print.data = all.data %>% left_join(strain.metadata %>% select(-accession), by="
 write.csv(print.data, paste0(output.base.name, ".burden_confidence.csv"), row.names=F)
 print.data = read.csv(paste0(output.base.name, ".burden_confidence.csv"))
 
+print.data$other.burden.greater.significant = factor(print.data$other.burden.greater.significant, levels=c("not tested", "not significant", "significant"))
+print.data$other.burden.two.tailed.significant = factor(print.data$other.burden.two.tailed.significant, levels=c("not tested", "not significant", "significant"))
 
 library(ggrepel)
 
@@ -307,7 +334,9 @@ p = ggplot(
       label=plate.strain,
    )
 ) +
-   scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
+   scale_colour_manual(values=c("#4147F7", "#000000", "#FF6EFC")) +
+   scale_alpha_manual(values=c(1, 0.3, 1)) +
+   #scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
    coord_cartesian(
       xlim = c(min.plot.coord, max.plot.coord), 
       ylim = c(min.plot.coord, max.plot.coord)
@@ -333,7 +362,7 @@ p = ggplot(
       ),
       alpha=0.2
    ) + 
-   geom_point(alpha=0.7, size=2) + 
+   geom_point(aes(alpha=burden.category), size=2) + 
    geom_text_repel(
       #data = subset(print.data, burden.category=="significant"), 
       data = subset(print.data, other.burden.greater.significant=="significant"), 
@@ -347,7 +376,8 @@ p = ggplot(
       color="black"
    ) +
    theme_cowplot(12) +
-   panel_border(color = "black")
+   panel_border(color = "black") + 
+   NULL
 
 p
 ggsave(paste0(output.base.name, ".burden_significantly_greater_labeled.pdf"), plot=p, width=10, height=7)
@@ -362,7 +392,9 @@ p = ggplot(
       label=accession,
    )
 ) +
-   scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
+   scale_colour_manual(values=c("#4147F7", "#000000", "#FF6EFC")) +
+   scale_alpha_manual(values=c(1, 0.3, 1)) +
+   #scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
    coord_cartesian(
       xlim = c(min.plot.coord, max.plot.coord), 
       ylim = c(min.plot.coord, max.plot.coord)
@@ -372,7 +404,7 @@ p = ggplot(
    geom_abline(intercept = the.intercept, slope = the.slope, show.legend=T, linetype = "dashed") + 
    geom_hline(aes(yintercept=1), color="grey") + 
    geom_vline(aes(xintercept=1), color="grey") + 
-   geom_point(alpha=0.7, size=2) + 
+   geom_point(aes(alpha=burden.category), size=2) + 
    geom_text_repel(
       #data = subset(all.data, burden.category=="significant"), 
       data = subset(print.data, other.burden.greater.significant=="significant"), 
@@ -423,7 +455,9 @@ p = ggplot(
       label=plate.strain,
    )
 ) +
-   scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
+   scale_colour_manual(values=c("#4147F7", "#000000", "#FF6C6C")) +
+   scale_alpha_manual(values=c(1, 0.3, 1)) +
+   #scale_colour_manual(values=c("#009E73", "#56B4E9", "#000000")) + 
    coord_cartesian(
       xlim = c(min.plot.coord, max.plot.coord), 
       ylim = c(min.plot.coord, max.plot.coord)
@@ -433,7 +467,7 @@ p = ggplot(
    geom_abline(intercept = the.intercept, slope = the.slope, show.legend=T, linetype = "dashed") + 
    geom_hline(aes(yintercept=1), color="grey") + 
    geom_vline(aes(xintercept=1), color="grey") +
-   geom_point(alpha=0.7, size=2) + 
+   geom_point(aes(alpha=burden.category), size=2) + 
    theme_cowplot(12) +
    panel_border(color = "black")
 

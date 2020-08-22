@@ -83,8 +83,12 @@ $SCRIPTDIR/igem2019_graph_normalized.R \
   -m $MAINDIR/igem2019_strain_metadata.csv
 
 #### Summary statistics
-
+cd $MAINDIR
 $SCRIPTDIR/igem2019_calculate_statistics.R
+
+#### Annotation of promoter and RBS parts
+cd $MAINDIR
+$SCRIPTDIR/igem2019_annotate_analyze_output.R
 
 ##### RFP-series
 mkdir -p $MAINDIR/10-RFP-series-output
