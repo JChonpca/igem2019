@@ -144,19 +144,19 @@ server <- function(input, output) {
                            size = 1)
       }
       
-      if ("colony" %in% input$scale_guides) {
+      if ("test tube" %in% input$scale_guides) {
         p = p + geom_vline(xintercept = 34.21928095, 
                            color = "#4392C5", 
                            size = 1)
       }
       
-      if ("colony" %in% input$scale_guides) {
+      if ("flask" %in% input$scale_guides) {
         p = p + geom_vline(xintercept = 41.12617154, 
                            color = "#2572B5", 
                            size = 1)
       }
       
-      if ("colony" %in% input$scale_guides) {
+      if ("bioreactor" %in% input$scale_guides) {
         p = p + geom_vline(xintercept = 56.15084952, 
                            color = "#1A4990", 
                            size = 1)
