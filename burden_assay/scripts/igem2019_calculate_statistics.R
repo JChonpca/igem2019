@@ -113,4 +113,21 @@ for (b in seq(0, 0.5, by=0.05)) {
 write.csv(cutoff.df, paste0(output.prefix, ".parts.with.at.least.burden.csv"))
 
 
+not.control.data = parts.means %>% filter(burden.category != "control")
+
+cutoff.df = data.frame()
+
+cat("burden cutoff", "# sig> than", "% sig > than", "\n")
+for (b in seq(0, 0.5, by=0.05)) {
+  
+  p.values = pt((b-not.control.data$burden.mean)/not.control.data$burden.sem, not.control.data$replicates-1)
+  #Uncomment for multiple testing correction
+  p.values = p.adjust(p.values, method="BH")
+  num.significant = sum(p.values <= 0.05, na.rm=T)
+  
+  cutoff.df = bind_rows(cutoff.df, data.frame(greater.than.burden=b, num.significant.parts=num.significant, total.parts=length(p.values), percent.significant.parts=(num.significant/length(p.values))*100))
+}
+
+write.csv(cutoff.df, paste0(output.prefix, ".parts.with.at.least.burden.BH.adjusted.csv"))
+
 

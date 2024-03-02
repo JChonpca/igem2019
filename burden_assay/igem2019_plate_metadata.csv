@@ -28,7 +28,7 @@ exp026,Noor,8/1/19,iGEM plasmids - ones that had large error bars,4/18/19,freeze
 exp027,,,,,,T,
 exp028,,,,,,T,"JEB1206 control is wrong, removed"
 exp029,Diya,8/21/19,Run with all the BFP controls (JEB 1203-1208) and the control plasmid BB_0 (empty pSB1C3 backbone),4/18/19,freezer stocks ,F,"RFP experiment, all strains have burden"
-exp030,Ginny,,Rerun of the BFP controls ,,freezer stocks ,F,Test of control plasmids with BFP measurements
+exp030,Ginny,,Rerun of the BFP controls ,,freezer stocks ,F,Test of control plasmids with BFP measurements. Only 6 min shaking between measurements.
 exp031,,,,,,F,Low growth rates and compressed data
 exp032,Diya,9/5/19,iGEM plasmids,4/18/19,freezer stocks ,T,
 exp033,Diya,9/11/19,iGEM plasmids,4/18/19,freezer stocks ,T,
@@ -57,3 +57,6 @@ exp055,Raul,,,,,F,No measurements file
 exp056,Diya,,,,,F,"RFP promoter series without the normal burden monitor control strains and with RFP drift early in the time courses, OD measurements at 660 nm, analyze separately"
 exp057,Diya,,,,,F,"RFP promoter series with burden monitor strains, OD measurements at 660 nm, analyze separately"
 exp058,MSU,,,,MSU reproducibility test,F,"Must fit data through 1200 minutes, controls did not give good correlation"
+exp059,Jeff,2/27/24,,,freezer stocks ,F,This is a run of iGEM BFP control stocks #1 1204-1208 and #2 1204-1208 measuring only GFP according to normal protocol
+exp060,Jeff,2/29/24,,,freezer stocks ,F,This is a run of iGEM BFP control stocks JEB 1204-1208 #1 and JEB 1209-1213
+exp061,Jeff,2/24/24,,,freezer stocks ,F,"This is a proper repeat of the BFP controls (JEB1204-JEB1213 from Jeff stocks). Exp30 has no BFP signal, so something was wrong"

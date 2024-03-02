@@ -113,9 +113,15 @@ htmlwidgets::saveWidget(as_widget(burdenVsGrowthPlotly), paste0(output.prefix, "
 
 # We need to convert NA isolates to a factor number.
 all.data$isolate=factor(all.data$isolate)
-all.data$isolate[is.na(all.data$isolate)] = levels(all.data$isolate)[1]
+if (length(levels(all.data$isolate)) == 0) {
+  all.data$isolate = as.factor("1")
+} else {
+  all.data$isolate[is.na(all.data$isolate)] = levels(all.data$isolate)[1]
+}
 
-all.data$isolate=as.factor(all.data$isolate)
+print(all.data)
+
+
 
 # Plot growth rate for every strain
 growthRatePlot = ggplot(all.data, aes_(x=as.name("strain"), y=as.name(paste0(readings[1], ".rate")), fill=as.name("isolate")))  +  

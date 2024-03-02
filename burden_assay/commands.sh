@@ -97,8 +97,8 @@ $SCRIPTDIR/burden_summary.R -i $MAINDIR/10-RFP-series-output/exp057.rates.summar
 
 ##### BFP-series
 mkdir -p $MAINDIR/11-BFP-series-output
-$SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-BFP-series/exp030/exp030 -o $MAINDIR/11-BFP-series-output/exp030 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
-$SCRIPTDIR/burden_summary.R -i $MAINDIR/11-BFP-series-output/exp030.rates.summary.csv
+$SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-BFP-series/exp061/exp061 -o $MAINDIR/11-BFP-series-output/exp061 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
+$SCRIPTDIR/burden_summary.R -i $MAINDIR/11-BFP-series-output/exp061.rates.summary.csv
 
 ##### Graphs
 cd $MAINDIR

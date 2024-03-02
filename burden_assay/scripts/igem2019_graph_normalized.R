@@ -6,6 +6,7 @@ library(tidyverse)
 library(ggplot2)
 library(cowplot)
 library(deming)
+library(lmtest)
 
 #debug
 input.file.string="04-normalization/output.part.burden.csv"
@@ -75,22 +76,29 @@ noncontrolstrains = all.data %>% filter(burden.category != "control")
 cat("Total strains analyzed:", length(unique(noncontrolstrains$strain)), "\n")
 
 ################################################################################
-### Plot testing for trend in coefficient of variation versus growth rate
+### Plot testing for trend in normalized standard error of the man versus growth rate
 
 if (T) {
    
    non.control.parts.means = all.data %>% filter(burden.category != "control")
    
-   ggplot(non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv, color=burden.category)) + geom_point() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + geom_smooth(data=non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.cv), method = "lm", se = FALSE, inherit.aes=F)
-   
-   fit1 = lm(normalized.growth.rate.sd~normalized.growth.rate.mean, data=non.control.parts.means)
-   
-   fit2 = lm(normalized.growth.rate.sd~1, data=non.control.parts.means)
+   p = ggplot(non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.sem)) + geom_point(alpha=0.5,fill="black", stroke=NA, size=3) + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + geom_smooth(data=non.control.parts.means, aes(x=normalized.growth.rate.mean, y=normalized.growth.rate.sem), method = "lm", se = FALSE, inherit.aes=F) + theme_cowplot(12) + panel_border(color = "black")
+   p
+   ggsave(paste0(output.base.name, ".normalized.sem.versus.growth.rate.pdf"), plot=p, width=8, height=5)
    
    
-   cat("Is there a trend in the coefficient of variation such that smaller values have a higher coefficient of variation?\n")
+   fit1 = lm(normalized.growth.rate.sem~normalized.growth.rate.mean, data=non.control.parts.means)
    
-   print(anova(fit1, fit2))
+  #used for t-test
+  print(summary(fit1))   
+   
+   fit2 = lm(normalized.growth.rate.sem~1, data=non.control.parts.means)
+   
+   lrtest(fit2, fit1)
+   
+   cat("Is there a trend in the coefficient of variation such that smaller values have a higher SEM?\n")
+   
+   print(anova(fit2, fit1))
    
 }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 ### This script adds part information to the final output files
-### and looks for promoter/RBS sequnces associated with high burden
+### and looks for promoter/RBS sequences associated with high burden
 
 
 library(tidyverse)

@@ -22,7 +22,7 @@ RFP.data = RFP.data %>% filter(! strain %in% c("BB0", "JEB1203", "JEB1204", "JEB
 
 #### Begin old regression analysis
 #### This fitting all assumes error is only in the y-direction (GFP rate)
-#### So it is not the best way to analyze - see Demin treatment below for what we use
+#### So it is not the best way to analyze - see Deming treatment below for what we use
 RFP.fit.fixed.zero = lm(GFP.rate~growth.rate + 0, RFP.data)
 RFP.slope.fixed.zero = coef(RFP.fit.fixed.zero)
 
@@ -149,11 +149,8 @@ cat(as.character(sum(pvals<0.05)), "strains do after correction for multiple tes
 # BFP ##########################  
 
 
-BFP.file.string = "11-BFP-series-output/exp030.rates.all.csv"
+BFP.file.string = "11-BFP-series-output/exp061.rates.all.csv"
 BFP.data = read_csv(BFP.file.string)
-
-## Remove BB0 and controls that are not in same plasmid backbone
-BFP.data = BFP.data %>% filter(! strain %in% c("JEB1203", "JEB1303") )
 
 #### Begin old regression analysis
 #### This fitting all assumes error is only in the y-direction (GFP rate)
@@ -177,7 +174,7 @@ BFP.x.intercept = BFP.y.intercept.model$Prediction
 #### End old regression
 
 ### Make graphs
-BFP.file.string = "11-BFP-series-output/exp030.rates.summary.csv"
+BFP.file.string = "11-BFP-series-output/exp061.rates.summary.csv"
 BFP.data = read_csv(BFP.file.string)
 BFP.data$isolate=factor(BFP.data$isolate)
 
@@ -200,10 +197,10 @@ burdenVsgrowthPlot = ggplot(BFP.data, aes(x=growth.rate, y=GFP.rate, shape=isola
   geom_errorbar(aes(ymin=GFP.rate.95L, ymax=GFP.rate.95U), width=0) +
   geom_point(size=4)  +
   scale_x_continuous(limits = c(0, 1.5), breaks = (0:7)*0.25 ) + 
-  scale_y_continuous(limits = c(0, 30000), breaks = (0:6)*5000) +  
+  scale_y_continuous(limits = c(0, 8000), breaks = (0:8)*1000) +  
 #  geom_abline(intercept=BFP.y.intercept, slope = BFP.slope, linetype=2) +
   geom_abline(intercept=BFP.deming.y.intercept, slope = BFP.deming.slope, linetype=1) +
-  scale_color_gradient(low = "lightblue", high = "blue3", na.value = "grey", limits=c(-50,850), breaks=0:4*200) +
+  scale_color_gradient(low = "lightblue", high = "blue3", na.value = "grey", limits=c(-200,5200), breaks=0:5*1000) +
   labs(color = "BFP Rate") + 
   #  geom_label_repel(aes(label = strain),size = 2.5,box.padding   = 0.35,point.padding = 0.5,segment.color = 'grey50') +
   ggtitle("BFP Series Burden Plot") + xlab("Growth Rate") + ylab("GFP Rate") + 
