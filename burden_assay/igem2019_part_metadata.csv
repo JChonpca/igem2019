@@ -9,7 +9,7 @@ K523020,Expression of Ice nucleation protein and the bglX under control of lac,3
 K3174007,Our BFP Construct ,3,1,1,1,pJ23110-RBS-BFP,,One of our BFP constructs,K608007; K592100; J23110; B0031,J23110,
 K880005,"Strong promoter and strong RBS, but no CDS",2,1,1,0,pJ23100-RBS,,Empty promoter and RBS- look for downstream transcription?,J23100; B0034,J23100,B0034
 K346000,Supposedly RBS and T3 RNAP only. Not sure if there is some additional promoter upstream or not. I think there is a T7 RNAP promoter upstream based on reading their wiki.,2,0,1,1,RBS-T3RNAP,,Really need to confirm that there is no promoter upstream,,,B0032
-J61000,Weird backbone- has chloramphenicol part (reverse orientation) and ampicilin resistance.,,,,,,,,,,
+J61000,Special backbone- has chloramphenicol part (reverse orientation) and ampicilin resistance.,,,,,,,,,,
 I759017,YFP under inducible pTet control with some cis5 element (also includes tet expression cassete),8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759017; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0034
 K608012,Expression of GFP from medium promoter and weak RBS,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0031; E0040,J23110,
 I759014,Expression of YFP under inducible tet expression and cis2 cis-repressive element,8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759034; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
@@ -304,3 +304,12 @@ I759020,,,,,,,,,,J23116,B0034
 I759019,,,,,,,,,,J23116,B0034
 K325219,Red Firefly Luciferase and LRE (under pBAD) L. Cruciata (E. coli optimised),,,,,,,,,,
 K608010,Medium promoter with strong RBS and GFP,,,,,,,,,J23110,B0034
+I13543,mRFP expressed from pBAD promoter with strong RBS,,,,,,,,,,B0034
+K1031410,HcaR-Terminator,,,,,,,,,,
+K118005,synthetic rbs+crtI (phytoene dehydrogenase),,,,,,,,,,
+K584003,Lambda cI and LuxR regulated - hybrid promoter + GFP generator,,,,,,,,,,B0032
+K592101,Yellow Fluorescent Protein (YFP),,,,,,,,,,
+K607038,Prm modified promoter generating GFP,,,,,,,,,,B0030
+K801012,ADH1 yeast terminator,,,,,,,,,,
+P0312,"PoPS -> LacI [S0156]; Has B0033 RBS, but it is very weak so not included",,,,,,,,,,
+J04450,RFP Coding Device,,,,,,,,,,B0034

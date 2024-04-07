@@ -46,14 +46,17 @@ strain.means = all.data %>%
   summarize(normalized.growth.rate.mean=mean(normalized.growth.rate), replicates=n()) %>% 
    filter(replicates>=2)
 
+# update to compare pSB1C3 to others
 ks.test(
-  (strain.means %>% filter(vector=="pSB1A2"))$normalized.growth.rate.mean,
+  (strain.means %>% filter(vector!="pSB1C3"))$normalized.growth.rate.mean,
   (strain.means %>% filter(vector=="pSB1C3"))$normalized.growth.rate.mean
 )
 
 #Graph
-
-p = ggplot(data=strain.means, aes(x=normalized.growth.rate.mean, group=vector, color=vector)) +
+strain.means.for.plot = strain.means
+strain.means.for.plot$vector[strain.means.for.plot$vector != "pSB1C3"] = "not-pSB1C3"
+  
+p = ggplot(data=strain.means.for.plot, aes(x=normalized.growth.rate.mean, group=vector, color=vector)) +
   stat_ecdf(geom = "step") +
   theme_cowplot(12) +
   panel_border(color = "black") +
@@ -64,14 +67,15 @@ p
 ggsave(paste0(output.prefix, ".growth.rate.CDF.by.vector.pdf"), plot=p)
 
 ########################################################################
-### Compare strains measured in both vectors
+### Compare BioBricks measured in both pSB1A2 and pSB1C3 vectors
+### (No BioBricks were measured in any other sets of two vectors)
 
 measured.twice = parts.means %>% filter(vectors=="pSB1A2,pSB1C3")
 measured.twice.strains = (strain.metadata %>% filter(accession %in% measured.twice$accession))$strain
 
 measured.twice.data = all.data %>% filter(strain %in% measured.twice.strains)
 
-measured.twice.data = measured.twice.data %>%left_join(strain.metadata, by="strain")
+measured.twice.data = measured.twice.data %>% select(-accession, -vector) %>% left_join(strain.metadata, by="strain")
 
 fit = lm(normalized.growth.rate~accession+vector, measured.twice.data )
 fit2 = lm(normalized.growth.rate~accession, measured.twice.data )

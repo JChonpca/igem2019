@@ -15,6 +15,9 @@ output.prefix = "05-burden-final-output/output"
 parts = read.csv(input.file.string)
 parts.annotation = read.csv(part.metadata.file.string )
 
+# all parts are annotated? Check!
+parts$accession[!(parts$accession %in% unique(parts.annotation$accession))]
+
 parts = parts %>% left_join(parts.annotation, by="accession")
 
 ####################################################################################

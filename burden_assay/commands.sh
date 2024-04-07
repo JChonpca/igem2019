@@ -12,7 +12,7 @@ MINOD=0.03
 MAXMETHOD=2
 FITTWOPOINTS=F
 TIMEPOINTDELTA=4
-VECTOR=pSB1C3,pSB1A2
+VECTOR=pSB1C3,pSB1A2,pSB1AK3,pSB3C5
 GROWTHRATEMETHOD="exponential"
 FLUORESCENCERATEMETHOD="exponential-with-production"
 
@@ -76,6 +76,7 @@ $SCRIPTDIR/burden_normalize.R \
 # Add these options for comparing MSU data
 #  -x exp057 \
 #  -n exp057
+cd $MAINDIR
 mkdir -p $MAINDIR/05-burden-final-output
 $SCRIPTDIR/igem2019_graph_normalized.R \
   -i $MAINDIR/04-normalization/$SETTINGS.part.burden.csv \
@@ -89,6 +90,10 @@ $SCRIPTDIR/igem2019_calculate_statistics.R
 #### Annotation of promoter and RBS parts
 cd $MAINDIR
 $SCRIPTDIR/igem2019_annotate_analyze_output.R
+
+#### Huge bar graph
+cd $MAINDIR
+$SCRIPTDIR/igem2019_normalized_burden_graph.R
 
 ##### RFP-series
 mkdir -p $MAINDIR/10-RFP-series-output
