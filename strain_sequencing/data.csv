@@ -1,0 +1,9 @@
+sample,type,setting
+JEB1203,reference,AddGene-66073-pAH63-with-gfp-insert.gbk
+JEB1203,reference,NC_010473.1_Eco_K-12_DH10B.gbk
+JEB1203,illumina-R1,JEB1203_R1.fastq.gz
+JEB1203,illumina-R2,JEB1203_R2.fastq.gz
+JEB1216,reference,AddGene-66073-pAH63-with-gfp-insert.gbk
+JEB1216,reference,NC_010473.1_Eco_K-12_DH10B.gbk
+JEB1216,illumina-R1,JEB1216_R1.fastq.gz
+JEB1216,illumina-R2,JEB1216_R2.fastq.gz

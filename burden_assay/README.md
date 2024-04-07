@@ -1,4 +1,4 @@
-# igem2019 burden analysis
+## igem2019 burden analysis
 
 Contains the scripts and input data needed for performing the burden analysis.
 
