@@ -20,3 +20,7 @@ The script `reference_file_generation.py` uses these part sequences and the vect
 in `BioBrick_backbones` to generate the full sequences of each plasmid that was analyzed.
 Be aware that minor differences due to different assembly RFCs and CDS versus noncoding
 parts are not accounted for by this script! The output is in `references`.
+
+## Dependencies
+
+This code has been tested with Python 3.11.4 and Biopython 1.81 on a machine running MacOSX 14.5. The download script takes many hours to run. Reference file generation takes several minutes.
