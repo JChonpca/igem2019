@@ -48,8 +48,6 @@ for(u.i in seq_along(log10uvec)){
     ode.model.results=rbind(ode.model.results, df)
   }
 }
-ode.model.results$burden<-as.numeric(ode.model.results$burden)
-
 
 ################################ STOCHASTIC MODEL #######################################
 

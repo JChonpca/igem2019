@@ -50,10 +50,9 @@ for(u.i in seq_along(log10uvec)){
     ode.model.results=rbind(ode.model.results, df)
   }
 }
-ode.model.results$burden<-as.numeric(ode.model.results$burden)
 
 ## Plot Distributions of 50% cell divisions in each model
-ode.model.cell.doublings.to.50 = ode.model.results %>% filter(fraction<=0.5) %>% group_by(b, u) %>% slice_head(1)
+ode.model.cell.doublings.to.50 = ode.model.results %>% filter(fraction<=0.5) %>% group_by(b, u) %>% slice_head(n=1)
 ode.model.cell.doublings.to.50$line.color = factor(ode.model.cell.doublings.to.50$b)
 
 ################################ STOCHASTIC MODEL #######################################
@@ -86,6 +85,10 @@ for(u.i in seq_along(log10uvec)){
     
     for (this.seed in 1:stochastic.replicates) {
       
+      if (this.seed %% 100 == 0) {
+        cat("  replicate:", this.seed, "\n")
+      }
+      
       set.seed(this.seed) # set random number generator seed to be reproducible
       par=list(b=this.b, u=this.u);
       sim.results = ssa.adaptivetau(
@@ -109,7 +112,7 @@ for(u.i in seq_along(log10uvec)){
         method = "stochastic"
       )
       
-      this.stochastic.model.cell.doublings.to.50 = this.stochastic.model.results %>% filter(fraction<=0.5) %>% slice_head(1)
+      this.stochastic.model.cell.doublings.to.50 = this.stochastic.model.results %>% filter(fraction<=0.5) %>% slice_head(n=1)
       
       stochastic.model.cell.doublings.to.50 = rbind(stochastic.model.cell.doublings.to.50, this.stochastic.model.cell.doublings.to.50)
       
