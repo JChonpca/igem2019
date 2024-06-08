@@ -602,7 +602,7 @@ Y = X %>% spread(reading, value)
 #join sample data to master tidy data
 Y <- full_join(metadata, Y, by = "well")
 Y$well = factor(Y$well)
-Y = Y %>% filter(time.min != 0)
+#Y = Y %>% filter(time.min != 0)
 
 
 # Analysis starts here ------->
@@ -744,6 +744,8 @@ if (offset.readings.to.average) {
     
   }
 }
+
+write_csv(Z, paste0(option.output.prefix, ".tidy.background.subtracted.measurements.csv"))
 
 
 ##############################################################

@@ -34,6 +34,7 @@ optparse/1.7.3
 plotly/4.10.3
 ggrepel/0.9.3
 lmtest/0.9-40
+chemCal/0.2.3
 ```
 
 Running the full analysis in `commands.sh`, takes about 30 minutes on an M3 MacBook Pro.
