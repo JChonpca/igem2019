@@ -54,6 +54,8 @@ ks.test(
 
 #Graph
 strain.means.for.plot = strain.means
+write_csv(strain.means.for.plot, paste0(output.prefix, ".growth.rate.CDF.by.vector.csv"))
+
 strain.means.for.plot$vector[strain.means.for.plot$vector != "pSB1C3"] = "not-pSB1C3"
   
 p = ggplot(data=strain.means.for.plot, aes(x=normalized.growth.rate.mean, group=vector, color=vector)) +
@@ -95,6 +97,9 @@ p = ggplot(data=measured.twice.data, aes(x=accession, y=normalized.growth.rate, 
 p
 ggsave(paste0(output.prefix, ".growth.rate.parts.in.both.vectors.pdf"), plot=p, height=6, width=12)
 
+write_csv(measured.twice.data, paste0(output.prefix, ".growth.rate.parts.in.both.vectors.csv"))
+write_csv(measured.twice.data.mean, paste0(output.prefix, ".growth.rate.parts.in.both.vectors.means.csv"))
+                    
 
 ########################################################################
 ### Calculate one-tailed tests of more than certain burden cutoffs

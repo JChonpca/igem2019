@@ -1,315 +1,316 @@
-﻿accession,manual.curation.description,manual.curation.total.components,manual.curation.has.promoter,manual.curation.has.RBS,manual.curation.has.CDS,manual.curation.operon.1,manual.curation.operon.2,manual.curation.notes,manual.curation.subparts,automated.curation.common.promoter,automated.curation.common.RBS
-K523022,"Lac promoter driving expression of carotenoid biosynthesis genes (crtE, crtI, crtB) as single operon.",,,,,,,"Used a weird ""biosandwich"" assembly method. Trying to determine if there are RBS between coding sequences or not. Also contains b-carotene synthesis genes. Maybe the ones used in Borkowski 2018 (cell free burden monitor)",,,B0034
-K515100,IAA biosynthetic genes under control Pveg2 promoter. Makes indole-3-acetic acid (IAA) (auxin) from tryptophan. ,5,1,2,2,Pveg2-RBS-IaaM-RBS-IaaH,,,,,
-K3174004,Our BFP Construct ,,,,,,,,,J23104,
-J36335,Kai proteins are related to a circadian clock sensing. Looks like two expression cassettes featuring KaiA and KaiC. Used the same promoter/RBS for KaiA and KaiC,6,2,2,2,Plac-RBS-KaiA,Plac-RBS-KaiC,,,,B0034; B0034
-K733010,low constitutive expression of antitoxin gene ydcD (endB). Protein produced counteracts EndoA toxin,3,1,1,1,pTms-RBS-ydcD,,,,,
-K523014,Expression of periplasmic B-glucosidase gene bglX under lac control. Maybe extra burden has to do with periplasmic localization from BglX?,3,1,1,1,Plac-RBS-LacZ'-bglX,,,,,
-K523020,Expression of Ice nucleation protein and the bglX under control of lac,3,1,1,1,,,,,,
-K3174007,Our BFP Construct ,3,1,1,1,pJ23110-RBS-BFP,,One of our BFP constructs,K608007; K592100; J23110; B0031,J23110,
-K880005,"Strong promoter and strong RBS, but no CDS",2,1,1,0,pJ23100-RBS,,Empty promoter and RBS- look for downstream transcription?,J23100; B0034,J23100,B0034
-K346000,Supposedly RBS and T3 RNAP only. Not sure if there is some additional promoter upstream or not. I think there is a T7 RNAP promoter upstream based on reading their wiki.,2,0,1,1,RBS-T3RNAP,,Really need to confirm that there is no promoter upstream,,,B0032
-J61000,Special backbone- has chloramphenicol part (reverse orientation) and ampicilin resistance.,,,,,,,,,,
-I759017,YFP under inducible pTet control with some cis5 element (also includes tet expression cassete),8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759017; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0034
-K608012,Expression of GFP from medium promoter and weak RBS,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0031; E0040,J23110,
-I759014,Expression of YFP under inducible tet expression and cis2 cis-repressive element,8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759034; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
-K541502,Expression of LipA signal peptide from promoter and B. subtilis RBS. CDS is only a small signal peptide,3,1,1,1,Pveg-RBS-LipA,,,K143012; K143021,,
-K541526,Expression of of LipA signal peptide and reflectin,4,1,1,2,Pveg-RBS-LipA-reflection,,,K143012; K143021; K541506,,
-K592020,Produces amilCP in the absence of blue light using YF1/FixJ blue light sensing system,7,2,2,2,pFixK2-RBS-cI,pcI-RBS-amilCP,,K592006; Q04510; B0034; K592009; B0034; C0051; B0015; R0051,,B0034; B0034
-C0056,"supposedly just the cI repressor from ""phage 434"". No promoter and no RBS? Maybe need to dig int to backbone",1,0,0,1,cI,,,,,
-K1149051,"Produces phaC, phaA, phaB from wt promoter and additiounal upstream promoter",9,2,4,3,pJ23104-RBS-pWT-RBS-phaC1-RBS-phaA-RBS-phaB1,,,J23104; B0034; K934001,J23104,B0034
-I742111,Limonene synthase gene (LIMS1) with ribosome binding site. Has no promoter?,2,0,1,1,RBS-LIMS1,,,J15001; I742110,,
-C0053,c2 repressor (no promoter / RBS) with LVA degradation tag,1,0,0,1,,,,,,
-I761014,RBS with cinR and cinI with double terminator end (no promoter?),6,0,2,2,RBS-cinR-RBS-cinI,,,I761000; B0014; B0034; C0077; B0034; C0076,,B0034; B0034
-B0011,supposedly only a bidirectional terminator. I'd like to confirm if theres anything else on this plasmid. This is a large fitness defect from just a terminator,1,0,0,0,,,,,,
-K3174006,One of our BFP plasmids,3,1,1,1,,,,,J23110,B0032
-K523013,Expression of eYFP fused to INP (ice nucleation protein) under plac promoter (with lacZ fragment). Not sure of RBS in spacers (after lacZ?),5,1,1,2,Plac-RBS-LacZ'-RBS-INP-EYFP,,,,,
-K395602,Expression of MpAAT1 from T7 promoter. Also lac repressed. Should not be expressed in absence of T7 induction. Also has T7 terminator.,4,1,1,1,pT7-RBS-MpAAT1,,,R0185; K395600; K395601,,
-I759005,Expression of cro under tet induction,6,2,2,2,pTet-RBS-cro,pJ23116-RBS-tetR,,I759002; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
-K3174002,One of our BFP plasmids,,,,,,,,,J23104,B0034
-K733013,Promoter and RBS combination with no CDS. RBS is strong B. subtilis RBS,2,1,1,0,pVeg-RBS,,,K316001; K143021,,
-K3174003,One of our BFP plasmids,,,,,,,,,J23104,B0032
-K639003,Expression of mCherryand Lac under pLac and rrnBP1 control. Should fluoresce in response to stress (and ppGpp signalling),8,2,2,2,pP1-RBSLacI,pLac-RBS-mCherry,,K639002; K639000; B0034; C0012; B0015; R0011; J06702; J06602; B0015; B0034; J06504,,B0034; B0034
-K137018,Produces GFP in response to AHL. Also produces luxR to respond to AHL,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-GFP,,F2622; B0034; I13401; R0011; I0462; R0062; E0040; B0015,,B0034; B0034
-C0051,Should be cI repressor from lambda with LVA tag (like K327018). Supposedly no promoter or RBS,1,0,0,1,,,,,,
-K731721,"Supposedly just a T7 terminator. Part page describes it as part of a fluorescence assay, but near as I can tell this part is just the terminator. Someone else should look",1,0,0,0,,,,,,
-K541501,Promoter and RBS for expression of SacB signal peptide in B. subtilis. Only CDS is SacB signal peptide. ,3,1,1,1,pVeg-RBS-SacB',,,K143053; K143012; K143021,,
-K608011,Expression of GFP from medium promoter and medium RBS,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0032; E0040,J23110,B0032
-E0420,RBS and CDS for eCFP. No promoter.,3,0,1,1,,,,B0034; E0020; B0015,,B0034
-K861172,Expression of cI (lambda repressor) from glucose-repressible promoter,4,1,1,1,pcstA-RBS-cI,,,K118011; B0034; C0051; B0015,,B0034
-I0466,"RBS and CDS for rhlR, no promoter.",3,0,1,1,,,,B0034; C0071; B0015,,B0034
-K523023,Expression of eYFP under  Plac promoter. Has lacZ' fragment.,5,1,2,2,pLac-RBS-LacZ'-RBS-eYFP,,,,,
-K797001,"CDS for ""phage shock protein A (pspA)."" Supposedly CDS only.. But I think I see an RBS upstream.",2,0,1,1,,,,,,
-K325218,Part page is not great for navigating. Looks like an inducible promoter driving luciferase production (2 genes). No mention of expression of ara protein,1,1,2,2,pBAD-RBS-LucRegen-RBS-Luciferase,,,I0500; K325210; ,,
-K516132,Constitutive expression of RFP from promoter,4,1,1,1,pJ23101-RBS-mRFP1,,,J23101; B0032; E1010; B0015,J23101,B0032
-K137076,Expressed pyruvate oxidates in response to AHL. Also expresses luxR to detect AHL.,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-spxB,,F2622; B0034; K137069; B0015; R0011; I0462; R0062; B0034; C0062; B0015,,B0034; B0034
-K523006,Expressed periplasmic a-amylase gene malS under lac control. Also has lacZ' fragment.,5,1,2,2,pLac-RBS-lacZ'-RBS-malS,,,J33207; K523001; ,,
-K325909,Expression of luciferase operon (luxCDABE) under arabinose control. ,15,2,7,7,pBAD-RBS-luxC-RBS-luxD-RBS-luxA-RBS-luxB-RBS-luxE-RBS-luxG,,,I0500; K325909,,
-K316003,RBS and CDS for XylE (catechol dioxygenase). Supposedly without promoter,3,0,1,1,,,,J33204; B0014; ,,
-K575014,RFP under inducible promoter RhIR / PA12,3,1,1,1,pR0071-RBS-E1010,,,R0071; B0030; E1010,,B0030
-I746908,superfolder GFP expressed under inducible pBAD promoter,7,2,2,2,pBAD-RBS-GFP,,,I746910; I746916; B0015; I0500; B0034; ,,B0034
-K118024,"Expression of three genes: dxs, appY, and LIMS1. Expression of dxs and appY increase yields of carotenoids. LIMS1 produces limonene (lemon scent). No annotated promoter",6,0,3,3,RBS-dxs-RBS-LIMS1-appY-RBS,,,K118010; K118007; K118004; I742111; J15001; K118000; J15001; I742110; J15001; K118001,,
-K553003,,,,,,,,,,J23100,B0034
-K1150042,,,,,,,,,,,
-B0023,,,,,,,,,,,
-K747000,,,,,,,,,,,
-K733001,,,,,,,,,,,
-K617004,Lambda attP P'OP,1,0,0,0,attP,,,,,
-B1006,,,,,,,,,,,
-I759018,,,,,,,,,,J23116,B0034
-K118019,Expression of glgC from Plac with rbs and lacZ fragment. glgC catalyzes a step in the production of glucose from glycogen,5,1,2,2,pLac-RBS-lacZ'-RBS-glgC,,,K33207; K118017; J15001; K118015,,
-K844008,,,,,,,,,,,
-K608002,,,,,,,,,,J23104,
-K575009,,,,,,,,,,,B0034
-K747003,,,,,,,,,,,
-I759016,,,,,,,,,,J23116,B0030; B0034
-E0430,,,,,,,,,,,B0034
-B0015,,,,,,,,,,,
-K568004,,,,,,,,,,,B0030
-K581008,,,,,,,,,,,
-K118028,,,,,,,,,,,
-K844006,,,,,,,,,,,
-I13602,Expression of CFP under tet control. Has terminator,4,1,1,1,ptetR-RBS-eCFP,,,R0040; E0422; B0034; E0022; B0015,,B0034
-K747001,,,,,,,,,,,
-C0050,,,,,,,,,,,
-K773003,,,,,,,,,,,B0034
-K773002,,,,,,,,,,,
-K748002,,,,,,,,,,,
-I0500,,,,,,,,,,,
-I712669,,,,,,,,,,,
-I13601,,,,,,,,,,,B0034
-K784013,,,,,,,,,,,
-K747009,,,,,,,,,,,
-I13600,,,,,,,,,,,B0034
-I13500,,,,,,,,,,,B0034
-K861173,mRFP expressed from glucose-repressible promoter,4,1,1,1,pcstA-RBS-mRFP,,,K118011; I13507; B0034; E1010; B0015,,B0034
-K608351,,,,,,,,,,J23114,B0034
-K895000,,,,,,,,,,,
-R0083,,,,,,,,,,,
-J52011,,,,,,,,,,,
-C0040,,,,,,,,,,,
-K115002,,,,,,,,,,,
-K575015,,,,,,,,,,,B0034
-K914003,,,,,,,,,,,
-K1166002,,,,,,,,,,,B0034; B0034
-K844007,,,,,,,,,,,
-B0025,,,,,,,,,,,
-E0036,,,,,,,,,,,
-I13504,,,,,,,,,,,B0034
-K581005,,,,,,,,,,J23106,
-K774001," PyeaR + CArG nitric oxide, nitrate & nitrite-sensing hybrid 'Mammalian-Bacterial' promoter",,,,,,,,,,
-K516030,,,,,,,,,,,B0030
-K575008,,,,,,,,,,,B0030
-K608003,,,,,,,,,,J23104,B0032
-K608004,,,,,,,,,,J23104,
-R1051,,,,,,,,,,,
-K914011,,,,,,,,,,,
-J23119,,,,,,,,,,J23119; J23108,
-K516011,luxI protein generator,2,0,1,1,RBS-luxI,,,B0031; C0061,,
-K517005,,,,,,,,,,,
-K541503,,,,,,,,,,J23100,B0034
-I13002,,,,,,,,,,,
-E0020,,,,,,,,,,,
-E0026,,,,,,,,,,,
-B0032,,,,,,,,,,,B0032
-I13001,,,,,,,,,,,B0030
-B0033,,,,,,,,,,,
-K861090,,,,,,,,,,,
-k1184000,KillerRed,,,,,,,,,,
-S03154,,,,,,,,,,,B0034
-R1062,,,,,,,,,,,
-I746391,,,,,,,,,,,B0034; B0034; B0034
-K611025,,,,,,,,,,,
-K137019,,,,,,,,,,,B0034; B0034; B0034
-P10302,,,,,,,,,,,
-K747012,,,,,,,,,,,
-K145001,,,,,,,,,,,
-K608007,,,,,,,,,,J23110,
-K538104,,,,,,,,,,,B0034
-K523004,,,,,,,,,,,
-K634001,,,,,,,,,,,
-I746200,,,,,,,,,,,
-E0024,,,,,,,,,,,
-K819010,,,,,,,,,,J23113,B0034
-K398326,,,,,,,,,,,
-K608006,,,,,,,,,,J23110,B0032
-K876000,,,,,,,,,,,
-E0422,,,,,,,,,,,B0034
-K808000,,,,,,,,,,,
-K624000,,,,,,,,,,,
-K525406,,,,,,,,,,,B0034
-K523015,,,,,,,,,,,
-K525404,,,,,,,,,,,B0034
-K1150001,,,,,,,,,,,
-K808032,,,,,,,,,,,
-K523000,,,,,,,,,,,
-B0034,,,,,,,,,,,B0034
-K747004,,,,,,,,,,,
-K1061003,,,,,,,,,,,
-K590034,,,,,,,,,,,
-K895004,,,,,,,,,,,
-K747002,,,,,,,,,,,
-K577894,,,,,,,,,,,B0034; B0034
-K145302,,,,,,,,,,J23109,B0032
-K775000,,,,,,,,,,,
-K118000,,,,,,,,,,,
-B0013,,,,,,,,,,,
-K819017,,,,,,,,,,,
-K1033916,,,,,,,,,,,
-C0052,,,,,,,,,,,
-K567015,,,,,,,,,,,
-K747023,,,,,,,,,,,
-K1188002,,,,,,,,,,,
-K873002,,,,,,,,,,,
-K1806004,T7+ ibPB RNA Thermometer + pelB + MCS + 6xHis,,,,,,,,,,
-I751100,,,,,,,,,,,B0030; B0034
-C0160,,,,,,,,,,,
-K516031,,,,,,,,,,,
-K747008,,,,,,,,,,,
-K567008,,,,,,,,,,,
-K763001,,,,,,,,,,,
-K624003,,,,,,,,,,,
-K115001,,,,,,,,,,,
-K747021,,,,,,,,,,,
-I746381,,,,,,,,,,,B0034; B0034; B0034
-K936000,,,,,,,,,,,
-K517003,,,,,,,,,,,
-K1150039,,,,,,,,,,,
-K863206,,,,,,,,,,,
-K592009,,,,,,,,,,,
-B0010,,,,,,,,,,,
-K538101,,,,,,,,,,,B0034
-K747019,,,,,,,,,,,
-K747005,,,,,,,,,,,
-K648013,,,,,,,,,,,
-K747010,,,,,,,,,,,
-K1415006,,,,,,,,,,,
-R0079,,,,,,,,,,,
-K575021,,,,,,,,,,,
-K567018,,,,,,,,,,,
-K1150038,,,,,,,,,,,
-K817024,,,,,,,,,,,B0030
-K1061001,,,,,,,,,,,
-B0031,,,,,,,,,,,
-K738002,,,,,,,,,,,
-I6057,,,,,,,,,,,B0034
-B0040,,,,,,,,,,,
-K914001,,,,,,,,,,,B0030
-B0012,,,,,,,,,,,
-E1010,,,,,,,,,,,
-R0065,,,,,,,,,,,
-R0010,,,,,,,,,,,
-K538000,,,,,,,,,,,
-K773004,,,,,,,,,,,B0034
-J61101,,,,,,,,,,,
-K525998,,,,,,,,,,,B0034
-K576003,,,,,,,,,,,
-K606017,,,,,,,,,,,
-K823017,,,,,,,,,,,
-K733009,,,,,,,,,,,B0032
-K592011,,,,,,,,,,,
-K540001,,,,,,,,,,,
-K648029,,,,,,,,,,,
-J52022,,,,,,,,,,,
-E0034,,,,,,,,,,,
-K584000,,,,,,,,,,,B0032
-K1150041,,,,,,,,,,,
-R0062,,,,,,,,,,,
-K747011,,,,,,,,,,,
-K523002,,,,,,,,,,,
-I746375,,,,,,,,,,,B0034; B0034; B0034
-K588001,,,,,,,,,,,
-K517002,,,,,,,,,,,
-K654058,,,,,,,,,,,
-C0061,,,,,,,,,,,
-K519010,,,,,,,,,,,
-S05060,,,,,,,,,,,
-K784014,,,,,,,,,,,
-K731520,,,,,,,,,,,B0032
-J45219,,,,,,,,,,,B0032
-K523003,,,,,,,,,,,
-K539119,,,,,,,,,,,
-K747007,,,,,,,,,,,
-K617003,R6K origin of replication,,,,,,,,,,
-K1033910,,,,,,,,,,,
-K539421,,,,,,,,,,,
-R0071,,,,,,,,,,,
-R0040,,,,,,,,,,,
-K1150040,,,,,,,,,,,
-K817018,,,,,,,,,,,
-K575020,,,,,,,,,,,
-R0084,,,,,,,,,,,
-K817023,,,,,,,,,,,B0030
-K525710,,,,,,,,,,,B0034
-R0080,,,,,,,,,,,
-K515007,,,,,,,,,,,
-J45299,,,,,,,,,,,B0030
-K936013,,,,,,,,,,,
-K733008,,,,,,,,,,,
-J45199,,,,,,,,,,,B0030
-K538004,,,,,,,,,,,
-R0063,,,,,,,,,,,
-E0030,,,,,,,,,,,
-K525306,,,,,,,,,,,B0034
-J45319,,,,,,,,,,,B0032
-K1218003,CRISPR CasA E. coli (Modern),,,,,,,,,,
-C0261,,,,,,,,,,,B0034
-K875009,,,,,,,,,,,
-R0011,,,,,,,,,,,
-C0012,,,,,,,,,,,
-K1150043,,,,,,,,,,,
-K569017,,,,,,,,,,,
-J23108,,,,,,,,,,J23108; J23119,
-K784006,,,,,,,,,,,
-K592018,,,,,,,,,,,B0034
-K592016,,,,,,,,,,,B0034; B0034
-K747018,,,,,,,,,,,
-S03749,,,,,,,,,,J23100,B0030; B0034
-K660610,,,,,,,,,,,B0030
-K611026,,,,,,,,,,,
-K516022,,,,,,,,,,,B0032
-K808003,,,,,,,,,,,
-C0060,,,,,,,,,,,
-K541506,,,,,,,,,,,
-E0032,,,,,,,,,,,
-I732920,,,,,,,,,,,B0034; B0034
-K808025,,,,,,,,,,,
-K747022,,,,,,,,,,,
-K325903,,,,,,,,,,,
-K747020,,,,,,,,,,,
-K541505,,,,,,,,,,,
-J61100,,,,,,,,,,,
-K607035,,,,,,,,,,,
-J23109,,,,,,,,,,J23109,
-S04602,,,,,,,,,,,B0034
-K624004,,,,,,,,,,,
-K398331,,,,,,,,,,,B0032
-I712058,,,,,,,,,,,
-I15017,,,,,,,,,,,B0032
-I13502,,,,,,,,,,,B0034
-E0022,,,,,,,,,,,
-K812032,,,,,,,,,,,
-K598014,,,,,,,,,,,
-K777117,,,,,,,,,,,
-J52040,,,,,,,,,,,
-B0030,,,,,,,,,,,B0030
-K909007,,,,,,,,,,,
-K627011,,,,,,,,,,,
-K731722,,,,,,,,,,,
-I712088,,,,,,,,,,,
-R0078,,,,,,,,,,,
-K314110,,,,,,,,,,,
-R0082,,,,,,,,,,,
-I759020,,,,,,,,,,J23116,B0034
-I759019,,,,,,,,,,J23116,B0034
-K325219,Red Firefly Luciferase and LRE (under pBAD) L. Cruciata (E. coli optimised),,,,,,,,,,
-K608010,Medium promoter with strong RBS and GFP,,,,,,,,,J23110,B0034
-I13543,mRFP expressed from pBAD promoter with strong RBS,,,,,,,,,,B0034
-K1031410,HcaR-Terminator,,,,,,,,,,
-K118005,synthetic rbs+crtI (phytoene dehydrogenase),,,,,,,,,,
-K584003,Lambda cI and LuxR regulated - hybrid promoter + GFP generator,,,,,,,,,,B0032
-K592101,Yellow Fluorescent Protein (YFP),,,,,,,,,,
-K607038,Prm modified promoter generating GFP,,,,,,,,,,B0030
-K801012,ADH1 yeast terminator,,,,,,,,,,
-P0312,"PoPS -> LacI [S0156]; Has B0033 RBS, but it is very weak so not included",,,,,,,,,,
-J04450,RFP Coding Device,,,,,,,,,,B0034
+﻿accession,manual.curation.description,manual.curation.source.organism.all,manual.curation.source.organism.CDS.all,manual.curation.includes.FP,manual.curation.source.organism.all.classification,manual.curation.source.organism.all.no.FP.classification,manual.curation.source.organism.CDS.classification,manual.curation.source.organism.CDS.no.FP.classification,manual.curation.notes,manual.curation.total.components,manual.curation.has.promoter,manual.curation.has.RBS,manual.curation.has.CDS,manual.curation.operon.1,manual.curation.operon.2,manual.curation.notes,manual.curation.subparts,automated.curation.common.promoter,automated.curation.common.RBS
+K523022,"Lac promoter driving expression of carotenoid biosynthesis genes (crtE, crtI, crtB) as single operon.",Pantoea ananatis,Pantoea ananatis,FALSE,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,,,,,,,,"Used a weird ""biosandwich"" assembly method. Trying to determine if there are RBS between coding sequences or not. Also contains b-carotene synthesis genes. Maybe the ones used in Borkowski 2018 (cell free burden monitor)",,,B0034
+K515100,IAA biosynthetic genes under control Pveg2 promoter. Makes indole-3-acetic acid (IAA) (auxin) from tryptophan. ,"Bacillus subtilis, Pseudomonas savastanoi",Pseudomonas savastanoi,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,5,1,2,2,Pveg2-RBS-IaaM-RBS-IaaH,,,,,
+K3174004,Blue Fluorescent Protein with Strong Promoter and Weak RBS ,Entacmaea quadricolor,Entacmaea quadricolor,TRUE,Animal,None,Animal,None,,,,,,,,,,J23104,
+J36335,Lac+RBS+KaiA+Lac+RBS+KaiC,Synechococcus,Synechococcus,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,6,2,2,2,Plac-RBS-KaiA,Plac-RBS-KaiC,,,,B0034; B0034
+K733010,low constitutive expression of antitoxin gene ydcD (endB). Protein produced counteracts EndoA toxin,Bacillus subtilis,Bacillus subtilis,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,3,1,1,1,pTms-RBS-ydcD,,,,,
+K523014,"Plac + LacZ + bglX, Expression of periplasmic B-glucosidase gene bglX under lac control. Maybe extra burden has to do with periplasmic localization from BglX?",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,3,1,1,1,Plac-RBS-LacZ'-bglX,,,,,
+K523020,Expression of Ice nucleation protein and the bglX under control of lac,"Pseudomonas syringae, Escherichia coli","Pseudomonas syringae, Escherichia coli",FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,ICE nucleation protein is E. coli codon optiimized,3,1,1,1,,,,,,
+K3174007,Blue Fluorescent Protein with Medium Promoter and Weak RBS ,Entacmaea quadricolor,Entacmaea quadricolor,TRUE,Animal,None,Animal,None,,3,1,1,1,pJ23110-RBS-BFP,,One of our BFP constructs,K608007; K592100; J23110; B0031,J23110,
+K880005,"Strong promoter and strong RBS, but no CDS",synthetic,None,,Synthetic,Synthetic,None,None,,2,1,1,0,pJ23100-RBS,,Empty promoter and RBS- look for downstream transcription?,J23100; B0034,J23100,B0034
+K346000,RBS(B0032)+T3 DNA-directed RNA polymerase,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,2,0,1,1,RBS-T3RNAP,,Really need to confirm that there is no promoter upstream,,,B0032
+J61000,chloramphenicol resistance cassette,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+I759017,"cis5-repressed, tet-regulated YFP","Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,Includes YFP and tetR,8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759017; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0034
+K608012,Medium promoter with weak RBS and GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0031; E0040,J23110,
+I759014,"
+cis2-repressed, tet-regulated YFP ","Escherichia coli, Discosoma sp.","Escherichia coli, Discosoma sp.",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,8,2,2,2,ptet-RBS-YFP,pJ23116-RBS-tetR,,I759034; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
+K541502,"Promoter Pveg, RBS spoVG and LipA signal peptide for B. subtilis, Expression of LipA signal peptide from promoter and B. subtilis RBS. CDS is only a small signal peptide",Bacillus subtilis,Bacillus subtilis,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,3,1,1,1,Pveg-RBS-LipA,,,K143012; K143021,,
+K541526,Expression of of LipA signal peptide and reflectin,"Bacillus subtilis, Euprymna scolopes","Bacillus subtilis, Euprymna scolopes",FALSE,Animal,Animal,Animal,Animal,,4,1,1,2,Pveg-RBS-LipA-reflection,,,K143012; K143021; K541506,,
+K592020,PFixK2-lambda C1-B0034-amilCP blue light sensor output,"Bradyrhizobium japonicum, Escherichia coli (phage), Acropora millepora","Escherichia coli (phage), Acropora millepora",TRUE,Animal,Other-Bacteria,Animal,Escherichia coli (phage),,7,2,2,2,pFixK2-RBS-cI,pcI-RBS-amilCP,,K592006; Q04510; B0034; K592009; B0034; C0051; B0015; R0051,,B0034; B0034
+C0056,cI repressor from phage 434 (no LVA),Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,1,0,0,1,cI,,,,,
+K1149051,Hybrid promoter phaCAB,Cupriavidus necator  ,Cupriavidus necator  ,FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,,9,2,4,3,pJ23104-RBS-pWT-RBS-phaC1-RBS-phaA-RBS-phaB1,,,J23104; B0034; K934001,J23104,B0034
+I742111,Limonene synthase gene with ribosome binding site ,Citrus limon,Citrus limon,FALSE,Plant,Plant,Plant,Plant,,2,0,1,1,RBS-LIMS1,,,J15001; I742110,,
+C0053,c2 repressor from Salmonella phage P22 (+LVA),Salmonella (phage),Salmonella (phage),FALSE,Other-Enterobacterales (phage),Other-Enterobacterales (phage),Other-Enterobacterales (phage),Other-Enterobacterales (phage),,1,0,0,1,,,,,,
+I761014,cinr+cinl (RBS) with double terminator,Rhizobium leguminosarum,Rhizobium leguminosarum,FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,,6,0,2,2,RBS-cinR-RBS-cinI,,,I761000; B0014; B0034; C0077; B0034; C0076,,B0034; B0034
+B0011,LuxICDABEG terminator,Vibrio fischeri,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,1,0,0,0,,,,,,
+K3174006,Blue Fluorescent Protein with Medium Promoter and Medium RBS ,Entacmaea quadricolor,Entacmaea quadricolor,TRUE,Animal,None,Animal,None,,3,1,1,1,,,,,J23110,B0032
+K523013,"Plac + INP-EYFP, INP is codon optimized. Expression of eYFP fused to INP (ice nucleation protein) under plac promoter (with lacZ fragment). Not sure of RBS in spacers (after lacZ?)","Escherichia coli, Pseudomonas syringae","Escherichia coli, Pseudomonas syringae",FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,5,1,1,2,Plac-RBS-LacZ'-RBS-INP-EYFP,,,,,
+K395602,Apple fragrance generator. Expression of MpAAT1 (codon optimized) from T7 promoter. Also lac repressed.,"Escherichia coli (phage), Malus domestica","Escherichia coli (phage), Malus domestica",FALSE,Plant,Plant,Plant,Plant,,4,1,1,1,pT7-RBS-MpAAT1,,,R0185; K395600; K395601,,
+I759005,tet-regulated cro (Weak tetR promoter),"Escherichia coli, Escherichia coli (phage)","Escherichia coli, Escherichia coli (phage)",FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,6,2,2,2,pTet-RBS-cro,pJ23116-RBS-tetR,,I759002; S03724; B0015; S03708; J23116; P0440; B0034; C0040; B0015,J23116,B0030; B0034
+K3174002,Blue Fluorescent Protein with Strong Promoter and Strong RBS ,Entacmaea quadricolor,Entacmaea quadricolor,TRUE,Animal,None,Animal,None,,,,,,,,,,J23104,B0034
+K733013,Pveg+R.B.S. Promoter and RBS combination with no CDS. RBS is strong B. subtilis RBS,Bacillus subtilis,None,FALSE,Other-Bacteria,Other-Bacteria,None,None,,2,1,1,0,pVeg-RBS,,,K316001; K143021,,
+K3174003,Blue Fluorescent Protein with Strong Promoter and Medium RBS ,Entacmaea quadricolor,Entacmaea quadricolor,TRUE,Animal,None,Animal,None,,,,,,,,,,J23104,B0032
+K639003,rrnB P1-LacI-pLac-mCherry plausible stress sensor,"Escherichia coli, Discosoma sp.","Escherichia coli, Discosoma sp.",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,8,2,2,2,pP1-RBSLacI,pLac-RBS-mCherry,,K639002; K639000; B0034; C0012; B0015; R0011; J06702; J06602; B0015; B0034; J06504,,B0034; B0034
+K137018,AHL receiver + GFP,"Vibrio fischerii, Aequorea victoria","Vibrio fischerii, Aequorea victoria",TRUE,Animal,Other-Gammaproteobacteria,Animal,Other-Gammaproteobacteria,,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-GFP,,F2622; B0034; I13401; R0011; I0462; R0062; E0040; B0015,,B0034; B0034
+C0051,cI repressor from E. coli phage lambda (+LVA) ,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,1,0,0,1,,,,,,
+K731721,wild type terminator from T7 bacteriophage,Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,1,0,0,0,,,,,,
+K541501,"Promoter Pveg, RBS spoVG and SacB signal peptide for B. subtilis. Promoter and RBS for expression of SacB signal peptide in B. subtilis. Only CDS is SacB signal peptide. ",Bacillus subtilis,Bacillus subtilis,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,3,1,1,1,pVeg-RBS-SacB',,,K143053; K143012; K143021,,
+K608011,Medium promoter with medium RBS and GFP,Aequorea victoria,Aequorea victoria,FALSE,Animal,None,Animal,None,,3,1,1,1,pJ23110-RBS-GFP,,,J23110; B0032; E0040,J23110,B0032
+E0420,ECFP (RBS+ LVA- TERM) (B0034.E0020.B0015),Aequorea victoria,Aequorea victoria,FALSE,Animal,None,Animal,None,,3,0,1,1,,,,B0034; E0020; B0015,,B0034
+K861172,Expression of cI (lambda repressor) from glucose-repressible promoter,"Escherichia coli, Escherichia coli (phage)",Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,4,1,1,1,pcstA-RBS-cI,,,K118011; B0034; C0051; B0015,,B0034
+I0466,RhlR Protein Generator,Pseudomonas aeruginosa,Pseudomonas aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,3,0,1,1,,,,B0034; C0071; B0015,,B0034
+K523023,PlacLacZ + EYFP,"Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,5,1,2,2,pLac-RBS-LacZ'-RBS-eYFP,,,,,
+K797001,phage shock protein A: one of the components of out Tat cassette ,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,2,0,1,1,,,,,,
+K325218,Orange Firefly Luciferase (under pBAD) (codon optimized),"Escherichia coli, Nipponoluciola cruciata","Escherichia coli, Nipponoluciola cruciata",FALSE,Animal,Animal,Animal,Animal,,1,1,2,2,pBAD-RBS-LucRegen-RBS-Luciferase,,,I0500; K325210; ,,
+K516132,"Constitutive promoter [J23101] with mRFP, RBS B0032",Discosoma sp.,Discosoma sp.,FALSE,Animal,None,Animal,None,,4,1,1,1,pJ23101-RBS-mRFP1,,,J23101; B0032; E1010; B0015,J23101,B0032
+K137076,AHL inducible production of hydrogen peroxide,"Vibrio fischeri,  Streptococcus pneumoniae","Vibrio fischeri,  Streptococcus pneumoniae",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,8,2,2,2,pR0011-RBS-luxR,pR0062-RBS-spxB,,F2622; B0034; K137069; B0015; R0011; I0462; R0062; B0034; C0062; B0015,,B0034; B0034
+K523006,Plac + LacZ + malS,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,5,1,2,2,pLac-RBS-lacZ'-RBS-malS,,,J33207; K523001; ,,
+K325909,Expression of luciferase operon (luxCDABE) under arabinose control. ,"Escherichia coli, Vibrio fischeri","Escherichia coli, Vibrio fischeri",FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,15,2,7,7,pBAD-RBS-luxC-RBS-luxD-RBS-luxA-RBS-luxB-RBS-luxE-RBS-luxG,,,I0500; K325909,,
+K316003,"XylE - catechol 2,3-dioxygenase from P.putida with terminator",Pseudomonas putida,Pseudomonas putida,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,3,0,1,1,,,,J33204; B0014; ,,
+K575014,RhlR/PAI2 Inducible Promoter + RBS (B0030) + RFP,"Pseudomonas aeruginosa, discosoma sp.",discosoma sp.,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,3,1,1,1,pR0071-RBS-E1010,,,R0071; B0030; E1010,,B0030
+I746908,superfolder GFP driven by pBAD promoter,"Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,7,2,2,2,pBAD-RBS-GFP,,,I746910; I746916; B0015; I0500; B0034; ,,B0034
+K118024,"Expression of three genes: dxs, appY, and LIMS1. Expression of dxs and appY increase yields of carotenoids. LIMS1 produces limonene (lemon scent). No annotated promoter",,,,,,,,,6,0,3,3,RBS-dxs-RBS-LIMS1-appY-RBS,,,K118010; K118007; K118004; I742111; J15001; K118000; J15001; I742110; J15001; K118001,,
+K553003,constitutive production of LasR trans-activator,Pseudomonas aeruginosa,Pseudomonas aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,J23100,B0034
+K1150042,uniCAS RNaimer to Bla Target 4,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+B0023,"TE from coliphage T7, reversed",Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+K747000,TAL-Protein_AA1_DiRepeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K733001,Ptms - a constitutive promoter in E. coli and B. subtilis,Bacillus subtilis,None,FALSE,Other-Bacteria,Other-Bacteria,None,None,,,,,,,,,,,
+K617004,Lambda attP P'OP,Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,1,0,0,0,attP,,,,,
+B1006,"Terminator (artificial, large, %T~>90)",synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+I759018,,,,,,,,,,,,,,,,,,J23116,B0034
+K118019,"Plac+rbs+glgC (ADP-glucose pyrophosphorylase), contains lacZ",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,5,1,2,2,pLac-RBS-lacZ'-RBS-glgC,,,K33207; K118017; J15001; K118015,,
+K844008,"Spider Silk 1x Subunit ""B"" (Balanced tRNA codon optimized) with Met (ATG) added",Argiope aurantia ,Argiope aurantia ,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+K608002,strong Promoter and strong RBS,synthetic,synthetic,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23104,
+K575009,LasR/PAI1 Inducible Promoter + RBS (B0034) + GFP,"Pseudomonas aeruginosa, Aequorea victoria",Aequorea victoria,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,,,,,,,,,,B0034
+K747003,TAL-Protein_AT1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+I759016,"cis4-repressed, tet-regulated YFP","Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,,,,,,,,,J23116,B0030; B0034
+E0430,EYFP (RBS+ LVA- TERM) (B0034.E0030.B0015),Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+B0015,double terminator (B0010-B0012),synthetic,synthetic,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K568004,Optogenetical AND-Gate blue light - without first promoter - choose your first input,"Escherichia coli, Escherichia coli (phage)",Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,B0030
+K581008,RBS+ccdB+Termintor,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K118028,beta-glucosidase gene bglX (chu_2268) from Cytophaga hutchinsonii,Cytophaga hutchinsonii,Cytophaga hutchinsonii,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K844006,"Spider Silk 1x Subunit ""W"" with Met (ATG) start codon",Argiope aurantia,Argiope aurantia,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+I13602,Tet operator with CFP reporter (with LVA tag) [R/Tc+] ,"Escherichia coli, Aequorea victoria",Aequorea victoria,TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,4,1,1,1,ptetR-RBS-eCFP,,,R0040; E0422; B0034; E0022; B0015,,B0034
+K747001,TAL-Protein_AC1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+C0050,cI repressor from phage HK022 (+LVA?),Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,
+K773003,mCherry-LVA,Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+K773002,Proteorhodopsin,Alphaproteobacteria (uncultured),Alphaproteobacteria (uncultured),FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,,,,,,,,,,,
+K748002,Truncated lysostaphin coding sequence. Lysostaphin has has a specific lytic action against S.aureus.,Staphylococcus simulans,Staphylococcus simulans,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+I0500,Inducible pBad/araC promoter,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+I712669,CMV - mCer,"Human (Virus), Aequorea victoria",Aequorea victoria,TRUE,Animal (virus),Animal (virus),Animal,None,,,,,,,,,,,
+I13601, Lac operator with CFP reporter (without LVA tag) [R/Lc-] ,"Escherichia coli, Aequorea victoria",Aequorea victoria,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,B0034
+K784013,pLux+Theophylline riboswitch+mCherry,"Vibrio fisherii, synthetic, Discosoma sp.",Discosoma sp.,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,,,,,,,,,,
+K747009,,,,,,,,,,,,,,,,,,,
+I13600,Tet with CFP reporter (without LVA tag),"Escherichia coli, Aequorea victoria",Aequorea victoria,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,B0034
+I13500,Screening plasmid intermediate,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+K861173,mRFP generator controlled by PcstA (glucose-repressible promoter),"Escherichia coli, Discosoma sp.",Discosoma sp.,TRUE,Animal,Escherichia coli,Animal,None,,4,1,1,1,pcstA-RBS-mRFP,,,K118011; I13507; B0034; E1010; B0015,,B0034
+K608351,(correct) temperature sensitive promoter,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,J23114,B0034
+K895000,Eco_Ptat2,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+R0083,"Promoter (OmpR, positive)",Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+J52011,dnMyD88-linker-Rluc,"Renilla reniformis, Homo sapiens",Homo sapiens,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+C0040,tetracycline repressor from transposon Tn10 (+LVA),Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K115002,RNA thermometer (FourU),Salmonella enterica,None,FALSE,Other-Enterobacterales,Other-Enterobacterales,None,None,,,,,,,,,,,
+K575015,RhlR/PAI2 Inducible Promoter + RBS (B0034) + RFP,"Psedomonas aeruginosa, Discosoma sp.",Discosoma sp.,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,,,,,,,,,,B0034
+K914003,L-rhamnose-inducible promoter (pRha),Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K1166002,HlyA-tag+Secretion system,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,B0034; B0034
+K844007,"Spider Silk 1x Subunit ""F"" (Fewest tRNA codon optimized) with Met (ATG) added",Argiope aurantia,Argiope aurantia,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+B0025,"double terminator (B0015), reversed","Escherichia coli, Escherichia coli (phage)",None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+E0036,enhanced yellow fluorescent protein derived from A. victoria GFP ,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+I13504,RBS + GFP + terminator,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+K581005,"Pc+sgrS(wt)+Terminator (small RNA regulator, conjugate part of ptsG(wt)) ",Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,J23106,
+K774001," PyeaR + CArG nitric oxide, nitrate & nitrite-sensing hybrid 'Mammalian-Bacterial' promoter","Escherichia coli, Homo sapiens (virus), Gallus domesticus, Oryctolagus cuniculus",None,FALSE,Animal (virus),Animal (virus),None,None,,,,,,,,,,,
+K516030,mRFP protein generator TERM+ RBS+(B0030),Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0030
+K575008,LasR/PAI1 Inducible Promoter + RBS (B0030) + GFP,"Pseudomonas aeruginosa, Aequorea victoria",Aequorea victoria,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,,,,,,,,,,B0030
+K608003,"strong Promoter , medium RBS",synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23104,B0032
+K608004,"strong Promoter , weak RBS",synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23104,
+R1051,"Promoter, Standard (lambda cI regulated)",Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+K914011,supD-T - intermediate,Klebsiella pneumoniae,None,FALSE,Other-Enterobacterales,Other-Enterobacterales,None,None,,,,,,,,,,,
+J23119,constitutive promoter family member ,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23119; J23108,
+K516011,luxI protein generator TERM- RBS+(B0031),Vibrio fischeri,Vibrio fischeri,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,2,0,1,1,RBS-luxI,,,B0031; C0061,,
+K517005,erg20-2,Saccharomyces cerevisiae,Saccharomyces cerevisiae,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,
+K541503,"Constitutive Strong promoter, Strong RBS and TAT signal peptide",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,J23100,B0034
+I13002,RBS B0031 w/ YFP (-LVA) TT,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+E0020,engineered cyan fluorescent protein derived from A. victoria GFP ,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+E0026,enhanced cyan fluorescent protein derived from A. victoria GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+B0032,RBS.3 (medium) -- derivative of BBa_0030,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,B0032
+I13001,RBS B0030 w/ YFP (-LVA) TT,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0030
+B0033,RBS.4 (weaker) -- derivative of BBa_0030,synthetic,synthetic,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K861090,YhjH Gene From E.coli str. K12,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K1184000,KillerRed,Anthoathecata sp.,Anthoathecata sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+S03154,"B0034.C0078 (note about possible part mixup in kits), lasI (or cinI)",Pseudomonas aeruginosa,Pseudomonas aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0034
+R1062,"Promoter, Standard (luxR and HSL regulated -- lux pR)",Vibrio fischerii,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+I746391,"phiR73 delta inducing PO promoter, includes AraC, RFP, GRP","Escherichia coli, Escherichia coli (phage), Discosoma sp., Aeguorea victoria","Escherichia coli, Escherichia coli (phage), Discosoma sp., Aeguorea victoria",TRUE,Animal,Escherichia coli (phage),Animal,Escherichia coli (phage),,,,,,,,,,,B0034; B0034; B0034
+K611025,LacI Promoter Variant #5,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K137019,AHL receiver + tet inverter + GFP,"Escherichia coli, Pseudomonas aeruginosa, Aequorea victoria","Escherichia coli, Pseudomonas aeruginosa, Aequorea victoria",TRUE,Animal,Other-Gammaproteobacteria,Animal,Other-Gammaproteobacteria,,,,,,,,,,,B0034; B0034; B0034
+P10302,"GVG (GAL4-VP16-GR), PhytoBricks part from plasmid pUAP80020 ","Saccharomyces cerevisiae, Herpes simplex, Rattus norvegicus ","Saccharomyces cerevisiae, Herpes simplex, Rattus norvegicus ",FALSE,Animal (virus),Animal (virus),Animal (virus),Animal (virus),,,,,,,,,,,
+K747012,TAL-Protein_TA1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K145001,T7 RNA polymerase,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,
+K608007,"medium Promoter , weak RBS",synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23110,
+K538104,RBS + CspC,Polaribacter irgensii,Polaribacter irgensii,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,B0034
+K523004,bglX for BioSandwich,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K634001,ExaE (codon optimized),Pseudomons aeruginosa,Pseudomons aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+I746200,FepA L8T Mutant - Large Diffusion pore for E. coli outer membrane.,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+E0024,enhanced cyan fluorescent protein derived from A. victoria GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K819010,Medium cheZ generator,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,J23113,B0034
+K398326,Promoter of the CaiF protein,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K608006,"medium Promoter , medium RBS",synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23110,B0032
+K876000,"Constitutive producer for TetR, repressed by LacI ",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+E0422,ECFP (RBS+ LVA+ TERM) (B0034.E0022.B0015),Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+K808000,araC-Pbad - Arabinose inducible regulatory promoter/repressor unit,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K624000,ori+Pmsp1,Magnetospirillum magneticum,None,FALSE,Other-Proteobacteria,Other-Proteobacteria,None,None,,,,,,,,,,,
+K525406, Fusion Protein of S-Layer SbpA (codon optimized) and mCerulean ,"Lysinibacillus sphaericus, Aequorea victoria","Lysinibacillus sphaericus, Aequorea victoria",TRUE,Animal,Other-Bacteria,Animal,Other-Bacteria,,,,,,,,,,,B0034
+K523015,Plac + RBS + cenA (endoglucanase),"Escherichia coli, Cellulomonas fimi","Escherichia coli, Cellulomonas fimi",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K525404,Fusion Protein of S-Layer SbpA (codon optimized) and mCherry RFP,"Lysinibacillus sphaericus, Discosoma sp.","Lysinibacillus sphaericus, Discosoma sp.",TRUE,Animal,Other-Bacteria,Animal,Other-Bacteria,,,,,,,,,,,B0034
+K1150001,VP16,Homo sapiens (virus),Homo sapiens (virus),FALSE,Animal (virus),Animal (virus),Animal (virus),Animal (virus),,,,,,,,,,,
+K808032,"Arabinose regulated RBS-PhoA-His6tag-pNBEst13-Myctag-EstA, has araC","Escherichia coli, Bacillus licheniformis, Pseudomonas aeruginosa","Escherichia coli, Bacillus licheniformis, Pseudomonas aeruginosa",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K523000,Plac + lacZ; with BglII site,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+B0034,RBS (Elowitz 1999) -- defines RBS efficiency,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,B0034
+K747004,TAL-Protein_CA1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K1061003,RIP 3 ,Homo sapiens,Homo sapiens,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+K590034,FabH2,Bacillus subtilis,Bacillus subtilis,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K895004,Salty_Hcp-CD27_endolysin,"Salmonella enterica, Clostridium difficile","Salmonella enterica, Clostridium difficile",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K747002,TAL-Protein_AG1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K577894,TetR repressed YFP,"Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,,,,,,,,,,B0034; B0034
+K145302,luxI generator controlled by key/lock (lacI and luxI),"Escherichia coli, Vibrio fischeri","Escherichia coli, Vibrio fischeri",FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,J23109,B0032
+K775000,RI7-GPR109A Niacin chimeric GPCR,"Rattus norvegicus, Saccharomyces cerevisiae",Rattus norvegicus,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+K118000,dxs coding sequence encoding 1-deoxyxylulose-5-phosphate synthase,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+B0013,TE from coliphage T7,Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+K819017,Luminesensor repressible SulA408 promoter,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K1033916,"amajLime, yellow-green chromoprotein",Anemonia majano,Anemonia majano,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+C0052,cI repressor from phage 434 (+LVA),Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,
+K567015,PT7-metGN,"Escherichia coli, Escherichia coli (phage)",Escherichia coli,FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli,Escherichia coli,,,,,,,,,,,
+K747023,TAL-Protein_CT2_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K1188002,RTX - Calcium Binding Protein,synthetic,synthetic,FALSE,Synthetic,Synthetic,Synthetic,Synthetic,,,,,,,,,,,
+K873002,HSP promoter,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K1806004,T7+ ibPB RNA Thermometer + pelB + MCS + 6xHis,"Escherichia coli, Erwinia carotovora ",Erwinia carotovora ,FALSE,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,,,,,,,,,,,
+I751100,luxR-Tokyo standard cloning site-GFP,"Vibrio fisherii, Aequeora victoria","Vibrio fisherii, Aequeora victoria",TRUE,Animal,Other-Gammaproteobacteria,Animal,Other-Gammaproteobacteria,,,,,,,,,,,B0030; B0034
+C0160,autoinducer inactivation enzyme aiiA (no LVA),Bacillus sp. 240B1,Bacillus sp. 240B1,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K516031,mRFP protein generator TERM+ RBS+(B0031),Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K747008,,,,,,,,,,,,,,,,,,,
+K567008,PT7-Luc-2AGG,Photinus pyralis,Photinus pyralis,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+K763001,pGroE + Gene encoding AsRed2,"Escherichia coli, Anemonia sulcata",Anemonia sulcata,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,
+K624003,rep gene from AMB1 origin pMGT,Magnetospirillum magneticum,Magnetospirillum magneticum,FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,,,,,,,,,,,
+K115001,RNA thermometer (ROSE),Bradyrhizobium japonicum,None,FALSE,Other-Proteobacteria,Other-Proteobacteria,None,None,,,,,,,,,,,
+K747021,TAL-Protein_CC2_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+I746381,"PSP3 pag inducing PO promoter, includes AraC and mRFP1","Salmonella (phage), Escherichia coli, Discosoma sp.","Salmonella (phage), Escherichia coli, Discosoma sp.",TRUE,Animal,Other-Enterobacterales (phage),Animal,Other-Enterobacterales (phage),,,,,,,,,,,B0034; B0034; B0034
+K936000,LC Cutinase,Uncultured fungus,Uncultured fungus,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,
+K517003,beta-pinene synthase ,Picea glauca ,Picea glauca ,FALSE,Plant,Plant,Plant,Plant,,,,,,,,,,,
+K1150039,uniCAS RNAimer to target VEGF4,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K863206,Mating factor alpha 1 with Kozak sequence,Saccharomyces cerevisiae,Saccharomyces cerevisiae,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,
+K592009,"amilCP, blue chromoprotein",Acropora millepora,Acropora millepora,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+B0010,,,,,,,,,,,,,,,,,,,
+K538101,RBS + Cpn60,Oleispira antarctica,Oleispira antarctica,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0034
+K747019,TAL-Protein_AT2_Direpeat ,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K747005,TAL-Protein_CC1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K648013,GFP with Standard 25 Prefix/Suffix,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K747010,TAL-Protein_GG1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K1415006,PBAN (Pheromone Biosynthesis Activating Neuropeptide),Helicoverpa armigera,Helicoverpa armigera,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+R0079,Promoter (LasR & PAI regulated),Pseudomonas aeruginosa,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+K575021,LasR/PAI1 Inducible Promoter (Short),Pseudomonas aeruginosa,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+K567018,PT7-GFP-TAG-RFP,"Aequorea victoria, Discosoma sp.","Aequorea victoria, Discosoma sp.",TRUE,Animal,Escherichia coli (phage),Animal,None,,,,,,,,,,,
+K1150038,uniCAS RNAimer to target VEGF3 ,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K817024,RBS-SP1-Penetratin-Flag-xx,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,B0030
+K1061001,apoptin,Gallus domesticus (virus),Gallus domesticus (virus),FALSE,Animal (virus),Animal (virus),Animal (virus),Animal (virus),,,,,,,,,,,
+B0031,RBS.2 (weak) -- derivative of BBa_0030,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K738002,Theophyline riboswitch regulated RNA Scaffold (clover vision 2) ,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+I6057," Promoter O_H Test I0500.E0420, pBAD promoter, araC, and ECFP","Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,,,,,,,,,,B0034
+B0040,Spacer.1 (generic),synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K914001,Colicin E2 Immunity protein under pLac promoter (BBa_R0011) with repressilator RBS. This part can be used to confer immunity against the colicin E2 activity protein by induction with IPTG. ,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,B0030
+B0012,terminator TE from coliphageT7 ,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+E1010,engineered mutant of red fluorescent protein from Discosoma striata (coral),Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+R0065,Promoter (lambda cI and luxR regulated -- hybrid),Pseudomonas aeruginosa,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+R0010,promoter (lacI regulated),Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K538000,"cochaperonin 10, which is part of the Cpn60/10 chaperone system of Oleispira antarctica",Oleispira antarctica,Oleispira antarctica,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K773004,mCherry-AAV,Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+J61101,Ribosome Binding Site Family Member,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K525998,Promoter T7 and RBS,Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,B0034
+K576003,"Left Part of Self-Excising Ribozyme, Modified 5' ""half"" of intron found in ORF #142 in Twort phage of Staphylococcus aureus",Staphylococcus aureus,None,FALSE,Other-Bacteria,Other-Bacteria,None,None,,,,,,,,,,,
+K606017,T7 polymerase expression cassette for Bacillus Subtilis ,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,
+K823017,double terminator (B0012-B0011),"Escherichia coli, Escherichia coli (phage)",None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+K733009,Ptms+BBa_E0240: Ptms (B. subtilis promoter)+RBS+GFP+Double ,"Bacillus subtilis, Aequorea victoria",Aequorea victoria,TRUE,Animal,Other-Bacteria,Animal,None,,,,,,,,,,,B0032
+K592011,"cjBlue, green chromoprotein ",Cnidopus japonicus,Cnidopus japonicus,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K540001,"rcn, cobalt-sensitive promoter with RcnR regulator",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K648029,"OR, operating region for Lambda switch ",Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+J52022,NfΚB-dnTraf6-linker-GFP,"Homo sapiens, Aequorea victoria","Homo sapiens, Aequorea victoria",TRUE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+E0034, enhanced yellow fluorescent protein derived from A. victoria GFP ,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K584000,pBAD + GFP generator (no AraC),"Escherichia coli,  Aequorea victoria",Aequorea victoria,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,B0032
+K1150041,uniCAS RNaimer to Bla Target 3,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+R0062,Promoter (luxR & HSL regulated -- lux pR),Vibrio fischeri,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+K747011,TAL-Protein_GT1_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K523002,RBS + bglX (E. coli perisplasmic β-glucosidase) ,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+I746375,"P2 ogr inducing PLL promoter (pBAD, AraC, P2 ogr, mRFP1)","Escherichia coli, Escherichia coli (phage), Discosoma sp.","Escherichia coli, Escherichia coli (phage), Discosoma sp.",TRUE,Animal,Escherichia coli (phage),Animal,Escherichia coli (phage),,,,,,,,,,,B0034; B0034; B0034
+K588001,ptrp,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K517002,alpha-pinene synthase,Picea spp.,Picea spp.,FALSE,Plant,Plant,Plant,Plant,,,,,,,,,,,
+K654058,Thioesterase (TesA from E. coli) with 8-His Tag,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+C0061,"autoinducer synthetase for AHL, luxI",Vibrio fischeri,Vibrio fischeri,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K519010,SmtA is a metallothionein that can bind to heavy metal ions such as Cd(II). This SmtA is cloned from Synechococcus sp. PCC7942,Synechococcus sp. PCC7942,Synechococcus sp. PCC7942,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+S05060,"K873000:B0015, GroES",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K784014,,,,,,,,,,,,,,,,,,,
+K731520,IPTG inducible GFPmut3b (contains lacI),"Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,,,,,,,,,,B0032
+J45219,Banana odor enzyme (ATF1) generator,Saccharomyces cerevisiae,Saccharomyces cerevisiae,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,B0032
+K523003,malS for BioSandwich ,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K539119,crtY (lycopene cyclase),Pantoea ananatis,Pantoea ananatis,FALSE,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,Other-Enterobacterales,,,,,,,,,,,
+K747007,TAL-Protein_CT1_Direpeat ,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K617003,R6K origin of replication,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K1033910,"fwYellow, yellow chromoprotein ",Phialidium sp. SL-2003,Phialidium sp. SL-2003,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K539421,promoter (lacI regulated)+RNA thermometer ,"Escherichia coli, Salmonella",None,FALSE,Other-Enterobacterales,Other-Enterobacterales,None,None,,,,,,,,,,,
+R0071,Promoter (RhlR & C4-HSL regulated),Pseudomons aeruginosa,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+R0040,TetR repressible promoter ,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K1150040,uniCAS RNAimer to Bla Target 2,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K817018,gamma-delta resolvase cassette,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K575020,"Genomic LasR/PAI1 Inducible Promoter (Long), no regulatory genes",Pseudomonas aeruginosa,None,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,None,None,,,,,,,,,,,
+R0084,"Positively regulated, OmpR-controlled promoter",Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K817023,RBS-SP3-Penetratin-Flag,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,B0030
+K525710,"DNA ligase from Escherichia coli (LigA) with PT7, RBS and His-tag",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,B0034
+R0080,Promoter (AraC regulated),Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K515007,Dendra2,Dendronephthya sp.,Dendronephthya sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+J45299,PchA & PchB enzyme generator,Pseudomonas aeruginosa,Pseudomonas aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0030
+K936013,,,,FALSE,,,,,,,,,,,,,,,
+K733008, LytC protein cell wall binding domain + linker + FLAG,Bacillus subtilis,Bacillus subtilis,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+J45199,Banana odor enzyme (ATF1) generator,Saccharomyces cerevisiae,Saccharomyces cerevisiae,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,B0030
+K538004,CspC (Polaribacter irgensii),Polaribacter irgensii,Polaribacter irgensii,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+R0063,Promoter (luxR & HSL regulated -- lux pL),Vibrio fisherii,Vibrio fisherii,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+E0030,enhanced yellow fluorescent protein derived from A. victoria GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K525306,Fusion Protein of S-Layer SgsE (codon optimized) and mCerulean,"Aequorea victoria, Geobacillus stearothermophilus","Aequorea victoria, Geobacillus stearothermophilus",TRUE,Animal,Other-Bacteria,Animal,Other-Bacteria,,,,,,,,,,,B0034
+J45319,PchA & PchB enzyme generator,Pseudomonas aeruginosa,Pseudomonas aeruginosa,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0032
+K1218003,CRISPR CasA E. coli (Modern),Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+C0261,"AHL-making Enzyme, luxI (+RBS)",Vibrio fischeri,Vibrio fischeri,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0034
+K875009,LL 37 - Cathelicidin,Human,Human,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+R0011,"Promoter (lacI regulated, lambda pL hybrid)",Escherichia coli (phage),None,FALSE,Escherichia coli (phage),Escherichia coli (phage),None,None,,,,,,,,,,,
+C0012,lacI repressor from E. coli (+LVA),Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K1150043,uniCAS RNAimer multiple targets to VEGF 2 and VEGF 3,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K569017,CheY CDS,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+J23108,constitutive promoter family member,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23108; J23119,
+K784006,Theophylline riboswitch 12.1 + mCherry,"synthetic, Discosoma sp.",Discosoma sp.,TRUE,Animal,Synthetic,Animal,None,,,,,,,,,,,
+K592018,This is the red light sensor Cph8 (Cph1/EnvZ fusion) with RBS. ,"Synechocystis sp. PCC 6803, Escherichia coli","Synechocystis sp. PCC 6803, Escherichia coli",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,B0034
+K592016,"Bacillus subtilis, Bradyrhizobium japonicum","Bacillus subtilis, Bradyrhizobium japonicum","Bacillus subtilis, Bradyrhizobium japonicum",FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,B0034; B0034
+K747018,TAL-Protein_AG2_Direpeat ,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+S03749,tet-regulated cro (Strong tetR promoter),Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,J23100,B0030; B0034
+K660610,"RBS + RcsB, It's a transcription factor for Colanic acid with a strong RBS ",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,B0030
+K611026,LacI Promoter Variant #6,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+K516022,AiiA protein generator TERM+ RBS+(B0032),Bacillus 240B1,Bacillus,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,B0032
+K808003,tctB_162: small subunit B1 of the tripartite tricarboxylate transporter family,Comamonas testosteroni KF-1,Comamonas testosteroni KF-1,FALSE,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,Other-Proteobacteria,,,,,,,,,,,
+C0060,autoinducer inactivation enzyme from Bacillus; hydrolyzes acetyl homoserine lactone,Bacillus 240B1,Bacillus,FALSE,Other-Bacteria,Other-Bacteria,Other-Bacteria,Other-Bacteria,,,,,,,,,,,
+K541506,Reflectin1A from Cephalopod,Euprymna scolopes,Euprymna scolopes,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+E0032,enhanced yellow fluorescent protein derived from A. victoria GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+I732920,"[AHL]->PoPs->[ARL4A0604] converter, expresses LuxR and evolved lacI repressor","Vibrio fischeri, Escherichia coli","Vibrio fischeri, Escherichia coli",FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,B0034; B0034
+K808025,FsC: Cutinase PET cleaving enzyme,Fusarium solani,Fusarium solani,FALSE,Fungi,Fungi,Fungi,Fungi,,,,,,,,,,,
+K747022,TAL-Protein_CG2_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K325903,luxEG V. Fischeri (E. coli codon optimized),Vibrio fischeri,Vibrio fischeri,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K747020,TAL-Protein_CA2_Direpeat,Xanthomonas ,Xanthomonas ,FALSE,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,Other-Gammaproteobacteria,,,,,,,,,,,
+K541505,limulus anti-LPS factor (LALF),Limulus polyphemus,Limulus polyphemus,FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+J61100,Anderson Ribosome Binding Site,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,
+K607035,pUC18 replication origin,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+J23109,constitutive promoter family member ,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23109,
+S04602,Construction intermediate with cinR (B0034:C0077),Rhizobium leguminosarum,Rhizobium leguminosarum,FALSE,Other-Proteobacteria,Other-Proteobacteria,None,None,,,,,,,,,,,B0034
+K624004,"pMGT origin, ori+Pmsp1+rep (pYMB essentials)",Magnetospirillum magneticum,Magnetospirillum magneticum,FALSE,Other-Proteobacteria,Other-Proteobacteria,None,None,,,,,,,,,,,
+K398331,pCaiF-B0032 measurement device,"Escherichia coli, Aequeora victoria",Aequeora victoria,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,B0032
+I712058,CMVp - myri - TEVP - GFP,"Human (Virus), Aequorea victoria",Aequeora victoria,TRUE,Animal (virus),Animal (virus),Animal,None,,,,,,,,,,,
+I15017,B0032.EYFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0032
+I13502,RBS plus mRFP1,Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+E0022,enhanced cyan fluorescent protein derived from A. victoria GFP,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K812032,mCFP with kozak sequence for eukaryotic expression,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K598014,GFP reporter regulated by a self-cleaving hammerhead ribozyme,Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K777117,"This gene codes for MotB, a part of the flagellar motor. MotA and MotB constitute the stator and are required for the flow of ions and torque generation. ",Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+J52040,CMV + GFP-PEST191,"Human (Virus), Aequorea victoria",Aequorea victoria,TRUE,Animal (virus),Animal (virus),Animal,None,,,,,,,,,,,
+B0030,RBS.1 (strong) -- modified from R. Weiss,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,,B0030
+K909007,TetR DNA binding domain containing BamHI site for protein fusions,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K627011,Fusion part of pBAD arabinose-inducible induction system and the HRV 14_3C protease,Human (virus),Human (virus),FALSE,Animal (virus),Animal (virus),Animal (virus),Animal (virus),,,,,,,,,,,
+K731722,T1 terminator from E. coli rrnB,Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+I712088, CMV - CD4(shortened) - Cub - GFP ,"Saccharomyces cerevisiae, Aequorea victoria","Saccharomyces cerevisiae, Aequorea victoria",TRUE,Animal,Fungi,Animal,Fungi,,,,,,,,,,,
+R0078,Promoter (cinR and HSL regulated),Rhizobium leguminosarum,None,FALSE,Other-Proteobacteria,Other-Proteobacteria,None,None,,,,,,,,,,,
+K314110,Phage origin recognized by M13. Used to make SS DNA when infected with M13k07 helper phage. ,Escherichia coli (phage),Escherichia coli (phage),FALSE,Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),Escherichia coli (phage),,,,,,,,,,,
+R0082,"Positively regulated, OmpR-controlled promoter. This promoter is taken from the upstream region of ompC. Phosphorylated OmpR binds to the three operator sites and activates transcription. ",Escherichia coli,None,FALSE,Escherichia coli,Escherichia coli,None,None,,,,,,,,,,,
+I759020,"cis8-repressed, tet-regulated YFP","Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,,,,,,,,,,J23116,B0034
+I759019,"cis7-repressed, tet-regulated YFP","Escherichia coli, Aequorea victoria","Escherichia coli, Aequorea victoria",TRUE,Animal,Escherichia coli,Animal,Escherichia coli,Includes YFP and tetR,,,,,,,,,J23116,B0034
+K325219,Red Firefly Luciferase and LRE (under pBAD) L. Cruciata (E. coli optimised),"Escherichia coli, Nipponoluciola cruciata","Escherichia coli, Nipponoluciola cruciata",FALSE,Animal,Animal,Animal,Animal,,,,,,,,,,,
+K608010,Medium promoter with strong RBS and GFP,synthetic,None,FALSE,Synthetic,Synthetic,None,None,,,,,,,,,,J23110,B0034
+I13543,"mRFP expressed from pBAD promoter with strong RBS, Intermediate in two promoter screening plasmid ",Discosoma sp.,Discosoma sp.,TRUE,Animal,None,Animal,None,,,,,,,,,,,B0034
+K1031410,HcaR-Terminator,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+K118005,synthetic rbs+crtI (phytoene dehydrogenase),Pantoea ananatis ,Pantoea ananatis ,FALSE,Other-Enterobacterales,Other-Enterobacterales,Pantoea ananatis ,Pantoea ananatis ,,,,,,,,,,,
+K584003,Lambda cI and LuxR regulated - hybrid promoter + GFP generator,"Vibrio fischeri, Escherichia coli (phage), Aequorea victoria",Aequorea victoria,TRUE,Animal,Other-Gammaproteobacteria,Animal,None,,,,,,,,,,,B0032
+K592101,Yellow Fluorescent Protein (YFP),Aequorea victoria,Aequorea victoria,TRUE,Animal,None,Animal,None,,,,,,,,,,,
+K607038,Prm modified promoter generating GFP,"Escherichia coli (phage), Aequorea victoria",Aequorea victoria,TRUE,Animal,Escherichia coli (phage),Animal,None,,,,,,,,,,,B0030
+K801012,ADH1 yeast terminator,Saccharomyces cerevisiae,None,FALSE,Fungi,Fungi,None,None,,,,,,,,,,,
+P0312,PoPS -> LacI [S0156]; Has B0033 RBS,Escherichia coli,Escherichia coli,FALSE,Escherichia coli,Escherichia coli,Escherichia coli,Escherichia coli,,,,,,,,,,,
+J04450,RFP Coding Device,"Escherichia coli, Discosoma sp.",Discosoma sp.,TRUE,Animal,Escherichia coli,Animal,None,,,,,,,,,,,B0034

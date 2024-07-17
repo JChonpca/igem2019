@@ -201,6 +201,10 @@ growthRatePlot = ggplot(RFP.data, aes(x = strain, y=other.rate, fill="lightpink"
 growthRatePlot 
 ggsave("10-RFP-series-output/other_individual_points.pdf")
 
+
+write_csv(RFP.data, "10-RFP-series-output/RFP.data.csv")
+write_csv(RFP.all.data, "10-RFP-series-output/RFP.all.data.csv")
+
 # BFP ##########################  
 
 
@@ -363,4 +367,7 @@ growthRatePlot = ggplot(BFP.data, aes(x = strain, y=other.rate)) +
   NULL
 growthRatePlot 
 ggsave("11-BFP-series-output/other_individual_points.pdf")
+
+write_csv(BFP.data, "11-BFP-series-output/BFP.data.csv")
+write_csv(BFP.all.data, "11-BFP-series-output/BFP.all.data.csv")
 

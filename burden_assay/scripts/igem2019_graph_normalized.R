@@ -100,6 +100,8 @@ if (T) {
    
    print(anova(fit2, fit1))
    
+   write_csv(non.control.parts.means, paste0(output.base.name, ".normalized.sem.versus.growth.rate.csv"))
+   
 }
 
 ################################################################################

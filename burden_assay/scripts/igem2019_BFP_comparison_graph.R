@@ -101,6 +101,11 @@ for (this.BFP.construct in unique(strain_correspondence$BFP_construct)) {
   
 }
 
+write_csv(combined_for_plot, "12-BFP-unmutated-output/combined_data_for_plot.csv")
+write_csv(combined_for_plot_stats, "12-BFP-unmutated-output/combined_data_for_plot_stats.csv")
+
+write_csv(unmutated_BFP, "12-BFP-unmutated-output/unmutated_BFP_stats.csv")
+
 #Conclusion: Only the two suspected ones are different after correcting for multiple testing.
 
 

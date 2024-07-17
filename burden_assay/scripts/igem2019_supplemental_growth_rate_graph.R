@@ -18,6 +18,8 @@ OD_separation_for_window_graph = 0.02
 
 plot_array = list()
 
+merged_data = data.frame()
+
 for (i in 1:length(biobricks)) {
  
   this.biobrick = biobricks[i]
@@ -36,8 +38,11 @@ for (i in 1:length(biobricks)) {
 
   X = read_csv(this_experiment_add_values_path) 
   
+  X$plate = this.experiment
   X = X %>% filter(strain==this.biobrick)
   
+  
+  merged_data = merged_data %>% bind_rows(X)
   
   okabe <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
   
@@ -55,10 +60,11 @@ for (i in 1:length(biobricks)) {
   plot_array[[i]] = p
 }
 
+write_csv(merged_data, file.path("13-OD-curves", "supplemental_OD_curves.csv"))
 
 q = gridExtra::grid.arrange(plot_array[[1]], plot_array[[2]], plot_array[[3]], 
                         plot_array[[4]], plot_array[[5]], plot_array[[6]],
                         ncol=2)
 
 
-ggsave(file.path("12-OD-curves", "supplemental_OD_curves.pdf"), q, width=8, height=8)
+ggsave(file.path("13-OD-curves", "supplemental_OD_curves.pdf"), q, width=8, height=8)

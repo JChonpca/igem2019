@@ -130,3 +130,4 @@ fig1s <- ggplot(ode.model.results) +
   
 fig1s
 ggsave("Fig2.pdf")
+write_csv(stochastic.model.results, "Fig2.csv")

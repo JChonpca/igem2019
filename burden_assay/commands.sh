@@ -24,10 +24,10 @@ SETTINGS=output
 
 rm -r $MAINDIR/01-output-plate-fits
 cd $MAINDIR/input-plate-data
-batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -p -i #d -o $MAINDIR/01-output-plate-fits/#d/#d  --avg-end-time ${BACKGROUNDTIME} --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}"
+$SCRIPTDIR/batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -p -i #d -o $MAINDIR/01-output-plate-fits/#d/#d  --avg-end-time ${BACKGROUNDTIME} --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}"
 
 #Use this command instead if you want to produce plots
-#batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --avg-end-time ${BACKGROUNDTIME}--min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}"
+#$SCRIPTDIR/batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --avg-end-time ${BACKGROUNDTIME}--min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}"
 
 
 ## Test of including data measured at MSU
@@ -35,20 +35,20 @@ batch_run.pl "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit
 # $SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data/exp057/exp057 -o $MAINDIR/01-output-plate-fits/exp057/exp057 --avg-end-time ${BACKGROUNDTIME} --min-OD ${MINOD} --max-method ${MAXMETHOD} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA} --max-time=1200
 
 ##For graphing one experiment to spot check
-#batch_run.pl -p exp050 "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --time-point-delta ${TIMEPOINTDELTA}"
+#$SCRIPTDIR/batch_run.pl -p exp050 "mkdir -p $MAINDIR/01-output-plate-fits/#d && $SCRIPTDIR/burden_fit.R -i #d -o $MAINDIR/01-output-plate-fits/#d/#d --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --time-point-delta ${TIMEPOINTDELTA}"
 
 
 ## Create merged summary file
 mkdir -p $MAINDIR/02a-output-summary-merged/$SETTINGS
 cd $MAINDIR/01-output-plate-fits
-batch_run.pl "cp #d.rates.summary.csv $MAINDIR/02a-output-summary-merged/$SETTINGS"
+$SCRIPTDIR/batch_run.pl "cp #d.rates.summary.csv $MAINDIR/02a-output-summary-merged/$SETTINGS"
 $SCRIPTDIR/burden_merge.R -i $MAINDIR/02a-output-summary-merged/$SETTINGS -o $MAINDIR/02a-output-summary-merged/$SETTINGS.csv -m $MAINDIR/igem2019_strain_metadata.csv
 rm -r $MAINDIR/02a-output-summary-merged/$SETTINGS
 
 ## Create merged all results file
 mkdir -p $MAINDIR/02b-output-all-merged/$SETTINGS
 cd $MAINDIR/01-output-plate-fits
-batch_run.pl "cp #d.rates.all.csv $MAINDIR/02b-output-all-merged/$SETTINGS"
+$SCRIPTDIR/batch_run.pl "cp #d.rates.all.csv $MAINDIR/02b-output-all-merged/$SETTINGS"
 $SCRIPTDIR/burden_merge.R -i $MAINDIR/02b-output-all-merged/$SETTINGS -o $MAINDIR/02b-output-all-merged/$SETTINGS.csv -m $MAINDIR/igem2019_strain_metadata.csv
 rm -r $MAINDIR/02b-output-all-merged/$SETTINGS
 
@@ -105,9 +105,27 @@ mkdir -p $MAINDIR/11-BFP-series-output
 $SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-BFP-series/exp061/exp061 -o $MAINDIR/11-BFP-series-output/exp061 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
 $SCRIPTDIR/burden_summary.R -i $MAINDIR/11-BFP-series-output/exp061.rates.summary.csv
 
+##### BFP comparison
+
+mkdir -p $MAINDIR/12-BFP-unmutated-output
+$SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-unmutated-BFP-controls/exp059/exp059 -o $MAINDIR/12-BFP-unmutated-output/exp059 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
+$SCRIPTDIR/burden_summary.R -i $MAINDIR/12-BFP-unmutated-output/exp059.rates.summary.csv
+
+$SCRIPTDIR/burden_fit.R -i $MAINDIR/input-plate-data-unmutated-BFP-controls/exp060/exp060 -o $MAINDIR/12-BFP-unmutated-output/exp060 --min-OD ${MINOD} --max-method ${MAXMETHOD} --two-point-fit ${FITTWOPOINTS} --growth-rate-method ${GROWTHRATEMETHOD} --fluorescence-rate-method ${FLUORESCENCERATEMETHOD} --time-point-delta ${TIMEPOINTDELTA}
+$SCRIPTDIR/burden_summary.R -i $MAINDIR/12-BFP-unmutated-output/exp060.rates.summary.csv
+
+$SCRIPTDIR/igem2019_BFP_comparison_graph.R
+
 ##### Graphs
 cd $MAINDIR
 $SCRIPTDIR/igem2019_BFP_RFP_series_graphs.R
+
+cd $MAINDIR
+mkdir -p $MAINDIR/13-OD-curves
+$SCRIPTDIR/igem2019_supplemental_growth_rate_graph.R
+
+cd $MAINDIR
+$SCRIPTDIR/igem2019_organism_origin.R
 
 ##### MSU comparison
 ## Not included in the paper. You need Need to re-enable MSU plate data and run previous commands for this to work
